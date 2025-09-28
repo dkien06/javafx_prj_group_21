@@ -22,6 +22,7 @@ public class HelloApplication extends Application {
     //tiem da den va cha lam j ca
     //Tiem da them mot branch moi va tiem dang test
     //Tiem da quay tro lai va lai deo lam gì ca
+    // Thay chua ae
     public static void main(String[] args) {
         launch();
     }
