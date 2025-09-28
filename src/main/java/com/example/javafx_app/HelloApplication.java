@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
        stage.show();
     }
     //tiem da den va cha lam j ca
+    //Tiem da them mot branch moi va tiem dang test
     public static void main(String[] args) {
         launch();
     }
