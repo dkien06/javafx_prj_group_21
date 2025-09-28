@@ -23,6 +23,7 @@ public class HelloApplication extends Application {
     //Tiem da them mot branch moi va tiem dang test
     //Long da them 1 branch moi va long dang test
     //Long vua commit file Hello Application
+    //Long vua lam 1 cai gi do
 
     public static void main(String[] args) {
         launch();
