@@ -27,5 +27,6 @@ public class Controller2 {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+        //Tiem nhay sang day
     }
 }
