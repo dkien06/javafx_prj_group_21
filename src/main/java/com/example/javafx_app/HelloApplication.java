@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
        stage.setResizable(false);
        stage.show();
     }
-
+    //tiem da den va cha lam j ca
     public static void main(String[] args) {
         launch();
     }
