@@ -5,16 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.LoginController">
    <children>
-      <VBox layoutX="106.0" layoutY="248.0" prefHeight="51.0" prefWidth="202.0">
+      <VBox layoutX="106.0" layoutY="279.0" prefHeight="51.0" prefWidth="202.0">
          <children>
             <TextField promptText="Số CMND" />
             <TextField promptText="Mật khẩu" />
          </children>
       </VBox>
-      <Button fx:id="btn_dang_nhap" layoutX="170.0" layoutY="337.0" mnemonicParsing="false" onAction="#DangNhap" text="Đăng nhập" />
-      <Button fx:id="btn_tao_tai_khoan_moi" layoutX="151.0" layoutY="381.0" mnemonicParsing="false" onAction="#TaoTaiKhoanMoi" text="Tạo tài khoản mới" />
+      <Button fx:id="btn_dang_nhap" layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#DangNhap" text="Đăng nhập" />
+      <Button fx:id="btn_tao_tai_khoan_moi" layoutX="140.0" layoutY="390.0" mnemonicParsing="false" onAction="#TaoTaiKhoanMoi" text="Tạo tài khoản mới" />
    </children>
 </AnchorPane>
