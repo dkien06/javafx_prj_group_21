@@ -11,7 +11,7 @@ import java.io.IOException;
 public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home_scene.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
