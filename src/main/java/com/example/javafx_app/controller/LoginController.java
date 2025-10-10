@@ -24,13 +24,16 @@ public class LoginController {
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
         }
         else{
-            WrongLoginLabel.setText("CCCD hoặc mật khẩu bị sai");
+            if(Password.isEmpty()){
+                WrongLoginLabel.setText("Vui lòng nhập mật khẩu");
+            }
+            else
+                WrongLoginLabel.setText("CCCD hoặc mật khẩu bị sai");
         }
     }
 
     @FXML
     void TaoTaiKhoanMoi(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signin_scene1.fxml");
     }
-
 }

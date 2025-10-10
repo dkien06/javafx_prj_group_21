@@ -7,26 +7,33 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignInController">
    <children>
-      <VBox layoutX="106.0" layoutY="152.0" prefHeight="250.0" prefWidth="202.0">
+      <VBox layoutX="76.0" layoutY="99.0" prefHeight="410.0" prefWidth="282.0">
          <children>
             <Label text="Họ và tên" />
-            <TextField />
+            <TextField fx:id="fullName" />
+            <Text fx:id="fullNameErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
             <Label text="Ngày sinh" />
-            <DatePicker prefHeight="25.0" prefWidth="249.0" />
+            <DatePicker fx:id="dateOfBirth" prefHeight="32.0" prefWidth="292.0" />
+            <Text fx:id="dateOfBirthErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.9367218017578" />
             <Label text="Giới tính" />
-            <ChoiceBox prefHeight="25.0" prefWidth="232.0" />
+            <ChoiceBox fx:id="gender" prefHeight="30.0" prefWidth="287.0" />
+            <Text fx:id="genderErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
             <Label text="Số điện thoại" />
-            <TextField />
+            <TextField fx:id="phoneNumber" />
+            <Text fx:id="phoneNumberErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
             <Label text="Email" />
-            <TextField />
+            <TextField fx:id="email" />
+            <Text fx:id="emailErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
             <Label text="Số CMND" />
-            <TextField />
+            <TextField fx:id="citizenID" />
+            <Text fx:id="citizenIDErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
          </children>
       </VBox>
-      <Button fx:id="continue_btn" layoutX="168.0" layoutY="471.0" mnemonicParsing="false" onAction="#Continue" stylesheets="@css_file/signin_decor1.css" text="Tiếp tục" />
+      <Button fx:id="continue_btn" layoutX="228.0" layoutY="509.0" mnemonicParsing="false" onAction="#TiepTuc" stylesheets="@css_file/signin_decor1.css" text="Tiếp tục" />
+      <Button fx:id="btn_return" layoutX="113.0" layoutY="509.0" mnemonicParsing="false" onAction="#returnToLoginScene" text="Quay lại" />
    </children>
 </AnchorPane>
