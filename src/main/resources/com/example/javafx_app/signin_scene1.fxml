@@ -26,8 +26,8 @@
             <TextField fx:id="phoneNumber" />
             <Text fx:id="phoneNumberErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
             <Label text="Email" />
-            <TextField />
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
+            <TextField fx:id="email" />
+            <Text fx:id="emailErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
             <Label text="Số CMND" />
             <TextField fx:id="citizenID" />
             <Text fx:id="citizenIDErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />

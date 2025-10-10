@@ -48,6 +48,37 @@ public class BankManager {
         public static boolean isGenderValid(String gender){
             return gender!=null;
         }
+        //Check gmail (Phức tạp vcl:))
+        public enum EmailState{
+            EMPTY,
+            WRONG_FORM,
+            RIGHT
+        }
+        //Gmail: [ten_nguoi_dung]@[duong_dan] VD: NguyenVanA1970@gmail.com Binh.TT2412345@sis.hust.edu.vn
+        public static EmailState isGmailValid(String email){
+            if(email.isEmpty())return EmailState.EMPTY;
+            int viTriACong = email.indexOf('@');
+            //Gmail thì phải có '@' hiển nhiên vcl:))
+            if(viTriACong == -1)return EmailState.WRONG_FORM;
+            //Check [ten_nguoi_dung]
+            //Kí tự đầu phải bằng chữ. Các kí tự còn lại có thể có chữ cái, chữ số và kí tự '.','_','+'
+            if(!Character.isLetter(email.charAt(0)))return EmailState.WRONG_FORM;
+            for(int i = 1; i < viTriACong; i++){
+                if(!(Character.isLetterOrDigit(email.charAt(i)) || email.charAt(i) == '.' || email.charAt(i) == '_' || email.charAt(i) == '+'))
+                    return EmailState.WRONG_FORM;
+            }
+            //Check [duong_dan]
+            //Tất cả các kí tự phải bằng chữ in thường, bắt buộc phải có kí tự '.'
+            int dotCounter = 0;
+            for(int i = viTriACong + 1; i<email.length(); i++){
+                if(!(Character.isLowerCase(email.charAt(i)) || (i != viTriACong && email.charAt(i) == '.'))){
+                    return EmailState.WRONG_FORM;
+                }
+                if(email.charAt(i) == '.')dotCounter++;
+            }
+            if(dotCounter == 0)return EmailState.WRONG_FORM;
+            return EmailState.RIGHT;
+        }
         //Check số điện thoại
         public enum PhoneNumberState{
             EMPTY,
@@ -58,7 +89,7 @@ public class BankManager {
         public static PhoneNumberState isPhoneNumberVaid(String phoneNumber){
             if(phoneNumber.isEmpty())return PhoneNumberState.EMPTY;
             for(int i = 0; i < phoneNumber.length(); i++){
-                if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9'){
+                if(!Character.isDigit(phoneNumber.charAt(i))){
                     return PhoneNumberState.WRONG_FORM;
                 }
             }
@@ -74,12 +105,11 @@ public class BankManager {
         public static CitizenIDState isCitizenIDVaid(String citizenNumber){
             if(citizenNumber.isEmpty())return CitizenIDState.EMPTY;
             for(int i = 0; i < citizenNumber.length(); i++){
-                if(citizenNumber.charAt(i) < '0' || citizenNumber.charAt(i) > '9'){
+                if(!Character.isDigit(citizenNumber.charAt(i))){
                     return CitizenIDState.WRONG_FORM;
                 }
             }
             return CitizenIDState.RIGHT;
         }
-
     }
 }

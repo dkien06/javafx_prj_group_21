@@ -35,8 +35,10 @@ public class SignInController implements Initializable {
     private TextField phoneNumber;
     @FXML
     private Text phoneNumberErrorLog;
-    /*@FXML
-    private TextField email;*/
+    @FXML
+    private TextField email;
+    @FXML
+    private Text emailErrorLog;
     @FXML
     private TextField citizenID;
     @FXML
@@ -64,7 +66,22 @@ public class SignInController implements Initializable {
         if(!isGenderValid){
             genderErrorLog.setText("Vui lòng điền giới tính");
         }
-        else dateOfBirthErrorLog.setText("");
+        else genderErrorLog.setText("");
+        //Check gmail
+        boolean isGmailValid = false;
+        VerifySignUpInformation.EmailState gmailState = VerifySignUpInformation.isGmailValid(email.getText());
+        switch (gmailState){
+            case EMPTY:
+                emailErrorLog.setText("Vui lòng nhập email của bạn");
+                break;
+            case WRONG_FORM:
+                emailErrorLog.setText("Email của bạn không hợp lệ");
+                break;
+            case RIGHT:
+                isGmailValid = true;
+                emailErrorLog.setText("");
+                break;
+        }
         //Check số điện thoại
         boolean isPhoneNumberValid = false;
         VerifySignUpInformation.PhoneNumberState phoneNumberState = VerifySignUpInformation.isPhoneNumberVaid(phoneNumber.getText());
@@ -98,7 +115,7 @@ public class SignInController implements Initializable {
                 citizenIDErrorLog.setText("");
                 break;
         }
-        if(isFullNameValid && isDateOfBirthValid && isGenderValid && isPhoneNumberValid && isCitizenNumberValid){
+        if(isFullNameValid && isDateOfBirthValid && isGenderValid && isGmailValid && isPhoneNumberValid && isCitizenNumberValid){
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
         }
     }
