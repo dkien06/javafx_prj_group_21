@@ -88,4 +88,12 @@ public class UserInfo {
                 ", citizenID='" + citizenID + '\'' +
                 '}';
     }
+
+    public static Gender stringToGender(String gender){
+        return switch (gender) {
+            case "MALE" -> Gender.MALE;
+            case "FEMALE" -> Gender.FEMALE;
+            default -> Gender.OTHER;
+        };
+    }
 }
