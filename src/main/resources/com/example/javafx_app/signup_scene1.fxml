@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignUpController">
    <children>
       <VBox layoutX="76.0" layoutY="99.0" prefHeight="410.0" prefWidth="282.0">
          <children>
@@ -35,5 +35,6 @@
       </VBox>
       <Button fx:id="continue_btn" layoutX="228.0" layoutY="509.0" mnemonicParsing="false" onAction="#TiepTuc" stylesheets="@css_file/signin_decor1.css" text="Tiếp tục" />
       <Button fx:id="btn_return" layoutX="113.0" layoutY="509.0" mnemonicParsing="false" onAction="#returnToLoginScene" text="Quay lại" />
+      <Label alignment="CENTER" layoutX="134.0" layoutY="34.0" prefHeight="58.0" prefWidth="166.0" text="Thông tin cá nhân" />
    </children>
 </AnchorPane>

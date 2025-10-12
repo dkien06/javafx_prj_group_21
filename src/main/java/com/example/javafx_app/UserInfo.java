@@ -3,18 +3,18 @@ package com.example.javafx_app;
 import java.time.LocalDate;
 
 public class UserInfo {
-    private enum Gender {
+    public enum GENDER {
         MALE, FEMALE, OTHER
     }
     private String fullName;
     private LocalDate dateOfBirth;
-    private Gender gender;
+    private GENDER gender;
     private String phoneNumber;
     private String email;
     private String citizenID;
 
     // ✅ Constructor đầy đủ
-    public UserInfo(String fullName, LocalDate dateOfBirth, Gender gender,
+    public UserInfo(String fullName, LocalDate dateOfBirth, GENDER gender,
                     String phoneNumber, String email, String citizenID) {
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -44,11 +44,11 @@ public class UserInfo {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Gender getGender() {
+    public GENDER getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(GENDER gender) {
         this.gender = gender;
     }
 

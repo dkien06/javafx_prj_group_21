@@ -1,11 +1,15 @@
 package com.example.javafx_app;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BankManager {
     public static final List<Account> ACCOUNTS = new ArrayList<>();
+    public static final List<UserInfo> USERINFOS = new ArrayList<>();
+    public static  Account newAcc = null;
+    public static  UserInfo newUser = null;
     static {
         for (int i = 1; i <= 100; i++) {
             Account a = new Account(
@@ -28,11 +32,22 @@ public class BankManager {
         }
         return null;
     }
+
     // Ham kiem tra mat khau
     public  static boolean VerifyPassword(String citizenID, String password) {
         Account VerifyAccount = BankManager.getAccount(citizenID);
         if(VerifyAccount==null) {return false;}
+        System.out.println("Verify Password");
         return password.equals(VerifyAccount.getPassword());
+    }
+    // them tai khoan moi vao
+    public static void AddNewAccount(){
+        ACCOUNTS.add(newAcc);
+        USERINFOS.add(newUser);
+    }
+    public static void ResetNewUserAndAcc(){
+        newUser=null;
+        newAcc=null;
     }
     //Class kiểm tra thông tin đăng kí(Đm dài vcl:)))
     public static class VerifySignUpInformation{
@@ -110,6 +125,36 @@ public class BankManager {
                 }
             }
             return CitizenIDState.RIGHT;
+        }
+        /**
+         * Kiểm tra xem email đã tồn tại trong danh sách USERINFOS hay chưa.
+         * So sánh không phân biệt chữ hoa, chữ thường.
+         * @param email Email cần kiểm tra.
+         * @return true nếu email đã tồn tại, ngược lại false.
+         */
+        public static boolean isEmailExisted(String email) {
+            return USERINFOS.stream()
+                    .anyMatch(user -> user.getEmail().equalsIgnoreCase(email));
+        }
+
+        /**
+         * Kiểm tra xem số điện thoại đã tồn tại trong danh sách USERINFOS hay chưa.
+         * @param phoneNumber Số điện thoại cần kiểm tra.
+         * @return true nếu số điện thoại đã tồn tại, ngược lại false.
+         */
+        public static boolean isPhoneNumberExisted(String phoneNumber) {
+            return USERINFOS.stream()
+                    .anyMatch(user -> user.getPhoneNumber().equals(phoneNumber));
+        }
+
+        /**
+         * Kiểm tra xem số CCCD đã tồn tại trong danh sách USERINFOS hay chưa.
+         * @param citizenID Số CCCD cần kiểm tra.
+         * @return true nếu số CCCD đã tồn tại, ngược lại false.
+         */
+        public static boolean isCitizenIDExisted(String citizenID) {
+            return USERINFOS.stream()
+                    .anyMatch(user -> user.getCitizenID().equals(citizenID));
         }
     }
 }
