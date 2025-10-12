@@ -1,21 +1,17 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.BankManager.VerifySignUpInformation;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.BankManager.InformationState;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.UserInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Map;
@@ -58,7 +54,7 @@ public class SignInController implements Initializable {
         genderChoiceBox.getItems().addAll(genderType);
     }
     @FXML
-    void TiepTuc(ActionEvent event) throws IOException {
+    void TiepTuc(ActionEvent event) {
         String fullName = fullNameField.getText();
         LocalDate dateOfBirth = dateOfBirthDatePicker.getValue();
         String gender = genderChoiceBox.getValue();
@@ -153,72 +149,6 @@ public class SignInController implements Initializable {
                 break;
         }
 
-        //Check họ tên
-        /*boolean isFullNameValid = VerifySignUpInformation.isFullNameValid(fullName.getText());
-        if(!isFullNameValid){
-            fullNameErrorLog.setText("Vui lòng nhập họ tên");
-        }
-        else fullNameErrorLog.setText("");
-        //Check ngày sinh
-        boolean isDateOfBirthValid = VerifySignUpInformation.isDateOfBirthValid(dateOfBirth.getValue());
-        if(!isDateOfBirthValid){
-
-        }
-        else dateOfBirthErrorLog.setText("");
-        //Check giới tính
-        boolean isGenderValid = VerifySignUpInformation.isGenderValid(gender.getValue());
-        if(!isGenderValid){
-            genderErrorLog.setText("Vui lòng điền giới tính");
-        }
-        else genderErrorLog.setText("");
-        //Check gmail
-        boolean isGmailValid = false;
-        VerifySignUpInformation.EmailState gmailState = VerifySignUpInformation.isGmailValid(email.getText());
-        switch (gmailState){
-            case EMPTY:
-                emailErrorLog.setText("Vui lòng nhập email của bạn");
-                break;
-            case WRONG_FORM:
-                emailErrorLog.setText("Email của bạn không hợp lệ");
-                break;
-            case RIGHT:
-                isGmailValid = true;
-                emailErrorLog.setText("");
-                break;
-        }
-        //Check số điện thoại
-        boolean isPhoneNumberValid = false;
-        VerifySignUpInformation.PhoneNumberState phoneNumberState = VerifySignUpInformation.isPhoneNumberVaid(phoneNumber.getText());
-        switch (phoneNumberState){
-            case EMPTY:
-                phoneNumberErrorLog.setText("Vui lòng nhập số điện thoại");
-                break;
-            case WRONG_SIZE:
-                phoneNumberErrorLog.setText("Số điện thoại của bạn phải đúng 10 chữ số");
-                break;
-            case WRONG_FORM:
-                phoneNumberErrorLog.setText("Số điện thoại của bạn không hợp lệ");
-                break;
-            case RIGHT:
-                isPhoneNumberValid = true;
-                phoneNumberErrorLog.setText("");
-                break;
-        }
-        //Check số CCCD
-        boolean isCitizenNumberValid = false;
-        VerifySignUpInformation.CitizenIDState citizenIDState = VerifySignUpInformation.isCitizenIDVaid(citizenID.getText());
-        switch (citizenIDState){
-            case EMPTY:
-                citizenIDErrorLog.setText("Vui lòng nhập số CCCD");
-                break;
-            case WRONG_FORM:
-                citizenIDErrorLog.setText("Số CCCD không hợp lệ");
-                break;
-            case RIGHT:
-                isCitizenNumberValid = true;
-                citizenIDErrorLog.setText("");
-                break;
-        }*/
         if(isFullNameValid && isDateOfBirthValid && isGenderValid && isGmailValid && isPhoneNumberValid && isCitizenIDValid){
             signInUserInfo.setFullName(fullNameField.getText());
             signInUserInfo.setDateOfBirth(dateOfBirthDatePicker.getValue());
@@ -227,11 +157,7 @@ public class SignInController implements Initializable {
             signInUserInfo.setEmail(emailField.getText());
             signInUserInfo.setCitizenID(citizenIDField.getText());
 
-            FXMLLoader addPasswordSceneLoader = new FXMLLoader(SceneUtils.class.getResource("add_password_scene.fxml"));
-            Parent root = addPasswordSceneLoader.load();
-            AddPasswordController citizenIDPromptText = addPasswordSceneLoader.getController();
-            citizenIDPromptText.displayCCCD(citizenIDField.getText());
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),root);
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
         }
     }
 }
