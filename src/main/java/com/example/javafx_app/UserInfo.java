@@ -96,4 +96,11 @@ public class UserInfo {
             default -> Gender.OTHER;
         };
     }
+    public static String genderToString(Gender gender){
+        return switch (gender){
+            case MALE -> "MALE";
+            case FEMALE -> "FEMALE";
+            default -> "OTHER";
+        };
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.BankManager;
-import com.example.javafx_app.BankManager.InformationState;
+import com.example.javafx_app.BankManager.SignUpInformationState;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.UserInfo;
 import javafx.event.ActionEvent;
@@ -63,7 +63,7 @@ public class SignInController implements Initializable {
         String citizenID = citizenIDField.getText();
 
         //Lấy mảng check thông tin đã đúng chưa
-        Map<String, InformationState> informationStateMap = BankManager.CheckSignUpInfo(fullName,dateOfBirth,gender,email,phoneNumber,citizenID);
+        Map<String, SignUpInformationState> informationStateMap = BankManager.CheckAllSignUpInfo(fullName,dateOfBirth,gender,email,phoneNumber,citizenID);
 
         //Log lỗi họ tên (Dùng switch case cho ngầu thôi, if else cũng đc:)))
         boolean isFullNameValid = false;

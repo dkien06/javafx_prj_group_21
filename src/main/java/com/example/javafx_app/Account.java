@@ -102,9 +102,18 @@ public class Account {
         history.add(t);
     }
 
-    // ✅ Kiểm tra PIN
-    public boolean checkPin(String inputPin) {
-        return this.PIN != null && this.PIN.equals(inputPin);
+    //Đối chiếu PIN
+    public boolean isPinMatched(String pin) {
+        return this.PIN != null && this.PIN.equals(pin);
+    }
+
+    //Kiểm tra định dạng PIN
+    public boolean isPinValid(String pin){
+        if(pin.length() != 6)return false;
+        for (int i = 0; i < pin.length();i++){
+            if(!Character.isDigit(pin.charAt(i)))return false;
+        }
+        return true;
     }
 
     // ✅ In ra thông tin tài khoản (dễ debug)

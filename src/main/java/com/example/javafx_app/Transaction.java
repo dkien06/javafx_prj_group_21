@@ -3,7 +3,7 @@ package com.example.javafx_app;
 import java.time.LocalDateTime;
 
 public class Transaction {
-    static enum TransactionType {
+    public enum TransactionType {
         DEPOSIT,
         WITHDRAW,
         TRANSFER

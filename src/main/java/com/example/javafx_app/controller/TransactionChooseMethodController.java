@@ -1,12 +1,21 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import java.io.IOException;
 
 public class TransactionChooseMethodController {
     @FXML
-    public void SoTaiKhoan(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transacting_by_account_id.fxml");
+    public void ChuyenKhoan(ActionEvent event) throws IOException {
+        FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transacting_between_accounts.fxml"));
+        Parent nextSceneRoot = nextSceneLoader.load();
+        TransactingBetweenAccountsController controller = nextSceneLoader.getController();
+        controller.displaySendingAccountIDAndMoney(AccountManager.getInstance().getCurrentAccount());
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
     }
 }
