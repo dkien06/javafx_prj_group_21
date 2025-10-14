@@ -49,6 +49,7 @@
                   <Font size="18.0" />
                </font>
             </RadioButton>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="//Developing soon" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn ngân hàng" />
             <ChoiceBox fx:id="bankChoiceBox" disable="true" prefHeight="26.0" prefWidth="355.0" />
             <Text fx:id="bankChoiceErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="347.73666763305664" />

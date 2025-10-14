@@ -11,6 +11,7 @@ public class BankManager {
     static {
         for (int i = 1; i <= 100; i++) {
             Account a = new Account(
+                    "Name" + i,
                     "123456789" + i,     // citizenID
                     "AC" + i,            // accountID
                     "pwd" + i,           // password
@@ -20,7 +21,7 @@ public class BankManager {
             );
             ACCOUNTS.add(a);
         }
-        ACCOUNTS.add(new Account("892006","AC","892006",1000,"VND","0000"));
+        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
     }
 
     /*Mấy hàm này cho phần đăng nhập*/

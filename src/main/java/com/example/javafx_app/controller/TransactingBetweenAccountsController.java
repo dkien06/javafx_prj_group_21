@@ -6,15 +6,17 @@ import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.Transaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TransactingBetweenAccountsController implements Initializable {
@@ -49,7 +51,14 @@ public class TransactingBetweenAccountsController implements Initializable {
     void displaySendingAccountIDAndMoney(Account account){
         sendingAccountIDTextField.setText(account.getAccountID());
         currentBalanceTextField.setText(account.getBalance() + " " + account.getCurrency());
-        descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getAccountID() + " CHUYEN TIEN");
+        descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getFullName() + " CHUYEN TIEN");
+    }
+    void loadTransaction(Account account, Transaction transaction){
+        sendingAccountIDTextField.setText(account.getAccountID());
+        currentBalanceTextField.setText(Double.toString(account.getBalance()));
+        receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
+        amountTextField.setText(Double.toString(transaction.getAmount()));
+        descriptionTextArea.setText(transaction.getDescription());
     }
     @FXML
     void allowChoosingBank(){
@@ -82,6 +91,8 @@ public class TransactingBetweenAccountsController implements Initializable {
         });
     }
     private String numberToVietnameseWords(double amount){
+        int money = (int)amount;
+        //Map<int,String>
         //Đổi sang dạng chữ, nhác làm vcl:))
         return "";
     }
@@ -90,7 +101,7 @@ public class TransactingBetweenAccountsController implements Initializable {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transaction_choose_method_scene.fxml");
     }
     @FXML
-    void TiepTuc(ActionEvent event){
+    void TiepTuc(ActionEvent event) throws IOException {
         boolean isBankChoiceValid = false;
         if((bankChoiceBox.getValue() == null || bankChoiceBox.getValue().isEmpty()) && otherBank.isSelected())
             bankChoiceErrorLog.setText("Vui lòng chọn ngân hang");
@@ -127,7 +138,13 @@ public class TransactingBetweenAccountsController implements Initializable {
                                              AccountManager.getInstance().getCurrentAccount(),
                                              receiveAccount,
                                              descriptionTextArea.getText());
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("verify_transaction.scene.fxml"));
+            Parent nextSceneRoot = nextSceneLoader.load();
+
+            VerifyTransactionController controller = nextSceneLoader.getController();
+            controller.displayTransactionInformation(newTransaction);
+
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }
     }
 }

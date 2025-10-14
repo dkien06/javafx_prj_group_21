@@ -9,16 +9,28 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BankApplication extends Application {
+    //Test thôi
+    public static Account susAccount = new Account(
+            "Tran Thi B",
+            "010203004953",
+            "83864953",
+            "TranThiB@1975",
+            1000000,
+            "VND",
+            "123456");
+    public static Account susAccount1 = new Account(
+            "Nguyen Van A",
+            "010203008386",
+            "49538386",
+            "NguyenVanA#1970",
+            2000000,
+            "VND",
+            "010170");
     @Override
     public void start(Stage stage) throws IOException {
         //Test thôi, bỏ đi cũng éo sao
-        Account susAccount = new Account("010203004953",
-                                            "83864953",
-                                            "TranThiB@1975",
-                                              1000000,
-                                            "VND",
-                                                "123456");
         AccountManager.getInstance().getAccountList().add(susAccount);
+        AccountManager.getInstance().getAccountList().add(susAccount1);
         AccountManager.getInstance().getAccountList().add(AccountManager.getInstance().getCurrentAccount());
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home_scene.fxml"));

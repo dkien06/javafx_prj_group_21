@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
+    private String fullName;
     private String citizenID;
     private String accountID;
     private String password;
@@ -13,8 +14,9 @@ public class Account {
     private List<Transaction> history;
 
     // ✅ Constructor đầy đủ
-    public Account(String citizenID, String accountID, String password, double balance,
+    public Account(String fullName, String citizenID, String accountID, String password, double balance,
                    String currency, String PIN) {
+        this.fullName = fullName;
         this.citizenID = citizenID;
         this.accountID = accountID;
         this.password = password;
@@ -30,18 +32,14 @@ public class Account {
     }
 
     // === Getter ===
-    public String getCitizenID() {
-        return citizenID;
-    }
-
+    public String getFullName(){return fullName;}
+    public String getCitizenID() {return citizenID;}
     public String getAccountID() {
         return accountID;
     }
-
     public double getBalance() {
         return balance;
     }
-
     public String getCurrency() {
         return currency;
     }
@@ -49,11 +47,11 @@ public class Account {
         return PIN;
     }
     public List<Transaction> getHistory() { return history; }
-
     public String getPassword() {
         return password;
     }
     // === Setter ===
+    public void setFullName(String fullName){this.fullName = fullName;}
     public void setBalance(double balance) { this.balance = balance; }
     public void setCurrency(String currency) { this.currency = currency; }
     public void setPIN(String PIN) { this.PIN = PIN; }
@@ -64,7 +62,7 @@ public class Account {
     public void deposit(double amount,String description) {
         if (amount > 0) {
             balance += amount;
-            addTransaction(new Transaction(Transaction.TransactionType.DEPOSIT,amount,"VND",this,this,description));
+            addTransaction(new Transaction(Transaction.TransactionType.DEPOSIT,amount,"VND",this, this,description));
         }
     }
 

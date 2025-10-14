@@ -14,12 +14,7 @@ public class AccountManager {
 
     private static List<Account> accounts = new ArrayList<>();
     //Vì mục đích test scene chuyển tiền (Có thể thay thành new Account() nếu éo thích)
-    private static Account currentAccount = new Account("010203008386",
-                                                       "49538386",
-                                                       "NguyenVanA#1970",
-                                                         2000000,
-                                                        "VND",
-                                                            "010170");
+    private static Account currentAccount = BankApplication.susAccount1;
 
     public static AccountManager getInstance(){
         return instance;
@@ -48,7 +43,7 @@ public class AccountManager {
         && checkSignUpUserInfo.get("phoneNumber") == SignUpInformationState.RIGHT
         && checkSignUpUserInfo.get("citizenID") == SignUpInformationState.RIGHT
         && BankManager.checkNewPassword(password)){
-            Account newAccount = new Account(signUpUserInfo.getCitizenID(),"",password,0.0,"VND","");
+            Account newAccount = new Account(signUpUserInfo.getFullName(), signUpUserInfo.getCitizenID(),"",password,0.0,"VND","");
             accounts.add(newAccount);
         }
     }
@@ -79,10 +74,8 @@ public class AccountManager {
                 }
             }
             if(check){
-                System.out.println("Matched!");
                 return a;
             }
-            else System.out.println("Not match");
         }
         return null;
     }
