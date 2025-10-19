@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BankApplication extends Application {
-    //Test thôi
+    //Tài khoản ảo:)
     public static Account susAccount = new Account(
             "Tran Thi B",
             "010203004953",
@@ -26,14 +26,22 @@ public class BankApplication extends Application {
             2000000,
             "VND",
             "010170");
+    public static Account susAccount2 = new Account(
+            "Ngô Đức C",
+            "020406006769",
+            "12345678",
+            "TaoBiGay%2008",
+            500000,
+            "VND",
+            "112233");
     @Override
     public void start(Stage stage) throws IOException {
-        //Test thôi, bỏ đi cũng éo sao
+        //Thêm mấy tài khoản ảo vào thôi:)
         AccountManager.getInstance().getAccountList().add(susAccount);
         AccountManager.getInstance().getAccountList().add(susAccount1);
-        AccountManager.getInstance().getAccountList().add(AccountManager.getInstance().getCurrentAccount());
+        AccountManager.getInstance().getAccountList().add(susAccount2);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home_scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);

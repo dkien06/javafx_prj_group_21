@@ -1,6 +1,7 @@
 package com.example.javafx_app;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Transaction {
     public enum TransactionType {
@@ -20,6 +21,17 @@ public class Transaction {
     // Constructor
     public Transaction(TransactionType type, double amount, String currency, Account fromAccount,
                        Account toAccount, String description) {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numbers = "0123456789";
+        StringBuilder id = new StringBuilder();
+        Random random = new Random();
+        for(int i = 0; i < 3; i++){
+            id.append(letters.charAt(random.nextInt(letters.length())));
+        }
+        for(int i = 0; i < 7; i++){
+            id.append(numbers.charAt(random.nextInt(numbers.length())));
+        }
+        this.transactionID = String.valueOf(id);
         date = LocalDateTime.now();
         this.type = type;
         this.amount = amount;

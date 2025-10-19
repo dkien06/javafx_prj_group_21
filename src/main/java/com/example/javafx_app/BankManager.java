@@ -27,7 +27,7 @@ public class BankManager {
     /*Mấy hàm này cho phần đăng nhập*/
     // Ham kiem tra mat khau
     public static boolean VerifyPassword(String citizenID, String password) {
-        Account VerifyAccount = AccountManager.getInstance().findAccount(citizenID);
+        Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
         if(VerifyAccount==null) {return false;}
         return password.equals(VerifyAccount.getPassword());
     }

@@ -13,8 +13,7 @@ public class AccountManager {
     private AccountManager(){}
 
     private static List<Account> accounts = new ArrayList<>();
-    //Vì mục đích test scene chuyển tiền (Có thể thay thành new Account() nếu éo thích)
-    private static Account currentAccount = BankApplication.susAccount1;
+    private static Account currentAccount;
 
     public static AccountManager getInstance(){
         return instance;
@@ -27,7 +26,7 @@ public class AccountManager {
     }
 
     //Đăng kí
-    void resister(UserInfo signUpUserInfo, String password){
+    public void resister(UserInfo signUpUserInfo, String password){
         Map<String, SignUpInformationState> checkSignUpUserInfo = BankManager.CheckAllSignUpInfo(
                 signUpUserInfo.getFullName(),
                 signUpUserInfo.getDateOfBirth(),
@@ -48,13 +47,13 @@ public class AccountManager {
         }
     }
     //Đăng nhập
-    void logIn(String citizenID, String password){
+    public void logIn(String citizenID, String password){
         if(BankManager.VerifyPassword(citizenID,password)){
-            currentAccount = findAccount(citizenID);
+            currentAccount = findAccountFromCitizenID(citizenID);
         }
     }
     //Đăng xuất
-    void logOut(){
+    public void logOut(){
         currentAccount = null;
     }
     //Tìm kiếm account
@@ -69,6 +68,22 @@ public class AccountManager {
             boolean check = true;
             for(int i = 0; i < accountID.length(); i++){
                 if(accountID.charAt(i) != a.getAccountID().charAt(i)){
+                    check = false;
+                    break;
+                }
+            }
+            if(check){
+                return a;
+            }
+        }
+        return null;
+    }
+    public Account findAccountFromCitizenID(String citizenID){
+        List<Account> accountList = AccountManager.getInstance().getAccountList();
+        for (Account a : accountList){
+            boolean check = true;
+            for(int i = 0; i < citizenID.length(); i++){
+                if(citizenID.charAt(i) != a.getCitizenID().charAt(i)){
                     check = false;
                     break;
                 }

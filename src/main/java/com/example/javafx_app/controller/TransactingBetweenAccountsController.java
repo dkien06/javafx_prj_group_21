@@ -1,9 +1,6 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Account;
-import com.example.javafx_app.AccountManager;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.Transaction;
+import com.example.javafx_app.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,19 +43,19 @@ public class TransactingBetweenAccountsController implements Initializable {
     @FXML
     private TextArea descriptionTextArea;
 
-    public static Transaction newTransaction;
-
     void displaySendingAccountIDAndMoney(Account account){
         sendingAccountIDTextField.setText(account.getAccountID());
         currentBalanceTextField.setText(account.getBalance() + " " + account.getCurrency());
         descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getFullName() + " CHUYEN TIEN");
     }
     void loadTransaction(Account account, Transaction transaction){
-        sendingAccountIDTextField.setText(account.getAccountID());
-        currentBalanceTextField.setText(Double.toString(account.getBalance()));
-        receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
-        amountTextField.setText(Double.toString(transaction.getAmount()));
-        descriptionTextArea.setText(transaction.getDescription());
+        if(transaction != null){
+            sendingAccountIDTextField.setText(account.getAccountID());
+            currentBalanceTextField.setText(Double.toString(account.getBalance()));
+            receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
+            amountTextField.setText(Integer.toString((int)transaction.getAmount()));
+            descriptionTextArea.setText(transaction.getDescription());
+        }
     }
     @FXML
     void allowChoosingBank(){
@@ -72,12 +69,16 @@ public class TransactingBetweenAccountsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bankChoiceBox.getItems().addAll(banks);
-        amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+        amountTextField.textProperty().addListener((observable, _, value) -> {
             // Xử lý khi giá trị text thay đổi
             try {
                 //newValue.matches("\\d+") -> Check xem biến newValue có viết dưới dạng số không)
-                if (!newValue.isEmpty() && newValue.matches("\\d+")) {
-                    long amount = Long.parseLong(newValue);
+                if (!value.isEmpty() && value.matches("\\d+")) {
+                    long amount = Long.parseLong(value);
+                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
+                        amountErrorLog.setText("Số tiền bạn nhập không đủ để chuyển");
+                    }
+                    else amountErrorLog.setText("");
                     String amountInWords = numberToVietnameseWords(amount);
                     amountInWordsText.setText(amountInWords + " đồng");
                 } else {
@@ -91,13 +92,12 @@ public class TransactingBetweenAccountsController implements Initializable {
         });
     }
     private String numberToVietnameseWords(double amount){
-        int money = (int)amount;
-        //Map<int,String>
         //Đổi sang dạng chữ, nhác làm vcl:))
         return "";
     }
     @FXML
     void QuayLai(ActionEvent event){
+        TransactionManager.getInstance().removeNewTransaction();
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transaction_choose_method_scene.fxml");
     }
     @FXML
@@ -132,17 +132,18 @@ public class TransactingBetweenAccountsController implements Initializable {
         if(!isAmountValid)amountErrorLog.setText("Vui lòng nhập số tiền hợp lệ");
 
         if(isAmountValid && isReceiveAccountIDValid && isBankChoiceValid){
-            newTransaction = new Transaction(Transaction.TransactionType.TRANSFER,
-                                             Double.parseDouble(amountTextField.getText()),
-                                    "VND",
-                                             AccountManager.getInstance().getCurrentAccount(),
-                                             receiveAccount,
-                                             descriptionTextArea.getText());
+            TransactionManager.getInstance().newTransaction(
+                    Transaction.TransactionType.TRANSFER,
+                    Double.parseDouble(amountTextField.getText()),
+                    "VND",
+                    AccountManager.getInstance().getCurrentAccount(),
+                    receiveAccount,
+                    descriptionTextArea.getText());
             FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("verify_transaction.scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
             VerifyTransactionController controller = nextSceneLoader.getController();
-            controller.displayTransactionInformation(newTransaction);
+            controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }

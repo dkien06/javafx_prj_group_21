@@ -1,13 +1,13 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.AccountManager;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.Transaction;
+import com.example.javafx_app.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -30,6 +30,10 @@ public class VerifyTransactionController {
     Label descriptionLabel;
     @FXML
     Label transactionTypeLabel;
+    @FXML
+    PasswordField PINField;
+    @FXML
+    Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
         fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getFullName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
@@ -37,7 +41,7 @@ public class VerifyTransactionController {
         fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getFullName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
-        amountLabel.setText(Double.toString(newTransaction.getAmount()));
+        amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());
         descriptionLabel.setText(newTransaction.getDescription());
         transactionTypeLabel.setText(
                 switch (newTransaction.getType()){
@@ -53,8 +57,35 @@ public class VerifyTransactionController {
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingBetweenAccountsController controller = previousSceneLoader.getController();
-        controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactingBetweenAccountsController.newTransaction);
+        controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
 
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);
+    }
+    @FXML
+    void TiepTuc(ActionEvent event) throws IOException {
+        String PIN = PINField.getText();
+        if(PIN.isEmpty()){
+            PINErrorLog.setText("Vui lòng nhập mã pin");
+            return;
+        }
+        if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
+            Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
+            AccountManager.getInstance().getCurrentAccount().transfer(
+                    currentTransaction.getToAccount(),
+                    currentTransaction.getAmount(),
+                    currentTransaction.getDescription()
+            );
+            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_bill.fxml"));
+            Parent nextSceneRoot = nextSceneLoader.load();
+
+            TransactionBillController controller = nextSceneLoader.getController();
+            controller.loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
+            TransactionManager.getInstance().removeNewTransaction();
+
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+        }
+        else{
+            PINErrorLog.setText("Mã pin của bạn không chính xác");
+        }
     }
 }
