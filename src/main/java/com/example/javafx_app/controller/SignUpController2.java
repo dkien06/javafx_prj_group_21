@@ -3,16 +3,12 @@ package com.example.javafx_app.controller;
 import com.example.javafx_app.Account;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
-import javafx.application.Preloader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
-import java.util.regex.Pattern;
 
 public class SignUpController2 {
 
@@ -47,26 +43,21 @@ public class SignUpController2 {
      */
     @FXML
     void HoanThanh(ActionEvent event) {
-        // Lấy dữ liệu từ các ô nhập liệu
         String password = PasswordTextField.getText();
         String passwordAgain = PasswordAgainTextField.getText();
         String pin = PINTextField.getText();
 
-        // Xóa các thông báo lỗi cũ trước khi kiểm tra lại
+        // Xóa lỗi cũ
         PasswordErrorLog.setText("");
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
 
         boolean isValid = true;
 
-        // --- Bắt đầu quá trình xác thực dữ liệu ---
-
-        // 1. Kiểm tra độ mạnh của mật khẩu
-        if (password.isEmpty()) {
-            PasswordErrorLog.setText("Mật khẩu không được để trống.");
-            isValid = false;
-        } else if (!isPasswordStrong(password)) {
-            PasswordErrorLog.setText("Mật khẩu yếu: cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
+        // 1. Kiểm tra mật khẩu
+        String passwordError = BankManager.VerifySignUpInformation.validatePassword(password);
+        if (passwordError != null) {
+            PasswordErrorLog.setText(passwordError);
             isValid = false;
         }
 
@@ -80,44 +71,27 @@ public class SignUpController2 {
         }
 
         // 3. Kiểm tra mã PIN
-        if (pin.isEmpty()) {
-            PINErrorLog.setText("Mã PIN không được để trống.");
-            isValid = false;
-        } else if (!pin.matches("\\d{6}")) {
-            PINErrorLog.setText("Mã PIN phải là 6 chữ số.");
+        String pinError = BankManager.VerifySignUpInformation.validatePIN(pin);
+        if (pinError != null) {
+            PINErrorLog.setText(pinError);
             isValid = false;
         }
 
-        // --- Kết thúc quá trình xác thực ---
-        // Nếu tất cả dữ liệu đều hợp lệ
+        // 4. Nếu hợp lệ → tạo tài khoản mới
         if (isValid) {
-            BankManager.newAcc = new Account(BankManager.newUser.getCitizenID(),"123456789"+BankManager.ACCOUNTS.size(),
-                    password,0,"VND",pin) ;
+            BankManager.newAcc = new Account(
+                    BankManager.newUser.getCitizenID(),
+                    "123456789" + BankManager.ACCOUNTS.size(),
+                    password,
+                    0,
+                    "VND",
+                    pin
+            );
             BankManager.AddNewAccount();
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
-            // tra lai gia tri cho new user va account cho lan dang nhap tiep theo
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "login_scene.fxml");
             BankManager.ResetNewUserAndAcc();
         }
-    }/**
-     * Phương thức phụ để kiểm tra độ mạnh của mật khẩu bằng Biểu thức chính quy (Regex).
-     * @param password Mật khẩu cần kiểm tra.
-     * @return true nếu mật khẩu mạnh, false nếu ngược lại.
-     */
-    private boolean isPasswordStrong(String password) {
-        // Định nghĩa mẫu regex cho mật khẩu mạnh
-        // ^                 : Bắt đầu chuỗi
-        // (?=.*[a-z])       : Phải chứa ít nhất một chữ thường
-        // (?=.*[A-Z])       : Phải chứa ít nhất một chữ hoa
-        // (?=.*\\d)         : Phải chứa ít nhất một chữ số
-        // (?=.*[!@#$%^&*()]) : Phải chứa ít nhất một ký tự đặc biệt trong danh sách
-        // . {8,}            : Phải có ít nhất 8 ký tự
-        // $                 : Kết thúc chuỗi
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
-
-        // Kiểm tra xem mật khẩu có khớp với mẫu không
-        return Pattern.matches(passwordPattern, password);
     }
-
     /**
      * Phương thức xử lý sự kiện khi nhấn nút "Quay lại"
      * Phương thức này được gọi khi thuộc tính onAction="#returnToLoginScene" được kích hoạt.

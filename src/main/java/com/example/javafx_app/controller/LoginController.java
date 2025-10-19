@@ -1,7 +1,9 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.Account;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.UserInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,7 +22,14 @@ public class LoginController {
     void DangNhap(ActionEvent event) {
         String CCCD = CCCDField.getText();
         String Password = PasswordField.getText();
-        if(BankManager.VerifyPassword(CCCD, Password)) {
+        System.out.println(CCCD+" "+Password);
+        Account currentAccount = BankManager.GetAccount(CCCD,Password)  ;
+        UserInfo currentUserInfo = BankManager.getUserInfo(CCCD);
+        if(currentAccount==null) System.out.println("Check1");
+        if(currentUserInfo==null) System.out.println("Check2");
+        if(currentAccount!=null&&currentUserInfo!=null) {
+            BankManager.Settings.setCurrentAccount(currentAccount) ;
+            BankManager.Settings.setCurrentUser(currentUserInfo) ;
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
         }
         else{

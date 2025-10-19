@@ -42,7 +42,7 @@
          <children>
             <Button fx:id="home_btn" mnemonicParsing="false" prefHeight="189.0" prefWidth="233.0" text="Trang Chủ" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="account_btn" mnemonicParsing="false" prefHeight="181.0" prefWidth="231.0" text="Tài khoản" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="settings_btn" mnemonicParsing="false" prefHeight="209.0" prefWidth="241.0" text="Cài đặt" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="settings_btn" mnemonicParsing="false" onAction="#GoToSettings" prefHeight="209.0" prefWidth="241.0" text="Cài đặt" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <Label layoutX="53.0" layoutY="108.0" text="Xin chào " />
