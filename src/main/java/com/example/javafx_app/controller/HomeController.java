@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -20,5 +21,9 @@ public class HomeController {
         controller.displayHistory();
 
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+    }
+    public void DangXuat(ActionEvent event){
+        AccountManager.getInstance().logOut();
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
     }
 }

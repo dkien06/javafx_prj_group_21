@@ -23,7 +23,8 @@ public class TransactionHistoryController {
         List<Transaction> transactionHistoryList = currentAccount.getHistory();
         for(Transaction t : transactionHistoryList){
             transactionHistoryField.setText(
-                      "TK " + currentAccount.getAccountID()
+                    transactionHistoryField.getText()
+                    + "TK " + currentAccount.getAccountID()
                     + "|GD: " + (-t.getAmount())
                     + " " + t.getDate()
                     + "|" + t.getDescription()

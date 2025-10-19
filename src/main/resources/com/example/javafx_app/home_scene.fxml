@@ -47,5 +47,6 @@
       </GridPane>
       <Label layoutX="53.0" layoutY="108.0" text="Xin chào " />
       <Button fx:id="noti_btn" layoutX="298.0" layoutY="51.0" mnemonicParsing="false" text="Thông báo" />
+      <Button layoutX="298.0" layoutY="75.0" mnemonicParsing="false" onAction="#DangXuat" prefHeight="26.0" prefWidth="74.0" text="Đăng xuất" />
    </children>
 </AnchorPane>

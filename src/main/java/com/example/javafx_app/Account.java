@@ -119,9 +119,9 @@ public class Account {
         // thêm lịch sử giao dịch cho cả 2
         Transaction NewTransfer = new Transaction(Transaction.TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
         this.addTransaction(NewTransfer);
-        NewTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
-        toAccount.addTransaction(NewTransfer);
-        TransactionManager.getInstance().addTransaction(NewTransfer);
+        Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
+        toAccount.addTransaction(newTransfer);
+        TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }
 
