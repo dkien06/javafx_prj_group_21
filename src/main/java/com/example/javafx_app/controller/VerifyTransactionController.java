@@ -75,7 +75,7 @@ public class VerifyTransactionController {
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
-            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_bill.fxml"));
+            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_bill_scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
             TransactionBillController controller = nextSceneLoader.getController();

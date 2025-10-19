@@ -25,7 +25,7 @@
             <Button fx:id="transfer_btn" mnemonicParsing="false" onAction="#ChuyenTien" text="Chuyển tiền" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="savings_btn" mnemonicParsing="false" text="Tiết kiệm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="bills_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Hóa đơn" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="transaction_btn" mnemonicParsing="false" text="Lịch sử giao dịch" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="transaction_btn" mnemonicParsing="false" onAction="#LichSuGiaoDich" text="Lịch sử giao dịch" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="point_btn" mnemonicParsing="false" text="21st's Point" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="service_btn" mnemonicParsing="false" text="Dịch vụ" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
