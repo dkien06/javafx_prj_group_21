@@ -1,18 +1,16 @@
 package com.example.javafx_app;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class BankManager {
     public static final List<Account> ACCOUNTS = new ArrayList<>();
-    public static final List<UserInfo> USERINFOS = new ArrayList<>();
-    public static  Account newAcc = null;
-    public static  UserInfo newUser = null;
+    public static User newUser = null;
     static {
         for (int i = 1; i <= 100; i++) {
             Account a = new Account(
+                    "Name" + i,
                     "123456789" + i,     // citizenID
                     "AC" + i,            // accountID
                     "pwd" + i,           // password
@@ -22,139 +20,148 @@ public class BankManager {
             );
             ACCOUNTS.add(a);
         }
-        ACCOUNTS.add(new Account("892006","AC","892006",1000,"VND","0000"));
+        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
     }
-    public static Account getAccount(String accountID) {
-        for (Account a : ACCOUNTS) {
-            if (a.getCitizenID().equals(accountID)) {
-                return a;
-            }
-        }
-        return null;
-    }
-
     // Ham kiem tra mat khau
-    public  static boolean VerifyPassword(String citizenID, String password) {
-        Account VerifyAccount = BankManager.getAccount(citizenID);
+    public static boolean VerifyPassword(String citizenID, String password) {
+        Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
         if(VerifyAccount==null) {return false;}
         System.out.println("Verify Password");
         return password.equals(VerifyAccount.getPassword());
     }
-    // them tai khoan moi vao
-    public static void AddNewAccount(){
-        ACCOUNTS.add(newAcc);
-        USERINFOS.add(newUser);
-    }
-    public static void ResetNewUserAndAcc(){
+    public static void ResetNewUser(){
         newUser=null;
-        newAcc=null;
     }
-    //Class kiểm tra thông tin đăng kí(Đm dài vcl:)))
-    public static class VerifySignUpInformation{
-        //Check họ tên
-        public static boolean isFullNameValid(String fullName){
-            return !fullName.isEmpty();
-        }
-        //Check ngày sinh
-        public static boolean isDateOfBirthValid(LocalDate dateOfBirth){
-            return dateOfBirth != null;
-        }
-        //Check giới tính
-        public static boolean isGenderValid(String gender){
-            return gender!=null;
-        }
-        //Check gmail (Phức tạp vcl:))
-        public enum EmailState{
-            EMPTY,
-            WRONG_FORM,
-            RIGHT
-        }
-        //Gmail: [ten_nguoi_dung]@[duong_dan] VD: NguyenVanA1970@gmail.com Binh.TT2412345@sis.hust.edu.vn
-        public static EmailState isGmailValid(String email){
-            if(email.isEmpty())return EmailState.EMPTY;
-            int viTriACong = email.indexOf('@');
-            //Gmail thì phải có '@' hiển nhiên vcl:))
-            if(viTriACong == -1)return EmailState.WRONG_FORM;
-            //Check [ten_nguoi_dung]
-            //Kí tự đầu phải bằng chữ. Các kí tự còn lại có thể có chữ cái, chữ số và kí tự '.','_','+'
-            if(!Character.isLetter(email.charAt(0)))return EmailState.WRONG_FORM;
-            for(int i = 1; i < viTriACong; i++){
-                if(!(Character.isLetterOrDigit(email.charAt(i)) || email.charAt(i) == '.' || email.charAt(i) == '_' || email.charAt(i) == '+'))
-                    return EmailState.WRONG_FORM;
+    /*Mấy cái hàm này cho phần đăng kí*/
+    public enum SignUpInformationState {
+        EMPTY,
+        WRONG_FORM,
+        WRONG_SIZE,
+        RIGHT
+    }
+    //Check họ tên
+    public static SignUpInformationState checkSignUpFullName(String fullName){
+        if(fullName.isEmpty())
+            return SignUpInformationState.EMPTY;
+        return SignUpInformationState.RIGHT;
+    }
+    //Check ngày sinh
+    public static SignUpInformationState checkSignUpDateOfBirth(LocalDate dateOfBirth){
+        if(dateOfBirth == null)
+            return SignUpInformationState.EMPTY;
+        return SignUpInformationState.RIGHT;
+    }
+    //Check giới tính
+    public static SignUpInformationState checkSignUpGender(String gender){
+        if(gender == null)
+            return SignUpInformationState.EMPTY;
+        return SignUpInformationState.RIGHT;
+    }
+    //Check email (Phức tạp vcl:))
+    //Email: [ten_nguoi_dung]@[duong_dan] VD: NguyenVanA1970@gmail.com Binh.TT2412345@sis.hust.edu.vn
+    public static SignUpInformationState checkSignUpEmail(String email){
+        if(email.isEmpty()) return SignUpInformationState.EMPTY;
+        int viTriACong = email.indexOf('@');
+        //Email thì phải có '@', hiển nhiên rồi còn gì:))
+        if(viTriACong == -1)return SignUpInformationState.WRONG_FORM;
+        //Check [ten_nguoi_dung]
+        //Kí tự đầu phải bằng chữ. Các kí tự còn lại có thể có chữ cái, chữ số và kí tự '.','_','+'
+        if(!Character.isLetter(email.charAt(0)))return SignUpInformationState.WRONG_FORM;
+        for(int i = 1; i < viTriACong; i++){
+            if(!(Character.isLetterOrDigit(email.charAt(i)) || email.charAt(i) == '.' || email.charAt(i) == '_' || email.charAt(i) == '+')){
+                return SignUpInformationState.WRONG_FORM;
             }
-            //Check [duong_dan]
-            //Tất cả các kí tự phải bằng chữ in thường, bắt buộc phải có kí tự '.'
-            int dotCounter = 0;
-            for(int i = viTriACong + 1; i<email.length(); i++){
-                if(!(Character.isLowerCase(email.charAt(i)) || (i != viTriACong && email.charAt(i) == '.'))){
-                    return EmailState.WRONG_FORM;
-                }
-                if(email.charAt(i) == '.')dotCounter++;
+        }
+        //Check [duong_dan]
+        //Tất cả các kí tự phải bằng chữ in thường, bắt buộc phải có kí tự '.'
+        int dotCounter = 0;
+        for(int i = viTriACong + 1; i<email.length(); i++){
+            if(!(Character.isLowerCase(email.charAt(i)) || (i != viTriACong && email.charAt(i) == '.'))){
+                return SignUpInformationState.WRONG_FORM;
             }
-            if(dotCounter == 0)return EmailState.WRONG_FORM;
-            return EmailState.RIGHT;
+            if(email.charAt(i) == '.')dotCounter++;
         }
-        //Check số điện thoại
-        public enum PhoneNumberState{
-            EMPTY,
-            WRONG_SIZE,
-            WRONG_FORM,
-            RIGHT,
+        if(dotCounter == 0) {
+            return SignUpInformationState.WRONG_FORM;
         }
-        public static PhoneNumberState isPhoneNumberVaid(String phoneNumber){
-            if(phoneNumber.isEmpty())return PhoneNumberState.EMPTY;
-            for(int i = 0; i < phoneNumber.length(); i++){
-                if(!Character.isDigit(phoneNumber.charAt(i))){
-                    return PhoneNumberState.WRONG_FORM;
-                }
-            }
-            if(phoneNumber.length() != 10)return PhoneNumberState.WRONG_SIZE;
-            return PhoneNumberState.RIGHT;
+        return SignUpInformationState.RIGHT;
+    }
+    //Check số điện thoại
+    public static SignUpInformationState checkSignUpPhoneNumber(String phoneNumber){
+        if(phoneNumber.isEmpty()) return SignUpInformationState.EMPTY;
+        for(int i = 0; i < phoneNumber.length(); i++){
+            if(!Character.isDigit(phoneNumber.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
-        //Check số CCCD(như số điện thoại thôi)
-        public enum CitizenIDState{
-            EMPTY,
-            WRONG_FORM,
-            RIGHT,
+        if(phoneNumber.length() != 10) return SignUpInformationState.WRONG_SIZE;
+        return SignUpInformationState.RIGHT;
+    }
+    //Check số căn cước công dân
+    public static SignUpInformationState checkSignUpCitizenID(String citizenID){
+        if(citizenID.isEmpty()) return SignUpInformationState.EMPTY;
+        for(int i = 0; i < citizenID.length(); i++){
+            if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
-        public static CitizenIDState isCitizenIDVaid(String citizenNumber){
-            if(citizenNumber.isEmpty())return CitizenIDState.EMPTY;
-            for(int i = 0; i < citizenNumber.length(); i++){
-                if(!Character.isDigit(citizenNumber.charAt(i))){
-                    return CitizenIDState.WRONG_FORM;
-                }
-            }
-            return CitizenIDState.RIGHT;
-        }
-        /**
-         * Kiểm tra xem email đã tồn tại trong danh sách USERINFOS hay chưa.
-         * So sánh không phân biệt chữ hoa, chữ thường.
-         * @param email Email cần kiểm tra.
-         * @return true nếu email đã tồn tại, ngược lại false.
-         */
-        public static boolean isEmailExisted(String email) {
-            return USERINFOS.stream()
-                    .anyMatch(user -> user.getEmail().equalsIgnoreCase(email));
-        }
+        return SignUpInformationState.RIGHT;
+    }
+    public static Map<String, SignUpInformationState> CheckAllSignUpInfo(String fullName, LocalDate dateOfBirth, String gender, String email, String phoneNumber, String citizenID){
+        //Basically #include <unorder_map> nhưng của java:))
+        //Nó khá giống mảng nhưng index thay vì là int thi nó có thể là biến tùy ý. VD: infoState["fullName"]
+        //Gán giá trị thay vì trực tiếp (A["blabla"] = 1) thì phải dùng hàm Map.put("blabla", 1)
+        //Còn lấy giá trị thì dễ thôi: Map.set("blabla") (=1)
+        Map<String, SignUpInformationState> infoStates = new HashMap<>();
 
-        /**
-         * Kiểm tra xem số điện thoại đã tồn tại trong danh sách USERINFOS hay chưa.
-         * @param phoneNumber Số điện thoại cần kiểm tra.
-         * @return true nếu số điện thoại đã tồn tại, ngược lại false.
-         */
-        public static boolean isPhoneNumberExisted(String phoneNumber) {
-            return USERINFOS.stream()
-                    .anyMatch(user -> user.getPhoneNumber().equals(phoneNumber));
-        }
+        infoStates.put("fullName",checkSignUpFullName(fullName));
+        infoStates.put("dateOfBirth",checkSignUpDateOfBirth(dateOfBirth));
+        infoStates.put("gender",checkSignUpGender(gender));
+        infoStates.put("email", checkSignUpEmail(email));
+        infoStates.put("phoneNumber", checkSignUpPhoneNumber(phoneNumber));
+        infoStates.put("citizenID", checkSignUpCitizenID(citizenID));
 
-        /**
-         * Kiểm tra xem số CCCD đã tồn tại trong danh sách USERINFOS hay chưa.
-         * @param citizenID Số CCCD cần kiểm tra.
-         * @return true nếu số CCCD đã tồn tại, ngược lại false.
-         */
-        public static boolean isCitizenIDExisted(String citizenID) {
-            return USERINFOS.stream()
-                    .anyMatch(user -> user.getCitizenID().equals(citizenID));
-        }
+        return infoStates;
+    }
+    public enum PasswordState{
+        EMPTY,
+        WEAK,
+        NOT_MATCHED,
+        RIGHT
+    }
+    /**
+     * Phương thức phụ để kiểm tra độ mạnh của mật khẩu bằng Biểu thức chính quy (Regex).
+     * @param password Mật khẩu cần kiểm tra.
+     * @return true nếu mật khẩu mạnh, false nếu ngược lại.
+     */
+    private static boolean isPasswordStrong(String password) {
+        // Định nghĩa mẫu regex cho mật khẩu mạnh
+        // ^                 : Bắt đầu chuỗi
+        // (?=.*[a-z])       : Phải chứa ít nhất một chữ thường
+        // (?=.*[A-Z])       : Phải chứa ít nhất một chữ hoa
+        // (?=.*\\d)         : Phải chứa ít nhất một chữ số
+        // (?=.*[!@#$%^&*()]) : Phải chứa ít nhất một ký tự đặc biệt trong danh sách
+        // . {8,}            : Phải có ít nhất 8 ký tự
+        // $                 : Kết thúc chuỗi
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
+
+        // Kiểm tra xem mật khẩu có khớp với mẫu không
+        return Pattern.matches(passwordPattern, password);
+    }
+    public static PasswordState checkNewPassword(String password){
+        if (password.isEmpty()) return PasswordState.EMPTY;
+        else if (!isPasswordStrong(password)) return PasswordState.WEAK;
+        else return PasswordState.RIGHT;
+    }
+    public static PasswordState checkPasswordAgain(String password, String passwordAgain){
+        if(passwordAgain.isEmpty())return PasswordState.EMPTY;
+        else if(password.equals(passwordAgain))return PasswordState.NOT_MATCHED;
+        else return PasswordState.RIGHT;
+    }
+    public enum PINState{
+        EMPTY,
+        WRONG_FORM,
+        RIGHT
+    }
+    public static PINState checkNewPIN(String PIN){
+        if(PIN.isEmpty())return PINState.EMPTY;
+        else if (!PIN.matches("\\d{6}"))return PINState.WRONG_FORM;
+        else return PINState.RIGHT;
     }
 }

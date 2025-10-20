@@ -10,6 +10,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneUtils {
+    public static void switchScene(Stage stage, Parent root) {
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void switchScene(Stage stage, String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneUtils.class.getResource(fxmlFile));

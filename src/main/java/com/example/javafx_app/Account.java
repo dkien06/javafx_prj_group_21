@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
+    private String fullName;
     private String citizenID;
     private String accountID;
     private String password;
@@ -13,8 +14,9 @@ public class Account {
     private List<Transaction> history;
 
     // ✅ Constructor đầy đủ
-    public Account(String citizenID, String accountID, String password, double balance,
+    public Account(String fullName, String citizenID, String accountID, String password, double balance,
                    String currency, String PIN) {
+        this.fullName = fullName;
         this.citizenID = citizenID;
         this.accountID = accountID;
         this.password = password;
@@ -30,6 +32,10 @@ public class Account {
     }
 
     // === Getter ===
+    public String getFullName() {
+        return fullName;
+    }
+
     public String getCitizenID() {
         return citizenID;
     }
@@ -45,34 +51,54 @@ public class Account {
     public String getCurrency() {
         return currency;
     }
+
     public String getPIN() {
         return PIN;
     }
-    public List<Transaction> getHistory() { return history; }
+
+    public List<Transaction> getHistory() {
+        return history;
+    }
 
     public String getPassword() {
         return password;
     }
+
     // === Setter ===
-    public void setBalance(double balance) { this.balance = balance; }
-    public void setCurrency(String currency) { this.currency = currency; }
-    public void setPIN(String PIN) { this.PIN = PIN; }
-    public void setPassword(String password) { this.password = password; }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     // === Giao dịch cơ bản ===
 
     // ✅ Nạp tiền
-    public void deposit(double amount,String description) {
+    public void deposit(double amount, String description) {
         if (amount > 0) {
             balance += amount;
-            addTransaction(new Transaction(Transaction.TransactionType.DEPOSIT,amount,"VND",this,this,description));
+            addTransaction(new Transaction(Transaction.TransactionType.DEPOSIT, amount, "VND", this, this, description));
         }
     }
 
     // ✅ Rút tiền
-    public boolean withdraw(double amount,String description) {
+    public boolean withdraw(double amount, String description) {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
-            addTransaction(new Transaction(Transaction.TransactionType.WITHDRAW,amount,"VND",this,this,description));
+            addTransaction(new Transaction(Transaction.TransactionType.WITHDRAW, amount, "VND", this, this, description));
             return true;
         } else {
             return false;
@@ -91,9 +117,11 @@ public class Account {
         toAccount.balance += amount;
 
         // thêm lịch sử giao dịch cho cả 2
-        Transaction NewTransfer= new Transaction(Transaction.TransactionType.TRANSFER,amount,"VND",this,toAccount,description);
+        Transaction NewTransfer = new Transaction(Transaction.TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
         this.addTransaction(NewTransfer);
-        toAccount.addTransaction(NewTransfer);
+        Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
+        toAccount.addTransaction(newTransfer);
+        TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }
 
@@ -101,12 +129,13 @@ public class Account {
     public void addTransaction(Transaction t) {
         history.add(t);
     }
-
-    // ✅ Kiểm tra PIN
-    public boolean checkPin(String inputPin) {
-        return this.PIN != null && this.PIN.equals(inputPin);
+    //Đối chiếu PIN
+    public boolean isPinMatched(String pin) {
+        return this.PIN != null && this.PIN.equals(pin);
     }
-
+    public boolean isPasswordMatched(String password){
+        return this.password != null && this.password.equals(password);
+    }
     // ✅ In ra thông tin tài khoản (dễ debug)
     @Override
     public String toString() {
