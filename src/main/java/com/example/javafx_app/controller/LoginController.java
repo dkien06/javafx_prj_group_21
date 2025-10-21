@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ public class LoginController {
         String CCCD = CCCDField.getText();
         String Password = PasswordField.getText();
         if(BankManager.VerifyPassword(CCCD, Password)) {
+            AccountManager.getInstance().logIn(CCCD,Password);
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
         }
         else{

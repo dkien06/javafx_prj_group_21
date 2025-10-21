@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.BankManager;
-import com.example.javafx_app.BankManager.VerifySignUpInformation;
+import com.example.javafx_app.BankManager.SignUpInformationState;
 import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.UserInfo;
+import com.example.javafx_app.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,53 +13,55 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
     @FXML
     void returnToLoginScene(ActionEvent event){
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
-        BankManager.ResetNewUserAndAcc();
+        BankManager.ResetNewUser();
     }
     @FXML
-    private TextField fullName;
+    private TextField fullNameField;
     @FXML
     private Text fullNameErrorLog;
     @FXML
-    private DatePicker dateOfBirth;
+    private DatePicker dateOfBirthDatePicker;
     @FXML
     private Text dateOfBirthErrorLog;
     @FXML
-    private ChoiceBox<String> gender;
-    String[] genderType = {"MALE","FEMALE","OTHER"};
+    private ChoiceBox<String> genderChoiceBox;
+    private final String[] genderType = {"MALE","FEMALE","OTHER"};
     @FXML
     private Text genderErrorLog;
     @FXML
-    private TextField phoneNumber;
+    private TextField phoneNumberField;
     @FXML
     private Text phoneNumberErrorLog;
     @FXML
-    private TextField email;
+    private TextField emailField;
     @FXML
     private Text emailErrorLog;
     @FXML
-    private TextField citizenID;
+    private TextField citizenIDField;
     @FXML
     private Text citizenIDErrorLog;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        gender.getItems().addAll(genderType);
+        genderChoiceBox.getItems().addAll(genderType);
         // khởi taọ lại giá trị User
         if(BankManager.newUser!=null){
-            fullName.setText(BankManager.newUser.getFullName());
-            dateOfBirth.setValue(BankManager.newUser.getDateOfBirth());
-            phoneNumber.setText(BankManager.newUser.getPhoneNumber());
-            email.setText(BankManager.newUser.getEmail());
-            citizenID.setText(BankManager.newUser.getCitizenID());
-            if(BankManager.newUser.getGender()==UserInfo.GENDER.MALE){ gender.setValue("MALE");}
-            else if(BankManager.newUser.getGender()==UserInfo.GENDER.FEMALE){ gender.setValue("FEMALE");}
-            else{ gender.setValue("OTHER");}
+            fullNameField.setText(BankManager.newUser.getFullName());
+            dateOfBirthDatePicker.setValue(BankManager.newUser.getDateOfBirth());
+            phoneNumberField.setText(BankManager.newUser.getPhoneNumber());
+            emailField.setText(BankManager.newUser.getEmail());
+            citizenIDField.setText(BankManager.newUser.getCitizenID());
+            if(BankManager.newUser.getGender()== User.GENDER.MALE){ genderChoiceBox.setValue("MALE");}
+            else if(BankManager.newUser.getGender()== User.GENDER.FEMALE){ genderChoiceBox.setValue("FEMALE");}
+            else{ genderChoiceBox.setValue("OTHER");}
         }
         // Đặt tất cả text là rỗng
         phoneNumberErrorLog.setText("");
@@ -70,29 +72,56 @@ public class SignUpController implements Initializable {
         fullNameErrorLog.setText("");
     }
     @FXML
-    void TiepTuc(ActionEvent event){
-        //Check họ tên
-        boolean isFullNameValid = VerifySignUpInformation.isFullNameValid(fullName.getText());
-        if(!isFullNameValid){
-            fullNameErrorLog.setText("Vui lòng nhập họ tên");
+    void TiepTuc(ActionEvent event) {
+        String fullName = fullNameField.getText();
+        LocalDate dateOfBirth = dateOfBirthDatePicker.getValue();
+        String gender = genderChoiceBox.getValue();
+        String email = emailField.getText();
+        String phoneNumber = phoneNumberField.getText();
+        String citizenID = citizenIDField.getText();
+
+        //Lấy mảng check thông tin đã đúng chưa
+        Map<String, SignUpInformationState> informationStateMap = BankManager.CheckAllSignUpInfo(fullName,dateOfBirth,gender,email,phoneNumber,citizenID);
+
+        //Log lỗi họ tên (Dùng switch case cho ngầu thôi, if else cũng đc:)))
+        boolean isFullNameValid = false;
+        switch (informationStateMap.get("fullName")){
+            case EMPTY:
+                fullNameErrorLog.setText("Vui lòng nhập họ tên");
+                break;
+            case RIGHT:
+                isFullNameValid = true;
+                fullNameErrorLog.setText("");
+                break;
         }
-        else fullNameErrorLog.setText("");
-        //Check ngày sinh
-        boolean isDateOfBirthValid = VerifySignUpInformation.isDateOfBirthValid(dateOfBirth.getValue());
-        if(!isDateOfBirthValid){
-            dateOfBirthErrorLog.setText("Vui lòng điền ngày sinh");
+
+        //Log lỗi ngày sinh
+        boolean isDateOfBirthValid = false;
+        switch (informationStateMap.get("dateOfBirth")){
+            case EMPTY:
+                dateOfBirthErrorLog.setText("Vui lòng điền ngày sinh");
+                break;
+            case RIGHT:
+                isDateOfBirthValid = true;
+                dateOfBirthErrorLog.setText("");
+                break;
         }
-        else dateOfBirthErrorLog.setText("");
-        //Check giới tính
-        boolean isGenderValid = VerifySignUpInformation.isGenderValid(gender.getValue());
-        if(!isGenderValid){
-            genderErrorLog.setText("Vui lòng điền giới tính");
+
+        //Log lỗi giới tính
+        boolean isGenderValid = false;
+        switch (informationStateMap.get("gender")){
+            case EMPTY:
+                genderErrorLog.setText("Vui lòng điền giới tính");
+                break;
+            case RIGHT:
+                isGenderValid = true;
+                genderErrorLog.setText("");
+                break;
         }
-        else genderErrorLog.setText("");
-        //Check gmail
+
+        //Log lỗi email
         boolean isGmailValid = false;
-        VerifySignUpInformation.EmailState gmailState = VerifySignUpInformation.isGmailValid(email.getText());
-        switch (gmailState){
+        switch (informationStateMap.get("email")){
             case EMPTY:
                 emailErrorLog.setText("Vui lòng nhập email của bạn");
                 break;
@@ -104,38 +133,28 @@ public class SignUpController implements Initializable {
                 emailErrorLog.setText("");
                 break;
         }
-        if(isGmailValid){
-            if(VerifySignUpInformation.isEmailExisted(email.getText())){
-                emailErrorLog.setText("Email này đã tồn tại");
-                isGmailValid = false;
-            }
-        }
-        //Check số điện thoại
+
+        //Log lỗi số điện thoại
         boolean isPhoneNumberValid = false;
-        VerifySignUpInformation.PhoneNumberState phoneNumberState = VerifySignUpInformation.isPhoneNumberVaid(phoneNumber.getText());
-        switch (phoneNumberState){
+        switch (informationStateMap.get("phoneNumber")){
             case EMPTY:
                 phoneNumberErrorLog.setText("Vui lòng nhập số điện thoại");
                 break;
-            case WRONG_SIZE:
-                phoneNumberErrorLog.setText("Số điện thoại của bạn phải đúng 10 chữ số");
-                break;
             case WRONG_FORM:
                 phoneNumberErrorLog.setText("Số điện thoại của bạn không hợp lệ");
+                break;
+            case WRONG_SIZE:
+                phoneNumberErrorLog.setText("Số điện thoại của bạn phải đúng 10 chữ số");
                 break;
             case RIGHT:
                 isPhoneNumberValid = true;
                 phoneNumberErrorLog.setText("");
                 break;
         }
-        if(isPhoneNumberValid&&VerifySignUpInformation.isPhoneNumberExisted(phoneNumber.getText())){
-            phoneNumberErrorLog.setText("Số điện thoại này đã tồn tại");
-            isPhoneNumberValid = false;
-        }
-        //Check số CCCD
-        boolean isCitizenNumberValid = false;
-        VerifySignUpInformation.CitizenIDState citizenIDState = VerifySignUpInformation.isCitizenIDVaid(citizenID.getText());
-        switch (citizenIDState){
+
+        //Log lỗi CCCD
+        boolean isCitizenIDValid = false;
+        switch (informationStateMap.get("citizenID")){
             case EMPTY:
                 citizenIDErrorLog.setText("Vui lòng nhập số CCCD");
                 break;
@@ -143,24 +162,20 @@ public class SignUpController implements Initializable {
                 citizenIDErrorLog.setText("Số CCCD không hợp lệ");
                 break;
             case RIGHT:
-                isCitizenNumberValid = true;
+                isCitizenIDValid = true;
                 citizenIDErrorLog.setText("");
                 break;
         }
-        if(isCitizenNumberValid&&VerifySignUpInformation.isCitizenIDExisted(citizenID.getText())){
-            isCitizenNumberValid = false;
-            citizenIDErrorLog.setText("CCCD này đã tồn tại");
-        }
-        if(isFullNameValid && isDateOfBirthValid && isGenderValid && isGmailValid && isPhoneNumberValid
-                && isCitizenNumberValid){
-            UserInfo.GENDER Gender ;
-            // Khoi tao gia tri cho new user
-            if(gender.getValue().equals("MALE")){ Gender = UserInfo.GENDER.MALE; }
-            else if(gender.getValue().equals("FEMALE")){ Gender = UserInfo.GENDER.FEMALE; }
-            else if(gender.getValue().equals("OTHER")){ Gender = UserInfo.GENDER.OTHER; }
-            else Gender = UserInfo.GENDER.OTHER;
-            BankManager.newUser = new UserInfo(fullName.getText(),dateOfBirth.getValue(),Gender,
-                    phoneNumber.getText(),email.getText(),citizenID.getText()) ;
+
+        if(isFullNameValid && isDateOfBirthValid && isGenderValid && isGmailValid && isPhoneNumberValid && isCitizenIDValid){
+            BankManager.newUser = new User();
+            BankManager.newUser.setFullName(fullNameField.getText());
+            BankManager.newUser.setDateOfBirth(dateOfBirthDatePicker.getValue());
+            BankManager.newUser.setGender(User.stringToGender(genderChoiceBox.getValue()));
+            BankManager.newUser.setPhoneNumber(phoneNumberField.getText());
+            BankManager.newUser.setEmail(emailField.getText());
+            BankManager.newUser.setCitizenID(citizenIDField.getText());
+
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene2.fxml");
         }
     }
