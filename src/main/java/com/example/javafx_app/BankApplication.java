@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BankApplication extends Application {
-    //Tài khoản ảo:)
+    //Tài khoản ảo (xóa cũng được):)
     public static Account susAccount = new Account(
             "Tran Thi B",
             "010203004953",
