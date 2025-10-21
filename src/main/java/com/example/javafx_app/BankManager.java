@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class BankManager {
     public static final List<Account> ACCOUNTS = new ArrayList<>();
@@ -23,34 +22,23 @@ public class BankManager {
             );
             ACCOUNTS.add(a);
         }
-        UserInfo user = new UserInfo(
-                "Nguyen Van A",                 // fullName
-                LocalDate.of(2000, 6, 15),      // dateOfBirth (ngày sinh)
-                UserInfo.GENDER.MALE,           // gender (giới tính)
-                "0912345678",                   // phoneNumber
-                "vana@example.com",             // email
-                "892006"                        // citizenID
-        );
-        USERINFOS.add(user);
         ACCOUNTS.add(new Account("892006","AC","892006",1000,"VND","0000"));
     }
-    public static UserInfo getUserInfo(String citizenID) {
-        for (UserInfo u : USERINFOS) {
-            if (u.getCitizenID().equals(citizenID)) {
-                return u;
+    public static Account getAccount(String accountID) {
+        for (Account a : ACCOUNTS) {
+            if (a.getCitizenID().equals(accountID)) {
+                return a;
             }
         }
         return null;
     }
 
     // Ham kiem tra mat khau
-    public  static Account GetAccount(String citizenID, String password) {
-       for(Account a : ACCOUNTS) {
-           if(a.getCitizenID().equals(citizenID) && a.getPassword().equals(password)) {
-               return a;
-           }
-       }
-        return null;
+    public  static boolean VerifyPassword(String citizenID, String password) {
+        Account VerifyAccount = BankManager.getAccount(citizenID);
+        if(VerifyAccount==null) {return false;}
+        System.out.println("Verify Password");
+        return password.equals(VerifyAccount.getPassword());
     }
     // them tai khoan moi vao
     public static void AddNewAccount(){
@@ -167,78 +155,6 @@ public class BankManager {
         public static boolean isCitizenIDExisted(String citizenID) {
             return USERINFOS.stream()
                     .anyMatch(user -> user.getCitizenID().equals(citizenID));
-        }
-        public static String validatePassword(String password) {
-            if (password == null || password.isEmpty()) {
-                return "Mật khẩu không được để trống.";
-            }
-
-            String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
-            if (!Pattern.matches(passwordPattern, password)) {
-                return "Mật khẩu yếu: cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
-            }
-
-            return null; // null = hợp lệ
-        }
-
-        // === Hàm kiểm tra mã PIN ===
-        public static String validatePIN(String pin) {
-            if (pin == null || pin.isEmpty()) {
-                return "Mã PIN không được để trống.";
-            }
-
-            if (!pin.matches("\\d{6}")) {
-                return "Mã PIN phải là 6 chữ số.";
-            }
-
-            return null; // null = hợp lệ
-        }
-    }
-
-    /**
-     * Lớp CurrentSession quản lý phiên làm việc của người dùng đã đăng nhập.
-     * Nó chứa tài khoản và thông tin người dùng hiện tại, cùng các hàm để thao tác.
-     */
-    public static class Settings {
-        private static Account currentAccount;
-        private static UserInfo currentUser;
-
-        public static Account getCurrentAccount() {
-            return currentAccount;
-        }
-        public static void setCurrentAccount(Account currentAccount) {
-            Settings.currentAccount = currentAccount;
-        }
-        public static UserInfo getCurrentUser() {
-            return currentUser;
-        }
-        public static void setCurrentUser(UserInfo currentUser) {
-            Settings.currentUser = currentUser;
-        }
-
-        public static boolean changeEmail(String newEmail){
-            for(UserInfo user : USERINFOS){
-                if(user.getEmail().equalsIgnoreCase(newEmail)){
-                    return false;
-                }
-            }
-            currentUser.setEmail(newEmail);
-            return true;
-        }
-        public static boolean changePhone(String newPhone){
-            for(UserInfo user : USERINFOS){
-                if(user.getPhoneNumber().equals(newPhone)){
-                    return false;
-                }
-            }
-            currentUser.setPhoneNumber(newPhone);
-            return true;
-        }
-        public static void changePassword(String newPassword){
-            currentAccount.setPassword(newPassword);
-        }
-        public static void changePIN(String newPIN){
-            currentAccount.setPIN(newPIN);
         }
     }
 }

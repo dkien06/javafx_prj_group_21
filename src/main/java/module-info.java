@@ -3,7 +3,6 @@ module com.example.javafx_app {
     requires javafx.fxml;
     requires java.desktop;
 
-
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app;
     opens com.example.javafx_app.controller to javafx.fxml;

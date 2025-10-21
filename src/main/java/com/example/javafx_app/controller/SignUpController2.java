@@ -1,14 +1,19 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.Account;
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
+import javafx.application.Preloader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+
+import java.util.regex.Pattern;
 
 public class SignUpController2 {
 
@@ -37,66 +42,78 @@ public class SignUpController2 {
     @FXML
     private Button btn_return;
 
-    /**
-     * Phương thức xử lý sự kiện khi nhấn nút "Hoàn thành".
-     * Được liên kết với onAction="#HoanThanh" trong FXML.
-     */
     @FXML
     void HoanThanh(ActionEvent event) {
+        // Lấy dữ liệu từ các ô nhập liệu
         String password = PasswordTextField.getText();
         String passwordAgain = PasswordAgainTextField.getText();
         String pin = PINTextField.getText();
 
-        // Xóa lỗi cũ
+        // Xóa các thông báo lỗi cũ trước khi kiểm tra lại
         PasswordErrorLog.setText("");
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
 
         boolean isValid = true;
 
-        // 1. Kiểm tra mật khẩu
-        String passwordError = BankManager.VerifySignUpInformation.validatePassword(password);
-        if (passwordError != null) {
-            PasswordErrorLog.setText(passwordError);
-            isValid = false;
+        // --- Bắt đầu quá trình xác thực dữ liệu ---
+
+        // 1. Kiểm tra độ mạnh của mật khẩu
+        switch (BankManager.checkNewPassword(password)){
+            case EMPTY:
+                PasswordErrorLog.setText("Mật khẩu không được để trống.");
+                isValid = false;
+                break;
+            case WEAK:
+                PasswordErrorLog.setText("Mật khẩu yếu: cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
+                isValid = false;
+                break;
+            case RIGHT:
+                PasswordErrorLog.setText("");
+                break;
         }
 
-        // 2. Kiểm tra nhập lại mật khẩu
-        if (passwordAgain.isEmpty()) {
-            PasswordAgainErrorLog.setText("Vui lòng nhập lại mật khẩu.");
-            isValid = false;
-        } else if (!password.equals(passwordAgain)) {
-            PasswordAgainErrorLog.setText("Mật khẩu nhập lại không khớp.");
-            isValid = false;
+        // 2. Kiểm tra nhập lại mật khẩu (Chỉ check khi password đủ mạnh)
+        if(isValid){
+            switch (BankManager.checkPasswordAgain(password,passwordAgain)){
+                case EMPTY:
+                    PasswordAgainErrorLog.setText("Vui lòng nhập lại mật khẩu.");
+                    isValid = false;
+                    break;
+                case NOT_MATCHED:
+                    PasswordAgainErrorLog.setText("Mật khẩu nhập lại không khớp.");
+                    isValid = false;
+                    break;
+                case RIGHT:
+                    PasswordAgainErrorLog.setText("");
+                    break;
+            }
         }
 
         // 3. Kiểm tra mã PIN
-        String pinError = BankManager.VerifySignUpInformation.validatePIN(pin);
-        if (pinError != null) {
-            PINErrorLog.setText(pinError);
-            isValid = false;
+        switch (BankManager.checkNewPIN(pin)){
+            case EMPTY:
+                PINErrorLog.setText("Mã PIN không được để trống.");
+                isValid = false;
+                break;
+            case WRONG_FORM:
+                PINErrorLog.setText("Mã PIN phải là 6 chữ số.");
+                isValid = false;
+                break;
+            case RIGHT:
+                PINErrorLog.setText("");
+                break;
         }
 
-        // 4. Nếu hợp lệ → tạo tài khoản mới
+        // --- Kết thúc quá trình xác thực ---
+        // Nếu tất cả dữ liệu đều hợp lệ
         if (isValid) {
-            BankManager.newAcc = new Account(
-                    BankManager.newUser.getCitizenID(),
-                    "123456789" + BankManager.ACCOUNTS.size(),
-                    password,
-                    0,
-                    "VND",
-                    pin
-            );
-            BankManager.AddNewAccount();
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "login_scene.fxml");
-            BankManager.ResetNewUserAndAcc();
+            AccountManager.getInstance().resister(BankManager.newUser,password,pin);
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
+            // tra lai gia tri cho new user va account cho lan dang nhap tiep theo
+            BankManager.ResetNewUser();
         }
     }
-    /**
-     * Phương thức xử lý sự kiện khi nhấn nút "Quay lại"
-     * Phương thức này được gọi khi thuộc tính onAction="#returnToLoginScene" được kích hoạt.
-     * @param event Sự kiện nhấp chuột
-     */
     @FXML
     void returnToLoginScene(ActionEvent event) {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene1.fxml");
