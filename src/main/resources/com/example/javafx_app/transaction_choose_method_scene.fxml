@@ -57,5 +57,6 @@
       </Text>
       <Text layoutX="133.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có lịch sử chuyển tiền nào" textAlignment="CENTER" />
       <Text layoutX="137.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bạn chưa lưu tài khoản nào cả" textAlignment="CENTER" />
+      <Button layoutX="185.0" layoutY="587.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
    </children>
 </AnchorPane>

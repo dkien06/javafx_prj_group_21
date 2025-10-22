@@ -5,23 +5,6 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class BankManager {
-    public static final List<Account> ACCOUNTS = new ArrayList<>();
-    public static User newUser = null;
-    static {
-        for (int i = 1; i <= 100; i++) {
-            Account a = new Account(
-                    "Name" + i,
-                    "123456789" + i,     // citizenID
-                    "AC" + i,            // accountID
-                    "pwd" + i,           // password
-                    Math.random() * 1_000_000, // balance
-                    "VND",               // currency
-                    "0000"               // PIN
-            );
-            ACCOUNTS.add(a);
-        }
-        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
-    }
     // Ham kiem tra mat khau
     public static boolean VerifyPassword(String citizenID, String password) {
         Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
@@ -29,14 +12,12 @@ public class BankManager {
         System.out.println("Verify Password");
         return password.equals(VerifyAccount.getPassword());
     }
-    public static void ResetNewUser(){
-        newUser=null;
-    }
     /*Mấy cái hàm này cho phần đăng kí*/
     public enum SignUpInformationState {
         EMPTY,
         WRONG_FORM,
         WRONG_SIZE,
+        EXISTED,
         RIGHT
     }
     //Check họ tên
@@ -61,6 +42,7 @@ public class BankManager {
     //Email: [ten_nguoi_dung]@[duong_dan] VD: NguyenVanA1970@gmail.com Binh.TT2412345@sis.hust.edu.vn
     public static SignUpInformationState checkSignUpEmail(String email){
         if(email.isEmpty()) return SignUpInformationState.EMPTY;
+        if(AccountManager.getInstance().findAccountFromEmail(email) != null) return SignUpInformationState.EXISTED;
         int viTriACong = email.indexOf('@');
         //Email thì phải có '@', hiển nhiên rồi còn gì:))
         if(viTriACong == -1)return SignUpInformationState.WRONG_FORM;
@@ -89,6 +71,7 @@ public class BankManager {
     //Check số điện thoại
     public static SignUpInformationState checkSignUpPhoneNumber(String phoneNumber){
         if(phoneNumber.isEmpty()) return SignUpInformationState.EMPTY;
+        if(AccountManager.getInstance().findAccountFromPhoneNumber(phoneNumber) == null)return SignUpInformationState.EXISTED;
         for(int i = 0; i < phoneNumber.length(); i++){
             if(!Character.isDigit(phoneNumber.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }

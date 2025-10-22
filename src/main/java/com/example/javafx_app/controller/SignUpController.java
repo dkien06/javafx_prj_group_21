@@ -4,6 +4,7 @@ import com.example.javafx_app.BankManager;
 import com.example.javafx_app.BankManager.SignUpInformationState;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.User;
+import com.example.javafx_app.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +22,7 @@ public class SignUpController implements Initializable {
     @FXML
     void returnToLoginScene(ActionEvent event){
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
-        BankManager.ResetNewUser();
+        UserManager.getInstance().setCurrentUser(null);
     }
     @FXML
     private TextField fullNameField;
@@ -53,14 +54,14 @@ public class SignUpController implements Initializable {
 
         genderChoiceBox.getItems().addAll(genderType);
         // khởi taọ lại giá trị User
-        if(BankManager.newUser!=null){
-            fullNameField.setText(BankManager.newUser.getFullName());
-            dateOfBirthDatePicker.setValue(BankManager.newUser.getDateOfBirth());
-            phoneNumberField.setText(BankManager.newUser.getPhoneNumber());
-            emailField.setText(BankManager.newUser.getEmail());
-            citizenIDField.setText(BankManager.newUser.getCitizenID());
-            if(BankManager.newUser.getGender()== User.GENDER.MALE){ genderChoiceBox.setValue("MALE");}
-            else if(BankManager.newUser.getGender()== User.GENDER.FEMALE){ genderChoiceBox.setValue("FEMALE");}
+        if(UserManager.getInstance().getCurrentUser() !=null){
+            fullNameField.setText(UserManager.getInstance().getCurrentUser().getFullName());
+            dateOfBirthDatePicker.setValue(UserManager.getInstance().getCurrentUser().getDateOfBirth());
+            phoneNumberField.setText(UserManager.getInstance().getCurrentUser().getPhoneNumber());
+            emailField.setText(UserManager.getInstance().getCurrentUser().getEmail());
+            citizenIDField.setText(UserManager.getInstance().getCurrentUser().getCitizenID());
+            if(UserManager.getInstance().getCurrentUser().getGender()== User.GENDER.MALE){ genderChoiceBox.setValue("MALE");}
+            else if(UserManager.getInstance().getCurrentUser().getGender()== User.GENDER.FEMALE){ genderChoiceBox.setValue("FEMALE");}
             else{ genderChoiceBox.setValue("OTHER");}
         }
         // Đặt tất cả text là rỗng
@@ -125,6 +126,9 @@ public class SignUpController implements Initializable {
             case EMPTY:
                 emailErrorLog.setText("Vui lòng nhập email của bạn");
                 break;
+            case EXISTED:
+                emailErrorLog.setText("Email này đã tồn tại");
+                break;
             case WRONG_FORM:
                 emailErrorLog.setText("Email của bạn không hợp lệ");
                 break;
@@ -139,6 +143,9 @@ public class SignUpController implements Initializable {
         switch (informationStateMap.get("phoneNumber")){
             case EMPTY:
                 phoneNumberErrorLog.setText("Vui lòng nhập số điện thoại");
+                break;
+            case EXISTED:
+                phoneNumberErrorLog.setText("Số điện thoại này đã tồn tại");
                 break;
             case WRONG_FORM:
                 phoneNumberErrorLog.setText("Số điện thoại của bạn không hợp lệ");
@@ -168,13 +175,13 @@ public class SignUpController implements Initializable {
         }
 
         if(isFullNameValid && isDateOfBirthValid && isGenderValid && isGmailValid && isPhoneNumberValid && isCitizenIDValid){
-            BankManager.newUser = new User();
-            BankManager.newUser.setFullName(fullNameField.getText());
-            BankManager.newUser.setDateOfBirth(dateOfBirthDatePicker.getValue());
-            BankManager.newUser.setGender(User.stringToGender(genderChoiceBox.getValue()));
-            BankManager.newUser.setPhoneNumber(phoneNumberField.getText());
-            BankManager.newUser.setEmail(emailField.getText());
-            BankManager.newUser.setCitizenID(citizenIDField.getText());
+            UserManager.getInstance().setCurrentUser(new User());
+            UserManager.getInstance().getCurrentUser().setFullName(fullNameField.getText());
+            UserManager.getInstance().getCurrentUser().setDateOfBirth(dateOfBirthDatePicker.getValue());
+            UserManager.getInstance().getCurrentUser().setGender(User.stringToGender(genderChoiceBox.getValue()));
+            UserManager.getInstance().getCurrentUser().setPhoneNumber(phoneNumberField.getText());
+            UserManager.getInstance().getCurrentUser().setEmail(emailField.getText());
+            UserManager.getInstance().getCurrentUser().setCitizenID(citizenIDField.getText());
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene2.fxml");
         }

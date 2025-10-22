@@ -26,4 +26,7 @@ public class HomeController {
         AccountManager.getInstance().logOut();
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
     }
+    public void CaiDat(ActionEvent event){
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting.fxml");
+    }
 }

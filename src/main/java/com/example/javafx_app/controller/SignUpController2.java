@@ -1,19 +1,12 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Account;
-import com.example.javafx_app.AccountManager;
-import com.example.javafx_app.BankManager;
-import com.example.javafx_app.SceneUtils;
-import javafx.application.Preloader;
+import com.example.javafx_app.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
-import java.util.regex.Pattern;
 
 public class SignUpController2 {
 
@@ -108,10 +101,11 @@ public class SignUpController2 {
         // --- Kết thúc quá trình xác thực ---
         // Nếu tất cả dữ liệu đều hợp lệ
         if (isValid) {
-            AccountManager.getInstance().resister(BankManager.newUser,password,pin);
+            AccountManager.getInstance().resister(UserManager.getInstance().getCurrentUser(), password,pin);
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
             // tra lai gia tri cho new user va account cho lan dang nhap tiep theo
-            BankManager.ResetNewUser();
+            UserManager.getInstance().addUser(UserManager.getInstance().getCurrentUser());
+            UserManager.getInstance().setCurrentUser(null);
         }
     }
     @FXML

@@ -21,4 +21,8 @@ public class TransactionChooseMethodController {
         controller.displaySendingAccountIDAndMoney(AccountManager.getInstance().getCurrentAccount());
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
     }
+    @FXML
+    public void QuayLai(ActionEvent event){
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+    }
 }
