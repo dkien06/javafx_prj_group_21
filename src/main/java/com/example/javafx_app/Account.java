@@ -35,31 +35,24 @@ public class Account {
     public String getFullName() {
         return fullName;
     }
-
     public String getCitizenID() {
         return citizenID;
     }
-
     public String getAccountID() {
         return accountID;
     }
-
     public double getBalance() {
         return balance;
     }
-
     public String getCurrency() {
         return currency;
     }
-
     public String getPIN() {
         return PIN;
     }
-
     public List<Transaction> getHistory() {
         return history;
     }
-
     public String getPassword() {
         return password;
     }
@@ -68,19 +61,15 @@ public class Account {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
     public void setPIN(String PIN) {
         this.PIN = PIN;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }

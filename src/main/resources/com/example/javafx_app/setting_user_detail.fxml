@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SettingUserDetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SettingUserDetailController">
     <children>
       <VBox layoutX="86.0" layoutY="215.0" prefHeight="213.0" prefWidth="283.0">
          <children>
             <Label text="Email" />
-            <Text fx:id="SettingsEmailLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
+            <Text fx:id="SettingEmailLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
             <TextField fx:id="EmailTextField" />
             <Label text="Số điện thoại" />
-            <Text fx:id="SetingPhoneNumberLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
+            <Text fx:id="SettingPhoneNumberLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
             <TextField fx:id="PhoneNumberTextField" />
          </children>
       </VBox>

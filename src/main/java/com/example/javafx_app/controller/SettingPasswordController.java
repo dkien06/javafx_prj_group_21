@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.Account;
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.fxml.FXML;
@@ -41,25 +42,52 @@ public class SettingPasswordController {
         OldPasswordErrorLog.setText("");
         NewPasswordLog.setText("");
         NewPasswordAgainLog.setText("");
-        Account currentAccount = BankManager.Settings.getCurrentAccount() ;
-        String oldPass = OldPasswordField.getText().trim();
-        String newPass = NewPasswordField.getText().trim();
-        String newPassAgain = NewPasswordAgainField.getText().trim();
-        if(!oldPass.equals(currentAccount.getPassword())) {
-            OldPasswordErrorLog.setText("Mật khẩu cũ không đúng");
-            return ;
+        Account currentAccount = AccountManager.getInstance().getCurrentAccount();
+        String oldPass = OldPasswordField.getText();
+        String newPass = NewPasswordField.getText();
+        String newPassAgain = NewPasswordAgainField.getText();
+        boolean isOldPasswordMatched = false;
+        boolean isNewPasswordValid = false;
+        boolean isNewPasswordAgainValid = false;
+        if(oldPass.isEmpty())OldPasswordErrorLog.setText("Vui lòng nhập mật khẩu hiện tại của bạn");
+        else if(currentAccount.isPasswordMatched(oldPass)) OldPasswordErrorLog.setText("Mật khẩu cũ không đúng");
+        else isOldPasswordMatched = true;
+        if(isOldPasswordMatched){
+            switch (BankManager.checkNewPassword(newPass)){
+                case EMPTY:
+                    NewPasswordLog.setText("Vui lòng nhận mật khẩu");
+                    break;
+                case WEAK:
+                    NewPasswordLog.setText("Mật khẩu yếu: cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
+                    break;
+                case RIGHT:
+                    NewPasswordLog.setText("");
+                    isNewPasswordValid = true;
+                    break;
+            }
+            if(isNewPasswordValid){
+                switch (BankManager.checkPasswordAgain(newPass,newPassAgain)){
+                    case EMPTY:
+                        NewPasswordAgainLog.setText("Vui lòng nhập lại mật khẩu.");
+                        break;
+                    case NOT_MATCHED:
+                        NewPasswordAgainLog.setText("Mật khẩu nập lại không khớp.");
+                        break;
+                    case RIGHT:
+                        NewPasswordAgainLog.setText("");
+                        isNewPasswordAgainValid = true;
+                        break;
+                }
+            }
+            else NewPasswordAgainField.setText("");
         }
-        String newPassLogText = BankManager.VerifySignUpInformation.validatePassword(newPass) ;
-        if(!(newPassLogText==null)) {
-            NewPasswordLog.setText(newPassLogText);
-            return;
-        }
-        if(!newPassAgain.equals(newPass)) {
-            NewPasswordAgainLog.setText("Mật khẩu nhập lại không đúng");
-            return ;
+        else{
+            NewPasswordLog.setText("");
         }
         // check het cac loi
-        currentAccount.setPassword(newPass);
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+        if(isNewPasswordAgainValid){
+            currentAccount.setPassword(newPass);
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+        }
     }
 }

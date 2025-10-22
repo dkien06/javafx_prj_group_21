@@ -5,14 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.javafx_app.BankManager.ACCOUNTS;
-
-
 public class AccountManager {
     private static final AccountManager instance = new AccountManager();
     private AccountManager(){}
 
     private static List<Account> accounts = new ArrayList<>();
+    public static final List<Account> ACCOUNTS = new ArrayList<>();
+    static {
+        for (int i = 1; i <= 100; i++) {
+            Account a = new Account(
+                    "Name" + i,
+                    "123456789" + i,     // citizenID
+                    "AC" + i,            // accountID
+                    "pwd" + i,           // password
+                    Math.random() * 1_000_000, // balance
+                    "VND",               // currency
+                    "0000"               // PIN
+            );
+            ACCOUNTS.add(a);
+        }
+        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
+    }
     private static Account currentAccount;
 
     public static AccountManager getInstance(){
@@ -49,14 +62,20 @@ public class AccountManager {
         }
     }
     //Đăng nhập
-    public void logIn(String citizenID, String password){
+    public boolean logIn(String citizenID, String password){
         if(BankManager.VerifyPassword(citizenID,password)){
             currentAccount = findAccountFromCitizenID(citizenID);
+            User currentUser = UserManager.getInstance().findUserFromAccount(currentAccount);
+            if(currentUser == null)return false;
+            UserManager.getInstance().setCurrentUser(currentUser);
         }
+        else return false;
+        return true;
     }
     //Đăng xuất
     public void logOut(){
         currentAccount = null;
+        UserManager.getInstance().setCurrentUser(null);
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {
@@ -80,9 +99,16 @@ public class AccountManager {
         }
         return null;
     }
+    public Account findAccountFromUser(User user){
+        for(Account a : accounts){
+            if(a.getCitizenID().equals(user.getCitizenID())){
+                return a;
+            }
+        }
+        return null;
+    }
     public Account findAccountFromCitizenID(String citizenID){
-        List<Account> accountList = AccountManager.getInstance().getAccountList();
-        for (Account a : accountList){
+        for (Account a : accounts){
             boolean check = true;
             for(int i = 0; i < citizenID.length(); i++){
                 if(citizenID.charAt(i) != a.getCitizenID().charAt(i)){
@@ -95,6 +121,12 @@ public class AccountManager {
             }
         }
         return null;
+    }
+    public Account findAccountFromEmail(String email){
+        return findAccountFromUser(UserManager.getInstance().findUserFromEmail(email));
+    }
+    public Account findAccountFromPhoneNumber(String phoneNumber){
+        return findAccountFromUser(UserManager.getInstance().findUserFromPhoneNumber(phoneNumber));
     }
     //In log
     public void accountListLog(){

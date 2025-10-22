@@ -1,13 +1,12 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.Account;
+import com.example.javafx_app.AccountManager;
 import com.example.javafx_app.BankManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 
 public class SettingPINController {
@@ -45,35 +44,45 @@ public class SettingPINController {
         NewPinAgainLog.setText("");
 
         // Lấy tài khoản hiện tại
-        Account currentAccount = BankManager.Settings.getCurrentAccount();
+        Account currentAccount = AccountManager.getInstance().getCurrentAccount();
 
         // Lấy dữ liệu người dùng nhập
-        String oldPin = OldPinField.getText().trim();
-        String newPin = NewPinField.getText().trim();
-        String newPinAgain = NewPinAgainField.getText().trim();
+        String oldPin = OldPinField.getText();
+        String newPin = NewPinField.getText();
+        String newPinAgain = NewPinAgainField.getText();
 
+        boolean isOldPinMatched = false;
+        boolean isNewPinValid = false;
+        boolean isNewPinAgainValid = false;
         // Kiểm tra mã PIN cũ
-        if (!oldPin.equals(currentAccount.getPIN())) {
-            OldPinErrorLog.setText("Mã PIN cũ không đúng");
-            return;
-        }
+        if(oldPin.isEmpty()) OldPinErrorLog.setText("Vui lòng nhập mã PIN hiện tại của bạn");
+        else if(currentAccount.isPinMatched(oldPin)) OldPinErrorLog.setText("Mã PIN hiện tại không đúng");
+        else isOldPinMatched = true;
 
-        // Kiểm tra mã PIN mới (qua hàm validate riêng)
-        String newPinLogText = BankManager.VerifySignUpInformation.validatePIN(newPin);
-        if (newPinLogText != null) {
-            NewPinLog.setText(newPinLogText);
-            return;
+        if(isOldPinMatched){
+            switch (BankManager.checkNewPIN(newPin)){
+                case EMPTY:
+                    NewPinLog.setText("Mã PIN không được để trống");
+                    break;
+                case WRONG_FORM:
+                    NewPinLog.setText("Mã PIN phải là 6 chữ số");
+                    break;
+                case RIGHT:
+                    NewPinLog.setText("");
+                    isNewPinValid = true;
+                    break;
+            }
+            if(isNewPinValid){
+                if(newPinAgain.isEmpty())NewPinAgainLog.setText("Vui lòng xác nhận laại mã PIN");
+                else if(newPinAgain.equals(newPin))NewPinAgainLog.setText("Mã PIN nhập lại không khớp");
+                else isNewPinAgainValid = true;
+            }
+            else NewPinLog.setText("");
         }
-
-        // Kiểm tra nhập lại mã PIN
-        if (!newPinAgain.equals(newPin)) {
-            NewPinAgainLog.setText("Mã PIN nhập lại không khớp");
-            return;
-        }
+        else NewPinLog.setText("");
 
         // ✅ Nếu vượt qua tất cả kiểm tra
-        currentAccount.setPIN(newPin);
-
+        if(isNewPinAgainValid)currentAccount.setPIN(newPin);
 
         // Chuyển về trang chính
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "home_scene.fxml");

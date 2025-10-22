@@ -22,7 +22,9 @@ public class LoginController {
         String CCCD = CCCDField.getText();
         String Password = PasswordField.getText();
         if(BankManager.VerifyPassword(CCCD, Password)) {
-            AccountManager.getInstance().logIn(CCCD,Password);
+            if(AccountManager.getInstance().logIn(CCCD,Password)){
+                WrongLoginLabel.setText("Có lỗi xảy ra");
+            }
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
         }
         else{
