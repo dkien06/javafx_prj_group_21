@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700.0" prefWidth="414.0"
+            stylesheets="@css_file/login_decor.css"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.javafx_app.controller.SettingPINController">
+
+    <children>
+        <VBox layoutX="86.0" layoutY="215.0" prefHeight="213.0" prefWidth="283.0">
+            <children>
+                <Label text="Nhập mã PIN cũ" />
+                <Text fx:id="OldPinErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
+                <TextField fx:id="OldPinField" />
+
+                <Label text="Nhập mã PIN mới" />
+                <Text fx:id="NewPinLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
+                <TextField fx:id="NewPinField" />
+
+                <Label text="Nhập lại mã PIN mới" />
+                <Text fx:id="NewPinAgainLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
+                <TextField fx:id="NewPinAgainField" />
+            </children>
+        </VBox>
+
+        <Label alignment="CENTER" layoutX="139.0" layoutY="95.0"
+               prefHeight="40.0" prefWidth="135.0"
+               text="Thay đổi mã PIN" />
+
+        <Button fx:id="QuayLai" layoutX="92.0" layoutY="512.0"
+                mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+
+        <Button fx:id="HoanThanh" layoutX="246.0" layoutY="512.0"
+                mnemonicParsing="false" onAction="#HoanThanh" text="Hoàn thành" />
+    </children>
+</AnchorPane>
