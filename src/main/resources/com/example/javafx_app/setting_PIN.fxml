@@ -13,7 +13,7 @@
             stylesheets="@css_file/login_decor.css"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.javafx_app.controller.SettingPINController">
+            fx:controller="com.example.javafx_app.controller.setting.SettingPINController">
 
     <children>
         <VBox layoutX="86.0" layoutY="215.0" prefHeight="213.0" prefWidth="283.0">

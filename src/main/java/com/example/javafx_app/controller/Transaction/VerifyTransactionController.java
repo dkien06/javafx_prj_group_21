@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
 import javafx.event.ActionEvent;

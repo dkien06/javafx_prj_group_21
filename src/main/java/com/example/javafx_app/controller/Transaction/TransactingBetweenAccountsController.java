@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
 import javafx.event.ActionEvent;
@@ -42,7 +42,9 @@ public class TransactingBetweenAccountsController implements Initializable {
     private Text amountErrorLog;
     @FXML
     private TextArea descriptionTextArea;
-
+    private static final String[] soDonVi = {"", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"};
+    private static final String[] hangChuc = {"", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi"};
+    private static final String[] hangTram = {"không trăm", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm"};
     void displaySendingAccountIDAndMoney(Account account){
         sendingAccountIDTextField.setText(account.getAccountID());
         currentBalanceTextField.setText(account.getBalance() + " " + account.getCurrency());
@@ -92,9 +94,63 @@ public class TransactingBetweenAccountsController implements Initializable {
         });
     }
     private String numberToVietnameseWords(double amount){
-        //Đổi sang dạng chữ, nhác làm vcl:))
-        return "";
+        long longAmount = (long) amount;
+        if (longAmount == 0) return "không";
+
+        // ================================================================
+        // SỬA LỖI 1: Thêm dòng bảo vệ
+        // Giới hạn ở dưới 1 triệu tỷ (1,000,000,000,000,000)
+        // Bạn có thể tăng giới hạn này nếu mở rộng thêm mảng 'hangNghin'
+        if (longAmount >= 1_000_000_000_000_000L) {
+            return "Số tiền quá lớn"; // Trả về thông báo lỗi, không chạy tiếp
+        }
+        // ================================================================
+
+        String sAmount = String.valueOf(longAmount);
+        String ketQua = "";
+
+        // ================================================================
+        // SỬA LỖI 2: Mở rộng mảng 'hangNghin'
+        // Mảng cũ: {"", " nghìn", " triệu", " tỷ"}; (có 4 phần tử -> GÂY LỖI)
+        // Mảng mới (ĐÃ SỬA):
+        String[] hangNghin = {"", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"};
+        // Giờ đây mảng có 6 phần tử, có thể truy cập đến index 5
+        // ================================================================
+
+        int soNhom = (int) Math.ceil(sAmount.length() / 3.0);
+
+        for (int i = 0; i < soNhom; i++) {
+            int startIndex = Math.max(0, sAmount.length() - 3 * (i + 1));
+            int endIndex = sAmount.length() - 3 * i;
+            int nhomBaSo = Integer.parseInt(sAmount.substring(startIndex, endIndex));
+
+            if (nhomBaSo > 0) {
+                // Dòng bảo vệ thứ 2, đề phòng i vượt quá mảng
+                if (i >= hangNghin.length) {
+                    break; // Ngừng đọc nếu số quá lớn
+                }
+                String chuoiBaSo = docSoBaChuSo(nhomBaSo);
+                ketQua = chuoiBaSo + hangNghin[i] + " " + ketQua;
+            }
+        }
+
+        // Xử lý các trường hợp đặc biệt
+        ketQua = ketQua.replaceAll("một mươi", "mười");
+        ketQua = ketQua.replaceAll("mười năm", "mười lăm");
+        ketQua = ketQua.replaceAll("mươi năm", "mươi lăm");
+        ketQua = ketQua.replaceAll("mươi một", "mươi mốt");
+
+        if (ketQua.startsWith("một nghìn ")) {
+            ketQua = ketQua.substring(4);
+        }
+
+        ketQua = ketQua.trim();
+        // Viết hoa chữ cái đầu
+        if (ketQua.isEmpty()) return "Không đồng"; // Đề phòng trường hợp không mong muốn
+        return ketQua.substring(0, 1).toUpperCase() + ketQua.substring(1);
     }
+
+
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
@@ -128,7 +184,7 @@ public class TransactingBetweenAccountsController implements Initializable {
             }
         }
 
-        boolean isAmountValid = !amountTextField.getText().isEmpty() || amountTextField.getText().matches("\\d+");
+        boolean isAmountValid = !amountTextField.getText().isEmpty() && amountTextField.getText().matches("\\d+");
         if(!isAmountValid)amountErrorLog.setText("Vui lòng nhập số tiền hợp lệ");
 
         if(isAmountValid && isReceiveAccountIDValid && isBankChoiceValid){
@@ -147,5 +203,34 @@ public class TransactingBetweenAccountsController implements Initializable {
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }
+    }
+    private String docSoBaChuSo(int baChuSo) {
+        int tram = baChuSo / 100;
+        int chuc = (baChuSo % 100) / 10;
+        int donvi = baChuSo % 10;
+        String ketQua = "";
+
+        if (tram > 0) {
+            ketQua += hangTram[tram] + " ";
+        }
+        if (chuc > 0) {
+            if (chuc == 1) {
+                ketQua += "mười ";
+            } else {
+                ketQua += hangChuc[chuc] + " ";
+            }
+        } else if (tram > 0 && donvi > 0) {
+            ketQua += "linh ";
+        }
+        if (donvi > 0) {
+            if (chuc > 1 && donvi == 1) {
+                ketQua += "mốt";
+            } else if (chuc >= 1 && donvi == 5) {
+                ketQua += "lăm";
+            } else {
+                ketQua += soDonVi[donvi];
+            }
+        }
+        return ketQua.trim();
     }
 }

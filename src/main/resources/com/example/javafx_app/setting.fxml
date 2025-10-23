@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/signin_decor1.css"
             xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.javafx_app.controller.SettingsController">
+            fx:controller="com.example.javafx_app.controller.setting.SettingsController">
     <children>
         <Label alignment="CENTER" layoutX="134.0" layoutY="34.0" prefHeight="58.0" prefWidth="166.0" text="Cài đặt" />
         <VBox layoutX="76.0" layoutY="203.0" prefHeight="210.0" prefWidth="283.0">

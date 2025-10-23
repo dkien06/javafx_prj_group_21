@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.Account;
 import com.example.javafx_app.AccountManager;
@@ -17,7 +17,7 @@ public class TransactionHistoryController {
     void QuayLai(ActionEvent event){
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
     }
-    void displayHistory(){
+    public void displayHistory(){
         transactionHistoryField.setWrapText(true);
         Account currentAccount = AccountManager.getInstance().getCurrentAccount();
         List<Transaction> transactionHistoryList = currentAccount.getHistory();
