@@ -2,7 +2,7 @@ package com.example.javafx_app;
 
 import java.time.LocalDate;
 
-public class UserInfo {
+public class User {
     public enum GENDER {
         MALE, FEMALE, OTHER
     }
@@ -14,8 +14,8 @@ public class UserInfo {
     private String citizenID;
 
     // ✅ Constructor đầy đủ
-    public UserInfo(String fullName, LocalDate dateOfBirth, GENDER gender,
-                    String phoneNumber, String email, String citizenID) {
+    public User(String fullName, LocalDate dateOfBirth, GENDER gender,
+                String phoneNumber, String email, String citizenID) {
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -25,7 +25,7 @@ public class UserInfo {
     }
 
     // ✅ Constructor rỗng (cần thiết cho JavaFX hoặc khi khởi tạo tạm thời)
-    public UserInfo() {}
+    public User() {}
 
     // ✅ Getter & Setter
     public String getFullName() {
@@ -87,5 +87,20 @@ public class UserInfo {
                 ", email='" + email + '\'' +
                 ", citizenID='" + citizenID + '\'' +
                 '}';
+    }
+
+    public static GENDER stringToGender(String gender){
+        return switch (gender) {
+            case "MALE" -> GENDER.MALE;
+            case "FEMALE" -> GENDER.FEMALE;
+            default -> GENDER.OTHER;
+        };
+    }
+    public static String genderToString(GENDER gender){
+        return switch (gender){
+            case MALE -> "MALE";
+            case FEMALE -> "FEMALE";
+            default -> "OTHER";
+        };
     }
 }

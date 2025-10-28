@@ -14,22 +14,22 @@
       <VBox layoutX="76.0" layoutY="99.0" prefHeight="410.0" prefWidth="282.0">
          <children>
             <Label text="Họ và tên" />
-            <TextField fx:id="fullName" />
+            <TextField fx:id="fullNameField" />
             <Text fx:id="fullNameErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
             <Label text="Ngày sinh" />
-            <DatePicker fx:id="dateOfBirth" prefHeight="32.0" prefWidth="292.0" />
+            <DatePicker fx:id="dateOfBirthDatePicker" prefHeight="32.0" prefWidth="292.0" />
             <Text fx:id="dateOfBirthErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.9367218017578" />
             <Label text="Giới tính" />
-            <ChoiceBox fx:id="gender" prefHeight="30.0" prefWidth="287.0" />
+            <ChoiceBox fx:id="genderChoiceBox" prefHeight="30.0" prefWidth="287.0" />
             <Text fx:id="genderErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
             <Label text="Số điện thoại" />
-            <TextField fx:id="phoneNumber" />
+            <TextField fx:id="phoneNumberField" />
             <Text fx:id="phoneNumberErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
             <Label text="Email" />
-            <TextField fx:id="email" />
+            <TextField fx:id="emailField" />
             <Text fx:id="emailErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.93666076660156" />
             <Label text="Số CMND" />
-            <TextField fx:id="citizenID" />
+            <TextField fx:id="citizenIDField" />
             <Text fx:id="citizenIDErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.5366973876953" />
          </children>
       </VBox>
