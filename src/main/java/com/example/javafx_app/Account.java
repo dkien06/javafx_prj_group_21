@@ -110,7 +110,7 @@ public class Account {
         this.addTransaction(NewTransfer);
         Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
         toAccount.addTransaction(newTransfer);
-        TransactionManager.getInstance().addTransaction(newTransfer);
+        BankApplication.TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }
 

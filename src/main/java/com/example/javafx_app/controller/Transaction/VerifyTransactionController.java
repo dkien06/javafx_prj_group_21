@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
+import com.example.javafx_app.Manager.AccountManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +58,7 @@ public class VerifyTransactionController {
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingBetweenAccountsController controller = previousSceneLoader.getController();
-        controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
+        controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), BankApplication.TransactionManager.getInstance().getCurrentTransaction());
 
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);
     }
@@ -69,7 +70,7 @@ public class VerifyTransactionController {
             return;
         }
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
-            Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
+            Transaction currentTransaction = BankApplication.TransactionManager.getInstance().getCurrentTransaction();
             AccountManager.getInstance().getCurrentAccount().transfer(
                     currentTransaction.getToAccount(),
                     currentTransaction.getAmount(),
@@ -79,8 +80,8 @@ public class VerifyTransactionController {
             Parent nextSceneRoot = nextSceneLoader.load();
 
             TransactionBillController controller = nextSceneLoader.getController();
-            controller.loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
-            TransactionManager.getInstance().removeNewTransaction();
+            controller.loadTransaction(BankApplication.TransactionManager.getInstance().getCurrentTransaction());
+            BankApplication.TransactionManager.getInstance().removeNewTransaction();
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }

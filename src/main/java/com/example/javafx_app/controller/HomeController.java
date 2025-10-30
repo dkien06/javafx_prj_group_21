@@ -1,6 +1,6 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.AccountManager;
+import com.example.javafx_app.Manager.AccountManager;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.controller.Transaction.TransactionHistoryController;
 import javafx.event.ActionEvent;
