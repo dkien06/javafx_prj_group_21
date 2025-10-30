@@ -1,6 +1,9 @@
-package com.example.javafx_app;
+package com.example.javafx_app.Manager;
 
-import com.example.javafx_app.BankManager.SignUpInformationState;
+import com.example.javafx_app.Account;
+import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
+import com.example.javafx_app.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

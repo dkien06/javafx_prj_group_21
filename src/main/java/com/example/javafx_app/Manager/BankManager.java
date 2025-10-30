@@ -1,4 +1,6 @@
-package com.example.javafx_app;
+package com.example.javafx_app.Manager;
+
+import com.example.javafx_app.Account;
 
 import java.time.LocalDate;
 import java.util.*;

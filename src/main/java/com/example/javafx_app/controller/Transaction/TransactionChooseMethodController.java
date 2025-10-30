@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.AccountManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.Manager.AccountManager;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.Transaction;
-import com.example.javafx_app.TransactionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 public class TransactionChooseMethodController {
     @FXML
     public void ChuyenKhoan(ActionEvent event) throws IOException {
-        TransactionManager.getInstance().newTransaction(Transaction.TransactionType.TRANSFER);
+        BankApplication.TransactionManager.getInstance().newTransaction(Transaction.TransactionType.TRANSFER);
         FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transacting_between_accounts.fxml"));
         Parent nextSceneRoot = nextSceneLoader.load();
         TransactingBetweenAccountsController controller = nextSceneLoader.getController();

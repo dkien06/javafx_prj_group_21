@@ -1,8 +1,8 @@
 package com.example.javafx_app.controller.setting;
 
 import com.example.javafx_app.Account;
-import com.example.javafx_app.AccountManager;
-import com.example.javafx_app.BankManager;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.BankManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
