@@ -35,6 +35,6 @@
       </VBox>
       <Button fx:id="continue_btn" layoutX="228.0" layoutY="509.0" mnemonicParsing="false" onAction="#TiepTuc" stylesheets="@css_file/signin_decor1.css" text="Tiếp tục" />
       <Button fx:id="btn_return" layoutX="113.0" layoutY="509.0" mnemonicParsing="false" onAction="#returnToLoginScene" text="Quay lại" />
-      <Label alignment="CENTER" layoutX="134.0" layoutY="34.0" prefHeight="58.0" prefWidth="166.0" text="Thông tin cá nhân" />
+      <Label fx:id="thong_tin_ca_nhan" alignment="CENTER" layoutX="124.0" layoutY="28.0" prefHeight="58.0" prefWidth="166.0" text="Thông tin cá nhân" />
    </children>
 </AnchorPane>

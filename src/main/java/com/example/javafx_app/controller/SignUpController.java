@@ -183,7 +183,7 @@ public class SignUpController implements Initializable {
             UserManager.getInstance().getCurrentUser().setEmail(emailField.getText());
             UserManager.getInstance().getCurrentUser().setCitizenID(citizenIDField.getText());
 
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene2.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer2_scene.fxml");
         }
     }
 }

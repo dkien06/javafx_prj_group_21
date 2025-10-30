@@ -110,6 +110,6 @@ public class SignUpController2 {
     }
     @FXML
     void returnToLoginScene(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene1.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer1_scene.fxml");
     }
 }
