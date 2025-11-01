@@ -1,9 +1,10 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.*;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account;
+import com.example.javafx_app.object.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
@@ -52,13 +53,13 @@ public class TransactingBetweenAccountsController implements Initializable {
     private static final String[] hangTram = {"không trăm", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm"};
     void displaySendingAccountIDAndMoney(Account account){
         sendingAccountIDTextField.setText(account.getAccountID());
-        currentBalanceTextField.setText(account.getBalance() + " " + account.getCurrency());
-        descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getFullName() + " CHUYEN TIEN");
+        currentBalanceTextField.setText(account.getCheckingAccount().getBalance() + " " + account.getCurrency());
+        descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getAccountName() + " CHUYEN TIEN");
     }
     void loadTransaction(Account account, Transaction transaction){
         if(transaction != null){
             sendingAccountIDTextField.setText(account.getAccountID());
-            currentBalanceTextField.setText(Double.toString(account.getBalance()));
+            currentBalanceTextField.setText(Double.toString(account.getCheckingAccount().getBalance()));
             receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
             amountTextField.setText(Integer.toString((int)transaction.getAmount()));
             descriptionTextArea.setText(transaction.getDescription());
@@ -82,7 +83,7 @@ public class TransactingBetweenAccountsController implements Initializable {
                 //newValue.matches("\\d+") -> Check xem biến newValue có viết dưới dạng số không)
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     long amount = Long.parseLong(value);
-                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
+                    if(amount > AccountManager.getInstance().getCurrentAccount().getCheckingAccount().getBalance()){
                         amountErrorLog.setText("Số tiền bạn nhập không đủ để chuyển");
                     }
                     else amountErrorLog.setText("");
@@ -171,14 +172,14 @@ public class TransactingBetweenAccountsController implements Initializable {
             isBankChoiceValid = true;
         }
 
-        Account receiveAccount = new Account();
+        CheckingAccount receiveAccount = null;
         boolean isReceiveAccountIDValid = false;
         if(receiveAccountIDTextField.getText().isEmpty())
             receiveAccountIDErrorLog.setText("Vui lòng nhập tài khoản nhận");
         else{
             receiveAccountIDErrorLog.setText("");
             if(localBank.isSelected()){
-                receiveAccount = AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText());
+                receiveAccount = AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()).getCheckingAccount();
                 if(receiveAccount == null){
                     receiveAccountIDErrorLog.setText("Tài khoản nhận không tồn tại");
                 }
@@ -198,9 +199,9 @@ public class TransactingBetweenAccountsController implements Initializable {
                     Double.parseDouble(amountTextField.getText()),
                     "VND",
                     AccountManager.getInstance().getCurrentAccount(),
-                    receiveAccount,
+                    AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
                     descriptionTextArea.getText());
-            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("verify_transaction.scene.fxml"));
+            FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("verify_transaction.scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
             VerifyTransactionController controller = nextSceneLoader.getController();

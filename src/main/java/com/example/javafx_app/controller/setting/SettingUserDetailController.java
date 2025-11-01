@@ -1,7 +1,7 @@
 package com.example.javafx_app.controller.setting;
 
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.User;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;

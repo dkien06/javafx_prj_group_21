@@ -1,42 +1,47 @@
 package com.example.javafx_app.object;
 
-import com.example.javafx_app.BankApplication;
-import com.example.javafx_app.Manager.TransactionManager;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Account {
-    private String fullName;
-    private String citizenID;
-    private String accountID;
-    private String password;
-    private double balance;
-    private String currency;
-    private String PIN;
-    private List<Transaction> history;
+    protected String accountName;
+    protected String citizenID;
+    protected String accountID;
+    protected String password;
+    protected String currency;
+    protected String PIN;
+    private CheckingAccount checkingAccount;
+    private SavingAccount savingAccount;
+    private LoanAccount loanAccount;
+
+    /*
+    Cảnh cáo:)) (Tùy theo số tiền vay mượn)
+    - Mức 0: Chuyển tiền tiết kiệm bình thường
+    - Mức 1: Éo cho tiết kiệm nữa
+    - Mức 2: Bị giới hạn chuyển tiền (Ai nhủ éo trả nợ)
+    - Mức 3:
+     + Lần 1: Khóa chuyển tiền, éo cho chuyển nựa
+     + Lần 2: Ban acc luôn:)) Muốn gỡ thì đến ngân hàng mà trả nợ hết
+    Hạ mức cảnh cáo: Trả nợ đi:)
+    Ý tưởng không lấy cảm hứng từ Bách khoa, nếu ko thích thì thôi:))
+     */
+    private int warning;
 
     // ✅ Constructor đầy đủ
-    public Account(String fullName, String citizenID, String accountID, String password, double balance,
+    public Account(String fullName, String citizenID, String accountID, String password,
                    String currency, String PIN) {
-        this.fullName = fullName;
+        this.accountName = fullName;
         this.citizenID = citizenID;
         this.accountID = accountID;
         this.password = password;
-        this.balance = balance;
         this.currency = currency;
         this.PIN = PIN;
-        this.history = new ArrayList<>();
+        this.checkingAccount = null;
     }
 
     // ✅ Constructor rỗng (cần cho JavaFX hoặc khởi tạo tạm)
-    public Account() {
-        this.history = new ArrayList<>();
-    }
+    public Account() {}
 
     // === Getter ===
-    public String getFullName() {
-        return fullName;
+    public String getAccountName() {
+        return accountName;
     }
     public String getCitizenID() {
         return citizenID;
@@ -44,28 +49,25 @@ public class Account {
     public String getAccountID() {
         return accountID;
     }
-    public double getBalance() {
-        return balance;
-    }
     public String getCurrency() {
         return currency;
     }
     public String getPIN() {
         return PIN;
     }
-    public List<Transaction> getHistory() {
-        return history;
-    }
     public String getPassword() {
         return password;
     }
+    public CheckingAccount getCheckingAccount() {
+        return checkingAccount;
+    }
+    public int getWarning() {
+        return warning;
+    }
 
     // === Setter ===
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
     public void setCurrency(String currency) {
         this.currency = currency;
@@ -76,51 +78,13 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-    // === Giao dịch cơ bản ===
-
-    // ✅ Nạp tiền
-    public void deposit(double amount, String description) {
-        if (amount > 0) {
-            balance += amount;
-            addTransaction(new Transaction(Transaction.TransactionType.DEPOSIT, amount, "VND", this, this, description));
-        }
+    public void setCheckingAccount(CheckingAccount checkingAccount) {
+        this.checkingAccount = checkingAccount;
+    }
+    public void setWarning(int warning) {
+        this.warning = warning;
     }
 
-    // ✅ Rút tiền
-    public boolean withdraw(double amount, String description) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            addTransaction(new Transaction(Transaction.TransactionType.WITHDRAW, amount, "VND", this, this, description));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // ✅ Chuyển tiền
-    public boolean transfer(Account toAccount, double amount, String description) {
-        if (toAccount == null || amount <= 0 || amount > balance) {
-            return false;
-        }
-
-        // rút tiền bên gửi
-        this.balance -= amount;
-        // nạp tiền bên nhận
-        toAccount.balance += amount;
-
-        // thêm lịch sử giao dịch cho cả 2
-        Transaction NewTransfer = new Transaction(Transaction.TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
-        this.addTransaction(NewTransfer);
-        Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
-        toAccount.addTransaction(newTransfer);
-        TransactionManager.getInstance().addTransaction(newTransfer);
-        return true;
-    }
-
-    // ✅ Thêm giao dịch
-    public void addTransaction(Transaction t) {
-        history.add(t);
-    }
     //Đối chiếu PIN
     public boolean isPinMatched(String pin) {
         return this.PIN != null && this.PIN.equals(pin);
@@ -129,12 +93,10 @@ public class Account {
         return this.password != null && this.password.equals(password);
     }
     // ✅ In ra thông tin tài khoản (dễ debug)
-    @Override
-    public String toString() {
+    public String accountToString() {
         return "Account{" +
                 "citizenID='" + citizenID + '\'' +
                 ", accountID='" + accountID + '\'' +
-                ", balance=" + balance +
                 ", currency='" + currency + '\'' +
                 '}';
     }

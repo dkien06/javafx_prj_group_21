@@ -1,10 +1,10 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.util.SceneUtils;
 import com.example.javafx_app.object.User;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

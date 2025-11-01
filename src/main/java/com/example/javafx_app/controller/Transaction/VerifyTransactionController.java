@@ -1,8 +1,8 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.*;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
@@ -39,10 +39,10 @@ public class VerifyTransactionController {
     @FXML
     Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
-        fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getFullName());
+        fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
         sendingBankLabel.setText("Ngân hàng: " + "21stBank");
-        fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getFullName());
+        fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
         amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());
@@ -57,7 +57,7 @@ public class VerifyTransactionController {
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transacting_between_accounts.fxml"));
+        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("transacting_between_accounts.fxml"));
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingBetweenAccountsController controller = previousSceneLoader.getController();
@@ -73,13 +73,12 @@ public class VerifyTransactionController {
             return;
         }
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
-            Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
-            AccountManager.getInstance().getCurrentAccount().transfer(
-                    currentTransaction.getToAccount(),
-                    currentTransaction.getAmount(),
-                    currentTransaction.getDescription()
+            AccountManager.getInstance().getCurrentAccount().getCheckingAccount().transfer(
+                    TransactionManager.getInstance().getCurrentTransaction().getToAccount().getCheckingAccount(),
+                    TransactionManager.getInstance().getCurrentTransaction().getAmount(),
+                    TransactionManager.getInstance().getCurrentTransaction().getDescription()
             );
-            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_bill_scene.fxml"));
+            FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("transaction_bill_scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
             TransactionBillController controller = nextSceneLoader.getController();

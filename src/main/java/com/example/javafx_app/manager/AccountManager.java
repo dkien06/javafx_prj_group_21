@@ -1,7 +1,8 @@
-package com.example.javafx_app.Manager;
+package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account;
-import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
+import com.example.javafx_app.manager.BankManager.SignUpInformationState;
+import com.example.javafx_app.object.CheckingAccount;
 import com.example.javafx_app.object.User;
 import com.example.javafx_app.config.Constant;
 
@@ -22,13 +23,12 @@ public class AccountManager {
                     "123456789" + i,     // citizenID
                     "AC" + i,            // accountID
                     "pwd" + i,           // password
-                    Math.random() * 1_000_000, // balance
                     "VND",               // currency
                     "0000"               // PIN
             );
             ACCOUNTS.add(a);
         }
-        ACCOUNTS.add(new Account("ADMIN", Constant.ADMIN_CITIZEN_ID,Constant.ADMIN_ACCOUNT_ID,Constant.ADMIN_PASSWORD,Constant.ADMIN_BALANCE,Constant.ADMIN_CURRENCY,Constant.ADMIN_PIN));
+        ACCOUNTS.add(new Account("ADMIN", Constant.ADMIN_CITIZEN_ID,Constant.ADMIN_ACCOUNT_ID,Constant.ADMIN_PASSWORD,Constant.ADMIN_CURRENCY,Constant.ADMIN_PIN));
     }
     private static Account currentAccount;
 
@@ -60,8 +60,9 @@ public class AccountManager {
         && checkSignUpUserInfo.get("citizenID") == SignUpInformationState.RIGHT
         && BankManager.checkNewPassword(password) == BankManager.PasswordState.RIGHT
         && BankManager.checkNewPIN(pin) == BankManager.PINState.RIGHT){
-            Account newAccount = new Account(signUpUser.getFullName(), signUpUser.getCitizenID(),Long.toString(1000000 + accounts.size()),password,0.0,"VND",pin);
+            Account newAccount = new Account(signUpUser.getFullName(), signUpUser.getCitizenID(),Long.toString(1000000 + accounts.size()),password,"VND",pin);
             UserManager.getInstance().getUserList().add(signUpUser);
+            resisterCheckingAccount(newAccount);
             accounts.add(newAccount);
         }
     }
@@ -80,6 +81,15 @@ public class AccountManager {
     public void logOut(){
         currentAccount = null;
         UserManager.getInstance().setCurrentUser(null);
+    }
+    //Thêm tài khoản checkingAccount
+    public void resisterCheckingAccount(Account account){
+        CheckingAccount newCheckingAccount = new CheckingAccount(account);
+        account.setCheckingAccount(newCheckingAccount);
+    }
+    public void resisterCheckingAccount(Account account, double balance){
+        CheckingAccount newCheckingAccount = new CheckingAccount(account, balance);
+        account.setCheckingAccount(newCheckingAccount);
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {
@@ -140,7 +150,6 @@ public class AccountManager {
             System.out.println(i + "\n\tCitizenID: "+a.getCitizenID()
                                  + "\n\tAccountID: "+a.getAccountID()
                                  + "\n\tPassword: "+a.getPassword()
-                                 + "\n\tBalance: "+a.getBalance()
                                  + "\n\tCurrency: "+a.getCurrency()
                                  + "\n\tPIN: "+a.getPIN() + "\n");
         }

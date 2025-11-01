@@ -21,7 +21,7 @@ public class TransactionBillController {
     void loadTransaction(Transaction transaction){
         amountLabel.setText(transaction.getAmount() + " " + transaction.getCurrency());
         dateLabel.setText(String.valueOf(transaction.getDate()));
-        toAccountFullNameLabel.setText(transaction.getToAccount().getFullName());
+        toAccountFullNameLabel.setText(transaction.getToAccount().getAccountName());
         toAccountIDLabel.setText(transaction.getToAccount().getAccountID());
         toBankLabel.setText("21stBank");
     }

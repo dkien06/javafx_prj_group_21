@@ -1,8 +1,8 @@
 package com.example.javafx_app.config;
 
 import com.example.javafx_app.object.Account;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.User;
 
 import java.time.LocalDate;
@@ -16,7 +16,6 @@ public class ExampleUser {
             "010203008386",
             "49538386",
             "NguyenVanA#1970",
-            2000000,
             "VND",
             "010170");
     private static final User userA = new User(
@@ -32,7 +31,6 @@ public class ExampleUser {
             "010203004953",
             "83864953",
             "TranThiB@1975",
-            1000000,
             "VND",
             "123456");
     private static final User userB = new User(
@@ -48,7 +46,6 @@ public class ExampleUser {
             "020406006769",
             "12345678",
             "TaoBiGay%2008",
-            500000,
             "VND",
             "112233"
     );
@@ -65,7 +62,6 @@ public class ExampleUser {
             "020406006967",
             "87654321",
             "ThuyDXinhGai><2006",
-            1250000,
             "VND",
             "112233"
     );
@@ -82,6 +78,9 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().add(accountB);
         AccountManager.getInstance().getAccountList().add(accountC);
         AccountManager.getInstance().getAccountList().add(accountD);
+
+        AccountManager.getInstance().resisterCheckingAccount(accountA,2_000_000);
+        AccountManager.getInstance().resisterCheckingAccount(accountB,1_000_000);
 
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);

@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import com.example.javafx_app.controller.Transaction.TransactionHistoryController;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ public class HomeController {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transaction_choose_method_scene.fxml");
     }
     public void LichSuGiaoDich(ActionEvent event) throws IOException {
-        FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_history_scene.fxml"));
+        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("transaction_history_scene.fxml"));
         Parent nextSceneRoot = nextSceneLoader.load();
 
         TransactionHistoryController controller = nextSceneLoader.getController();

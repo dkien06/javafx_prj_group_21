@@ -1,4 +1,4 @@
-package com.example.javafx_app.Manager;
+package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account;
 import com.example.javafx_app.config.Constant;

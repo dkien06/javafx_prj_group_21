@@ -6,6 +6,16 @@ import java.util.Map;
  * Class dữ trữ mấy biến hằng số, éo thích thì vào mà chỉnh:)
  */
 public class Constant {
+    public static final double SAVING_INTEREST_RATE_PER_MONTH = 0.07;
+
+    public static final double LOAN_INTEREST_RATE_PER_MONTH = 0.1;
+    public static final int LOAN_WARNING_APPLY_MONTH_TIME = 12;
+    public static final double LOAN_MAX = 200_000_000.0;
+    public static final double LOAN_WARNING_1_MAX = 500_000_000.0;
+    public static final double LOAN_WARNING_2_MAX = 2_000_000_000.0;
+
+    public static final double VIP_FEE = 69_000.0;
+
     public static final int PHONE_NUMBER_LENGTH = 10;
     public static final int MINIUM_PASSWORD_LENGTH = 8;
     public static final int MINIUM_PIN_LENGTH = 6;
@@ -19,6 +29,7 @@ public class Constant {
 
     public static final long START_ACCOUNT_ID = 10000000;
     public static final double DEFAULT_BALANCE = 0.0;
+    public static final double DEFAULT_DEBT = 0.0;
 
     public static final Map<String,String> CURRENCY = Map.ofEntries(
             Map.entry("USA","USD"),

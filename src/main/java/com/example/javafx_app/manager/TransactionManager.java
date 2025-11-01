@@ -1,4 +1,4 @@
-package com.example.javafx_app.Manager;
+package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account;
 import com.example.javafx_app.object.Transaction;
@@ -47,7 +47,7 @@ public class TransactionManager {
         return false;
     }
     public List<Transaction> getTransactionsByAccount(Account account){
-        return account.getHistory();
+        return account.getCheckingAccount().getHistory();
     }
     public List<Transaction> filterByDate(Account account, LocalDate start, LocalDate end){
         return null;
@@ -60,8 +60,8 @@ public class TransactionManager {
                     + "\n\tType: " + t.getType()
                     + "\n\tAmount: " + t.getAmount()
                     + "\n\tCurrency: " + t.getCurrency()
-                    + "\n\tFrom account: " + t.getFromAccount().getFullName()
-                    + "\n\tTo account: " + t.getToAccount().getFullName()
+                    + "\n\tFrom account: " + t.getFromAccount().getAccountName()
+                    + "\n\tTo account: " + t.getToAccount().getAccountName()
                     + "\n\tDescription: " + t.getDescription()
             );
         }
