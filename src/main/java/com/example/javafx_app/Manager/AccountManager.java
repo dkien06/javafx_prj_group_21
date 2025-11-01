@@ -1,8 +1,9 @@
 package com.example.javafx_app.Manager;
 
-import com.example.javafx_app.Account;
+import com.example.javafx_app.object.Account;
 import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
-import com.example.javafx_app.User;
+import com.example.javafx_app.object.User;
+import com.example.javafx_app.config.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class AccountManager {
             );
             ACCOUNTS.add(a);
         }
-        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
+        ACCOUNTS.add(new Account("ADMIN", Constant.ADMIN_CITIZEN_ID,Constant.ADMIN_ACCOUNT_ID,Constant.ADMIN_PASSWORD,Constant.ADMIN_BALANCE,Constant.ADMIN_CURRENCY,Constant.ADMIN_PIN));
     }
     private static Account currentAccount;
 

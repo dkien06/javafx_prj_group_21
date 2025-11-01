@@ -2,6 +2,7 @@ module com.example.javafx_app {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires com.example.javafx_app;
 
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app;
@@ -10,4 +11,8 @@ module com.example.javafx_app {
     opens com.example.javafx_app.controller.Transaction to javafx.fxml;
     exports com.example.javafx_app.Manager;
     opens com.example.javafx_app.Manager to javafx.fxml, javafx.graphics;
+    exports com.example.javafx_app.object;
+    opens com.example.javafx_app.object to javafx.fxml, javafx.graphics;
+    exports com.example.javafx_app.util;
+    opens com.example.javafx_app.util to javafx.fxml, javafx.graphics;
 }

@@ -1,4 +1,7 @@
-package com.example.javafx_app;
+package com.example.javafx_app.object;
+
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.Manager.TransactionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +113,7 @@ public class Account {
         this.addTransaction(NewTransfer);
         Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
         toAccount.addTransaction(newTransfer);
-        BankApplication.TransactionManager.getInstance().addTransaction(newTransfer);
+        TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }
 

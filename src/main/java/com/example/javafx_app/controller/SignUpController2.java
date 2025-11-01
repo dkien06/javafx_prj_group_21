@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.*;
 import com.example.javafx_app.Manager.AccountManager;
 import com.example.javafx_app.Manager.BankManager;
 import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

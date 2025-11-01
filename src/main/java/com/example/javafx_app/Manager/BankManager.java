@@ -1,6 +1,7 @@
 package com.example.javafx_app.Manager;
 
-import com.example.javafx_app.Account;
+import com.example.javafx_app.object.Account;
+import com.example.javafx_app.config.Constant;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -73,11 +74,11 @@ public class BankManager {
     //Check số điện thoại
     public static SignUpInformationState checkSignUpPhoneNumber(String phoneNumber){
         if(phoneNumber.isEmpty()) return SignUpInformationState.EMPTY;
-        if(AccountManager.getInstance().findAccountFromPhoneNumber(phoneNumber) == null)return SignUpInformationState.EXISTED;
+        if(AccountManager.getInstance().findAccountFromPhoneNumber(phoneNumber) != null)return SignUpInformationState.EXISTED;
         for(int i = 0; i < phoneNumber.length(); i++){
             if(!Character.isDigit(phoneNumber.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
-        if(phoneNumber.length() != 10) return SignUpInformationState.WRONG_SIZE;
+        if(phoneNumber.length() != Constant.PHONE_NUMBER_LENGTH) return SignUpInformationState.WRONG_SIZE;
         return SignUpInformationState.RIGHT;
     }
     //Check số căn cước công dân
@@ -124,7 +125,7 @@ public class BankManager {
         // (?=.*[!@#$%^&*()]) : Phải chứa ít nhất một ký tự đặc biệt trong danh sách
         // . {8,}            : Phải có ít nhất 8 ký tự
         // $                 : Kết thúc chuỗi
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{"+ Constant.MINIUM_PASSWORD_LENGTH + ",}$";
 
         // Kiểm tra xem mật khẩu có khớp với mẫu không
         return Pattern.matches(passwordPattern, password);
@@ -146,7 +147,7 @@ public class BankManager {
     }
     public static PINState checkNewPIN(String PIN){
         if(PIN.isEmpty())return PINState.EMPTY;
-        else if (!PIN.matches("\\d{6}"))return PINState.WRONG_FORM;
+        else if (!PIN.matches("\\d{" + Constant.MINIUM_PIN_LENGTH + "}"))return PINState.WRONG_FORM;
         else return PINState.RIGHT;
     }
 }

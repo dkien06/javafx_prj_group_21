@@ -2,6 +2,10 @@ package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
 import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.object.Account;
+import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -154,7 +158,7 @@ public class TransactingBetweenAccountsController implements Initializable {
 
     @FXML
     void QuayLai(ActionEvent event){
-        BankApplication.TransactionManager.getInstance().removeNewTransaction();
+        TransactionManager.getInstance().removeNewTransaction();
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transaction_choose_method_scene.fxml");
     }
     @FXML
@@ -189,7 +193,7 @@ public class TransactingBetweenAccountsController implements Initializable {
         if(!isAmountValid)amountErrorLog.setText("Vui lòng nhập số tiền hợp lệ");
 
         if(isAmountValid && isReceiveAccountIDValid && isBankChoiceValid){
-            BankApplication.TransactionManager.getInstance().newTransaction(
+            TransactionManager.getInstance().newTransaction(
                     Transaction.TransactionType.TRANSFER,
                     Double.parseDouble(amountTextField.getText()),
                     "VND",
@@ -200,7 +204,7 @@ public class TransactingBetweenAccountsController implements Initializable {
             Parent nextSceneRoot = nextSceneLoader.load();
 
             VerifyTransactionController controller = nextSceneLoader.getController();
-            controller.displayTransactionInformation(BankApplication.TransactionManager.getInstance().getCurrentTransaction());
+            controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }

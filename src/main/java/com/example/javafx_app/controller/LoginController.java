@@ -2,7 +2,7 @@ package com.example.javafx_app.controller;
 
 import com.example.javafx_app.Manager.AccountManager;
 import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

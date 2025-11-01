@@ -1,4 +1,4 @@
-package com.example.javafx_app;
+package com.example.javafx_app.util;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

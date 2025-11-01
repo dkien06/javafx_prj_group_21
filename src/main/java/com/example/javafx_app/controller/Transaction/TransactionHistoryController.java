@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.Account;
+import com.example.javafx_app.object.Account;
 import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.Transaction;
+import com.example.javafx_app.util.SceneUtils;
+import com.example.javafx_app.object.Transaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
