@@ -27,15 +27,20 @@ public class LoginController {
                 WrongLoginLabel.setText("Có lỗi xảy ra");
             }
             else {
+                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
                 try {
                     String name = CCCDField.getText();
                     if (!name.isEmpty()) {
-                        DialogUtils.optionDialog("Test.exe");
+                        System.out.println(DialogUtils.dialogButton(
+                                "Xác nhận đối tượng",
+                                "Vui lòng chọn đối tượng",
+                                "Việc này sẽ giúp cho chúng tôi giúp đỡ bạn",
+                                "Khách hàng mới","Khách hàng cũ","Nhân viên"
+                        ));
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
             }
         }
         else{
