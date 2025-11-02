@@ -1,7 +1,9 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.Manager.UserManager;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.Transaction;
+import com.example.javafx_app.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,9 +21,10 @@ public class TransactionBillController {
     @FXML
     private Label toBankLabel;
     void loadTransaction(Transaction transaction){
+        User user = UserManager.getInstance().findUserFromAccount(transaction.getToAccount());
         amountLabel.setText(transaction.getAmount() + " " + transaction.getCurrency());
         dateLabel.setText(String.valueOf(transaction.getDate()));
-        toAccountFullNameLabel.setText(transaction.getToAccount().getFullName());
+        toAccountFullNameLabel.setText(user.getFullName());
         toAccountIDLabel.setText(transaction.getToAccount().getAccountID());
         toBankLabel.setText("21stBank");
     }

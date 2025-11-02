@@ -1,7 +1,10 @@
-package com.example.javafx_app;
+package com.example.javafx_app.User;
 
 import java.time.LocalDate;
-
+enum USER_TYPE{
+    COSTUMER,
+    STAFF
+}
 public class User {
     public enum GENDER {
         MALE, FEMALE, OTHER

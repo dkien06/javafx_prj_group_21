@@ -3,6 +3,7 @@ package com.example.javafx_app.controller.setting;
 import com.example.javafx_app.*;
 import com.example.javafx_app.Manager.BankManager;
 import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

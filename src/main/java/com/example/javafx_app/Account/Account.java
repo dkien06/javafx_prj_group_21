@@ -1,10 +1,20 @@
-package com.example.javafx_app;
+package com.example.javafx_app.Account;
 
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.Transaction;
+import com.example.javafx_app.User.User;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+enum ACCOUNT_TYPE{
+    CHECKING,
+    SAVING,
+    LOAN
+}
 public class Account {
-    private String fullName;
     private String citizenID;
     private String accountID;
     private String password;
@@ -12,11 +22,12 @@ public class Account {
     private String currency;
     private String PIN;
     private List<Transaction> history;
+    private LocalDate StartDate ;
+    protected boolean isVIP ;
 
     // ✅ Constructor đầy đủ
-    public Account(String fullName, String citizenID, String accountID, String password, double balance,
+    public Account(String citizenID, String accountID, String password, double balance,
                    String currency, String PIN) {
-        this.fullName = fullName;
         this.citizenID = citizenID;
         this.accountID = accountID;
         this.password = password;
@@ -24,6 +35,8 @@ public class Account {
         this.currency = currency;
         this.PIN = PIN;
         this.history = new ArrayList<>();
+        this.StartDate = LocalDate.now();
+        this.isVIP = false;
     }
 
     // ✅ Constructor rỗng (cần cho JavaFX hoặc khởi tạo tạm)
@@ -32,15 +45,18 @@ public class Account {
     }
 
     // === Getter ===
-    public String getFullName() {
-        return fullName;
-    }
     public String getCitizenID() {
         return citizenID;
+    }
+    public String getFullName(){
+        return UserManager.getInstance().findUserFromAccount(this).getFullName() ;
     }
     public String getAccountID() {
         return accountID;
     }
+
+
+
     public double getBalance() {
         return balance;
     }
@@ -58,9 +74,6 @@ public class Account {
     }
 
     // === Setter ===
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
     public void setBalance(double balance) {
         this.balance = balance;
     }
@@ -110,7 +123,7 @@ public class Account {
         this.addTransaction(NewTransfer);
         Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
         toAccount.addTransaction(newTransfer);
-        BankApplication.TransactionManager.getInstance().addTransaction(newTransfer);
+        TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }
 

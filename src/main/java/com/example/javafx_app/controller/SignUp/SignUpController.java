@@ -1,9 +1,9 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.SignUp;
 
 import com.example.javafx_app.Manager.BankManager;
 import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.User;
+import com.example.javafx_app.User.User;
 import com.example.javafx_app.Manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
