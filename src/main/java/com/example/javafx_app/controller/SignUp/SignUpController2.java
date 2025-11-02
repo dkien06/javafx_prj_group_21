@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.SignUp;
 
 import com.example.javafx_app.*;
 import com.example.javafx_app.Manager.AccountManager;

@@ -1,7 +1,7 @@
 package com.example.javafx_app.Manager;
 
-import com.example.javafx_app.Account;
-import com.example.javafx_app.User;
+import com.example.javafx_app.Account.Account;
+import com.example.javafx_app.User.User;
 
 import java.util.ArrayList;
 import java.util.List;

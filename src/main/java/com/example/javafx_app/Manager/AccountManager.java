@@ -1,44 +1,30 @@
 package com.example.javafx_app.Manager;
 
-import com.example.javafx_app.Account;
+import com.example.javafx_app.Account.Account;
 import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
-import com.example.javafx_app.User;
+import com.example.javafx_app.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.javafx_app.Manager.BankManager.ACCOUNTS;
+import static com.example.javafx_app.Manager.BankManager.currentAccount;
+
 public class AccountManager {
     private static final AccountManager instance = new AccountManager();
     private AccountManager(){}
 
-    private static List<Account> accounts = new ArrayList<>();
-    public static final List<Account> ACCOUNTS = new ArrayList<>();
-    static {
-        for (int i = 1; i <= 100; i++) {
-            Account a = new Account(
-                    "Name" + i,
-                    "123456789" + i,     // citizenID
-                    "AC" + i,            // accountID
-                    "pwd" + i,           // password
-                    Math.random() * 1_000_000, // balance
-                    "VND",               // currency
-                    "0000"               // PIN
-            );
-            ACCOUNTS.add(a);
-        }
-        ACCOUNTS.add(new Account("ADMIN","892006","AC","892006",1000,"VND","0000"));
-    }
-    private static Account currentAccount;
+
 
     public static AccountManager getInstance(){
         return instance;
     }
     public Account getCurrentAccount() {
-        return currentAccount;
+        return BankManager.currentAccount;
     }
     public List<Account> getAccountList(){
-        return accounts;
+        return ACCOUNTS;
     }
 
     //Đăng kí
@@ -59,9 +45,9 @@ public class AccountManager {
         && checkSignUpUserInfo.get("citizenID") == SignUpInformationState.RIGHT
         && BankManager.checkNewPassword(password) == BankManager.PasswordState.RIGHT
         && BankManager.checkNewPIN(pin) == BankManager.PINState.RIGHT){
-            Account newAccount = new Account(signUpUser.getFullName(), signUpUser.getCitizenID(),Long.toString(1000000 + accounts.size()),password,0.0,"VND",pin);
+            Account newAccount = new Account( signUpUser.getCitizenID(),Long.toString(1000000 + ACCOUNTS.size()),password,0.0,"VND",pin);
             UserManager.getInstance().getUserList().add(signUpUser);
-            accounts.add(newAccount);
+            BankManager.ACCOUNTS.add(newAccount);
         }
     }
     //Đăng nhập
@@ -82,7 +68,7 @@ public class AccountManager {
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {
-        for (Account a : ACCOUNTS) {
+        for (Account a : BankManager.ACCOUNTS) {
             if (a.getCitizenID().equals(accountID)) {
                 return a;
             }
@@ -103,7 +89,7 @@ public class AccountManager {
         return null;
     }
     public Account findAccountFromUser(User user){
-        for(Account a : accounts){
+        for(Account a : ACCOUNTS){
             if(a.getCitizenID().equals(user.getCitizenID())){
                 return a;
             }
@@ -111,7 +97,7 @@ public class AccountManager {
         return null;
     }
     public Account findAccountFromCitizenID(String citizenID){
-        for (Account a : accounts){
+        for (Account a : ACCOUNTS){
             boolean check = true;
             for(int i = 0; i < citizenID.length(); i++){
                 if(citizenID.charAt(i) != a.getCitizenID().charAt(i)){
@@ -134,7 +120,7 @@ public class AccountManager {
     //In log
     public void accountListLog(){
         int i = 0;
-        for(Account a : accounts){
+        for(Account a : ACCOUNTS){
             i++;
             System.out.println(i + "\n\tCitizenID: "+a.getCitizenID()
                                  + "\n\tAccountID: "+a.getAccountID()

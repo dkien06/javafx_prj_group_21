@@ -38,6 +38,6 @@ public class LoginController {
 
     @FXML
     void TaoTaiKhoanMoi(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer1_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"/com/example/javafx_app/SignUpScene/signup_3option_scene.fxml");
     }
 }
