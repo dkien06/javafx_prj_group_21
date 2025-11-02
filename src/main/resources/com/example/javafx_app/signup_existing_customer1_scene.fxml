@@ -14,13 +14,13 @@
          <children>
             <Label text="Số CMND" />
             <TextField fx:id="CCCDField" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="201.4700469970703" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="201.4700469970703" />
             <Label text="Tên tài khoản" />
             <TextField fx:id="UserNameField" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="201.4700469970703" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="201.4700469970703" />
             <Label text="Mật khẩu" />
             <PasswordField fx:id="PasswordField" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="201.4700469970703" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="201.4700469970703" />
          </children>
       </VBox>
       <Button fx:id="btn_dang_nhap" layoutX="163.0" layoutY="460.0" mnemonicParsing="false" onAction="#DangNhap" text="Tiếp tục" />
