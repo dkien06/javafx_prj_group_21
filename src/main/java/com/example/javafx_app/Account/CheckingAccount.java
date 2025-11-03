@@ -1,7 +1,8 @@
-package com.example.javafx_app.object;
+package com.example.javafx_app.Account;
 
 import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Tài khoản chuển tiền:)
  */
-public class CheckingAccount extends Account{
+public class CheckingAccount extends Account {
     private double balance;
     private final List<Transaction> history;
     public CheckingAccount(Account account){

@@ -1,6 +1,10 @@
 package com.example.javafx_app.manager;
 
-import com.example.javafx_app.object.*;
+import com.example.javafx_app.Account.Account;
+import com.example.javafx_app.Account.CheckingAccount;
+import com.example.javafx_app.Account.LoanAccount;
+import com.example.javafx_app.Account.SavingAccount;
+import com.example.javafx_app.User.User;
 import com.example.javafx_app.manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.config.Constant;
 

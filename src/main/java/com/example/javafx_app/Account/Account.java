@@ -1,4 +1,4 @@
-package com.example.javafx_app.object;
+package com.example.javafx_app.Account;
 
 public class Account {
     protected String accountName;

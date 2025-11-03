@@ -3,7 +3,7 @@ package com.example.javafx_app.controller;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.util.SceneUtils;
-import com.example.javafx_app.object.User;
+import com.example.javafx_app.User.User;
 import com.example.javafx_app.manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

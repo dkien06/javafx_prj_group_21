@@ -14,4 +14,8 @@ module com.example.javafx_app {
     opens com.example.javafx_app.object to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app.util;
     opens com.example.javafx_app.util to javafx.fxml, javafx.graphics;
+    exports com.example.javafx_app.Account;
+    opens com.example.javafx_app.Account to javafx.fxml, javafx.graphics;
+    exports com.example.javafx_app.User;
+    opens com.example.javafx_app.User to javafx.fxml, javafx.graphics;
 }

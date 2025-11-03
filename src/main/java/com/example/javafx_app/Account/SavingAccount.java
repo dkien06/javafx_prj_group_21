@@ -1,4 +1,4 @@
-package com.example.javafx_app.object;
+package com.example.javafx_app.Account;
 
 import com.example.javafx_app.config.Constant;
 
@@ -6,7 +6,7 @@ import com.example.javafx_app.config.Constant;
  * Tài khoản tiết kiệm:)
  * Cần thêm lịch sử giao dịch đoạn này không nhở:))
  */
-public class SavingAccount extends Account{
+public class SavingAccount extends Account {
     private double balance;
     public SavingAccount(Account account){
         this.accountName = account.accountName;

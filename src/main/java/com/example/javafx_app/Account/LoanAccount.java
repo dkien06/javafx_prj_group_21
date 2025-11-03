@@ -1,11 +1,11 @@
-package com.example.javafx_app.object;
+package com.example.javafx_app.Account;
 
 import com.example.javafx_app.config.Constant;
 
 /**
  * Tài khoản vay vốn:)
  */
-public class LoanAccount extends Account{
+public class LoanAccount extends Account {
     private double debt;
     public LoanAccount(Account account){
         this.accountName = account.accountName;
