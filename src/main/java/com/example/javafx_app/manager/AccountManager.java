@@ -1,9 +1,7 @@
 package com.example.javafx_app.manager;
 
-import com.example.javafx_app.object.Account;
+import com.example.javafx_app.object.*;
 import com.example.javafx_app.manager.BankManager.SignUpInformationState;
-import com.example.javafx_app.object.CheckingAccount;
-import com.example.javafx_app.object.User;
 import com.example.javafx_app.config.Constant;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ public class AccountManager {
     private static final AccountManager instance = new AccountManager();
     private AccountManager(){}
 
-    private static List<Account> accounts = new ArrayList<>();
+    private static final List<Account> accounts = new ArrayList<>();
     public static final List<Account> ACCOUNTS = new ArrayList<>();
     static {
         for (int i = 1; i <= 100; i++) {
@@ -82,7 +80,7 @@ public class AccountManager {
         currentAccount = null;
         UserManager.getInstance().setCurrentUser(null);
     }
-    //Thêm tài khoản checkingAccount
+    //Thêm tài khoản phụ
     public void resisterCheckingAccount(Account account){
         CheckingAccount newCheckingAccount = new CheckingAccount(account);
         account.setCheckingAccount(newCheckingAccount);
@@ -90,6 +88,22 @@ public class AccountManager {
     public void resisterCheckingAccount(Account account, double balance){
         CheckingAccount newCheckingAccount = new CheckingAccount(account, balance);
         account.setCheckingAccount(newCheckingAccount);
+    }
+    public void resisterSavingAccount(Account account){
+        SavingAccount newSavingAccount = new SavingAccount(account);
+        account.setSavingAccount(newSavingAccount);
+    }
+    public void resisterSavingAccount(Account account, double balance){
+        SavingAccount newSavingAccount = new SavingAccount(account, balance);
+        account.setSavingAccount(newSavingAccount);
+    }
+    public void resisterLoanAccount(Account account){
+        LoanAccount newLoanAccount = new LoanAccount(account);
+        account.setLoanAccount(newLoanAccount);
+    }
+    public void resisterLoanAccount(Account account, double debt){
+        LoanAccount newLoanAccount = new LoanAccount(account, debt);
+        account.setLoanAccount(newLoanAccount);
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {

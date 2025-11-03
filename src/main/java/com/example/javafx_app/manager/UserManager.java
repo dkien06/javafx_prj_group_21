@@ -11,7 +11,7 @@ public class UserManager {
     private UserManager(){}
 
     private static User currentUser;
-    private static List<User> users = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
 
     public static UserManager getInstance() {
         return instance;

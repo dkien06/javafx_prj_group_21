@@ -16,8 +16,8 @@ public class DialogUtils {
 
         // Tạo các nút
         List<ButtonType> buttonList = new ArrayList<>();
-        for(int i = 0; i < buttons.length; i++){
-            ButtonType newButton = new ButtonType(buttons[i]);
+        for (String button : buttons) {
+            ButtonType newButton = new ButtonType(button);
             buttonList.add(newButton);
         }
         alert.getButtonTypes().setAll(buttonList);

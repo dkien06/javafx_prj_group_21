@@ -61,6 +61,12 @@ public class Account {
     public CheckingAccount getCheckingAccount() {
         return checkingAccount;
     }
+    public SavingAccount getSavingAccount() {
+        return savingAccount;
+    }
+    public LoanAccount getLoanAccount() {
+        return loanAccount;
+    }
     public int getWarning() {
         return warning;
     }
@@ -80,6 +86,12 @@ public class Account {
     }
     public void setCheckingAccount(CheckingAccount checkingAccount) {
         this.checkingAccount = checkingAccount;
+    }
+    public void setSavingAccount(SavingAccount savingAccount) {
+        this.savingAccount = savingAccount;
+    }
+    public void setLoanAccount(LoanAccount loanAccount) {
+        this.loanAccount = loanAccount;
     }
     public void setWarning(int warning) {
         this.warning = warning;

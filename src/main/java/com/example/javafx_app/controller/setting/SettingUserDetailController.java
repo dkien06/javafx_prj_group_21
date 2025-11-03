@@ -20,7 +20,7 @@ public class SettingUserDetailController implements Initializable {
     private Text SettingPhoneNumberLog;
     @FXML
     private Text SettingEmailLog;
-    private User currentUser = UserManager.getInstance().getCurrentUser();
+    private final User currentUser = UserManager.getInstance().getCurrentUser();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (currentUser == null) {

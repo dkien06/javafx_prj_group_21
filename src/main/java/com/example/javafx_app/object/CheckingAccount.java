@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CheckingAccount extends Account{
     private double balance;
-    private List<Transaction> history;
+    private final List<Transaction> history;
     public CheckingAccount(Account account){
         this.accountName = account.accountName;
         this.password = account.password;

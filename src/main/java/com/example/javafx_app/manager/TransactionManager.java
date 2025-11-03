@@ -13,7 +13,7 @@ public class TransactionManager {
     private TransactionManager(){}
 
     private static Transaction currentTransaction;
-    private static List<Transaction> transactions = new ArrayList<>();
+    private static final List<Transaction> transactions = new ArrayList<>();
 
     public static TransactionManager getInstance() {
         return instance;
@@ -99,7 +99,7 @@ public class TransactionManager {
         // ================================================================
 
         String sAmount = String.valueOf(longAmount);
-        String ketQua = "";
+        StringBuilder ketQua = new StringBuilder();
 
         // ================================================================
         // SỬA LỖI 2: Mở rộng mảng 'hangNghin'
@@ -122,21 +122,21 @@ public class TransactionManager {
                     break; // Ngừng đọc nếu số quá lớn
                 }
                 String chuoiBaSo = docSoBaChuSo(nhomBaSo);
-                ketQua = chuoiBaSo + hangNghin[i] + " " + ketQua;
+                ketQua.insert(0, chuoiBaSo + hangNghin[i] + " ");
             }
         }
 
         // Xử lý các trường hợp đặc biệt
-        ketQua = ketQua.replaceAll("một mươi", "mười");
-        ketQua = ketQua.replaceAll("mười năm", "mười lăm");
-        ketQua = ketQua.replaceAll("mươi năm", "mươi lăm");
-        ketQua = ketQua.replaceAll("mươi một", "mươi mốt");
+        ketQua = new StringBuilder(ketQua.toString().replaceAll("một mươi", "mười"));
+        ketQua = new StringBuilder(ketQua.toString().replaceAll("mười năm", "mười lăm"));
+        ketQua = new StringBuilder(ketQua.toString().replaceAll("mươi năm", "mươi lăm"));
+        ketQua = new StringBuilder(ketQua.toString().replaceAll("mươi một", "mươi mốt"));
 
-        if (ketQua.startsWith("một nghìn ")) {
-            ketQua = ketQua.substring(4);
+        if (ketQua.toString().startsWith("một nghìn ")) {
+            ketQua = new StringBuilder(ketQua.substring(4));
         }
 
-        ketQua = ketQua.trim();
+        ketQua = new StringBuilder(ketQua.toString().trim());
         // Viết hoa chữ cái đầu
         if (ketQua.isEmpty()) return "Không đồng"; // Đề phòng trường hợp không mong muốn
         return ketQua.substring(0, 1).toUpperCase() + ketQua.substring(1);

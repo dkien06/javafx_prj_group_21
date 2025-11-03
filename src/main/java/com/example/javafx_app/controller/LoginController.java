@@ -35,7 +35,7 @@ public class LoginController {
                                 "Xác nhận đối tượng",
                                 "Vui lòng chọn đối tượng",
                                 "Việc này sẽ giúp cho chúng tôi giúp đỡ bạn",
-                                "Khách hàng mới","Khách hàng cũ","Nhân viên"
+                                "Khách hàng mới","Khách hàng cũ","Nhân viên","Thằng gay lọ"
                         ));
                     }
                 } catch (Exception ex) {

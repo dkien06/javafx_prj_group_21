@@ -81,6 +81,8 @@ public class ExampleUser {
 
         AccountManager.getInstance().resisterCheckingAccount(accountA,2_000_000);
         AccountManager.getInstance().resisterCheckingAccount(accountB,1_000_000);
+        AccountManager.getInstance().resisterSavingAccount(accountC,500_000.0);
+        AccountManager.getInstance().resisterLoanAccount(accountD,1_000_000.0);
 
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
