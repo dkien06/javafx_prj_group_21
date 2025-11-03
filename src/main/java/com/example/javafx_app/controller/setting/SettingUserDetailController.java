@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.setting;
 
-import com.example.javafx_app.*;
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.Manager.UserManager;
-import com.example.javafx_app.User.User;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.object.User.User;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +20,7 @@ public class SettingUserDetailController implements Initializable {
     private Text SettingPhoneNumberLog;
     @FXML
     private Text SettingEmailLog;
-    private User currentUser = UserManager.getInstance().getCurrentUser();
+    private final User currentUser = UserManager.getInstance().getCurrentUser();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (currentUser == null) {
@@ -34,7 +34,7 @@ public class SettingUserDetailController implements Initializable {
     }
     @FXML
     public void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
     }
     public void HoanThanh(ActionEvent event){
         boolean isValidPhoneNumber = false;
@@ -73,7 +73,7 @@ public class SettingUserDetailController implements Initializable {
                 break;
         }
         if(isValidPhoneNumber && isValidEmail){
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
         }
     }
 }

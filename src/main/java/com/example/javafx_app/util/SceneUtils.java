@@ -1,5 +1,6 @@
-package com.example.javafx_app;
+package com.example.javafx_app.util;
 
+import com.example.javafx_app.BankApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,7 +19,7 @@ public class SceneUtils {
 
     public static void switchScene(Stage stage, String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneUtils.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(BankApplication.class.getResource(fxmlFile));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

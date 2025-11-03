@@ -1,4 +1,4 @@
-package com.example.javafx_app.Account;
+package com.example.javafx_app.object.Account;
 
 import java.time.LocalDate;
 
@@ -7,21 +7,22 @@ import java.time.LocalDate;
  * có thể là khoản GỬI TIẾT KIỆM hoặc KHOẢN VAY.
  */
 public class FinancialProduct {
-
     public enum Type {
         SAVING,   // tiền gửi tiết kiệm
         LOAN      // tiền vay
     }
+    private final String accountID;
     private Type type;             // Loại sản phẩm: SAVING hay LOAN
     private LocalDate startDate;// Ngày bắt đầu
     private String ProductName ;
     private String description ;
     private double term;           // Kỳ hạn (tính bằng năm)
-    private double principal;      // Số tiền gốc
+    private double principal;      // Số tiền vốn
     private double interestRate;   // Lãi suất (%/năm)
 
     // Constructor
-    public FinancialProduct(Type type, double principal, double term, double interestRate,String ProductName,String description) {
+    public FinancialProduct(String accountID,Type type, double principal, double term, double interestRate,String ProductName,String description) {
+        this.accountID = accountID;
         this.type = type;
         this.principal = principal;
         this.term = term;
@@ -32,6 +33,10 @@ public class FinancialProduct {
     }
 
     // Getter/Setter
+    public String getAccountID() {
+        return accountID;
+    }
+
     public Type getType() {
         return type;
     }
@@ -95,8 +100,7 @@ public class FinancialProduct {
      *  - LOAN: số tiền phải trả (gốc + lãi)
      */
     public double calculateTotalAmount() {
-        double total = principal * Math.pow(1 + interestRate, term);
-        return total;
+        return principal * Math.pow(1 + interestRate, term);
     }
     /** In thông tin */
     @Override

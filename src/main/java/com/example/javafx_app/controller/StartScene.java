@@ -1,8 +1,8 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -22,9 +22,9 @@ public class StartScene {
     // Hàm sẽ được gọi khi click nút (gán trực tiếp trên SceneBuilder)
     @FXML
     private void NextToLogin(ActionEvent event) {
-        BankManager.setCurrentEmail(EmailTextField.getText());
-        BankManager.setCurrentPhoneNumber(PhoneTexrField.getText());
-        BankManager.setTodayDate(DatePicker.getValue());
+        UserManager.getInstance().getCurrentUser().setEmail(EmailTextField.getText());
+        UserManager.getInstance().getCurrentUser().setPhoneNumber(PhoneTexrField.getText());
+        //BankManager.setTodayDate(DatePicker.getValue());????
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
     }
 }

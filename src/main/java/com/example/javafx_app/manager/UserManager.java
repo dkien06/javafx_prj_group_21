@@ -1,7 +1,7 @@
-package com.example.javafx_app.Manager;
+package com.example.javafx_app.manager;
 
-import com.example.javafx_app.Account.Account;
-import com.example.javafx_app.User.User;
+import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class UserManager {
     private UserManager(){}
 
     private static User currentUser;
-    private static List<User> users = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
 
     public static UserManager getInstance() {
         return instance;

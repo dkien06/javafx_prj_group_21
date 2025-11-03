@@ -1,7 +1,6 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.SceneUtils;
-import javafx.application.Preloader;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
@@ -57,12 +56,12 @@ public class SignUpNew1 {
     @FXML
     private void TiepTuc(ActionEvent event) {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
-                "/com/example/javafx_app/SignUpScene/signup_new_customer2_scene.fxml");
+                "SignUpScene/signup_new_customer2_scene.fxml");
     }
 
     @FXML
     private void returnToLoginScene(ActionEvent event) {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
-                "/com/example/javafx_app/SignUpScene/signup_3option_scene.fxml");
+                "SignUpScene/signup_3option_scene.fxml");
     }
 }

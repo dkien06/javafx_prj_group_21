@@ -1,8 +1,9 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.util.DialogUtils;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,10 +23,12 @@ public class LoginController {
         String CCCD = CCCDField.getText();
         String Password = PasswordField.getText();
         if(BankManager.VerifyPassword(CCCD, Password)) {
-            if(AccountManager.getInstance().logIn(CCCD,Password)){
+            if(!AccountManager.getInstance().logIn(CCCD,Password)){
                 WrongLoginLabel.setText("Có lỗi xảy ra");
             }
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+            else {
+                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+            }
         }
         else{
             if(Password.isEmpty()){
