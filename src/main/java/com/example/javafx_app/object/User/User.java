@@ -1,14 +1,8 @@
 package com.example.javafx_app.object.User;
 
 import java.time.LocalDate;
-enum USER_TYPE{
-    COSTUMER,
-    STAFF
-}
+
 public class User {
-    public enum GENDER {
-        MALE, FEMALE, OTHER
-    }
     private String fullName;
     private LocalDate dateOfBirth;
     private GENDER gender;
@@ -90,20 +84,5 @@ public class User {
                 ", email='" + email + '\'' +
                 ", citizenID='" + citizenID + '\'' +
                 '}';
-    }
-
-    public static GENDER stringToGender(String gender){
-        return switch (gender) {
-            case "MALE" -> GENDER.MALE;
-            case "FEMALE" -> GENDER.FEMALE;
-            default -> GENDER.OTHER;
-        };
-    }
-    public static String genderToString(GENDER gender){
-        return switch (gender){
-            case MALE -> "MALE";
-            case FEMALE -> "FEMALE";
-            default -> "OTHER";
-        };
     }
 }

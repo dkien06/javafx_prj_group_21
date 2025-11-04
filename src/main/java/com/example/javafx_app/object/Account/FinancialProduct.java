@@ -7,12 +7,9 @@ import java.time.LocalDate;
  * có thể là khoản GỬI TIẾT KIỆM hoặc KHOẢN VAY.
  */
 public class FinancialProduct {
-    public enum Type {
-        SAVING,   // tiền gửi tiết kiệm
-        LOAN      // tiền vay
-    }
+
     private final String accountID;
-    private Type type;             // Loại sản phẩm: SAVING hay LOAN
+    private FinancialProductType type;             // Loại sản phẩm: SAVING hay LOAN
     private LocalDate startDate;// Ngày bắt đầu
     private String ProductName ;
     private String description ;
@@ -21,7 +18,7 @@ public class FinancialProduct {
     private double interestRate;   // Lãi suất (%/năm)
 
     // Constructor
-    public FinancialProduct(String accountID,Type type, double principal, double term, double interestRate,String ProductName,String description) {
+    public FinancialProduct(String accountID,FinancialProductType type, double principal, double term, double interestRate,String ProductName,String description) {
         this.accountID = accountID;
         this.type = type;
         this.principal = principal;
@@ -37,11 +34,11 @@ public class FinancialProduct {
         return accountID;
     }
 
-    public Type getType() {
+    public FinancialProductType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(FinancialProductType type) {
         this.type = type;
     }
 
@@ -105,14 +102,14 @@ public class FinancialProduct {
     /** In thông tin */
     @Override
     public String toString() {
-        String action = (type == Type.SAVING) ? "Gửi tiết kiệm" : "Khoản vay";
+        String action = (type == FinancialProductType.SAVING) ? "Gửi tiết kiệm" : "Khoản vay";
         return action + " {" +
                 "Ngày bắt đầu=" + startDate +
                 ", Kỳ hạn=" + term + " năm" +
                 ", Số tiền gốc=" + principal +
                 ", Lãi suất=" + interestRate +
                 ", Ngày đáo hạn=" + calculateMaturityDate() +
-                ", Tổng tiền " + ((type == Type.SAVING) ? "nhận được" : "phải trả") +
+                ", Tổng tiền " + ((type == FinancialProductType.SAVING) ? "nhận được" : "phải trả") +
                 "=" + String.format("%.2f", calculateTotalAmount()) +
                 '}';
     }

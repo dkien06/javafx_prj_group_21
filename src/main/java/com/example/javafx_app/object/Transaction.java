@@ -6,11 +6,6 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Transaction {
-    public enum TransactionType {
-        DEPOSIT,
-        WITHDRAW,
-        TRANSFER
-    }
     private String transactionID;
     private LocalDateTime date;
     private TransactionType type;

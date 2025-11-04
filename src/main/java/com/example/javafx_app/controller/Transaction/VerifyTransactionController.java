@@ -53,6 +53,8 @@ public class VerifyTransactionController {
                     case TRANSFER -> "Chuyển khoản";
                     case DEPOSIT -> "Gửi tiền";
                     case WITHDRAW -> "Rút tiền";
+                    case LOAN -> "Vay tiền";
+                    case REPAY -> "Trả nợ";
                 }
         );
     }

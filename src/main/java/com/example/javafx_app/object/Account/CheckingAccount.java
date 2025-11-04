@@ -3,6 +3,7 @@ package com.example.javafx_app.object.Account;
 import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.object.TransactionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.List;
  */
 public class CheckingAccount extends Account {
     private double balance;
-    private final List<Transaction> history;
     public CheckingAccount(Account account){
         this.accountName = account.accountName;
         this.password = account.password;
@@ -21,7 +21,6 @@ public class CheckingAccount extends Account {
         this.currency = account.currency;
         this.accountID = account.accountID;
         this.balance = Constant.DEFAULT_BALANCE;
-        this.history = new ArrayList<>();
     }
     public CheckingAccount(Account account, double balance){
         this.accountName = account.accountName;
@@ -31,20 +30,12 @@ public class CheckingAccount extends Account {
         this.citizenID = account.citizenID;
         this.currency = account.currency;
         this.balance = balance;
-        this.history = new ArrayList<>();
     }
 
     public double getBalance() {
         return balance;
     }
-    public List<Transaction> getHistory(){
-        return history;
-    }
 
-    // ✅ Thêm giao dịch
-    public void addTransaction(Transaction t) {
-        history.add(t);
-    }
     // ✅ Chuyển tiền
     public boolean transfer(CheckingAccount toAccount, double amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
@@ -57,10 +48,8 @@ public class CheckingAccount extends Account {
         toAccount.balance += amount;
 
         // thêm lịch sử giao dịch cho cả 2
-        Transaction NewTransfer = new Transaction(Transaction.TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
-        this.addTransaction(NewTransfer);
-        Transaction newTransfer = new Transaction(Transaction.TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
-        toAccount.addTransaction(newTransfer);
+        Transaction newTransfer = new Transaction(TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
+        this.addTransaction(newTransfer);
         TransactionManager.getInstance().addTransaction(newTransfer);
         return true;
     }

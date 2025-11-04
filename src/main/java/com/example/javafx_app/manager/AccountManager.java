@@ -45,11 +45,11 @@ public class AccountManager {
     }
 
     //Đăng kí
-    public void resister(User signUpUser, String password, String pin){
+    public boolean resister(User signUpUser, String password, String pin){
         Map<String, SignUpInformationState> checkSignUpUserInfo = BankManager.CheckAllSignUpInfo(
                 signUpUser.getFullName(),
                 signUpUser.getDateOfBirth(),
-                User.genderToString(signUpUser.getGender()),
+                UserManager.genderToString(signUpUser.getGender()),
                 signUpUser.getEmail(),
                 signUpUser.getPhoneNumber(),
                 signUpUser.getCitizenID()
@@ -66,7 +66,9 @@ public class AccountManager {
             UserManager.getInstance().getUserList().add(signUpUser);
             resisterCheckingAccount(newAccount);
             accounts.add(newAccount);
+            return true;
         }
+        else return false;
     }
     //Đăng nhập
     public boolean logIn(String citizenID, String password){

@@ -2,6 +2,7 @@ package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.object.TransactionType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,10 +26,7 @@ public class TransactionManager {
         return transactions;
     }
 
-    public void newTransaction(Transaction.TransactionType type){
-        currentTransaction = new Transaction(type,0.0,"VND",null, null,"");
-    }
-    public void newTransaction(Transaction.TransactionType type, double amount, String currency, Account fromAccount, Account toAccount, String description){
+    public void newTransaction(TransactionType type, double amount, String currency, Account fromAccount, Account toAccount, String description){
         currentTransaction = new Transaction(type,amount,currency,fromAccount, toAccount,description);
     }
     public void removeNewTransaction(){

@@ -1,6 +1,7 @@
 package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.User;
 
 import java.util.ArrayList;
@@ -52,5 +53,19 @@ public class UserManager {
             }
         }
         return null;
+    }
+    public static GENDER stringToGender(String gender){
+        return switch (gender) {
+            case "MALE" -> GENDER.MALE;
+            case "FEMALE" -> GENDER.FEMALE;
+            default -> GENDER.OTHER;
+        };
+    }
+    public static String genderToString(GENDER gender){
+        return switch (gender){
+            case MALE -> "MALE";
+            case FEMALE -> "FEMALE";
+            default -> "OTHER";
+        };
     }
 }

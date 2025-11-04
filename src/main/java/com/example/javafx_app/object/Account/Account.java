@@ -5,11 +5,6 @@ import com.example.javafx_app.object.Transaction;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-enum ACCOUNT_TYPE{
-    CHECKING,
-    SAVING,
-    LOAN
-}
 
 /**
  * Account chính (Dùng cho các hành vi cơ bản (Đăng nhập, đăng xuất, check mật khẩu, PIN,...))
@@ -123,7 +118,8 @@ public class Account {
         return this.password != null && this.password.equals(password);
     }
     // ✅ In ra thông tin tài khoản (dễ debug)
-    public String accountToString() {
+    @Override
+    public String toString() {
         return "Account{" +
                 "citizenID='" + citizenID + '\'' +
                 ", accountID='" + accountID + '\'' +

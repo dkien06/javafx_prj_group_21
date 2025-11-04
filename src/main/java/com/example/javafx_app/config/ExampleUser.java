@@ -3,6 +3,7 @@ package com.example.javafx_app.config;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.User;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class ExampleUser {
     private static final User userA = new User(
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
-            User.stringToGender("MALE"),
+            GENDER.MALE,
             "0123456789",
             "NguyenVanA@gmail.com",
             "010203008386"
@@ -36,7 +37,7 @@ public class ExampleUser {
     private static final User userB = new User(
             "Trần Thị B",
             LocalDate.of(1975,4,30),
-            User.stringToGender("FEMALE"),
+            GENDER.FEMALE,
             "0987654321",
             "TranThiB@vnu.edu.vn",
             "010203004953"
@@ -52,7 +53,7 @@ public class ExampleUser {
     private static final User userC = new User(
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
-            User.stringToGender("OTHER"),
+            GENDER.OTHER,
             "0135792468",
             "C.ND@sis.hust.edu.vn",
             "020406006769"
@@ -68,7 +69,7 @@ public class ExampleUser {
     private static final User userD = new User(
             "Lê Thị Thúy D",
             LocalDate.of(2006,6,7),
-            User.stringToGender("FEMALE"),
+            GENDER.FEMALE,
             "0246813579",
             "DLeThiThuy@outlook.com",
             "020406006967"

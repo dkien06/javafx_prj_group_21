@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.BankApplication;
@@ -141,7 +142,7 @@ public class TransactingBetweenAccountsController implements Initializable {
 
         if(isAmountValid && isReceiveAccountIDValid && isBankChoiceValid){
             TransactionManager.getInstance().newTransaction(
-                    Transaction.TransactionType.TRANSFER,
+                    TransactionType.TRANSFER,
                     Double.parseDouble(amountTextField.getText()),
                     "VND",
                     AccountManager.getInstance().getCurrentAccount(),

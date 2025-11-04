@@ -22,14 +22,27 @@ public class TransactionHistoryController {
         Account currentAccount = AccountManager.getInstance().getCurrentAccount();
         List<Transaction> transactionHistoryList = currentAccount.getHistory();
         for(Transaction t : transactionHistoryList){
-            transactionHistoryField.setText(
-                    transactionHistoryField.getText()
-                    + "TK " + currentAccount.getAccountID()
-                    + "|GD: " + (-t.getAmount())
-                    + " " + t.getDate()
-                    + "|" + t.getDescription()
-                    + "\n"
-            );
+            if(t.getFromAccount().getAccountID().equals(currentAccount.getAccountID())){
+                transactionHistoryField.setText(
+                        transactionHistoryField.getText()
+                                + "TK " + currentAccount.getAccountID()
+                                + "|GD: " + (-t.getAmount())
+                                + " " + t.getDate()
+                                + "|" + t.getDescription()
+                                + "\n"
+                );
+            }
+            else{
+                transactionHistoryField.setText(
+                        transactionHistoryField.getText()
+                                + "TK " + currentAccount.getAccountID()
+                                + "|GD: " + t.getAmount()
+                                + " " + t.getDate()
+                                + "|" + t.getDescription()
+                                + "\n"
+                );
+            }
+
         }
     }
 }
