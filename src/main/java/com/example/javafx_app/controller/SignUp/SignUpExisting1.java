@@ -16,4 +16,10 @@ public class SignUpExisting1 {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
                 "/com/example/javafx_app/SignUpScene/signup_existing_customer2_scene.fxml");
     }
+
+    @FXML
+    public void backTo3SignUpOption(ActionEvent event) {
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                "/com/example/javafx_app/SignUpScene/signup_3option_scene.fxml");
+    }
 }
