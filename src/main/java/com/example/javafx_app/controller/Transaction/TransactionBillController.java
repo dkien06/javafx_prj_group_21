@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.Manager.UserManager;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.Transaction;
-import com.example.javafx_app.User.User;
+import com.example.javafx_app.object.User.User;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.util.SceneUtils;
+import com.example.javafx_app.object.Transaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,10 +30,10 @@ public class TransactionBillController {
     }
     @FXML
     void TrangChu(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"transaction_choose_method_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_method_scene.fxml");
     }
 }

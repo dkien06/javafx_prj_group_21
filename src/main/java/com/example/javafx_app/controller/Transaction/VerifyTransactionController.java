@@ -1,9 +1,11 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.*;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.TransactionManager;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,12 +53,14 @@ public class VerifyTransactionController {
                     case TRANSFER -> "Chuyển khoản";
                     case DEPOSIT -> "Gửi tiền";
                     case WITHDRAW -> "Rút tiền";
+                    case LOAN -> "Vay tiền";
+                    case REPAY -> "Trả nợ";
                 }
         );
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transacting_between_accounts.fxml"));
+        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_between_accounts.fxml"));
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingBetweenAccountsController controller = previousSceneLoader.getController();
@@ -73,12 +77,12 @@ public class VerifyTransactionController {
         }
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
-            AccountManager.getInstance().getCurrentAccount().transfer(
-                    currentTransaction.getToAccount(),
+            AccountManager.getInstance().getCurrentAccount().getCheckingAccount().transfer(
+                    currentTransaction.getToAccount().getCheckingAccount(),
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
-            FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transaction_bill_scene.fxml"));
+            FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_bill_scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
             TransactionBillController controller = nextSceneLoader.getController();

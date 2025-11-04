@@ -1,10 +1,8 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.BankApplication;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.TransactionManager;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.Transaction;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +13,7 @@ import java.io.IOException;
 public class TransactionChooseMethodController {
     @FXML
     public void ChuyenKhoan(ActionEvent event) throws IOException {
-        TransactionManager.getInstance().newTransaction(Transaction.TransactionType.TRANSFER);
-        FXMLLoader nextSceneLoader = new FXMLLoader(SceneUtils.class.getResource("transacting_between_accounts.fxml"));
+        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_between_accounts.fxml"));
         Parent nextSceneRoot = nextSceneLoader.load();
         TransactingBetweenAccountsController controller = nextSceneLoader.getController();
         controller.displaySendingAccountIDAndMoney(AccountManager.getInstance().getCurrentAccount());
@@ -24,6 +21,6 @@ public class TransactionChooseMethodController {
     }
     @FXML
     public void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
     }
 }
