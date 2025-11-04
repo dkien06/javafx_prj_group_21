@@ -1,6 +1,9 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.Manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,10 +38,10 @@ public class VerifyTransactionController {
     @FXML
     Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
-        fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getFullName());
+        fullSendingNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getFromAccount()).getFullName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
         sendingBankLabel.setText("Ngân hàng: " + "21stBank");
-        fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getFullName());
+        fullReceiveNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getToAccount()).getFullName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
         amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());

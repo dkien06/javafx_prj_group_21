@@ -1,10 +1,10 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.BankManager;
-import com.example.javafx_app.BankManager.SignUpInformationState;
+import com.example.javafx_app.Manager.BankManager;
+import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.User;
-import com.example.javafx_app.UserManager;
+import com.example.javafx_app.User.User;
+import com.example.javafx_app.Manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -183,7 +183,7 @@ public class SignUpController implements Initializable {
             UserManager.getInstance().getCurrentUser().setEmail(emailField.getText());
             UserManager.getInstance().getCurrentUser().setCitizenID(citizenIDField.getText());
 
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene2.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer2_scene.fxml");
         }
     }
 }

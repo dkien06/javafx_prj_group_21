@@ -1,9 +1,10 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.AccountManager;
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.TransactionManager;
 import com.example.javafx_app.SceneUtils;
 import com.example.javafx_app.Transaction;
-import com.example.javafx_app.TransactionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

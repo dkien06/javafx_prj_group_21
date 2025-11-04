@@ -1,5 +1,9 @@
 package com.example.javafx_app;
 
+import com.example.javafx_app.Account.Account;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.User.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -8,17 +12,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class BankApplication extends Application {
     //Tài khoản ảo (xóa cũng được):)
-    public static Account susAccount = new Account(
-            "Nguyen Van A",
-            "010203008386",
-            "49538386",
-            "NguyenVanA#1970",
-            2000000,
-            "VND",
-            "010170");
     public static User susUser = new User(
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
@@ -27,14 +26,6 @@ public class BankApplication extends Application {
             "NguyenVanA@gmail.com",
             "010203008386"
     );
-    public static Account susAccount1 = new Account(
-            "Tran Thi B",
-            "010203004953",
-            "83864953",
-            "TranThiB@1975",
-            1000000,
-            "VND",
-            "123456");
     public  static User susUser1 = new User(
             "Trần Thị B",
             LocalDate.of(1975,4,30),
@@ -42,15 +33,6 @@ public class BankApplication extends Application {
             "0987654321",
             "TranThiB@vnu.edu.vn",
             "010203004953"
-    );
-    public static Account susAccount2 = new Account(
-            "Ngo Duc C",
-            "020406006769",
-            "12345678",
-            "TaoBiGay%2008",
-            500000,
-            "VND",
-            "112233"
     );
     public static User susUser2 = new User(
             "Ngô Đức C",
@@ -63,15 +45,12 @@ public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //Thêm mấy tài khoản ảo vào thôi:)
-        AccountManager.getInstance().getAccountList().add(susAccount);
-        AccountManager.getInstance().getAccountList().add(susAccount1);
-        AccountManager.getInstance().getAccountList().add(susAccount2);
 
         UserManager.getInstance().addUser(susUser);
         UserManager.getInstance().addUser(susUser1);
         UserManager.getInstance().addUser(susUser2);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -82,4 +61,5 @@ public class BankApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
 }

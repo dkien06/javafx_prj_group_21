@@ -1,7 +1,7 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.AccountManager;
-import com.example.javafx_app.BankManager;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.BankManager;
 import com.example.javafx_app.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +38,6 @@ public class LoginController {
 
     @FXML
     void TaoTaiKhoanMoi(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_scene1.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"/com/example/javafx_app/SignUpScene/signup_3option_scene.fxml");
     }
 }

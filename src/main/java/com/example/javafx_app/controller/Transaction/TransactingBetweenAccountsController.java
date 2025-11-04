@@ -1,6 +1,11 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.*;
+import com.example.javafx_app.Account.Account;
+import com.example.javafx_app.Manager.AccountManager;
+import com.example.javafx_app.Manager.TransactionManager;
+import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,9 +51,11 @@ public class TransactingBetweenAccountsController implements Initializable {
     private static final String[] hangChuc = {"", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi"};
     private static final String[] hangTram = {"không trăm", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm"};
     void displaySendingAccountIDAndMoney(Account account){
+        String CitizenID = account.getCitizenID();
+        User user = UserManager.getInstance().getCurrentUser();
         sendingAccountIDTextField.setText(account.getAccountID());
         currentBalanceTextField.setText(account.getBalance() + " " + account.getCurrency());
-        descriptionTextArea.setText(AccountManager.getInstance().getCurrentAccount().getFullName() + " CHUYEN TIEN");
+        descriptionTextArea.setText(user.getFullName() + " CHUYEN TIEN");
     }
     void loadTransaction(Account account, Transaction transaction){
         if(transaction != null){
