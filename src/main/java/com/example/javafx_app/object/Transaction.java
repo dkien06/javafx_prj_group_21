@@ -1,16 +1,11 @@
-package com.example.javafx_app;
+package com.example.javafx_app.object;
 
-import com.example.javafx_app.Account.Account;
+import com.example.javafx_app.object.Account.Account;
 
 import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Transaction {
-    public enum TransactionType {
-        DEPOSIT,
-        WITHDRAW,
-        TRANSFER
-    }
     private String transactionID;
     private LocalDateTime date;
     private TransactionType type;

@@ -1,6 +1,6 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -14,6 +14,6 @@ public class SignUpExisting1 {
     @FXML
     public void NextToForm2(ActionEvent event) {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
-                "/com/example/javafx_app/SignUpScene/signup_existing_customer2_scene.fxml");
+                "SignUpScene/signup_existing_customer2_scene.fxml");
     }
 }
