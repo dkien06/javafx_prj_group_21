@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 public class StartScene {
 
     @FXML
-    private TextField PhoneTexrField;
+    private TextField PhoneTextField;
 
     @FXML
     private TextField EmailTextField;
@@ -22,9 +22,9 @@ public class StartScene {
     // Hàm sẽ được gọi khi click nút (gán trực tiếp trên SceneBuilder)
     @FXML
     private void NextToLogin(ActionEvent event) {
-        UserManager.getInstance().getCurrentUser().setEmail(EmailTextField.getText());
-        UserManager.getInstance().getCurrentUser().setPhoneNumber(PhoneTexrField.getText());
-        //BankManager.setTodayDate(DatePicker.getValue());????
+        BankManager.setCurrentEmail(EmailTextField.getText());
+        BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
+        BankManager.setCurrentDate(DatePicker.getValue());
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
     }
 }
