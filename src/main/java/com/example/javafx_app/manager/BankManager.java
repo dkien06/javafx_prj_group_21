@@ -9,6 +9,25 @@ import java.util.regex.Pattern;
 
 public class BankManager {
     // Ham kiem tra mat khau
+    private static String currentEmail ;
+    private static String currentPhoneNumber;
+    private static LocalDate currentDate ;
+    public static String getCurrentEmail() {
+        return currentEmail;
+    }
+    public static void setCurrentEmail(String currentEmail) {
+        BankManager.currentEmail = currentEmail;
+    }
+    public static String getCurrentPhoneNumber() {
+        return currentPhoneNumber;
+    }
+    public static void setCurrentPhoneNumber(String currentPhoneNumber) {
+        BankManager.currentPhoneNumber = currentPhoneNumber;
+    }
+    public static LocalDate getCurrentDate() {
+        return currentDate;
+    }
+    public static void setCurrentDate(LocalDate currentDate) {}
     public static boolean VerifyPassword(String citizenID, String password) {
         Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
         if(VerifyAccount==null) {return false;}
