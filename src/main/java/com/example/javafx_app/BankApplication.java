@@ -24,5 +24,4 @@ public class BankApplication extends Application {
     public static void main(String[] args) {
         launch();
     }//11/10/2025
-
 }

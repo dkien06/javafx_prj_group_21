@@ -61,14 +61,14 @@ public class AccountManager {
         && checkSignUpUserInfo.get("phoneNumber") == SignUpInformationState.RIGHT
         && checkSignUpUserInfo.get("citizenID") == SignUpInformationState.RIGHT
         && BankManager.checkNewPassword(password) == BankManager.PasswordState.RIGHT
-        && BankManager.checkNewPIN(pin) == BankManager.PINState.RIGHT){
-            Account newAccount = new Account(signUpUser.getFullName(), signUpUser.getCitizenID(),Long.toString(1000000 + accounts.size()),password,"VND",pin);
+        && BankManager.checkNewPIN(pin) == BankManager.PINState.RIGHT) {
+            Account newAccount = new Account(signUpUser.getFullName(), signUpUser.getCitizenID(), Long.toString(1000000 + accounts.size()), password, "VND", pin);
             UserManager.getInstance().getUserList().add(signUpUser);
             resisterCheckingAccount(newAccount);
             accounts.add(newAccount);
             return true;
         }
-        else return false;
+        return false;
     }
     //Đăng nhập
     public boolean logIn(String citizenID, String password){
