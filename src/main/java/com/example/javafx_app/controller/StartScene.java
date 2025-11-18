@@ -20,9 +20,18 @@ public class StartScene {
     private DatePicker DatePicker;
 
     // Hàm sẽ được gọi khi click nút (gán trực tiếp trên SceneBuilder)
+    // Sau nay se them khong the chọn ngày trước ngày cuối cùng tức là khôgn thể đi ngược thời gian
     @FXML
     private void NextToLogin(ActionEvent event) {
-        BankManager.setCurrentEmail(EmailTextField.getText());
+        BankManager.SignUpInformationState emailState = BankManager.checkSignUpEmail(EmailTextField.getText());
+        BankManager.SignUpInformationState phoneState = BankManager.checkSignUpPhoneNumber(PhoneTextField.getText());
+        System.out.println(emailState+" "+phoneState);
+        if(emailState != BankManager.SignUpInformationState.EXISTED && emailState != BankManager.SignUpInformationState.RIGHT) {
+            return;
+        }
+        if(phoneState != BankManager.SignUpInformationState.EXISTED &&
+                phoneState != BankManager.SignUpInformationState.RIGHT) return;
+
         BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
         BankManager.setCurrentDate(DatePicker.getValue());
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");

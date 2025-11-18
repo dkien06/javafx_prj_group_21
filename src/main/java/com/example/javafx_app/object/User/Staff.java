@@ -23,6 +23,6 @@ public class Staff extends User {
     public String toString() {
         return "StaffID: " + staffID + ", AccountID: " + accountID + ", " + super.toString();
     }
-
-    public USER_TYPE getUserType() { return  USER_TYPE.STAFF; }
+    @Override
+    public USER_TYPE getType() { return  USER_TYPE.STAFF; }
 }

@@ -1,8 +1,11 @@
 package com.example.javafx_app.manager;
 
+import com.example.javafx_app.config.ExampleUser;
+import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.config.Constant;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -28,11 +31,18 @@ public class BankManager {
         return currentDate;
     }
     public static void setCurrentDate(LocalDate currentDate) {}
-    public static boolean VerifyPassword(String citizenID, String password) {
-        Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
-        if(VerifyAccount==null) {return false;}
+    public static Account VerifyPassword(String citizenID, String password, ACCOUNT_TYPE accountType) {
+        List<Account> VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
+
+        if(VerifyAccount==null) {
+            return null;}
         System.out.println("Verify Password");
-        return password.equals(VerifyAccount.getPassword());
+        for(Account account:VerifyAccount){
+            if(account.getPassword().equals(password)&&accountType==account.getAccountType()){
+                return account;
+            }
+        }
+        return null;
     }
     /*Mấy cái hàm này cho phần đăng kí*/
     public enum SignUpInformationState {
@@ -59,6 +69,11 @@ public class BankManager {
         if(gender == null)
             return SignUpInformationState.EMPTY;
         return SignUpInformationState.RIGHT;
+    }
+    public static void main(String args[]) throws IOException {
+        ExampleUser.init();
+        System.out.println(VerifyPassword("010203008386","NguyenVanA#1970"
+                ,ACCOUNT_TYPE.CHECKING));
     }
     //Check email (Phức tạp vcl:))
     //Email: [ten_nguoi_dung]@[duong_dan] VD: NguyenVanA1970@gmail.com Binh.TT2412345@sis.hust.edu.vn

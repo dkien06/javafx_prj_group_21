@@ -70,7 +70,7 @@ public class VerifyTransactionController {
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
-        String PIN = PINField.getText();
+       /* String PIN = PINField.getText();
         if(PIN.isEmpty()){
             PINErrorLog.setText("Vui lòng nhập mã pin");
             return;
@@ -94,5 +94,7 @@ public class VerifyTransactionController {
         else{
             PINErrorLog.setText("Mã pin của bạn không chính xác");
         }
+        */
     }
+
 }
