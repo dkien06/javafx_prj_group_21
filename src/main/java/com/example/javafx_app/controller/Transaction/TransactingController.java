@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TransactingBetweenAccountsController implements Initializable {
+public class TransactingController implements Initializable {
     @FXML
     private TextField sendingAccountIDTextField;
     @FXML
@@ -107,7 +107,7 @@ public class TransactingBetweenAccountsController implements Initializable {
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_method_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_account_scene.fxml");
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.TransactingBetweenAccountsController">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.TransactingController">
    <children>
       <Text layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tài khoản">
          <font>
@@ -29,58 +26,47 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="sendingAccountIDTextField" editable="false" />
+            <TextField editable="false" />
             <Label text="Số tiền của bạn">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="currentBalanceTextField" editable="false" prefHeight="26.0" prefWidth="320.0" />
-            <RadioButton fx:id="localBank" mnemonicParsing="false" onAction="#disallowChoosingBank" selected="true" text="Ngân hàng nội bộ">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="bank" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="otherBank" mnemonicParsing="false" onAction="#allowChoosingBank" text="Ngân hàng ngoại bộ" toggleGroup="$bank">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </RadioButton>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="//Developing soon" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn ngân hàng" />
-            <ChoiceBox fx:id="bankChoiceBox" disable="true" prefHeight="26.0" prefWidth="355.0" />
-            <Text fx:id="bankChoiceErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="347.73666763305664" />
-            <Label text="Số tài khoản nhận">
+            <TextField editable="false" prefHeight="26.0" prefWidth="320.0" />
+            <Label text="Phương thức gửi tiền">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="receiveAccountIDTextField" />
-            <Text fx:id="receiveAccountIDErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="347.1999877929686" />
-            <Label prefHeight="35.0" prefWidth="59.0" text="Số tiền">
+            <TextField editable="false" prefHeight="26.0" prefWidth="320.0" />
+            <Label prefHeight="26.0" prefWidth="59.0" text="Số tiền">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="amountTextField" />
-            <Text fx:id="amountInWordsText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="347.7366828918457">
+            <TextField />
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.1366310119629" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="347.7366828918457">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text fx:id="amountErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.1366310119629" />
-            <Label prefHeight="27.0" prefWidth="178.0" text="Nội dung chuyển tiền">
+            <Label layoutX="10.0" layoutY="116.0" prefHeight="27.0" prefWidth="73.0" text="Thời hạn">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextArea fx:id="descriptionTextArea" prefHeight="74.0" prefWidth="348.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="//Giải thích..." />
+            <TextField layoutX="10.0" layoutY="144.0" />
+            <Label prefHeight="27.0" prefWidth="178.0" text="Nội dung gửi tiền">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextArea prefHeight="74.0" prefWidth="348.0" />
          </children>
       </VBox>
-      <Button layoutX="73.0" layoutY="593.0" mnemonicParsing="false" onAction="#QuayLai" prefHeight="35.0" prefWidth="106.0" text="Quay lại" />
+      <Button layoutX="80.0" layoutY="593.0" mnemonicParsing="false" onAction="#QuayLai" prefHeight="35.0" prefWidth="106.0" text="Quay lại" />
       <Button layoutX="232.0" layoutY="593.0" mnemonicParsing="false" onAction="#TiepTuc" prefHeight="35.0" prefWidth="106.0" text="Tiếp tục" />
       <GridPane fx:id="gridpane2" layoutX="-3.0" layoutY="661.0" prefHeight="47.0" prefWidth="414.0">
          <columnConstraints>

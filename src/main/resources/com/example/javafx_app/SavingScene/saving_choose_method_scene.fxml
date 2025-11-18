@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="701.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.TransactionChooseAccountController">
+   <children>
+      <GridPane layoutY="646.0" prefHeight="55.0" prefWidth="414.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="158.0" text="Trang chủ" />
+            <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="158.0" text="Tài Khoản" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="158.0" text="Cài đặt" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+      <Text layoutX="12.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiết kiệm" wrappingWidth="257.6437530517578">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="185.0" layoutY="587.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fb9ff" height="143.0" layoutX="16.0" layoutY="130.0" stroke="TRANSPARENT" strokeType="INSIDE" width="389.0" />
+      <Label layoutX="26.0" layoutY="139.0" text="Tiền gửi linh hoạt">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="26.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Có thể rút bất kì lúc nào nhưng vẫn hưởng được ít lãi" />
+      <Label layoutX="26.0" layoutY="237.0" text="5.1%/năm">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="336.0" layoutY="242.0" mnemonicParsing="false" text="Mở ngay" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21d5ff" height="143.0" layoutX="16.0" layoutY="279.0" stroke="TRANSPARENT" strokeType="INSIDE" width="389.0" />
+      <Label layoutX="25.0" layoutY="288.0" text="Tiền gửi kì hạn">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="26.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gửi một khoản tiền cố định trong khoảng thời gian cố định (1 tháng, 3 tháng, 6 tháng,...)" wrappingWidth="322.66168212890625" />
+      <Label layoutX="26.0" layoutY="386.0" text="5.8%/năm">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="336.0" layoutY="391.0" mnemonicParsing="false" text="Mở ngay" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#219fff" height="143.0" layoutX="16.0" layoutY="429.0" stroke="TRANSPARENT" strokeType="INSIDE" width="389.0" />
+      <Label layoutX="26.0" layoutY="438.0" text="Tiền gửi tích góp">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="26.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gửi tiền định kì (hàng tháng) để tích lũy" />
+      <Label layoutX="26.0" layoutY="536.0" text="4.75%/năm">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="336.0" layoutY="541.0" mnemonicParsing="false" text="Mở ngay" />
+      <Text layoutX="78.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lựa chọn hình thức gửi:" textAlignment="CENTER" wrappingWidth="257.6437530517578">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

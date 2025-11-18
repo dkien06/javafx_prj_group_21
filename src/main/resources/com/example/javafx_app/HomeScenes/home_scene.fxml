@@ -7,9 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/home_scene_decor.css"
-            xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.HomeController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.HomeController">
    <children>
       <Label layoutX="53.0" layoutY="55.0" text="Banking app (name)" />
       <Label layoutX="53.0" layoutY="79.0" text="Logo" />
@@ -25,8 +23,8 @@
         </rowConstraints>
          <children>
             <Button fx:id="transfer_btn" mnemonicParsing="false" onAction="#ChuyenTien" text="Chuyển tiền" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="savings_btn" mnemonicParsing="false" text="Tiết kiệm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="bills_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Hóa đơn" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="savings_btn" mnemonicParsing="false" onAction="#TietKiem" text="Tiết kiệm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="bills_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Vay tiền" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="transaction_btn" mnemonicParsing="false" onAction="#LichSuGiaoDich" text="Lịch sử giao dịch" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="point_btn" mnemonicParsing="false" text="21st's Point" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="service_btn" mnemonicParsing="false" text="Dịch vụ" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
