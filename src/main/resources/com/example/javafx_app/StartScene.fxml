@@ -18,7 +18,7 @@
       <VBox layoutX="70.0" layoutY="204.0" prefHeight="182.0" prefWidth="274.0">
          <children>
             <Label prefHeight="28.0" prefWidth="311.0" text="Nhập số điện thoại" />
-            <TextField fx:id="PhoneTexrField" />
+            <TextField fx:id="PhoneTextField" />
             <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="311.0" text="Nhập email" />
             <TextField fx:id="EmailTextField" layoutX="10.0" layoutY="38.0" />
             <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="311.0" text="Nhập thời gian" />
