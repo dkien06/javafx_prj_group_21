@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.setting;
 
-import com.example.javafx_app.Account.Account;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -32,7 +32,7 @@ public class SettingPINController {
     // Nút "Quay lại"
     @FXML
     private void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
     }
 
     // Nút "Hoàn thành"
@@ -85,7 +85,7 @@ public class SettingPINController {
         if(isNewPinAgainValid)currentAccount.setPIN(newPin);
 
         // Chuyển về trang chính
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "HomeScenes/home_scene.fxml");
     }
 
 

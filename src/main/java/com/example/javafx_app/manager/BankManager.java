@@ -1,65 +1,33 @@
-package com.example.javafx_app.Manager;
+package com.example.javafx_app.manager;
 
-import com.example.javafx_app.Account.Account;
-import com.example.javafx_app.Transaction;
-import com.example.javafx_app.User.User;
+import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.config.Constant;
 
 import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class BankManager {
-    // 🔹 Danh sách chứa tất cả tài khoản trong hệ thống
-    protected static final List<Account> ACCOUNTS = new ArrayList<>();
-
-    // 🔹 Khối static initializer — chạy một lần duy nhất khi class được load vào bộ nhớ
-    static {
-        // Tạo sẵn 100 tài khoản giả lập để test hệ thống
-        for (int i = 1; i <= 100; i++) {
-            Account a = new Account(
-                    "123456789" + i,         // Mã căn cước công dân (giả)
-                    "AC" + i,                // Mã tài khoản
-                    "pwd" + i,               // Mật khẩu
-                    Math.random() * 1_000_000, // Số dư ngẫu nhiên từ 0 đến 1 triệu
-                    "VND",                   // Loại tiền tệ
-                    "0000"                   // Mã PIN mặc định
-            );
-            ACCOUNTS.add(a); // Thêm vào danh sách tài khoản hệ thống
-        }
-
-        // Tạo thêm 1 tài khoản ADMIN (quản trị viên)
-        ACCOUNTS.add(new Account(
-                "892006",     // citizenID (CMND/CCCD)
-                "AC",         // Mã tài khoản
-                "892006",     // Mật khẩu
-                1000,         // Số dư
-                "VND",        // Loại tiền
-                "0000"        // PIN
-        ));
-    }
-    protected static Transaction currentTransaction;
-    protected static List<Transaction> TRANSACTIONS = new ArrayList<>();
-    // 🔹 Danh sách chứa toàn bộ người dùng trong hệ thống (có thể có nhiều tài khoản)
-    protected static List<User> USERS = new ArrayList<>();
-
-    // 🔹 Biến lưu trữ người dùng hiện đang đăng nhập vào hệ thống
-    protected static User currentUser;
-
-    // 🔹 Biến lưu trữ tài khoản (Account) hiện đang được sử dụng
-    protected static Account currentAccount;
-    // 🔹 Ngày hiện tại (LocalDate.now() sẽ gán khi khởi tạo)
-    protected static LocalDate TodayDate;
-
-    // 🔹 Thông tin email và số điện thoại của người dùng hiện tại (giả lập điện thoại)
-    protected static String currentEmail;
-    protected static String currentPhoneNumber;
-    public static void setCurrentPhoneNumber(String currentPhoneNumber) { BankManager.currentPhoneNumber = currentPhoneNumber; }
-    public static void setCurrentEmail(String currentEmail) { BankManager.currentEmail = currentEmail; }
-    public static void setTodayDate(LocalDate TodayDate) { BankManager.TodayDate = TodayDate; }
-    public static String getCurrentPhoneNumber() { return BankManager.currentPhoneNumber; }
-    public static String getCurrentEmail() { return BankManager.currentEmail; }
-    public static LocalDate getTodayDate() { return BankManager.TodayDate; }
     // Ham kiem tra mat khau
+    private static String currentEmail ;
+    private static String currentPhoneNumber;
+    private static LocalDate currentDate ;
+    public static String getCurrentEmail() {
+        return currentEmail;
+    }
+    public static void setCurrentEmail(String currentEmail) {
+        BankManager.currentEmail = currentEmail;
+    }
+    public static String getCurrentPhoneNumber() {
+        return currentPhoneNumber;
+    }
+    public static void setCurrentPhoneNumber(String currentPhoneNumber) {
+        BankManager.currentPhoneNumber = currentPhoneNumber;
+    }
+    public static LocalDate getCurrentDate() {
+        return currentDate;
+    }
+    public static void setCurrentDate(LocalDate currentDate) {}
     public static boolean VerifyPassword(String citizenID, String password) {
         Account VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
         if(VerifyAccount==null) {return false;}
@@ -125,11 +93,11 @@ public class BankManager {
     //Check số điện thoại
     public static SignUpInformationState checkSignUpPhoneNumber(String phoneNumber){
         if(phoneNumber.isEmpty()) return SignUpInformationState.EMPTY;
-        if(AccountManager.getInstance().findAccountFromPhoneNumber(phoneNumber) == null)return SignUpInformationState.EXISTED;
+        if(AccountManager.getInstance().findAccountFromPhoneNumber(phoneNumber) != null)return SignUpInformationState.EXISTED;
         for(int i = 0; i < phoneNumber.length(); i++){
             if(!Character.isDigit(phoneNumber.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
-        if(phoneNumber.length() != 10) return SignUpInformationState.WRONG_SIZE;
+        if(phoneNumber.length() != Constant.PHONE_NUMBER_LENGTH) return SignUpInformationState.WRONG_SIZE;
         return SignUpInformationState.RIGHT;
     }
     //Check số căn cước công dân
@@ -176,7 +144,7 @@ public class BankManager {
         // (?=.*[!@#$%^&*()]) : Phải chứa ít nhất một ký tự đặc biệt trong danh sách
         // . {8,}            : Phải có ít nhất 8 ký tự
         // $                 : Kết thúc chuỗi
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()]).{"+ Constant.MINIUM_PASSWORD_LENGTH + ",}$";
 
         // Kiểm tra xem mật khẩu có khớp với mẫu không
         return Pattern.matches(passwordPattern, password);
@@ -198,7 +166,7 @@ public class BankManager {
     }
     public static PINState checkNewPIN(String PIN){
         if(PIN.isEmpty())return PINState.EMPTY;
-        else if (!PIN.matches("\\d{6}"))return PINState.WRONG_FORM;
+        else if (!PIN.matches("\\d{" + Constant.MINIUM_PIN_LENGTH + "}"))return PINState.WRONG_FORM;
         else return PINState.RIGHT;
     }
 }

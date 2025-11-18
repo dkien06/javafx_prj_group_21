@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/home_decor.css"
+            minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/home_scene_decor.css"
             xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.HomeController">
    <children>
       <Label layoutX="53.0" layoutY="55.0" text="Banking app (name)" />

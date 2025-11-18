@@ -1,10 +1,11 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.Manager.BankManager.SignUpInformationState;
-import com.example.javafx_app.SceneUtils;
-import com.example.javafx_app.User.User;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.BankManager.SignUpInformationState;
+import com.example.javafx_app.object.User.GENDER;
+import com.example.javafx_app.util.SceneUtils;
+import com.example.javafx_app.object.User.User;
+import com.example.javafx_app.manager.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,8 +61,8 @@ public class SignUpController implements Initializable {
             phoneNumberField.setText(UserManager.getInstance().getCurrentUser().getPhoneNumber());
             emailField.setText(UserManager.getInstance().getCurrentUser().getEmail());
             citizenIDField.setText(UserManager.getInstance().getCurrentUser().getCitizenID());
-            if(UserManager.getInstance().getCurrentUser().getGender()== User.GENDER.MALE){ genderChoiceBox.setValue("MALE");}
-            else if(UserManager.getInstance().getCurrentUser().getGender()== User.GENDER.FEMALE){ genderChoiceBox.setValue("FEMALE");}
+            if(UserManager.getInstance().getCurrentUser().getGender()== GENDER.MALE){ genderChoiceBox.setValue("MALE");}
+            else if(UserManager.getInstance().getCurrentUser().getGender()== GENDER.FEMALE){ genderChoiceBox.setValue("FEMALE");}
             else{ genderChoiceBox.setValue("OTHER");}
         }
         // Đặt tất cả text là rỗng
@@ -178,12 +179,12 @@ public class SignUpController implements Initializable {
             UserManager.getInstance().setCurrentUser(new User());
             UserManager.getInstance().getCurrentUser().setFullName(fullNameField.getText());
             UserManager.getInstance().getCurrentUser().setDateOfBirth(dateOfBirthDatePicker.getValue());
-            UserManager.getInstance().getCurrentUser().setGender(User.stringToGender(genderChoiceBox.getValue()));
+            UserManager.getInstance().getCurrentUser().setGender(UserManager.stringToGender(genderChoiceBox.getValue()));
             UserManager.getInstance().getCurrentUser().setPhoneNumber(phoneNumberField.getText());
             UserManager.getInstance().getCurrentUser().setEmail(emailField.getText());
             UserManager.getInstance().getCurrentUser().setCitizenID(citizenIDField.getText());
 
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer2_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SignUpScene/signup_new_customer2_scene.fxml");
         }
     }
 }

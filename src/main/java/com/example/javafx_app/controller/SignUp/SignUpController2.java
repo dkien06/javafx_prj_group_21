@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.*;
-import com.example.javafx_app.Manager.AccountManager;
-import com.example.javafx_app.Manager.BankManager;
-import com.example.javafx_app.Manager.UserManager;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -113,6 +113,6 @@ public class SignUpController2 {
     }
     @FXML
     void returnToLoginScene(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"signup_new_customer1_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SignUpScene/signup_new_customer1_scene.fxml");
     }
 }

@@ -1,6 +1,6 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.SceneUtils;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,6 +42,6 @@ public class SignUpNew2 {
     @FXML
     private void returnToSignUpNew1(ActionEvent event) {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
-                "/com/example/javafx_app/SignUpScene/signup_new_customer1_scene.fxml");
+                "SignUpScene/signup_new_customer1_scene.fxml");
     }
 }

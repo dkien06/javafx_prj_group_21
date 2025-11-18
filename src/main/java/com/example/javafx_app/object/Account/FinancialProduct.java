@@ -1,4 +1,4 @@
-package com.example.javafx_app.Account;
+package com.example.javafx_app.object.Account;
 
 import java.time.LocalDate;
 
@@ -8,20 +8,18 @@ import java.time.LocalDate;
  */
 public class FinancialProduct {
 
-    public enum Type {
-        SAVING,   // tiền gửi tiết kiệm
-        LOAN      // tiền vay
-    }
-    private Type type;             // Loại sản phẩm: SAVING hay LOAN
+    private final String accountID;
+    private FinancialProductType type;             // Loại sản phẩm: SAVING hay LOAN
     private LocalDate startDate;// Ngày bắt đầu
     private String ProductName ;
     private String description ;
     private double term;           // Kỳ hạn (tính bằng năm)
-    private double principal;      // Số tiền gốc
+    private double principal;      // Số tiền vốn
     private double interestRate;   // Lãi suất (%/năm)
 
     // Constructor
-    public FinancialProduct(Type type, double principal, double term, double interestRate,String ProductName,String description) {
+    public FinancialProduct(String accountID,FinancialProductType type, double principal, double term, double interestRate,String ProductName,String description) {
+        this.accountID = accountID;
         this.type = type;
         this.principal = principal;
         this.term = term;
@@ -32,11 +30,15 @@ public class FinancialProduct {
     }
 
     // Getter/Setter
-    public Type getType() {
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public FinancialProductType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(FinancialProductType type) {
         this.type = type;
     }
 
@@ -95,20 +97,19 @@ public class FinancialProduct {
      *  - LOAN: số tiền phải trả (gốc + lãi)
      */
     public double calculateTotalAmount() {
-        double total = principal * Math.pow(1 + interestRate, term);
-        return total;
+        return principal * Math.pow(1 + interestRate, term);
     }
     /** In thông tin */
     @Override
     public String toString() {
-        String action = (type == Type.SAVING) ? "Gửi tiết kiệm" : "Khoản vay";
+        String action = (type == FinancialProductType.SAVING) ? "Gửi tiết kiệm" : "Khoản vay";
         return action + " {" +
                 "Ngày bắt đầu=" + startDate +
                 ", Kỳ hạn=" + term + " năm" +
                 ", Số tiền gốc=" + principal +
                 ", Lãi suất=" + interestRate +
                 ", Ngày đáo hạn=" + calculateMaturityDate() +
-                ", Tổng tiền " + ((type == Type.SAVING) ? "nhận được" : "phải trả") +
+                ", Tổng tiền " + ((type == FinancialProductType.SAVING) ? "nhận được" : "phải trả") +
                 "=" + String.format("%.2f", calculateTotalAmount()) +
                 '}';
     }
