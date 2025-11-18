@@ -27,7 +27,7 @@ public class LoginController {
                 WrongLoginLabel.setText("Có lỗi xảy ra");
             }
             else {
-                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
             }
         }
         else{
