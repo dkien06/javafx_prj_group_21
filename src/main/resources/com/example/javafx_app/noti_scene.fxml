@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/noti_scene_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.HomeSceneController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/noti_scene_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.NotificationController">
     <children>
         <Label fx:id="logo_label" layoutX="29.0" layoutY="54.0" prefHeight="60.0" prefWidth="85.0" />
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
@@ -33,7 +33,7 @@
             </children>
         </GridPane>
         <Label layoutX="29.0" layoutY="114.0" text="Xin chào " />
-      <ScrollPane layoutX="65.0" layoutY="142.0" prefHeight="465.0" prefWidth="317.0" styleClass="myscroll" stylesheets="@css_file/noti_scene_decor.css">
+      <ScrollPane layoutX="55.0" layoutY="141.0" prefHeight="418.0" prefWidth="317.0" styleClass="myscroll" stylesheets="@css_file/noti_scene_decor.css">
          <content>
             <VBox fx:id="myVBox" prefHeight="699.0" prefWidth="304.0">
                <children>
@@ -62,5 +62,6 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Button fx:id="return_btn" layoutX="168.0" layoutY="572.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
     </children>
 </AnchorPane>

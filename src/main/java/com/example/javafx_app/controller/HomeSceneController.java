@@ -95,7 +95,7 @@ public class HomeSceneController {
 
     @FXML
     void XemThongBao(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/noti_scene.fxml");
     }
 
     @FXML
