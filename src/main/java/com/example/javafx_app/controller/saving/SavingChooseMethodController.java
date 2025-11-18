@@ -17,6 +17,6 @@ public class SavingChooseMethodController {
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SavingScene/saving_choose_method_scene.fxml");
     }
     void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
     }
 }

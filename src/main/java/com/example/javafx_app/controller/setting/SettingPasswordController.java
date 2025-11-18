@@ -87,7 +87,7 @@ public class SettingPasswordController {
         // check het cac loi
         if(isNewPasswordAgainValid){
             currentAccount.setPassword(newPass);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
         }
     }
 }
