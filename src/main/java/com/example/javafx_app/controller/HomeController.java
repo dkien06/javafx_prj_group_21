@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class HomeController {
     public void ChuyenTien(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_method_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_account_scene.fxml");
     }
     public void LichSuGiaoDich(ActionEvent event) throws IOException {
         FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_history_scene.fxml"));
@@ -30,5 +30,8 @@ public class HomeController {
     }
     public void CaiDat(ActionEvent event){
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
+    }
+    public void TietKiem(ActionEvent event){
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "SavingScene/saving_choose_method_scene.fxml");
     }
 }

@@ -10,12 +10,12 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 
-public class TransactionChooseMethodController {
+public class TransactionChooseAccountController {
     @FXML
     public void ChuyenKhoan(ActionEvent event) throws IOException {
-        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_between_accounts.fxml"));
+        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
         Parent nextSceneRoot = nextSceneLoader.load();
-        TransactingBetweenAccountsController controller = nextSceneLoader.getController();
+        TransactingController controller = nextSceneLoader.getController();
         controller.displaySendingAccountIDAndMoney(AccountManager.getInstance().getCurrentAccount());
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
     }
