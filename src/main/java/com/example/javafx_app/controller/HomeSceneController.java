@@ -73,7 +73,7 @@ public class HomeSceneController {
 
     @FXML
     void XemCaiDat(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "setting/setting.fxml");
     }
 
     @FXML

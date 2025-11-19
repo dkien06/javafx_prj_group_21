@@ -20,10 +20,8 @@ public class BankApplication extends Application {
         stage.setTitle("21stBank");
         stage.setResizable(false);
         stage.show();
-
     }
     public static void main(String[] args) {
         launch();
     }//11/10/2025
-
 }

@@ -34,6 +34,6 @@ public class TransactionBillController {
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_method_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_account_scene.fxml");
     }
 }

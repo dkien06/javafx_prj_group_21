@@ -1,6 +1,10 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
+import com.example.javafx_app.object.TransactionType;
+import com.example.javafx_app.object.User.User;
+import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.Account;
@@ -9,8 +13,12 @@ import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -84,7 +92,7 @@ public class TransactingController implements Initializable {
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScene/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
