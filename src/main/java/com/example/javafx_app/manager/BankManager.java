@@ -121,6 +121,7 @@ public class BankManager {
         for(int i = 0; i < citizenID.length(); i++){
             if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
+        if(UserManager.getInstance().findUserByCitizenID(citizenID) != null)return SignUpInformationState.EXISTED;
         return SignUpInformationState.RIGHT;
     }
     public static Map<String, SignUpInformationState> CheckAllSignUpInfo(String fullName, LocalDate dateOfBirth, String gender, String email, String phoneNumber, String citizenID){

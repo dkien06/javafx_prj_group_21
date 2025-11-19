@@ -4,9 +4,10 @@ import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.LoanAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.User.Costumer;
 import com.example.javafx_app.object.User.GENDER;
-import com.example.javafx_app.object.User.User;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
-    private static final Account accountA = new CheckingAccount(
+    private static final Account accountA = new SavingAccount(
             "Nguyen Van A",
             "010203008386",     // citizenID
             "49538386",         // accountID
@@ -36,7 +37,7 @@ public class ExampleUser {
     );
 
     // === USER B ===
-    private static final Account accountB = new CheckingAccount(
+    private static final Account accountB = new LoanAccount(
             "Tran Thi B",
             "010203004953",
             "83864953",
