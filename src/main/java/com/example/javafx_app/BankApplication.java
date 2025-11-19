@@ -1,12 +1,10 @@
 package com.example.javafx_app;
 
 import com.example.javafx_app.config.ExampleUser;
-import com.example.javafx_app.util.DialogUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
 

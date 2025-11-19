@@ -1,5 +1,8 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.util.DialogUtils;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,7 +63,12 @@ public class HomeSceneController {
 
     @FXML
     void ChuyenTien(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"/com/example/javafx_app/TransactionScene/transaction_between_accounts_scene.fxml");
+        if(AccountManager.getInstance().getCurrentAccount() instanceof CheckingAccount){
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/TransactionScene/transaction_scene.fxml");
+        }
+        else{
+            DialogUtils.dialogButton("","Develop soon!","","OK");
+        }
     }
 
     @FXML

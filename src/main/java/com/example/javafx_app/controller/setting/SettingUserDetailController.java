@@ -73,7 +73,7 @@ public class SettingUserDetailController implements Initializable {
                 break;
         }
         if(isValidPhoneNumber && isValidEmail){
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
         }
     }
 }

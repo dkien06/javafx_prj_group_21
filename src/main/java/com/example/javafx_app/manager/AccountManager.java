@@ -161,8 +161,8 @@ public class AccountManager {
     }
     public static void main(String args[]) throws IOException {
         ExampleUser.init();
-        System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
-        List<Account> a = getInstance().findAccountFromCitizenID("010203008386");
+        System.out.println(UserManager.getInstance().findUserByCitizenID("010203004953"));
+        List<Account> a = getInstance().findAccountFromCitizenID("010203004953");
         for(Account a1 : a){
             System.out.println(a1.toString());
         }

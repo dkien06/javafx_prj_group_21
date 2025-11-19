@@ -30,7 +30,7 @@ public class TransactionBillController {
     }
     @FXML
     void TrangChu(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
