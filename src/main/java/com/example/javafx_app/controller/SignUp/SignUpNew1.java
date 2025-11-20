@@ -102,8 +102,16 @@ public class SignUpNew1 {
         }
 
         switch (BankManager.checkSignUpCitizenID(citizenIDField.getText())){
-            //Từ từ đã
+            case EMPTY:
+                citizenIDErrorLog.setText("Vui lòng nhập số căn cước");
+            case WRONG_FORM:
+                citizenIDErrorLog.setText("Số căn cước không hợp lệ");
+            case EXISTED:
+                citizenIDErrorLog.setText("Số căn cước này đã tồn tại");
+            case RIGHT:
+                citizenIDErrorLog.setText("");
         }
+
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
                 "SignUpScene/signup_new_customer2_scene.fxml");
     }

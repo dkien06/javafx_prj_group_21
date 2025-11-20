@@ -46,13 +46,12 @@ public class TransactingController implements Initializable {
     void loadTransaction(Account account, Transaction transaction){
         //Chờ scene sau đã
     }
-
     boolean isReceiveAccountValid = false;
     boolean isAmountValid = false;
     boolean isBankChosen = false;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         bankChoiceBox.getItems().addAll(banks);
         bankChoiceBox.setValue("Chọn ngân hàng");
         amountTextField.textProperty().addListener((observable, _, value) -> {
@@ -62,6 +61,7 @@ public class TransactingController implements Initializable {
                     if(amount > ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()){
                         amountLog.setText("Số tiền bạn nhập không đủ để chuyển");
                         amountLog.setFill(Color.rgb(255, 0, 0));
+                        isAmountValid = false;
                     }
                     String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
                     amountLog.setText(amountInWords);
@@ -70,10 +70,12 @@ public class TransactingController implements Initializable {
                 } else {
                     amountLog.setText("Số tiền không hợp lệ");
                     amountLog.setFill(Color.rgb(255, 0, 0));
+                    isAmountValid = false;
                 }
             } catch (NumberFormatException e) {
                 amountLog.setText("Số tiền không hợp lệ");
                 amountLog.setFill(Color.rgb(255, 0, 0));
+                isAmountValid = false;
             }
         });
         receiveAccountIDTextField.textProperty().addListener((observableValue, _, value) -> {
@@ -81,6 +83,7 @@ public class TransactingController implements Initializable {
             if(receiveAccount == null){
                 receiveAccountIDLog.setText("Tài khoản không tồn tại");
                 receiveAccountIDLog.setFill(Color.rgb(255,0,0));
+                isReceiveAccountValid = false;
             }
             else{
                 receiveAccountIDLog.setText(receiveAccount.getAccountName().toUpperCase());
@@ -99,6 +102,7 @@ public class TransactingController implements Initializable {
         if(receiveAccountIDTextField.getText().isEmpty()){
             receiveAccountIDLog.setText("Vui lòng nhập tên người gửi");
             receiveAccountIDLog.setFill(Color.rgb(255,0,0));
+            isReceiveAccountValid = false;
         }
         if(amountTextField.getText().isEmpty()){
             amountLog.setText("Vui lòng nhập số tiền gửi");
@@ -106,6 +110,7 @@ public class TransactingController implements Initializable {
         if(bankChoiceBox.getValue().equals("Chọn ngân hàng")){
             bankChoiceErrorLog.setText("Vui lòng chọn ngân hàng");
             amountLog.setFill(Color.rgb(255,0,0));
+            isBankChosen = false;
         }
         else{
             bankChoiceErrorLog.setText("");
