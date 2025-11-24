@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Costumer extends User {
         private List<String> accountIDs ;
-        public Costumer(String customerID, String fullName, LocalDate dateOfBirth,
+        public Costumer(String fullName, LocalDate dateOfBirth,
                         GENDER gender, String phoneNumber, String email, String citizenID) {
             super(fullName, dateOfBirth, gender, phoneNumber, email, citizenID);
             accountIDs = new ArrayList<>();

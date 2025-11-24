@@ -26,8 +26,7 @@ public class ExampleUser {
     );
 
     // Sử dụng Costumer thay vì User vì User là abstract
-    private static final Costumer userA = new Costumer(
-            "CUS001",           // customerID (mới thêm)
+    private static final Costumer userA = new Costumer(// customerID (mới thêm)
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
             GENDER.MALE,
@@ -38,7 +37,7 @@ public class ExampleUser {
 
     // === USER B ===
     private static final Account accountB = new LoanAccount(
-            "Tran Thi B",
+            "kkk",
             "010203004953",
             "83864953",
             "TranThiB@1975",
@@ -48,7 +47,6 @@ public class ExampleUser {
     );
 
     private static final Costumer userB = new Costumer(
-            "CUS002",
             "Trần Thị B",
             LocalDate.of(1975,4,30),
             GENDER.FEMALE,
@@ -69,7 +67,6 @@ public class ExampleUser {
     );
 
     private static final Costumer userC = new Costumer(
-            "CUS003",
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
             GENDER.OTHER,
@@ -90,7 +87,6 @@ public class ExampleUser {
     );
 
     private static final Costumer userD = new Costumer(
-            "CUS004",
             "Lê Thị Thúy D",
             LocalDate.of(2006,6,7),
             GENDER.FEMALE,
