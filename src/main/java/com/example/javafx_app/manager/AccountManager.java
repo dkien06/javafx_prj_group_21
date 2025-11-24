@@ -102,6 +102,21 @@ public class AccountManager {
         }
         else return false;
     }
+    // Đăng kí thêm một tài khoản
+    public void addAccountForCostumer(Costumer costumer,String accountType, String password, String pin){
+        Account account ;
+        if(accountType==ACCOUNT_TYPE.SAVING.toString()){
+            account = new SavingAccount(costumer.getFullName(), costumer.getCitizenID(),generateUniqueAccountID(),
+                     password,Constant.DEFAULT_BALANCE,"VND",pin);
+        }
+        else{
+            account = new LoanAccount(costumer.getFullName(),costumer.getCitizenID(),generateUniqueAccountID(),
+                    password,Constant.DEFAULT_BALANCE,"VND",pin) ;
+        }
+        accountMap.put(account.getAccountID(),account) ;
+        costumer.addAccountID(account.getAccountID());
+
+    }
     //Đăng nhập
     public boolean logIn(String citizenID, String password, ACCOUNT_TYPE accountType){
         Account account = BankManager.VerifyPassword(citizenID, password, accountType);
@@ -146,6 +161,18 @@ public class AccountManager {
     }
     public List<Account> findAccountFromPhoneNumber(String phoneNumber){
         return findAccountFromUser(UserManager.getInstance().findUserFromPhoneNumber(phoneNumber));
+    }
+    public boolean isExistingSavingAccount(Costumer costumer){
+        for(String accountID : costumer.getAccountIDs()){
+            if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.SAVING){ return true; }
+        }
+        return false;
+    }
+    public boolean isExistLoanAccount(Costumer costumer){
+        for(String accountID : costumer.getAccountIDs()){
+            if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.LOAN){ return true; }
+        }
+        return false;
     }
     //In log
     public void accountListLog(){
