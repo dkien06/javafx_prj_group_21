@@ -1,9 +1,8 @@
 package com.example.javafx_app.manager;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.object.Account.*;
-import com.example.javafx_app.object.User.Costumer;
+import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.Staff;
 import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
@@ -139,8 +138,8 @@ public class AccountManager {
         if(user == null) return null;
         List<Account> accounts = new ArrayList<>();
         if(user.getType()== USER_TYPE.COSTUMER){
-            Costumer costumer = (Costumer)  user;
-            List<String> AccountIDs = costumer.getAccountIDs();
+            Customer customer = (Customer)  user;
+            List<String> AccountIDs = customer.getAccountIDs();
             for(String accountID : AccountIDs){
                 accounts.add(accountMap.get(accountID)) ;
             }

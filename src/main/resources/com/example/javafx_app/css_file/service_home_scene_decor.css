@@ -79,3 +79,15 @@
 #voucher_icon {
     -fx-background-image: url("image/voucher.png");
 }
+
+#water_icon {
+    -fx-background-image: url("image/giot_nuoc.png");
+}
+
+#tia_set_icon {
+    -fx-background-image: url("image/tia_set.png");
+}
+
+#wifi_icon {
+    -fx-background-image: url("image/mangmeo.png");
+}

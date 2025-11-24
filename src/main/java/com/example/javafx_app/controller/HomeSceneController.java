@@ -80,7 +80,7 @@ public class HomeSceneController {
 
     @FXML
     void XemHoaDon(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "BillScene/bill_home_scene.fxml");
     }
 
     @FXML
