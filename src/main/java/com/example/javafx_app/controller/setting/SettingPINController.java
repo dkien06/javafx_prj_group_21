@@ -85,7 +85,8 @@ public class SettingPINController {
         if(isNewPinAgainValid)currentAccount.setPIN(newPin);
 
         // Chuyển về trang chính
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "HomeScenes/home_scene.fxml");
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
     }
 
 

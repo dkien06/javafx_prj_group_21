@@ -50,7 +50,7 @@ public class SettingPasswordController {
         boolean isNewPasswordValid = false;
         boolean isNewPasswordAgainValid = false;
         if(oldPass.isEmpty())OldPasswordErrorLog.setText("Vui lòng nhập mật khẩu hiện tại của bạn");
-        else if(currentAccount.isPasswordMatched(oldPass)) OldPasswordErrorLog.setText("Mật khẩu cũ không đúng");
+        else if(!currentAccount.isPasswordMatched(oldPass)) OldPasswordErrorLog.setText("Mật khẩu cũ không đúng");
         else isOldPasswordMatched = true;
         if(isOldPasswordMatched){
             switch (BankManager.checkNewPassword(newPass)){
@@ -87,7 +87,8 @@ public class SettingPasswordController {
         // check het cac loi
         if(isNewPasswordAgainValid){
             currentAccount.setPassword(newPass);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                    AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
     }
 }

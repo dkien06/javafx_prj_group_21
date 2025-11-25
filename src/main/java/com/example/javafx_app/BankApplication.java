@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BankApplication extends Application {
-
     @Override
     public void start(Stage stage) throws IOException {
         ExampleUser.init();
@@ -21,7 +20,5 @@ public class BankApplication extends Application {
         stage.setResizable(false);
         stage.show();
     }
-    public static void main(String[] args) {
-        launch();
-    }//11/10/2025
+    public static void main(String[] args) {launch();}//11/10/2025
 }

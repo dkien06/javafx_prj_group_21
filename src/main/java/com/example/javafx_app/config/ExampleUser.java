@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
-    private static final Account accountA = new SavingAccount(
+    public static final Account accountA = new SavingAccount(
             "Nguyen Van A",
             "010203008386",     // citizenID
             "49538386",         // accountID
@@ -21,9 +21,8 @@ public class ExampleUser {
             "VND",              // currency
             "010170"            // PIN
     );
-
     // Sử dụng Customer thay vì User vì User là abstract
-    private static final Customer userA = new Customer(// customerID (mới thêm)
+    public static final Customer userA = new Customer(// customerID (mới thêm)
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
             GENDER.MALE,

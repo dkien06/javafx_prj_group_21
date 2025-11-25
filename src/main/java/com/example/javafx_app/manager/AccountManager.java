@@ -8,6 +8,7 @@ import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.manager.BankManager.SignUpInformationState;
 import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.util.SceneUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -132,12 +133,31 @@ public class AccountManager {
             return false ;
         }
         currentAccount = account;
+        UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserByCitizenID(citizenID));
         return true;
     }
     //Đăng xuất
     public void logOut(){
         currentAccount = null;
         UserManager.getInstance().setCurrentUser(null);
+    }
+    // chon homescene co account
+    public String chooseHomeScene(Account account){
+        String filehome ;
+        if(account.getAccountType()==ACCOUNT_TYPE.CHECKING) {
+            if(account.isVIP()) filehome = "HomeScenes/checking_account_VIP_home_scene.fxml";
+            else filehome = "HomeScenes/checking_account_home_scene.fxml";
+        }
+        else if(account.getAccountType()==ACCOUNT_TYPE.SAVING){
+            if(account.isVIP()) filehome = "HomeScenes/saving_account_VIP_home_scene.fxml";
+            else filehome = "HomeScenes/saving_account_home_scene.fxml";
+        }
+        else if(account.getAccountType()==ACCOUNT_TYPE.LOAN){
+            if(account.isVIP()) filehome = "HomeScenes/loan_account_VIP_home_scene.fxml";
+            else  filehome = "HomeScenes/loan_account_home_scene.fxml";
+        }
+        else filehome = "HomeScenes/staff_home_scene.fxml";
+        return filehome;
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {

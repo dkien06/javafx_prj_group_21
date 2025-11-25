@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.setting;
 
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.User.User;
@@ -43,7 +44,12 @@ public class SettingUserDetailController implements Initializable {
                 SettingPhoneNumberLog.setText("Vui lòng nhập số điện thoại");
                 break;
             case EXISTED:
-                SettingPhoneNumberLog.setText("Số điện thoại đã tồn tại");
+                //TH nguoi dung chua thay doi gi
+                if(PhoneNumberTextField.getText().equals(currentUser.getPhoneNumber())) {
+                        isValidPhoneNumber = true;
+                        break;
+                }
+                else SettingPhoneNumberLog.setText("Số điện thoại đã tồn tại");
                 break;
             case WRONG_FORM:
                 SettingPhoneNumberLog.setText("Số điện thoại của bạn không hợp lệ");
@@ -62,6 +68,11 @@ public class SettingUserDetailController implements Initializable {
                 SettingEmailLog.setText("Vui lòng nhập email của bạn");
                 break;
             case EXISTED:
+                //TH nguoi dung chua thay doi gi
+                if(EmailTextField.getText().equals(currentUser.getEmail())) {
+                    isValidEmail = true;
+                    break;
+                }
                 SettingEmailLog.setText("Email này đã tồn tại");
                 break;
             case WRONG_FORM:
@@ -73,7 +84,8 @@ public class SettingUserDetailController implements Initializable {
                 break;
         }
         if(isValidPhoneNumber && isValidEmail){
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                    AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
     }
 }

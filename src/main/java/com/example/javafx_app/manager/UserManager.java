@@ -3,8 +3,10 @@ package com.example.javafx_app.manager;
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.User;
+import com.example.javafx_app.config.ExampleUser;
 
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class UserManager {
     private final static UserManager instance = new UserManager();
     private UserManager(){}
 
-    private static User currentUser ,signUpUser;
+    private static User currentUser,signUpUser;
     private static final Map<String, User> userMap = new HashMap<>();
 
     public static UserManager getInstance() {
