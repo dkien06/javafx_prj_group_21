@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Costumer extends User {
+public class Customer extends User {
         private List<String> accountIDs ;
-        public Costumer(String customerID, String fullName, LocalDate dateOfBirth,
+        public Customer(String fullName, LocalDate dateOfBirth,
                         GENDER gender, String phoneNumber, String email, String citizenID) {
             super(fullName, dateOfBirth, gender, phoneNumber, email, citizenID);
             accountIDs = new ArrayList<>();

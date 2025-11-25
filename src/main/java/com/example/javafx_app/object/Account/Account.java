@@ -71,6 +71,7 @@ public  abstract class Account {
     public LocalDate getStartDate() {
         return StartDate;
     }
+    public  boolean isVIP() { return isVIP; }
     public abstract ACCOUNT_TYPE getAccountType();
 
 
@@ -87,6 +88,9 @@ public  abstract class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+    public void setVIP(boolean VIP) {
+        isVIP = VIP;
+    }
 
     // ✅ Thêm giao dịch
     public void addTransaction(Transaction t) {
@@ -99,6 +103,7 @@ public  abstract class Account {
     public boolean isPasswordMatched(String password){
         return this.password != null && this.password.equals(password);
     }
+
     // ✅ In ra thông tin tài khoản (dễ debug)
     @Override
     public String toString() {

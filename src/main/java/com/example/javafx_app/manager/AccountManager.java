@@ -1,9 +1,8 @@
 package com.example.javafx_app.manager;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.object.Account.*;
-import com.example.javafx_app.object.User.Costumer;
+import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.Staff;
 import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
@@ -102,6 +101,21 @@ public class AccountManager {
         }
         else return false;
     }
+    // Đăng kí thêm một tài khoản
+    public void addAccountForCostumer(Customer costumer,String accountType, String password, String pin){
+        Account account ;
+        if(Objects.equals(accountType, ACCOUNT_TYPE.SAVING.toString())){
+            account = new SavingAccount(costumer.getFullName(), costumer.getCitizenID(),generateUniqueAccountID(),
+                     password,Constant.DEFAULT_BALANCE,"VND",pin);
+        }
+        else{
+            account = new LoanAccount(costumer.getFullName(),costumer.getCitizenID(),generateUniqueAccountID(),
+                    password,Constant.DEFAULT_BALANCE,"VND",pin) ;
+        }
+        accountMap.put(account.getAccountID(),account) ;
+        costumer.addAccountID(account.getAccountID());
+
+    }
     //Đăng nhập
     public boolean logIn(String citizenID, String password, ACCOUNT_TYPE accountType){
         Account account = BankManager.VerifyPassword(citizenID, password, accountType);
@@ -124,8 +138,8 @@ public class AccountManager {
         if(user == null) return null;
         List<Account> accounts = new ArrayList<>();
         if(user.getType()== USER_TYPE.COSTUMER){
-            Costumer costumer = (Costumer)  user;
-            List<String> AccountIDs = costumer.getAccountIDs();
+            Customer customer = (Customer)  user;
+            List<String> AccountIDs = customer.getAccountIDs();
             for(String accountID : AccountIDs){
                 accounts.add(accountMap.get(accountID)) ;
             }
@@ -146,6 +160,18 @@ public class AccountManager {
     }
     public List<Account> findAccountFromPhoneNumber(String phoneNumber){
         return findAccountFromUser(UserManager.getInstance().findUserFromPhoneNumber(phoneNumber));
+    }
+    public boolean isExistingSavingAccount(Customer costumer){
+        for(String accountID : costumer.getAccountIDs()){
+            if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.SAVING){ return true; }
+        }
+        return false;
+    }
+    public boolean isExistLoanAccount(Customer costumer){
+        for(String accountID : costumer.getAccountIDs()){
+            if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.LOAN){ return true; }
+        }
+        return false;
     }
     //In log
     public void accountListLog(){

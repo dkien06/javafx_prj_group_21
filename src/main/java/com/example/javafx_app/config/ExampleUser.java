@@ -4,9 +4,10 @@ import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
-import com.example.javafx_app.object.User.Costumer;
+import com.example.javafx_app.object.Account.LoanAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
+import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
-import com.example.javafx_app.object.User.User;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
-    private static final Account accountA = new CheckingAccount(
+    private static final Account accountA = new SavingAccount(
             "Nguyen Van A",
             "010203008386",     // citizenID
             "49538386",         // accountID
@@ -24,9 +25,8 @@ public class ExampleUser {
             "010170"            // PIN
     );
 
-    // Sử dụng Costumer thay vì User vì User là abstract
-    private static final Costumer userA = new Costumer(
-            "CUS001",           // customerID (mới thêm)
+    // Sử dụng Customer thay vì User vì User là abstract
+    private static final Customer userA = new Customer(// customerID (mới thêm)
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
             GENDER.MALE,
@@ -36,8 +36,8 @@ public class ExampleUser {
     );
 
     // === USER B ===
-    private static final Account accountB = new CheckingAccount(
-            "Tran Thi B",
+    private static final Account accountB = new LoanAccount(
+            "kkk",
             "010203004953",
             "83864953",
             "TranThiB@1975",
@@ -46,8 +46,7 @@ public class ExampleUser {
             "123456"
     );
 
-    private static final Costumer userB = new Costumer(
-            "CUS002",
+    private static final Customer userB = new Customer(
             "Trần Thị B",
             LocalDate.of(1975,4,30),
             GENDER.FEMALE,
@@ -67,8 +66,7 @@ public class ExampleUser {
             "112233"
     );
 
-    private static final Costumer userC = new Costumer(
-            "CUS003",
+    private static final Customer userC = new Customer(
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
             GENDER.OTHER,
@@ -88,8 +86,7 @@ public class ExampleUser {
             "112233"
     );
 
-    private static final Costumer userD = new Costumer(
-            "CUS004",
+    private static final Customer userD = new Customer(
             "Lê Thị Thúy D",
             LocalDate.of(2006,6,7),
             GENDER.FEMALE,

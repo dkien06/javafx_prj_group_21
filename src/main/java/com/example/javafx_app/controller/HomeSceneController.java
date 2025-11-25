@@ -78,7 +78,7 @@ public class HomeSceneController {
 
     @FXML
     void XemDIchVu(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "ServiceScene/service_home_scene.fxml");
     }
 
     @FXML
@@ -88,22 +88,22 @@ public class HomeSceneController {
 
     @FXML
     void XemHoaDon(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "BillScene/bill_home_scene.fxml");
     }
 
     @FXML
     void XemLichSuGiaoDich(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "TransactionScene/transaction_history_scene.fxml");
     }
 
     @FXML
     void XemTaiKhoan(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/account_scene.fxml");
     }
 
     @FXML
     void XemThongBao(ActionEvent event) {
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/noti_scene.fxml");
     }
 
     @FXML

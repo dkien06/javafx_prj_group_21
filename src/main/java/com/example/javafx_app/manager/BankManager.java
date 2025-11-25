@@ -122,6 +122,7 @@ public class BankManager {
         for(int i = 0; i < citizenID.length(); i++){
             if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
+        if(UserManager.getInstance().findUserByCitizenID(citizenID) != null)return SignUpInformationState.EXISTED;
         return SignUpInformationState.RIGHT;
     }
     public static Map<String, SignUpInformationState> CheckAllSignUpInfo(String fullName, LocalDate dateOfBirth, String gender, String email, String phoneNumber, String citizenID){
@@ -140,11 +141,21 @@ public class BankManager {
 
         return infoStates;
     }
-    public enum PasswordState{
-        EMPTY,
-        WEAK,
-        NOT_MATCHED,
-        RIGHT
+    public enum PasswordState {
+        EMPTY("Mật khẩu không được để trống."),
+        WEAK("Mật khẩu yếu: cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt."),
+        NOT_MATCHED("Mật khẩu nhập lại không khớp."),
+        RIGHT("");
+
+        private final String label;
+
+        private PasswordState(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
     }
     /**
      * Phương thức phụ để kiểm tra độ mạnh của mật khẩu bằng Biểu thức chính quy (Regex).
@@ -176,9 +187,20 @@ public class BankManager {
         else return PasswordState.RIGHT;
     }
     public enum PINState{
-        EMPTY,
-        WRONG_FORM,
-        RIGHT
+        // Sử dụng Constant.MINIUM_PIN_LENGTH (6) để tạo thông báo lỗi động
+        EMPTY("Vui lòng nhập mã PIN"),
+        WRONG_FORM("Mã PIN phải là " + Constant.MINIUM_PIN_LENGTH + " chữ số"),
+        RIGHT(""); // Không có lỗi, trả về chuỗi rỗng
+
+        private final String label;
+
+        private PINState(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
     }
     public static PINState checkNewPIN(String PIN){
         if(PIN.isEmpty())return PINState.EMPTY;

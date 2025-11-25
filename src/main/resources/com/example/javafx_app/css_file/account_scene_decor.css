@@ -1,0 +1,91 @@
+/* Ảnh nền toàn màn hình */
+#rootPane {
+    -fx-background-image: url("image/backgroundhome.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: #27A4F2;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+}
+
+.button:hover {
+    -fx-background-color: #e6f4ff; /* xanh nhạt khi hover */
+}
+
+.button:pressed {
+    -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.3px;
+}
+
+.icon_container {
+    -fx-background-position: center;
+    -fx-background-size: contain;
+}
+
+#logo_label {
+    -fx-background-image: url("image/logo.png");
+    -fx-background-position: center;
+    -fx-background-size: contain;
+}
+
+#avatar {
+    -fx-background-image: url("image/icon_account_blue.png");
+    -fx-background-radius: 50%;
+    -fx-background-color: white;
+}
+
+#scroll {
+    -fx-background-color: transparent;
+ }
+
+#scroll >.viewport {
+    -fx-background-color: transparent;
+}
+
+#scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+#scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #b0b0b0;
+    -fx-background-radius: 10;
+}
+
+#scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7a7a7a;
+}
+
+#scroll .increment-button,
+#scroll .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+
+#scroll .corner {
+    -fx-background-color: transparent;
+}
+
+#my_vbox {
+    -fx-background-color: transparent;
+    -fx-spacing: 8;
+    -fx-padding: 8 14;
+}
+
+.hbox {
+    -fx-spacing: 8;
+}

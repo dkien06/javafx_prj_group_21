@@ -4,8 +4,8 @@ package com.example.javafx_app.object.Account;
 public enum ACCOUNT_TYPE {
     CHECKING("Tài khoản thanh toán"), // Tên hiển thị cho CHECKING
     SAVING("Tài khoản tiết kiệm"),    // Tên hiển thị cho SAVING
-    LOAN("Tài khoản vay");                // Tên hiển thị cho LOAN
-
+    LOAN("Tài khoản vay"),// Tên hiển thị cho LOAN
+    STAFF("Tài khoản nhân viên") ;
     private final String label;
 
     // Constructor của Enum
