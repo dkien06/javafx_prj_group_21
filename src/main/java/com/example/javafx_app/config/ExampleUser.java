@@ -61,7 +61,7 @@ public class ExampleUser {
             "020406006769",
             "12345678",
             "TaoBiGay%2008",
-            0,                  // balance (mặc định 0)
+            2_000_000,                  // balance (mặc định 0)
             "VND",
             "112233"
     );
@@ -107,5 +107,6 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
+        AccountManager.getInstance().setCurrentAccount(accountA);
     }
 }

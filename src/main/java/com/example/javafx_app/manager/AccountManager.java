@@ -63,6 +63,12 @@ public class AccountManager {
         return accountMap;
     }
 
+    //Đăng nhập trá hình
+    public void setCurrentAccount(Account currentAccount) {
+        AccountManager.currentAccount = currentAccount;
+        UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserFromAccount(currentAccount));
+    }
+
     //Đăng kí
     public boolean resister(User signUpUser,ACCOUNT_TYPE accountType, String password, String pin){
         Map<String, SignUpInformationState> checkSignUpUserInfo = BankManager.CheckAllSignUpInfo(
@@ -102,17 +108,16 @@ public class AccountManager {
         else return false;
     }
     // Đăng kí thêm một tài khoản
-    public void addAccountForCostumer(Customer costumer,String accountType, String password, String pin){
-        Account account ;
-        if(Objects.equals(accountType, ACCOUNT_TYPE.SAVING.toString())){
-            account = new SavingAccount(costumer.getFullName(), costumer.getCitizenID(),generateUniqueAccountID(),
-                     password,Constant.DEFAULT_BALANCE,"VND",pin);
+    public void addAccountForCostumer(Customer costumer,String accountType, String password, String pin) {
+        Account account;
+        if (Objects.equals(accountType, ACCOUNT_TYPE.SAVING.toString())) {
+            account = new SavingAccount(costumer.getFullName(), costumer.getCitizenID(), generateUniqueAccountID(),
+                    password, Constant.DEFAULT_BALANCE, "VND", pin);
+        } else {
+            account = new LoanAccount(costumer.getFullName(), costumer.getCitizenID(), generateUniqueAccountID(),
+                    password, Constant.DEFAULT_BALANCE, "VND", pin);
         }
-        else{
-            account = new LoanAccount(costumer.getFullName(),costumer.getCitizenID(),generateUniqueAccountID(),
-                    password,Constant.DEFAULT_BALANCE,"VND",pin) ;
-        }
-        accountMap.put(account.getAccountID(),account) ;
+        accountMap.put(account.getAccountID(), account);
         costumer.addAccountID(account.getAccountID());
 
     }
