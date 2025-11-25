@@ -2,7 +2,7 @@ package com.example.javafx_app.object.User;
 
 import java.time.LocalDate;
 
-public class User {
+public abstract class User {
     private String fullName;
     private LocalDate dateOfBirth;
     private GENDER gender;
@@ -72,6 +72,7 @@ public class User {
     public void setCitizenID(String citizenID) {
         this.citizenID = citizenID;
     }
+    public abstract USER_TYPE getType() ;
 
     // ✅ In ra thông tin người dùng (dễ debug)
     @Override

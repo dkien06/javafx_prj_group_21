@@ -45,7 +45,7 @@
             </Button>
                 <Button fx:id="settings_btn" mnemonicParsing="false" onAction="#XemCaiDat" prefHeight="209.0" prefWidth="241.0" styleClass="navbar-btn" text="Cài đặt" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <graphic>
-                  <Label fx:id="setting_icon" prefHeight="36.0" prefWidth="36.0" styleClass="icon_container" />
+                  <Label fx:id="setting_icon" onDragDetected="#XemCaiDat" prefHeight="36.0" prefWidth="36.0" styleClass="icon_container" />
                </graphic></Button>
             </children>
         </GridPane>

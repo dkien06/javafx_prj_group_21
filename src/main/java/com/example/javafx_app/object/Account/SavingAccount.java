@@ -9,13 +9,9 @@ import java.util.List;
 
 public class SavingAccount extends Account {
     private final List<FinancialProduct> savings = new ArrayList<>();
-    public SavingAccount(Account account){
-        this.accountName = account.accountName;
-        this.accountID = account.accountID;
-        this.password = account.password;
-        this.PIN = account.PIN;
-        this.citizenID = account.citizenID;
-        this.currency = account.currency;
+    public SavingAccount(String fullName, String citizenID, String accountID, String password,double balance,
+                         String currency, String PIN) {
+        super(fullName, citizenID, accountID, password, balance, currency, PIN);
     }
     public List<FinancialProduct> getSavings() {
         return savings;
@@ -27,46 +23,16 @@ public class SavingAccount extends Account {
     }
     // ✅ Nạp tiền
     public boolean deposit(Account account, FinancialProduct financialProduct, double amount, String description) {
-        if (!this.citizenID.equals(account.getCitizenID())) {
-            System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
-            return false;
-        }
-        if(!account.accountID.equals(financialProduct.getAccountID())){
-            System.out.println("Không thể nạp tiền từ ví tiết kiệm khác chủ.");
-            return false;
-        }
-        if (account.getCheckingAccount().withdraw(amount)) {
-            financialProduct.setPrincipal(financialProduct.getPrincipal() + amount);
-            Transaction newTransaction = new Transaction(TransactionType.DEPOSIT, amount, this.currency, this,null,description);
-            this.addTransaction(newTransaction);
-            TransactionManager.getInstance().addTransaction(newTransaction);
-            return true;
-        }
-        else return false;
+        return true ;
     }
     // ✅ Rút tiền
     public boolean withdraw(Account account, FinancialProduct financialProduct, double amount, String description) {
-        if (!this.citizenID.equals(account.getCitizenID())) {
-            System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
-            return false;
-        }
-        if(!account.accountID.equals(financialProduct.getAccountID())){
-            System.out.println("Không thể nạp tiền từ ví tiết kiệm khác chủ.");
-            return false;
-        }
-        if (amount <= financialProduct.getPrincipal()) {
-            if (account.getCheckingAccount().deposit(amount)) {
-                financialProduct.setPrincipal(financialProduct.getPrincipal() - amount);
-                Transaction newTransaction = new Transaction(TransactionType.WITHDRAW, amount, this.currency, null, this, description);
-                this.addTransaction(newTransaction);
-                TransactionManager.getInstance().addTransaction(newTransaction);
-            } else return false;
-        }
-        return false;
+        return true ;
     }
 
     public boolean withdrawAll(Account account, FinancialProduct financialProduct, String description){
         return withdraw(account,financialProduct, financialProduct.getPrincipal(), description);
     }
+    @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.SAVING ;}
 }

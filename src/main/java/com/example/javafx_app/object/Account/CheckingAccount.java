@@ -12,24 +12,8 @@ import java.util.List;
  * Tài khoản chuển tiền:)
  */
 public class CheckingAccount extends Account {
-    private double balance;
-    public CheckingAccount(Account account){
-        this.accountName = account.accountName;
-        this.password = account.password;
-        this.PIN = account.PIN;
-        this.citizenID = account.citizenID;
-        this.currency = account.currency;
-        this.accountID = account.accountID;
-        this.balance = Constant.DEFAULT_BALANCE;
-    }
-    public CheckingAccount(Account account, double balance){
-        this.accountName = account.accountName;
-        this.accountID = account.accountID;
-        this.password = account.password;
-        this.PIN = account.PIN;
-        this.citizenID = account.citizenID;
-        this.currency = account.currency;
-        this.balance = balance;
+    public CheckingAccount(String fullName, String citizenID, String accountID, String password,double balance, String currency, String PIN){
+        super(fullName, citizenID, accountID, password, balance, currency,  PIN);
     }
 
     public double getBalance() {
@@ -68,5 +52,7 @@ public class CheckingAccount extends Account {
             return true;
         } else return false;
     }
+    @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}
+
 }

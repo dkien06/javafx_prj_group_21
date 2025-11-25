@@ -60,17 +60,17 @@ public class VerifyTransactionController {
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_between_accounts.fxml"));
+        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
         Parent previousSceneRoot = previousSceneLoader.load();
 
-        TransactingBetweenAccountsController controller = previousSceneLoader.getController();
+        TransactingController controller = previousSceneLoader.getController();
         controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
 
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
-        String PIN = PINField.getText();
+       /* String PIN = PINField.getText();
         if(PIN.isEmpty()){
             PINErrorLog.setText("Vui lòng nhập mã pin");
             return;
@@ -94,5 +94,7 @@ public class VerifyTransactionController {
         else{
             PINErrorLog.setText("Mã pin của bạn không chính xác");
         }
+        */
     }
+
 }

@@ -6,16 +6,10 @@ import java.util.Map;
  * Class dữ trữ mấy biến hằng số, éo thích thì vào mà chỉnh:)
  */
 public class Constant {
-    public static final double SAVING_INTEREST_RATE_PER_MONTH = 0.007;
-    public static final double LOAN_INTEREST_RATE_PER_MONTH = 0.01;
-    public static final double SAVING_INTEREST_RATE_PER_YEAR = 0.7;
-
-    public static final int LOAN_WARNING_APPLY_MONTH_TIME = 12;
-    public static final double LOAN_MAX = 200_000_000.0;
-    public static final double LOAN_WARNING_1_MAX = 500_000_000.0;
-    public static final double LOAN_WARNING_2_MAX = 2_000_000_000.0;
-
-    public static final double VIP_FEE = 69_000.0;
+    private Constant(){}
+    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = 5.1;
+    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR = 5.8;
+    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = 4.75;
 
     public static final int PHONE_NUMBER_LENGTH = 10;
     public static final int MINIUM_PASSWORD_LENGTH = 8;
@@ -24,13 +18,11 @@ public class Constant {
     public static final String ADMIN_CITIZEN_ID = "000000000000";
     public static final String ADMIN_ACCOUNT_ID = "00000000";
     public static final String ADMIN_PASSWORD = "000000";
-    public static final double ADMIN_BALANCE = 9223372036854775807.0;
     public static final String ADMIN_CURRENCY = "VND";
     public static final String ADMIN_PIN = "000000";
 
     public static final long START_ACCOUNT_ID = 10000000;
     public static final double DEFAULT_BALANCE = 0.0;
-    public static final double DEFAULT_DEBT = 0.0;
 
     public static final Map<String,String> CURRENCY = Map.ofEntries(
             Map.entry("USA","USD"),

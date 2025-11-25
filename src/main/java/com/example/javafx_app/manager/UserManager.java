@@ -1,18 +1,19 @@
 package com.example.javafx_app.manager;
 
+import com.example.javafx_app.config.ExampleUser;
+import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class UserManager {
     private final static UserManager instance = new UserManager();
     private UserManager(){}
 
     private static User currentUser;
-    private static final List<User> users = new ArrayList<>();
+    private static final Map<String, User> userMap = new HashMap<>();
 
     public static UserManager getInstance() {
         return instance;
@@ -20,35 +21,36 @@ public class UserManager {
     public User getCurrentUser() {
         return currentUser;
     }
-    public List<User> getUserList() {
-        return users;
+    public Map<String,User> getUserList() {
+        return userMap;
     }
 
     public void setCurrentUser(User user){
         currentUser = user;
     }
     public void addUser(User user){
-        users.add(user);
+        userMap.put(user.getCitizenID(),user);
+    }
+    public User findUserByCitizenID(String citizenID){
+        return userMap.get(citizenID);
     }
     public User findUserFromAccount(Account account){
-        for(User u : users){
-            if(u.getCitizenID().equals(account.getCitizenID())){
-                return u;
-            }
-        }
-        return null;
+        if(account == null) return null;
+        return userMap.get(account.getAccountID()) ;
     }
+    // Hàm tìm kiếm khi userMap đang lưu theo CCCD
     public User findUserFromEmail(String email){
-        for(User u : users){
-            if(u.getEmail().equals(email)){
+        // Phải duyệt qua toàn bộ các giá trị (Values) trong Map
+        for(User u : userMap.values()){
+            if(u.getEmail() != null && u.getEmail().equals(email)){
                 return u;
             }
         }
         return null;
     }
     public User findUserFromPhoneNumber(String phoneNumber){
-        for (User u : users){
-            if(u.getPhoneNumber().equals(phoneNumber)){
+        for(User u : userMap.values()){
+            if(u.getPhoneNumber() != null && u.getPhoneNumber().equals(phoneNumber)){
                 return u;
             }
         }
@@ -61,11 +63,16 @@ public class UserManager {
             default -> GENDER.OTHER;
         };
     }
-    public static String genderToString(GENDER gender){
-        return switch (gender){
+    public static String genderToString(GENDER gender) {
+        return switch (gender) {
             case MALE -> "MALE";
             case FEMALE -> "FEMALE";
             default -> "OTHER";
         };
     }
+    public static void main(String[] args) {
+        ExampleUser.init();
+        System.out.println(getInstance().findUserByCitizenID("010203008386"));
+    }
+
 }
