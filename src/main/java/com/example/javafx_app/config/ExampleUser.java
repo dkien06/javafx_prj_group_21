@@ -1,11 +1,8 @@
 package com.example.javafx_app.config;
 
-import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
-import com.example.javafx_app.object.Account.CheckingAccount;
-import com.example.javafx_app.object.Account.LoanAccount;
-import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 
@@ -60,7 +57,7 @@ public class ExampleUser {
             "Ngo Duc C",
             "020406006769",
             "12345678",
-            "TaoBiGay%2008",
+            "        ",
             0,                  // balance (mặc định 0)
             "VND",
             "112233"
@@ -76,7 +73,7 @@ public class ExampleUser {
     );
 
     // === USER D ===
-    private static final Account accountD = new CheckingAccount(
+    private static final Account accountD = new StaffAccount(
             "Le Thi Thuy D",
             "020406006967",
             "87654321",

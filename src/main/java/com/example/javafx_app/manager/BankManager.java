@@ -50,7 +50,55 @@ public class BankManager {
         WRONG_FORM,
         WRONG_SIZE,
         EXISTED,
-        RIGHT
+        RIGHT ;
+        public static String getErrorMessageForFullName(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng nhập họ tên";
+                default -> "";
+            };
+        }
+
+        public static String getErrorMessageForDateOfBirth(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng điền ngày sinh";
+                default -> "";
+            };
+        }
+
+        public static String getErrorMessageForGender(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng điền giới tính";
+                default -> "";
+            };
+        }
+
+        public static String getErrorMessageForEmail(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng nhập email của bạn";
+                case EXISTED -> "Email này đã tồn tại";
+                case WRONG_FORM -> "Email của bạn không hợp lệ";
+                default -> "";
+            };
+        }
+
+        public static String getErrorMessageForPhoneNumber(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng nhập số điện thoại";
+                case EXISTED -> "Số điện thoại này đã tồn tại";
+                case WRONG_FORM -> "Số điện thoại của bạn không hợp lệ";
+                case WRONG_SIZE -> "Số điện thoại của bạn phải đúng 10 chữ số";
+                default -> "";
+            };
+        }
+
+        public static String getErrorMessageForCitizenID(SignUpInformationState state){
+            return switch (state) {
+                case EMPTY -> "Vui lòng nhập số CCCD";
+                case WRONG_FORM -> "Số CCCD không hợp lệ";
+                case WRONG_SIZE -> "Số CCCD phải có 12 chữ số" ;
+                default -> "";
+            };
+        }
     }
     //Check họ tên
     public static SignUpInformationState checkSignUpFullName(String fullName){
@@ -118,6 +166,7 @@ public class BankManager {
     //Check số căn cước công dân
     public static SignUpInformationState checkSignUpCitizenID(String citizenID){
         if(citizenID.isEmpty()) return SignUpInformationState.EMPTY;
+        if(citizenID.length()!=12) return SignUpInformationState.WRONG_SIZE;
         for(int i = 0; i < citizenID.length(); i++){
             if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;
         }
@@ -182,7 +231,7 @@ public class BankManager {
     }
     public static PasswordState checkPasswordAgain(String password, String passwordAgain){
         if(passwordAgain.isEmpty())return PasswordState.EMPTY;
-        else if(password.equals(passwordAgain))return PasswordState.NOT_MATCHED;
+        else if(!password.equals(passwordAgain))return PasswordState.NOT_MATCHED;
         else return PasswordState.RIGHT;
     }
     public enum PINState{

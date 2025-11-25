@@ -12,7 +12,7 @@ public class UserManager {
     private final static UserManager instance = new UserManager();
     private UserManager(){}
 
-    private static User currentUser;
+    private static User currentUser ,signUpUser;
     private static final Map<String, User> userMap = new HashMap<>();
 
     public static UserManager getInstance() {
@@ -21,6 +21,7 @@ public class UserManager {
     public User getCurrentUser() {
         return currentUser;
     }
+    public User getSignUpUser() { return signUpUser; }
     public Map<String,User> getUserList() {
         return userMap;
     }
@@ -28,6 +29,7 @@ public class UserManager {
     public void setCurrentUser(User user){
         currentUser = user;
     }
+    public void setSignUpUser(User user){ signUpUser = user; }
     public void addUser(User user){
         userMap.put(user.getCitizenID(),user);
     }
