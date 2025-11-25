@@ -51,11 +51,11 @@ public class SignUpExisting2 implements Initializable {
         PasswordErrorLog.setText("");
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
-        Customer currentCostumer = (Customer) UserManager.getInstance().getCurrentUser() ;
-        if(!AccountManager.getInstance().isExistingSavingAccount(currentCostumer)){
+        Customer currentCustomer = (Customer) UserManager.getInstance().getCurrentUser() ;
+        if(!AccountManager.getInstance().isExistingSavingAccount(currentCustomer)){
             account_type.getItems().add(ACCOUNT_TYPE.SAVING.toString());
         }
-        if(!AccountManager.getInstance().isExistingSavingAccount(currentCostumer)){
+        if(!AccountManager.getInstance().isExistLoanAccount(currentCustomer)){
             account_type.getItems().add(ACCOUNT_TYPE.LOAN.toString());
         }
         account_type.setValue(account_type.getItems().getFirst());
@@ -70,13 +70,15 @@ public class SignUpExisting2 implements Initializable {
         BankManager.PasswordState passwordState = BankManager.checkNewPassword(password),
                                   passwordAgainState = BankManager.checkPasswordAgain(password,passwordAgain);
         BankManager.PINState pinState = BankManager.checkNewPIN(pin) ;
+        System.out.println(passwordState+" "+passwordAgainState+" "+pinState+" "+passwordAgain+" "+password);
         PasswordErrorLog.setText(passwordState.getLabel());
         PasswordAgainErrorLog.setText(passwordAgainState.getLabel());
         PINErrorLog.setText(pinState.getLabel());
         if(passwordState== BankManager.PasswordState.RIGHT&&passwordAgainState== BankManager.PasswordState.RIGHT&&
             pinState == BankManager.PINState.RIGHT){
-            AccountManager.getInstance().addAccountForCostumer((Customer) UserManager.getInstance().getCurrentUser(),accountType,
+            AccountManager.getInstance().addAccountForCustomer((Customer) UserManager.getInstance().getCurrentUser(),accountType,
             password,pin);
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
         }
 
     }

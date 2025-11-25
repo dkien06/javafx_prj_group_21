@@ -1,6 +1,6 @@
 package com.example.javafx_app.config;
 
-import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
@@ -76,7 +76,7 @@ public class ExampleUser {
     );
 
     // === USER D ===
-    private static final Account accountD = new CheckingAccount(
+    private static final Account accountD = new StaffAccount(
             "Le Thi Thuy D",
             "020406006967",
             "87654321",

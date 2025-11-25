@@ -13,7 +13,7 @@ public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ExampleUser.init();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/saving_account_home_scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
