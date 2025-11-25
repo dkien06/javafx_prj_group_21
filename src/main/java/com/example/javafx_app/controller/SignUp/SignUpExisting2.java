@@ -4,7 +4,7 @@ import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
-import com.example.javafx_app.object.User.Costumer;
+import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +51,7 @@ public class SignUpExisting2 implements Initializable {
         PasswordErrorLog.setText("");
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
-        Costumer currentCostumer = (Costumer) UserManager.getInstance().getCurrentUser() ;
+        Customer currentCostumer = (Customer) UserManager.getInstance().getCurrentUser() ;
         if(!AccountManager.getInstance().isExistingSavingAccount(currentCostumer)){
             account_type.getItems().add(ACCOUNT_TYPE.SAVING.toString());
         }
@@ -75,7 +75,7 @@ public class SignUpExisting2 implements Initializable {
         PINErrorLog.setText(pinState.getLabel());
         if(passwordState== BankManager.PasswordState.RIGHT&&passwordAgainState== BankManager.PasswordState.RIGHT&&
             pinState == BankManager.PINState.RIGHT){
-            AccountManager.getInstance().addAccountForCostumer((Costumer) UserManager.getInstance().getCurrentUser(),accountType,
+            AccountManager.getInstance().addAccountForCostumer((Customer) UserManager.getInstance().getCurrentUser(),accountType,
             password,pin);
         }
 

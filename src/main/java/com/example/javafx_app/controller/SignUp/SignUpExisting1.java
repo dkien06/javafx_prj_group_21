@@ -25,7 +25,7 @@ public class SignUpExisting1 {
     private boolean checkMainAcccount(String cccd, String password){
         User user = UserManager.getInstance().findUserByCitizenID(cccd);
         if(user == null){ return  false; }
-        if
+        return true;
     }
     @FXML
     public void NextToForm2(ActionEvent event) {
