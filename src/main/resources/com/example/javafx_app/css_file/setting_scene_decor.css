@@ -1,0 +1,32 @@
+#rootPane {
+    -fx-background-image: url("image/backgroundhome.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: #27A4F2;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+}
+
+.button:hover {
+    -fx-background-color: #e6f4ff; /* xanh nhạt khi hover */
+}
+
+.button:pressed {
+    -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.3px;
+}
+
+#VBox_main {
+    -fx-spacing: 8;
+}
