@@ -102,7 +102,7 @@ public class AccountManager {
         else return false;
     }
     // Đăng kí thêm một tài khoản
-    public void addAccountForCostumer(Costumer costumer,String accountType, String password, String pin){
+    public void addAccountForCostumer(Customer costumer,String accountType, String password, String pin){
         Account account ;
         if(accountType==ACCOUNT_TYPE.SAVING.toString()){
             account = new SavingAccount(costumer.getFullName(), costumer.getCitizenID(),generateUniqueAccountID(),
@@ -161,13 +161,13 @@ public class AccountManager {
     public List<Account> findAccountFromPhoneNumber(String phoneNumber){
         return findAccountFromUser(UserManager.getInstance().findUserFromPhoneNumber(phoneNumber));
     }
-    public boolean isExistingSavingAccount(Costumer costumer){
+    public boolean isExistingSavingAccount(Customer costumer){
         for(String accountID : costumer.getAccountIDs()){
             if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.SAVING){ return true; }
         }
         return false;
     }
-    public boolean isExistLoanAccount(Costumer costumer){
+    public boolean isExistLoanAccount(Customer costumer){
         for(String accountID : costumer.getAccountIDs()){
             if(accountMap.get(accountID).getAccountType()==ACCOUNT_TYPE.LOAN){ return true; }
         }
