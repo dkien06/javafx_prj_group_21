@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.manager.UserManager;
@@ -55,24 +56,20 @@ public class TransactingBetweenAccountsController implements Initializable {
     private static final String[] hangChuc = {"", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi"};
     private static final String[] hangTram = {"không trăm", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm"};
     void displaySendingAccountIDAndMoney(Account account){
-        /*String CitizenID = account.getCitizenID();
+        String CitizenID = account.getCitizenID();
         User user = UserManager.getInstance().getCurrentUser();
         sendingAccountIDTextField.setText(account.getAccountID());
-        currentBalanceTextField.setText(account.getCheckingAccount().getBalance() + " " + account.getCurrency());
+        currentBalanceTextField.setText(((CheckingAccount)account).getBalance() + " " + account.getCurrency());
         descriptionTextArea.setText(user.getFullName() + " CHUYEN TIEN");
-
-         */
     }
     void loadTransaction(Account account, Transaction transaction){
-        /*if(transaction != null){
+        if(transaction != null){
             sendingAccountIDTextField.setText(account.getAccountID());
-            currentBalanceTextField.setText(Double.toString(account.getCheckingAccount().getBalance()));
+            currentBalanceTextField.setText(Double.toString(((CheckingAccount)account).getBalance()));
             receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
             amountTextField.setText(Integer.toString((int)transaction.getAmount()));
             descriptionTextArea.setText(transaction.getDescription());
         }
-
-         */
     }
     @FXML
     void allowChoosingBank(){
@@ -85,7 +82,6 @@ public class TransactingBetweenAccountsController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*
         bankChoiceBox.getItems().addAll(banks);
         amountTextField.textProperty().addListener((observable, _, value) -> {
             // Xử lý khi giá trị text thay đổi
@@ -93,11 +89,11 @@ public class TransactingBetweenAccountsController implements Initializable {
                 //newValue.matches("\\d+") -> Check xem biến newValue có viết dưới dạng số không)
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     long amount = Long.parseLong(value);
-                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
+                    if(amount > ((CheckingAccount)AccountManager.getInstance().getCurrentAccount()).getBalance()){
                         amountErrorLog.setText("Số tiền bạn nhập không đủ để chuyển");
                     }
                     else amountErrorLog.setText("");
-                    String amountInWords = TransactionManager.getInstance().numberToVietnameseWords(amount);
+                    String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
                     amountInWordsText.setText(amountInWords + " đồng");
                 } else {
                     amountInWordsText.setText("");
@@ -108,8 +104,6 @@ public class TransactingBetweenAccountsController implements Initializable {
                 amountErrorLog.setText("Số tiền không hợp lệ");
             }
         });
-
-         */
     }
     @FXML
     void QuayLai(ActionEvent event){
@@ -125,7 +119,7 @@ public class TransactingBetweenAccountsController implements Initializable {
             bankChoiceErrorLog.setText("");
             isBankChoiceValid = true;
         }
-        /*
+
         CheckingAccount receiveAccount = null;
         boolean isReceiveAccountIDValid = false;
         if(receiveAccountIDTextField.getText().isEmpty())
@@ -133,7 +127,7 @@ public class TransactingBetweenAccountsController implements Initializable {
         else{
             receiveAccountIDErrorLog.setText("");
             if(localBank.isSelected()){
-                receiveAccount = AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()).getCheckingAccount();
+                receiveAccount = (CheckingAccount)AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText());
                 if(receiveAccount == null){
                     receiveAccountIDErrorLog.setText("Tài khoản nhận không tồn tại");
                 }
@@ -163,6 +157,5 @@ public class TransactingBetweenAccountsController implements Initializable {
 
             SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
         }
-         */
     }
 }

@@ -40,7 +40,7 @@ public class VerifyTransactionController {
     @FXML
     Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
-        fullSendingNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getFromAccount()).getFullName());
+        /*fullSendingNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getFromAccount()).getFullName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
         sendingBankLabel.setText("Ngân hàng: " + "21stBank");
         fullReceiveNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getToAccount()).getFullName());
@@ -56,17 +56,17 @@ public class VerifyTransactionController {
                     case LOAN -> "Vay tiền";
                     case REPAY -> "Trả nợ";
                 }
-        );
+        );*/
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
+        /*FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingController controller = previousSceneLoader.getController();
         controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
 
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);*/
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {

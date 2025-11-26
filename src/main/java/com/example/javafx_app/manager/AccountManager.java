@@ -64,6 +64,12 @@ public class AccountManager {
         return accountMap;
     }
 
+    //Đăng nhập trá hình
+    public void setCurrentAccount(Account currentAccount) {
+        AccountManager.currentAccount = currentAccount;
+        UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserFromAccount(currentAccount));
+    }
+
     //Đăng kí
     public boolean resister(User signUpUser,ACCOUNT_TYPE accountType, String password, String pin){
         Map<String, SignUpInformationState> checkSignUpUserInfo = BankManager.CheckAllSignUpInfo(
@@ -216,8 +222,8 @@ public class AccountManager {
     }
     public static void main(String args[]) throws IOException {
         ExampleUser.init();
-        System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
-        List<Account> a = getInstance().findAccountFromCitizenID("010203008386");
+        System.out.println(UserManager.getInstance().findUserByCitizenID("010203004953"));
+        List<Account> a = getInstance().findAccountFromCitizenID("010203004953");
         for(Account a1 : a){
             System.out.println(a1.toString());
         }

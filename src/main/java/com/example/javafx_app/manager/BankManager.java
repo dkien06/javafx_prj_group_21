@@ -166,6 +166,7 @@ public class BankManager {
     //Check số căn cước công dân
     public static SignUpInformationState checkSignUpCitizenID(String citizenID){
         if(citizenID.isEmpty()) return SignUpInformationState.EMPTY;
+        if(AccountManager.getInstance().findAccountFromCitizenID(citizenID) != null)return SignUpInformationState.EXISTED;
         if(citizenID.length()!=12) return SignUpInformationState.WRONG_SIZE;
         for(int i = 0; i < citizenID.length(); i++){
             if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;

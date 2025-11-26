@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/transaction_between_account_scnene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.TransactingController">
     <children>
@@ -37,16 +38,19 @@
       <VBox fx:id="main_vbox" layoutX="45.0" layoutY="150.0" prefHeight="363.0" prefWidth="323.0">
          <children>
             <Label styleClass="LabelInVBox" text="Số tài khoản" />
-            <TextField />
+            <TextField fx:id="receiveAccountIDTextField" />
+            <Text fx:id="receiveAccountIDLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.8000030517578" />
             <Label styleClass="LabelInVBox" text="Số tiền gửi" />
-            <TextField />
+            <TextField fx:id="amountTextField" />
+            <Text fx:id="amountLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.6000518798828" />
             <Label styleClass="LabelInVBox" text="Chọn ngân hàng" />
-            <ChoiceBox prefHeight="28.0" prefWidth="360.0" />
+            <ChoiceBox fx:id="bankChoiceBox" prefHeight="28.0" prefWidth="360.0" />
+            <Text fx:id="bankChoiceErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.40003967285156" />
             <Label styleClass="LabelInVBox" text="Nội dung chuyển khoản" />
-            <TextField prefHeight="165.0" prefWidth="267.0" />
+            <TextField fx:id="descriptionTextArea" prefHeight="165.0" prefWidth="267.0" />
          </children>
       </VBox>
       <Button layoutX="97.0" layoutY="537.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
-      <Button layoutX="239.0" layoutY="537.0" mnemonicParsing="false" text="Tiếp tục" />
+      <Button layoutX="239.0" layoutY="537.0" mnemonicParsing="false" onAction="#TiepTuc" text="Tiếp tục" />
     </children>
 </AnchorPane>
