@@ -41,6 +41,6 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="return_btn" layoutX="168.0" layoutY="579.0" mnemonicParsing="false" text="Quay lại" />
+      <Button fx:id="return_btn" layoutX="168.0" layoutY="579.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
    </children>
 </AnchorPane>
