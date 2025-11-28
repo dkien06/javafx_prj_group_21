@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class TransactingController implements Initializable {
     @FXML
     private ChoiceBox<String> bankChoiceBox;
@@ -78,7 +80,7 @@ public class TransactingController implements Initializable {
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {

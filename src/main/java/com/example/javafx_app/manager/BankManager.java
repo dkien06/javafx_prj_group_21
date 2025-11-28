@@ -44,6 +44,17 @@ public class BankManager {
         }
         return null;
     }
+    public static String generateOTP() {
+        Random random = new Random();
+
+        // Đảm bảo số ngẫu nhiên nằm trong khoảng [100000, 999999]
+        int min = 100000;
+        int max = 999999;
+
+        int otp = random.nextInt(max - min + 1) + min;
+
+        return String.valueOf(otp);
+    }
     /*Mấy cái hàm này cho phần đăng kí*/
     public enum SignUpInformationState {
         EMPTY,

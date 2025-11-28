@@ -202,6 +202,38 @@ public class AccountManager {
         }
         return false;
     }
+    // tim chinh xac account
+    public Account findExactAccountFromCostumer(Customer Customer,ACCOUNT_TYPE accountType){
+        for(String accountID : Customer.getAccountIDs()){
+            if(accountMap.get(accountID).getAccountType()==accountType){
+                return accountMap.get(accountID) ;
+            }
+        }
+        return null;
+    }
+    public Account findExactAccountFromEmail(String email,ACCOUNT_TYPE accountType){
+        User user = UserManager.getInstance().findUserFromEmail(email);
+        if(user == null) return null;
+        if(user.getType()== USER_TYPE.Customer){
+            Customer customer = (Customer)  user;
+            return findExactAccountFromCostumer(customer,accountType);
+
+        }
+        else{
+            return accountMap.get(((Staff)user).getAccountID());
+        }
+    }
+    public Account findExactAccountFromPhoneNumber(String phoneNumber,ACCOUNT_TYPE accountType){
+        User user = UserManager.getInstance().findUserFromPhoneNumber(phoneNumber);
+        if(user == null) return null;
+        if(user.getType()== USER_TYPE.Customer){
+            Customer customer = (Customer)  user;
+            return findExactAccountFromCostumer(customer,accountType);
+        }
+        else {
+            return accountMap.get(((Staff)user).getAccountID());
+        }
+    }
     //In log
     public void accountListLog(){
         int i = 0;

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,4 +33,8 @@ public class SceneUtils {
     public static Stage getStageFromEvent(ActionEvent event) {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
+    public static Stage getStageFromEvent(MouseEvent event) {
+        return (Stage) ((Node) event.getSource()).getScene().getWindow();
+    }
 }
+

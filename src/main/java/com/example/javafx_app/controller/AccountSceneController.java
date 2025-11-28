@@ -10,6 +10,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class AccountSceneController {
 
     @FXML
@@ -44,7 +46,7 @@ public class AccountSceneController {
 
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
     }
 
 }

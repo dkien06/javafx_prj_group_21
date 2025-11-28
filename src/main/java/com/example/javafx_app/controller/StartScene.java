@@ -1,7 +1,6 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.manager.BankManager;
-import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class StartScene implements Initializable {
 
@@ -61,7 +62,7 @@ public class StartScene implements Initializable {
         BankManager.setCurrentEmail(EmailTextField.getText());
 
         if(checkDate&&checkEmail&&checkPhone)
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
+            SceneUtils.switchScene(mainStage,"login_scene.fxml");
     }
     @FXML
     public void Exit(ActionEvent event) {

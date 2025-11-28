@@ -1,5 +1,7 @@
 package com.example.javafx_app.config;
 
+import javafx.stage.Stage;
+
 import java.util.Map;
 
 /**
@@ -23,7 +25,7 @@ public class Constant {
 
     public static final long START_ACCOUNT_ID = 10000000;
     public static final double DEFAULT_BALANCE = 0.0;
-
+    public static  Stage mainStage = new Stage();
     public static final Map<String,String> CURRENCY = Map.ofEntries(
             Map.entry("USA","USD"),
             Map.entry("Canada","CAD"),

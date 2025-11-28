@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SignUpNew2 {
 
     @FXML
@@ -56,13 +58,13 @@ public class SignUpNew2 {
             UserManager.getInstance().addUser(UserManager.getInstance().getSignUpUser());
             AccountManager.getInstance().addAccountForCustomer((Customer) UserManager.getInstance().getSignUpUser(),
                     ACCOUNT_TYPE.CHECKING.toString(), password,pin);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
+            SceneUtils.switchScene(mainStage,"login_scene.fxml");
         }
     }
 
     @FXML
     private void returnToSignUpNew1(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+        SceneUtils.switchScene(mainStage,
                 "SignUpScene/signup_new_customer1_scene.fxml");
     }
 }

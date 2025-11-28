@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class VerifyTransactionController {
     @FXML
     Label fullSendingNameLabel;
@@ -66,7 +68,7 @@ public class VerifyTransactionController {
         TransactingController controller = previousSceneLoader.getController();
         controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
 
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),previousSceneRoot);
+        SceneUtils.switchScene(mainStage,previousSceneRoot);
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
@@ -89,7 +91,7 @@ public class VerifyTransactionController {
             controller.loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
             TransactionManager.getInstance().removeNewTransaction();
 
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+            SceneUtils.switchScene(mainStage,nextSceneRoot);
         }
         else{
             PINErrorLog.setText("Mã pin của bạn không chính xác");

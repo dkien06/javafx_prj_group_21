@@ -6,7 +6,6 @@ module com.example.javafx_app {
     opens com.example.javafx_app.controller.SignUp to javafx.fxml;
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app;
-    opens com.example.javafx_app.controller to javafx.fxml;
     opens com.example.javafx_app.controller.setting to javafx.fxml;
     opens com.example.javafx_app.controller.Transaction to javafx.fxml;
     opens com.example.javafx_app.controller.Bill to javafx.fxml;
@@ -20,4 +19,6 @@ module com.example.javafx_app {
     opens com.example.javafx_app.object.Account to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app.object.User;
     opens com.example.javafx_app.object.User to javafx.fxml, javafx.graphics;
+    exports com.example.javafx_app.controller;
+    opens com.example.javafx_app.controller to javafx.fxml, javafx.graphics;
 }
