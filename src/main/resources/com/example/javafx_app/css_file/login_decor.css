@@ -41,3 +41,34 @@ AnchorPane {
     -fx-font-weight: bold;
     -fx-letter-spacing: 0.3px;
 }
+
+.VBox {
+    -fx-spacing: 4;
+}
+
+.nguon_thanh_toan {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 4;
+    -fx-padding: 4;
+}
+
+/*phần này dành cho scene của after trans*/
+#dau_tich_V {
+    -fx-background-image: url("image/dau_tich.png");
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+}
+
+#VBox_thong_tin_dich {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+}
+
+.label_in_Vbox {
+    -fx-text-fill: #27A4F2;
+}

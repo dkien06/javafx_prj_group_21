@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="dau_tich_V" layoutX="158.0" layoutY="104.0" prefHeight="97.0" prefWidth="97.0" />
+      <VBox layoutX="78.0" layoutY="226.0" prefHeight="0.0" prefWidth="257.0" styleClass="VBox">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="323.0" text="Chuyển tiền thành công" />
+            <Label fx:id="so_tien_da_chuyen" alignment="CENTER" prefHeight="17.0" prefWidth="303.0" text="Số tiền" />
+            <Label fx:id="thoi_diem_chuyen_tien" alignment="CENTER" prefHeight="17.0" prefWidth="342.0" text="Thời gian" />
+         </children>
+      </VBox>
+      <VBox fx:id="VBox_thong_tin_dich" layoutX="63.0" layoutY="321.0" prefHeight="121.0" prefWidth="287.0" styleClass="VBox">
+         <children>
+            <Label fx:id="ten_tk_dich" alignment="CENTER" prefHeight="17.0" prefWidth="346.0" styleClass="label_in_Vbox" text="Tên tài khoản đích">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="ngan_hang" alignment="CENTER" prefHeight="17.0" prefWidth="346.0" styleClass="label_in_Vbox" text="Ngân hàng">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="stk_dich" alignment="CENTER" prefHeight="17.0" prefWidth="346.0" styleClass="label_in_Vbox" text="Số tài khoản đích">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nd_ck" alignment="CENTER" prefHeight="17.0" prefWidth="346.0" styleClass="label_in_Vbox" text="Nội dung chuyển khoản">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="return_btn" layoutX="168.0" layoutY="579.0" mnemonicParsing="false" text="Quay lại" />
+   </children>
+</AnchorPane>
