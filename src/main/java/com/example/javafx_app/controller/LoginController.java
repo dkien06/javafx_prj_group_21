@@ -55,23 +55,8 @@ public class LoginController implements Initializable {
             }
         }
         if(AccountManager.getInstance().logIn(CCCD, password, selectedType)) {
-            String filehome ;
-            Account currentAccount = AccountManager.getInstance().getCurrentAccount();
-            if(currentAccount.getAccountType()==ACCOUNT_TYPE.CHECKING) {
-                if(currentAccount.isVIP()) filehome = "HomeScenes/checking_account_VIP_home_scene.fxml";
-                else filehome = "HomeScenes/checking_account_home_scene.fxml";
-            }
-            else if(currentAccount.getAccountType()==ACCOUNT_TYPE.SAVING){
-                if(currentAccount.isVIP()) filehome = "HomeScenes/saving_account_VIP_home_scene.fxml";
-                else filehome = "HomeScenes/saving_account_home_scene.fxml";
-            }
-            else if(currentAccount.getAccountType()==ACCOUNT_TYPE.LOAN){
-                if(currentAccount.isVIP()) filehome = "HomeScenes/loan_account_VIP_home_scene.fxml";
-                else  filehome = "HomeScenes/loan_account_home_scene.fxml";
-            }
-            else filehome = "HomeScenes/staff_home_scene.fxml";
-            System.out.println(filehome);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), filehome);
+            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                    AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
         else WrongLoginLabel.setText("Tài khoản hoặc mật khẩu bị sai");
     }

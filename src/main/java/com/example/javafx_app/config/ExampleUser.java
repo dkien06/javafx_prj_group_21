@@ -1,11 +1,8 @@
 package com.example.javafx_app.config;
 
-import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
-import com.example.javafx_app.object.Account.CheckingAccount;
-import com.example.javafx_app.object.Account.LoanAccount;
-import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 
@@ -15,7 +12,7 @@ import java.time.LocalDate;
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
-    private static final Account accountA = new SavingAccount(
+    public static final Account accountA = new SavingAccount(
             "Nguyen Van A",
             "010203008386",     // citizenID
             "49538386",         // accountID
@@ -24,9 +21,8 @@ public class ExampleUser {
             "VND",              // currency
             "010170"            // PIN
     );
-
     // Sử dụng Customer thay vì User vì User là abstract
-    private static final Customer userA = new Customer(// customerID (mới thêm)
+    public static final Customer userA = new Customer(// customerID (mới thêm)
             "Nguyễn Văn A",
             LocalDate.of(1970,1,1),
             GENDER.MALE,
@@ -60,7 +56,7 @@ public class ExampleUser {
             "Ngo Duc C",
             "020406006769",
             "12345678",
-            "TaoBiGay%2008",
+            "        ",
             0,                  // balance (mặc định 0)
             "VND",
             "112233"
@@ -76,7 +72,7 @@ public class ExampleUser {
     );
 
     // === USER D ===
-    private static final Account accountD = new CheckingAccount(
+    private static final Account accountD = new StaffAccount(
             "Le Thi Thuy D",
             "020406006967",
             "87654321",
