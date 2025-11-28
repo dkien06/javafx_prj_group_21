@@ -9,6 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SettingPasswordController {
 
     @FXML
@@ -32,7 +34,7 @@ public class SettingPasswordController {
     // Xử lý khi nhấn nút "Quay lại"
     @FXML
     private void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
+        SceneUtils.switchScene(mainStage,"setting/setting.fxml");
     }
 
     // Xử lý khi nhấn nút "Hoàn thành"
@@ -87,7 +89,7 @@ public class SettingPasswordController {
         // check het cac loi
         if(isNewPasswordAgainValid){
             currentAccount.setPassword(newPass);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+            SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
     }

@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class TransactingBetweenAccountsController implements Initializable {
     @FXML
     private TextField sendingAccountIDTextField;
@@ -114,7 +116,7 @@ public class TransactingBetweenAccountsController implements Initializable {
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_method_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_choose_method_scene.fxml");
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
@@ -161,7 +163,7 @@ public class TransactingBetweenAccountsController implements Initializable {
             VerifyTransactionController controller = nextSceneLoader.getController();
             controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
 
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+            SceneUtils.switchScene(mainStage,nextSceneRoot);
         }
          */
     }

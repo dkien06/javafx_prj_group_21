@@ -10,12 +10,14 @@ import javafx.scene.control.TextArea;
 
 import java.util.List;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class TransactionHistoryController {
     @FXML
     TextArea transactionHistoryField;
     @FXML
     void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/home_scene.fxml");
     }
     public void displayHistory(){
         transactionHistoryField.setWrapText(true);

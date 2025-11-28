@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SignUpStaff1Controller implements Initializable {
 
     @FXML
@@ -114,7 +116,7 @@ public class SignUpStaff1Controller implements Initializable {
             GENDER Gender = UserManager.stringToGender(gender);
             UserManager.getInstance().setSignUpUser(new Staff(staffID,null,fullName,dateOfBirth,Gender,
                     phoneNumber,email,citizenID));
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+            SceneUtils.switchScene(mainStage,
                     "SignUpScene/signup_staff2_scene.fxml");
             System.out.println(UserManager.getInstance().getSignUpUser().getFullName());
         }
@@ -122,7 +124,7 @@ public class SignUpStaff1Controller implements Initializable {
 
     @FXML
     private void returnTo3Option(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+        SceneUtils.switchScene(mainStage,
                 "SignUpScene/signup_3option_scene.fxml");
     }
 }

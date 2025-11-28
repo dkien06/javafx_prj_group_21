@@ -1,5 +1,6 @@
 package com.example.javafx_app;
 
+import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.config.ExampleUser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import java.io.IOException;
 public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Constant.mainStage = stage;
         ExampleUser.init();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         Parent root = fxmlLoader.load();
