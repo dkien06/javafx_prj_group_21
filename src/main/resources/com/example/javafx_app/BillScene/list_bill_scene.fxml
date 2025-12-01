@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -15,9 +14,9 @@
                 <VBox fx:id="vbox_lich_su_giao_dich" prefHeight="732.0" prefWidth="387.0" styleClass="vbox">
                     <children>
                         <Label text="Hóa đơn" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="347.0">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="347.0" styleClass="btn_bill">
                             <graphic>
-                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_chua_lsgd">
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_btn_bill">
                                     <children>
                                         <Label fx:id="icon_tien_dien" prefHeight="40.0" prefWidth="43.0" styleClass="icon_container" />
                                         <VBox prefHeight="40.0" prefWidth="184.0">
@@ -30,10 +29,6 @@
                                     </children>
                                 </HBox>
                             </graphic>
-                            <styleClass>
-                                <String fx:value="nut_chua_lsgd" />
-                                <String fx:value="nut_xanh" />
-                            </styleClass>
                         </Button>
                     </children>
                 </VBox>

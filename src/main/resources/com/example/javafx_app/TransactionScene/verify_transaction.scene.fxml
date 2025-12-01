@@ -6,47 +6,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.VerifyTransactionController">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.VerifyTransactionController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="122.0" layoutX="34.0" layoutY="103.0" stroke="#007aff" strokeType="INSIDE" width="352.0" />
       <Label layoutX="32.0" layoutY="49.0" text="Xác nhận">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <VBox layoutX="43.0" layoutY="103.0" prefHeight="122.0" prefWidth="364.0">
+      <VBox layoutX="38.0" layoutY="103.0" prefHeight="122.0" prefWidth="337.0">
          <children>
-            <Label text="Người chuyển:">
+            <Label prefHeight="35.0" prefWidth="477.0" text="Người chuyển:">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="fullSendingNameLabel" prefHeight="20.0" prefWidth="252.0" text="Họ tên:">
+            <Label fx:id="fullSendingNameLabel" prefHeight="27.0" prefWidth="457.0" text="Họ tên:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="sendingAccountIDLabel" prefHeight="20.0" prefWidth="252.0" text="Mã tài khoản:">
+            <Label fx:id="sendingAccountIDLabel" prefHeight="27.0" prefWidth="430.0" text="Số tài khoản:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="sendingBankLabel" prefHeight="20.0" prefWidth="252.0" text="Ngân hàng:">
+            <Label fx:id="sendingBankLabel" prefHeight="27.0" prefWidth="377.0" text="Ngân hàng:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="43.0" layoutY="319.0" prefHeight="122.0" prefWidth="364.0">
+      <VBox layoutX="43.0" layoutY="319.0" prefHeight="122.0" prefWidth="337.0">
          <children>
-            <Label text="Người nhận:">
+            <Label prefHeight="35.0" prefWidth="309.0" text="Người nhận:">
                <font>
                   <Font size="24.0" />
                </font>
@@ -68,10 +64,7 @@
             </Label>
          </children>
       </VBox>
-      <Line endX="-8.500015258789062" endY="40.20001220703125" layoutX="76.0" layoutY="259.0" startX="-8.500015258789062" startY="-31.0" strokeWidth="5.0" />
-      <Polygon layoutX="109.0" layoutY="262.0" points="-50.0, 40.0, -33.00001525878906, 40.000030517578125, -41.00001525878906, 57.000030517578125" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="122.0" layoutX="32.0" layoutY="319.0" stroke="#ff5d00" strokeType="INSIDE" width="352.0" />
-      <VBox layoutX="88.0" layoutY="225.0" prefHeight="105.0" prefWidth="252.0">
+      <VBox layoutX="91.0" layoutY="225.0" prefHeight="80.0" prefWidth="204.0">
          <children>
             <Label text="Số tiền:">
                <font>
