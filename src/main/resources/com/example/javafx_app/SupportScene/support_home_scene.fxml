@@ -52,7 +52,7 @@
                     <graphic>
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="126.0">
                             <children>
-                                <Label fx:id="contact_information_icon" prefHeight="144.0" prefWidth="177.0" styleClass="icon_container" />
+                                <Label fx:id="contact_information_icon" prefHeight="68.0" prefWidth="92.0" styleClass="icon_container" />
                                 <Label fx:id="plane_icon1" prefHeight="9.0" prefWidth="101.0" styleClass="LabelInPane" text="Thông tin liên hệ" />
                             </children>
                         </VBox>
