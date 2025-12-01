@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class BillSceneController {
 
     @FXML
@@ -72,17 +74,17 @@ public class BillSceneController {
 
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
     }
 
     @FXML
     void XemCaiDat(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/setting/setting.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/setting/setting.fxml");
     }
 
     @FXML
     void XemTaiKhoan(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/account_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/account_scene.fxml");
     }
 
 }

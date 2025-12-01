@@ -80,3 +80,8 @@
 .chuyen_di {
     -fx-background-image: url("image/mat_tien.png");
 }
+
+/*Phần này dành cho các scene list hóa đơn*/
+#icon_tien_dien {
+    -fx-background-image: url("image/tia_set.png");
+}

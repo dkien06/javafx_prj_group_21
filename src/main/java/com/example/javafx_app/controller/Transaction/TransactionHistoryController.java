@@ -10,15 +10,17 @@ import javafx.scene.control.TextArea;
 
 import java.util.List;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class TransactionHistoryController {
     @FXML
     TextArea transactionHistoryField;
     @FXML
     void QuayLai(ActionEvent event){
-        //SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/home_scene.fxml");
     }
     public void displayHistory(){
-        /*transactionHistoryField.setWrapText(true);
+        transactionHistoryField.setWrapText(true);
         Account currentAccount = AccountManager.getInstance().getCurrentAccount();
         List<Transaction> transactionHistoryList = currentAccount.getHistory();
         for(Transaction t : transactionHistoryList){
@@ -43,6 +45,6 @@ public class TransactionHistoryController {
                 );
             }
 
-        }*/
+        }
     }
 }

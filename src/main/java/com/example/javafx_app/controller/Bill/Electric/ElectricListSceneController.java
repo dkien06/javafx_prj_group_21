@@ -1,15 +1,16 @@
-package com.example.javafx_app.controller.Transaction;
+package com.example.javafx_app.controller.Bill.Electric;
 
-import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-import static com.example.javafx_app.config.Constant.mainStage;
+public class ElectricListSceneController {
 
-public class TransactionHistorySceneController {
+    @FXML
+    private Label icon_tien_dien;
 
     @FXML
     private Button return_btn;
@@ -21,14 +22,11 @@ public class TransactionHistorySceneController {
     private VBox vbox_lich_su_giao_dich;
 
     @FXML
-    private VBox vbox_so_du_sotaikhoan;
-
-    @FXML
     private VBox vbox_to;
 
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+
     }
 
 }

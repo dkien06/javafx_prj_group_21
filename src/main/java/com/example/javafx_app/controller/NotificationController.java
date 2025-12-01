@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class NotificationController {
 
     @FXML
@@ -51,7 +53,7 @@ public class NotificationController {
 
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
     }
 
 }

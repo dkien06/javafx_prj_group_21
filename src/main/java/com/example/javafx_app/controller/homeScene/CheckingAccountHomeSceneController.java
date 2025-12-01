@@ -7,8 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
+import static com.example.javafx_app.config.Constant.mainStage;
 public class CheckingAccountHomeSceneController implements HomeSceneController{
+
     @FXML
     private Button VIP_btn;
 
@@ -59,17 +60,17 @@ public class CheckingAccountHomeSceneController implements HomeSceneController{
 
     @FXML
     public void ChuyenTien(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/TransactionScene/transaction_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_scene.fxml");
     }
 
     @FXML
     public void XemCaiDat(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "setting/setting.fxml");
+        SceneUtils.switchScene(mainStage, "setting/setting.fxml");
     }
 
     @FXML
     public void XemDIchVu(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "ServiceScene/service_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, "ServiceScene/service_home_scene.fxml");
     }
 
     @FXML
@@ -79,26 +80,27 @@ public class CheckingAccountHomeSceneController implements HomeSceneController{
 
     @FXML
     public void XemHoaDon(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "BillScene/bill_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, "BillScene/bill_home_scene.fxml");
     }
 
     @FXML
     public void XemLichSuGiaoDich(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "TransactionScene/transaction_history_scene.fxml");
+        SceneUtils.switchScene(mainStage, "TransactionScene/transaction_history_scene.fxml");
     }
 
     @FXML
     public void XemTaiKhoan(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/account_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/account_scene.fxml");
     }
 
     @FXML
     public void XemThongBao(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/noti_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/noti_scene.fxml");
     }
 
     @FXML
     public void XemVIP(ActionEvent event) {
 
     }
+
 }

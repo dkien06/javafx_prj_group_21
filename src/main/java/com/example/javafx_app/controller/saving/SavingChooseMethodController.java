@@ -4,6 +4,8 @@ import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SavingChooseMethodController {
     @FXML
     void MoNgay1(ActionEvent event){
@@ -19,10 +21,10 @@ public class SavingChooseMethodController {
     }
     @FXML
     void MoNgay(ActionEvent event, String type, double interestRate){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SavingScene/saving_choose_method_scene.fxml");
+        SceneUtils.switchScene(mainStage,"SavingScene/saving_choose_method_scene.fxml");
     }
     @FXML
     void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/saving_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
     }
 }

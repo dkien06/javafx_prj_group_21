@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="rootPane" fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" styleClass="rootPane" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Bill.Electric.ElectricListSceneController">
+    <content>
+        <VBox fx:id="vbox_to" prefHeight="852.0" prefWidth="411.0">
+            <children>
+                <Button fx:id="return_btn" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+                <VBox fx:id="vbox_lich_su_giao_dich" prefHeight="732.0" prefWidth="387.0" styleClass="vbox">
+                    <children>
+                        <Label text="Hóa đơn tiền nước" />
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="347.0">
+                            <graphic>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_chua_lsgd">
+                                    <children>
+                                        <Label fx:id="icon_tien_dien" prefHeight="40.0" prefWidth="43.0">
+                                            <styleClass>
+                                                <String fx:value="icon_container" />
+                                                <String fx:value="chuyen_vao" />
+                                            </styleClass>
+                                        </Label>
+                                        <VBox prefHeight="40.0" prefWidth="184.0">
+                                            <children>
+                                                <Label prefHeight="20.0" prefWidth="359.0" text="Nhà cung cấp dịch vụ" />
+                                                <Label prefHeight="20.0" prefWidth="225.0" text="Thời hạn giao dịch" />
+                                            </children>
+                                        </VBox>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="sotien" text="Số tiền" />
+                                    </children>
+                                </HBox>
+                            </graphic>
+                            <styleClass>
+                                <String fx:value="nut_chua_lsgd" />
+                                <String fx:value="nut_xanh" />
+                            </styleClass>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

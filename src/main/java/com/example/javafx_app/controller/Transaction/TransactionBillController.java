@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class TransactionBillController {
     @FXML
     private Label amountLabel;
@@ -30,10 +32,10 @@ public class TransactionBillController {
     }
     @FXML
     void TrangChu(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"TransactionScene/transaction_choose_account_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_choose_account_scene.fxml");
     }
 }
