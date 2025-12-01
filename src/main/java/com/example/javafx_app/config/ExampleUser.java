@@ -106,6 +106,6 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
-        AccountManager.getInstance().setCurrentAccount(accountA);
+        AccountManager.getInstance().setCurrentAccount(accountC);
     }
 }

@@ -117,7 +117,26 @@ public class TransactingController implements Initializable {
             isBankChosen = true;
         }
         if(isReceiveAccountValid && isAmountValid && isBankChosen){
-            System.out.println("Chuyển sang scene xác nhận chuyển khoản...");
+            TransactionManager.getInstance().newTransaction(
+                    TransactionType.TRANSFER,
+                    Double.parseDouble(amountTextField.getText()),
+                    "VND", //Tạm thời thế này đi
+                    (CheckingAccount) AccountManager.getInstance().getCurrentAccount(),
+                    (CheckingAccount) AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
+                    descriptionTextArea.getText()
+            );
+            try{
+                FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/verify_transaction.scene.fxml"));
+                Parent nextSceneRoot = nextSceneLoader.load();
+
+                VerifyTransactionController controller = nextSceneLoader.getController();
+                controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+
+                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+            }
+            catch (IOException e){
+                System.out.println("Có lỗi xảy ra!");
+            }
         }
     }
 }

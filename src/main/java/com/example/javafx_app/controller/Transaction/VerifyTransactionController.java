@@ -40,10 +40,10 @@ public class VerifyTransactionController {
     @FXML
     Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
-        /*fullSendingNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getFromAccount()).getFullName());
+        fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
         sendingBankLabel.setText("Ngân hàng: " + "21stBank");
-        fullReceiveNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getToAccount()).getFullName());
+        fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
         amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());
@@ -56,7 +56,7 @@ public class VerifyTransactionController {
                     case LOAN -> "Vay tiền";
                     case REPAY -> "Trả nợ";
                 }
-        );*/
+        );
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {

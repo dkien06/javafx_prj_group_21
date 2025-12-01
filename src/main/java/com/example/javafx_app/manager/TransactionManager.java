@@ -1,6 +1,7 @@
 package com.example.javafx_app.manager;
 
 import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
@@ -26,7 +27,7 @@ public class TransactionManager {
         return transactions;
     }
 
-    public void newTransaction(TransactionType type, double amount, String currency, Account fromAccount, Account toAccount, String description){
+    public void newTransaction(TransactionType type, double amount, String currency, CheckingAccount fromAccount, CheckingAccount toAccount, String description){
         currentTransaction = new Transaction(type,amount,currency,fromAccount, toAccount,description);
     }
     public void removeNewTransaction(){
