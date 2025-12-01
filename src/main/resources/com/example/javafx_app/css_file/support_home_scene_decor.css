@@ -59,3 +59,6 @@
 .ButtonInGridPane {
     -fx-background-radius: 16;
 }
+#contact_information_icon {
+    -fx-background-image: url("image/contact_information_icon.png");
+}
