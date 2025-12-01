@@ -59,6 +59,43 @@
 .ButtonInGridPane {
     -fx-background-radius: 16;
 }
+
+#plane_icon {
+    -fx-background-image: url("image/plane.png");
+}
+
+.LabelInPane {
+    -fx-text-fill: #27A4F2;
+}
+
+
+/*phần này dành cho scene hóa đơn tại vì 2 scene trông giống nhau*/
+#tien_dien_nuoc_icon {
+    -fx-background-image: url("image/tien_dien_nuoc.png");
+}
+
+#mu_cu_nhan_icon {
+    -fx-background-image: url("image/mu_cu_nhan.png");
+}
+
+#voucher_icon {
+    -fx-background-image: url("image/voucher.png");
+}
+
+#water_icon {
+    -fx-background-image: url("image/giot_nuoc.png");
+}
+
+#tia_set_icon {
+    -fx-background-image: url("image/tia_set.png");
+}
+
+#wifi_icon {
+    -fx-background-image: url("image/mangmeo.png");
+}
 #contact_information_icon {
     -fx-background-image: url("image/contact_information_icon.png");
+}
+#frequently_asked_question_icon {
+    -fx-background-image: url("image/frequently_asked_question_icon.png");
 }
