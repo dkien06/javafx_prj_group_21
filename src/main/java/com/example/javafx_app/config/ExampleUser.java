@@ -64,7 +64,15 @@ public class ExampleUser {
             "VND",
             "112233"
     );
-
+    private static final Account accountC1 = new SavingAccount(
+            "Ngo Duc C",
+            "020406006769",
+            "12345679",
+            "        ",
+            0,                  // balance (mặc định 0)
+            "VND",
+            "112233"
+    );
     private static final Customer userC = new Customer(
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
@@ -117,11 +125,13 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
+        AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
         AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
         userA.addAccountID(accountA.getAccountID());
         userB.addAccountID(accountB.getAccountID());
         userC.addAccountID(accountC.getAccountID());
+        userC.addAccountID(accountC1.getAccountID());
         userD.addAccountID(accountD.getAccountID());
         userE.addAccountID(accountE.getAccountID());
         UserManager.getInstance().addUser(userA);
@@ -129,7 +139,5 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
-        AccountManager.getInstance().setCurrentAccount(accountC);
-        UserManager.getInstance().setCurrentUser(userC);
     }
 }

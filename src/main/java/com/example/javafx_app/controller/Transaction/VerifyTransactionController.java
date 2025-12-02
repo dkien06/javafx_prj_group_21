@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.block.TransactionHistoryBlockController;
+import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
@@ -36,6 +37,8 @@ public class VerifyTransactionController {
     @FXML
     Label amountLabel;
     @FXML
+    Label amountInTextLabel;
+    @FXML
     Label descriptionLabel;
     @FXML
     Label transactionTypeLabel;
@@ -50,7 +53,8 @@ public class VerifyTransactionController {
         fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
-        amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());
+        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + newTransaction.getCurrency());
+        amountInTextLabel.setText(NumberToVietnameseWord.numberToVietnameseWords(newTransaction.getAmount()));
         descriptionLabel.setText(newTransaction.getDescription());
         transactionTypeLabel.setText(
                 switch (newTransaction.getType()){

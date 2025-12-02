@@ -82,6 +82,30 @@
 }
 
 /*Phần này dành cho các scene list hóa đơn*/
+
+.btn_bill {
+    -fx-background-color: transparent;
+}
+
+.hbox_btn_bill {
+    -fx-background-color: transparent;
+    -fx-padding: 8;
+    -fx-spacing: 12;
+}
+
+/*icon của mỗi loại button*/
 #icon_tien_dien {
     -fx-background-image: url("image/tia_set.png");
+}
+
+#icon_tien_mang {
+    -fx-background-image: url("image/mangmeo.png");
+}
+
+#icon_tien_nuoc {
+    -fx-background-image: url("image/giot_nuoc.png");
+}
+
+#icon_tien_hoc_phi {
+    -fx-background-image: url("image/mu_cu_nhan.png");
 }

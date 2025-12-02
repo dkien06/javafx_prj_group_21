@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.setting;
 
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +26,12 @@ public class SettingsController {
     }
     @FXML
     public void returnToHomeScene(ActionEvent event){
-        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,
+                AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
+    }
+    @FXML
+    public void DangXuat(ActionEvent event){
+        AccountManager.getInstance().logOut();
+        SceneUtils.switchScene(mainStage,"login_scene.fxml");
     }
 }

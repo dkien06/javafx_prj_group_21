@@ -5,17 +5,23 @@ import com.example.javafx_app.block.TransactionHistoryBlockController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
@@ -61,6 +67,7 @@ public class TransactionHistorySceneController {
     }
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, AccountManager.getInstance().chooseHomeScene(
+                AccountManager.getInstance().getCurrentAccount()));
     }
 }

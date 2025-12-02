@@ -20,9 +20,27 @@ public class TransactionHistoryBlockController {
     public void setData(Transaction transaction){
         toAccountName.setText(transaction.getToAccount().getAccountName());
         description.setText(transaction.getDescription());
-        amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
-        icon.getStyleClass().addAll("icon_container","chuyen_vao");
-        button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
-        System.out.println("Set data completed");
+        switch (transaction.getType()){
+            case TRANSFER:
+                if(transaction.getAmount() > 0){
+                    amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
+                    icon.getStyleClass().addAll("icon_container","chuyen_di");
+                    button.getStyleClass().addAll("nut_chua_lsgd", "nut_do");
+                }
+                else{
+                    amount.setText((-transaction.getAmount()) + transaction.getFromAccount().getCurrency());
+                    icon.getStyleClass().addAll("icon_container","chuyen_vao");
+                    button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
+                }
+            case WITHDRAW:
+                //Từ từ đã
+            case DEPOSIT:
+                //Từ từ đã
+            case LOAN:
+                //Từ từ đã
+            case REPAY:
+                //Từ từ đã
+        }
+
     }
 }
