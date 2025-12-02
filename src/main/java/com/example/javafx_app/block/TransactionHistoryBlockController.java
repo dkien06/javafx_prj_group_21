@@ -1,0 +1,28 @@
+package com.example.javafx_app.block;
+
+import com.example.javafx_app.object.Transaction;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+public class TransactionHistoryBlockController {
+    @FXML
+    private Label icon;
+    @FXML
+    private Label toAccountName;
+    @FXML
+    private Label description;
+    @FXML
+    private Label amount;
+    @FXML
+    private Button button;
+
+    public void setData(Transaction transaction){
+        toAccountName.setText(transaction.getToAccount().getAccountName());
+        description.setText(transaction.getDescription());
+        amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
+        icon.getStyleClass().addAll("icon_container","chuyen_vao");
+        button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
+        System.out.println("Set data completed");
+    }
+}

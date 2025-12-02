@@ -35,6 +35,9 @@ public class CheckingAccount extends Account {
         Transaction newTransfer = new Transaction(TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
         this.addTransaction(newTransfer);
         TransactionManager.getInstance().addTransaction(newTransfer);
+
+        Transaction newReceive = new Transaction(TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
+        toAccount.addTransaction(newReceive);
         return true;
     }
     // ✅ Rút tiền để tiết kiệm hoặc trả nợ

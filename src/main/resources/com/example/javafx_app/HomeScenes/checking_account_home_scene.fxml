@@ -51,6 +51,6 @@
         </GridPane>
         <Label layoutX="29.0" layoutY="114.0" text="Xin chào " />
         <Button fx:id="noti_btn" layoutX="355.0" layoutY="34.0" mnemonicParsing="false" onAction="#XemThongBao" prefHeight="60.0" prefWidth="60.0" />
-      <Button fx:id="balance_btn" layoutX="171.0" layoutY="91.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="243.0" text="VND: " />
+      <Button fx:id="balance_btn" layoutX="171.0" layoutY="91.0" mnemonicParsing="false" onAction="#SoTien" prefHeight="33.0" prefWidth="243.0" text="VND: " />
     </children>
 </AnchorPane>

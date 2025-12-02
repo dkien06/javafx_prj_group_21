@@ -1,12 +1,21 @@
 package com.example.javafx_app.controller.homeScene;
 
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+
+import java.io.IOException;
+
 import static com.example.javafx_app.config.Constant.mainStage;
 public class CheckingAccountHomeSceneController implements HomeSceneController{
 
@@ -84,8 +93,14 @@ public class CheckingAccountHomeSceneController implements HomeSceneController{
     }
 
     @FXML
-    public void XemLichSuGiaoDich(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "TransactionScene/transaction_history_scene.fxml");
+    public void XemLichSuGiaoDich(ActionEvent event) throws IOException {
+        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_history_scene.fxml"));
+        Parent nextSceneRoot = nextSceneLoader.load();
+
+        TransactionHistorySceneController controller = nextSceneLoader.getController();
+        controller.loadTransactionHistory();
+
+        SceneUtils.switchScene(mainStage,nextSceneRoot);
     }
 
     @FXML
@@ -102,5 +117,8 @@ public class CheckingAccountHomeSceneController implements HomeSceneController{
     public void XemVIP(ActionEvent event) {
 
     }
-
+    @FXML
+    public void SoTien(){
+        balance_btn.setText("VND: " + ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance());
+    }
 }
