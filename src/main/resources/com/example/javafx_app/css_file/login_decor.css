@@ -53,6 +53,29 @@ AnchorPane {
     -fx-padding: 4;
 }
 
+.choice-box {
+    -fx-background-color: white;
+    -fx-background-radius: 4;
+    -fx-padding: 2;
+}
+
+.choice-box > .label {
+    -fx-text-fill: black;
+}
+
+.menu-item > .label {
+    -fx-text-fill: black;
+}
+
+/*chỉnh các text thông báo lỗi thành màu đỏ*/
+.red_label {
+    -fx-text-fill: red;
+}
+
+.red_text {
+    -fx-font-weight: bold;
+}
+
 /*phần này dành cho scene của after trans*/
 #dau_tich_V {
     -fx-background-image: url("image/dau_tich.png");
@@ -71,6 +94,12 @@ AnchorPane {
 
 .label_in_Vbox {
     -fx-text-fill: #27A4F2;
+}
+
+#dateLabel {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.3px;
 }
 
 /*phần này dành cho xác nhận chuyển khoản và nhập mã OTP*/

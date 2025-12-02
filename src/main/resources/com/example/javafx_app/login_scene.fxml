@@ -8,26 +8,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#QuenMatKhau" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.LoginController">
    <children>
-      <VBox layoutX="65.0" layoutY="262.0" prefHeight="176.0" prefWidth="283.0">
+      <VBox layoutX="65.0" layoutY="236.0" prefHeight="176.0" prefWidth="283.0">
          <children>
             <Label text="Số CMND" />
             <TextField fx:id="CCCDField" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="233.3367462158203" />
             <Label layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="261.0" text="Chọn loại tài khoản bạn muốn đăng nhập" />
             <ChoiceBox fx:id="accountType" prefHeight="26.0" prefWidth="293.0" />
             <Label text="Mật khẩu" />
             <PasswordField fx:id="PasswordField" />
-            <Text layoutX="10.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="233.3367462158203" />
+            <Label fx:id="WrongLoginLabel" prefHeight="18.0" prefWidth="211.0" styleClass="red_label" textFill="#cc3535" />
          </children>
       </VBox>
-      <Button fx:id="btn_dang_nhap" layoutX="160.0" layoutY="440.0" mnemonicParsing="false" onAction="#DangNhap" text="Đăng nhập" />
+      <Button fx:id="btn_dang_nhap" layoutX="159.0" layoutY="437.0" mnemonicParsing="false" onAction="#DangNhap" text="Đăng nhập" />
       <Label layoutX="161.0" layoutY="485.0" onMouseClicked="#QuenMatKhau" text="Quên mật khẩu?" textFill="#27A4F2" underline="true" />
       <Button fx:id="btn_tao_tai_khoan_moi" layoutX="139.0" layoutY="578.0" mnemonicParsing="false" onAction="#TaoTaiKhoanMoi" text="Tạo tài khoản mới" />
-      <Label fx:id="WrongLoginLabel" layoutX="101.0" layoutY="511.0" prefHeight="18.0" prefWidth="211.0" textFill="#e00202" />
       <Line endX="110.79998779296875" layoutX="201.0" layoutY="537.0" startX="-99.59999084472656" stroke="#1882d4" />
    </children>
 </AnchorPane>
