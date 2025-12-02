@@ -29,4 +29,9 @@ public class SettingsController {
         SceneUtils.switchScene(mainStage,
                 AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
     }
+    @FXML
+    public void DangXuat(ActionEvent event){
+        AccountManager.getInstance().logOut();
+        SceneUtils.switchScene(mainStage,"login_scene.fxml");
+    }
 }

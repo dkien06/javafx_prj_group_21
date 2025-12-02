@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.util.SceneUtils;
@@ -22,20 +23,21 @@ public class TransactionBillController {
     private Label toAccountIDLabel;
     @FXML
     private Label toBankLabel;
-    void loadTransaction(Transaction transaction){
-        User user = UserManager.getInstance().findUserFromAccount(transaction.getToAccount());
-        amountLabel.setText(transaction.getAmount() + " " + transaction.getCurrency());
-        dateLabel.setText(String.valueOf(transaction.getDate()));
+    void loadTransaction(){
+        Transaction cur = TransactionManager.getInstance().getCurrentTransaction();
+        User user = UserManager.getInstance().findUserByCitizenID(cur.getToAccount().getCitizenID());
+        amountLabel.setText(cur.getAmount() + " " + cur.getCurrency());
+        dateLabel.setText(String.valueOf(cur.getDate()));
         toAccountFullNameLabel.setText(user.getFullName());
-        toAccountIDLabel.setText(transaction.getToAccount().getAccountID());
+        toAccountIDLabel.setText(cur.getToAccount().getAccountID());
         toBankLabel.setText("21stBank");
     }
     @FXML
     void TrangChu(ActionEvent event){
-        SceneUtils.switchScene(mainStage,"HomeScenes/home_scene.fxml");
+        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
-        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_choose_account_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_scene.fxml");
     }
 }

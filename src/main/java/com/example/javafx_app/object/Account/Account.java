@@ -8,12 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Account chính (Dùng cho các hành vi cơ bản (Đăng nhập, đăng xuất, check mật khẩu, PIN,...))
- * Còn chuyển tiền thì vào CheckingAccount mà chuyển (Bình thường tạo tài khoản xong thì CheckingAccount tạo cùng luôn)
- * Đó là lí do tui trong class Account có mấy cái biến thuộc tính checkingAccount, savingAccount, loanAccount là thế đấy, vì nó có làm mấy thứ cơ bản đâu, với lại quản lí nó dễ hơn:)
- * Với lại phòng trường hợp 1 người có 2 account có function giống nhau nựa thì check null (VD: savingAccount == null) còn nhanh hơn là tìm kiếm nguyên cả list accounts dấy:)
- */
 public  abstract class Account {
     protected String accountName;
     protected String citizenID;

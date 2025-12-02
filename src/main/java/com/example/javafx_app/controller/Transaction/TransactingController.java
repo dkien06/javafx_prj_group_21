@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.manager.UserManager;
@@ -19,6 +20,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -30,52 +32,67 @@ import static com.example.javafx_app.config.Constant.mainStage;
 public class TransactingController implements Initializable {
     @FXML
     private ChoiceBox<String> bankChoiceBox;
-    private final String[] banks = {"MB Bank","BIDV","Techcombank","etc..."}; //Tự add đi
+    private final String[] banks = {"21stBank","MB Bank","BIDV","Techcombank","..."}; //Tự add đi
     @FXML
     private Text bankChoiceErrorLog;
     @FXML
     private TextField receiveAccountIDTextField;
     @FXML
-    private Text receiveAccountIDErrorLog;
+    private Text receiveAccountIDLog;
     @FXML
     private TextField amountTextField;
     @FXML
-    private Text amountInWordsText;
+    private Text amountLog;
     @FXML
-    private Text amountErrorLog;
-    @FXML
-    private TextArea descriptionTextArea;
-    void loadTransaction(Account account, Transaction transaction) {
-        if (transaction != null) {
-            receiveAccountIDTextField.setText(transaction.getToAccount().getAccountID());
-            amountTextField.setText(Integer.toString((int) transaction.getAmount()));
-            descriptionTextArea.setText(transaction.getDescription());
-        }
+    private TextField descriptionTextArea;
+    void loadTransaction(Account account, Transaction transaction){
+        //Chờ scene sau đã
     }
+    boolean isReceiveAccountValid = false;
+    boolean isAmountValid = false;
+    boolean isBankChosen = false;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //bankChoiceBox.getItems().addAll(banks);
-        /*amountTextField.textProperty().addListener((observable, _, value) -> {
-            // Xử lý khi giá trị text thay đổi
+
+        bankChoiceBox.getItems().addAll(banks);
+        bankChoiceBox.setValue("Chọn ngân hàng");
+        amountTextField.textProperty().addListener((observable, _, value) -> {
             try {
-                //newValue.matches("\\d+") -> Check xem biến newValue có viết dưới dạng số không)
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     long amount = Long.parseLong(value);
-                    if(amount > AccountManager.getInstance().getCurrentAccount().getCheckingAccount().getBalance()){
-                        amountErrorLog.setText("Số tiền bạn nhập không đủ để chuyển");
+                    if(amount > ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()){
+                        amountLog.setText("Số tiền bạn nhập không đủ để chuyển");
+                        amountLog.setFill(Color.rgb(255, 0, 0));
+                        isAmountValid = false;
                     }
-                    else amountErrorLog.setText("");
-                    String amountInWords = TransactionManager.getInstance().numberToVietnameseWords(amount);
-                    amountInWordsText.setText(amountInWords + " đồng");
+                    String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
+                    amountLog.setText(amountInWords);
+                    amountLog.setFill(Color.rgb(0,0,0));
+                    isAmountValid = true;
                 } else {
-                    amountInWordsText.setText("");
-                    amountErrorLog.setText("Số tiền không hợp lệ");
+                    amountLog.setText("Số tiền không hợp lệ");
+                    amountLog.setFill(Color.rgb(255, 0, 0));
+                    isAmountValid = false;
                 }
             } catch (NumberFormatException e) {
-                amountInWordsText.setText("");
-                amountErrorLog.setText("Số tiền không hợp lệ");
+                amountLog.setText("Số tiền không hợp lệ");
+                amountLog.setFill(Color.rgb(255, 0, 0));
+                isAmountValid = false;
             }
-        });*/
+        });
+        receiveAccountIDTextField.textProperty().addListener((observableValue, _, value) -> {
+            CheckingAccount receiveAccount = (CheckingAccount) AccountManager.getInstance().findAccount(value);
+            if(receiveAccount == null){
+                receiveAccountIDLog.setText("Tài khoản không tồn tại");
+                receiveAccountIDLog.setFill(Color.rgb(255,0,0));
+                isReceiveAccountValid = false;
+            }
+            else{
+                receiveAccountIDLog.setText(receiveAccount.getAccountName().toUpperCase());
+                receiveAccountIDLog.setFill(Color.rgb(0,0,0));
+                isReceiveAccountValid = true;
+            }
+        });
     }
     @FXML
     void QuayLai(ActionEvent event){
@@ -84,6 +101,44 @@ public class TransactingController implements Initializable {
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
+        if(receiveAccountIDTextField.getText().isEmpty()){
+            receiveAccountIDLog.setText("Vui lòng nhập tên người gửi");
+            receiveAccountIDLog.setFill(Color.rgb(255,0,0));
+            isReceiveAccountValid = false;
+        }
+        if(amountTextField.getText().isEmpty()){
+            amountLog.setText("Vui lòng nhập số tiền gửi");
+        }
+        if(bankChoiceBox.getValue().equals("Chọn ngân hàng")){
+            bankChoiceErrorLog.setText("Vui lòng chọn ngân hàng");
+            amountLog.setFill(Color.rgb(255,0,0));
+            isBankChosen = false;
+        }
+        else{
+            bankChoiceErrorLog.setText("");
+            isBankChosen = true;
+        }
+        if(isReceiveAccountValid && isAmountValid && isBankChosen){
+            TransactionManager.getInstance().newTransaction(
+                    TransactionType.TRANSFER,
+                    Double.parseDouble(amountTextField.getText()),
+                    "VND", //Tạm thời thế này đi
+                    (CheckingAccount) AccountManager.getInstance().getCurrentAccount(),
+                    (CheckingAccount) AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
+                    descriptionTextArea.getText()
+            );
+            try{
+                FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/verify_transaction.scene.fxml"));
+                Parent nextSceneRoot = nextSceneLoader.load();
 
+                VerifyTransactionController controller = nextSceneLoader.getController();
+                controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+
+                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
+            }
+            catch (IOException e){
+                System.out.println("Có lỗi xảy ra!");
+            }
+        }
     }
 }

@@ -1,9 +1,12 @@
 package com.example.javafx_app.controller.Transaction;
 
+import com.example.javafx_app.block.TransactionHistoryBlockController;
+import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
@@ -34,6 +37,8 @@ public class VerifyTransactionController {
     @FXML
     Label amountLabel;
     @FXML
+    Label amountInTextLabel;
+    @FXML
     Label descriptionLabel;
     @FXML
     Label transactionTypeLabel;
@@ -42,13 +47,14 @@ public class VerifyTransactionController {
     @FXML
     Text PINErrorLog;
     void displayTransactionInformation(Transaction newTransaction){
-        fullSendingNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getFromAccount()).getFullName());
+        fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
         sendingBankLabel.setText("Ngân hàng: " + "21stBank");
-        fullReceiveNameLabel.setText("Họ tên: " + UserManager.getInstance().findUserFromAccount(newTransaction.getToAccount()).getFullName());
+        fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
-        amountLabel.setText(newTransaction.getAmount() + newTransaction.getCurrency());
+        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + newTransaction.getCurrency());
+        amountInTextLabel.setText(NumberToVietnameseWord.numberToVietnameseWords(newTransaction.getAmount()));
         descriptionLabel.setText(newTransaction.getDescription());
         transactionTypeLabel.setText(
                 switch (newTransaction.getType()){
@@ -72,31 +78,31 @@ public class VerifyTransactionController {
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
-       /* String PIN = PINField.getText();
+       String PIN = PINField.getText();
         if(PIN.isEmpty()){
             PINErrorLog.setText("Vui lòng nhập mã pin");
             return;
         }
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
-            AccountManager.getInstance().getCurrentAccount().getCheckingAccount().transfer(
-                    currentTransaction.getToAccount().getCheckingAccount(),
+            ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).transfer(
+                    (CheckingAccount) currentTransaction.getToAccount(),
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
             FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_bill_scene.fxml"));
             Parent nextSceneRoot = nextSceneLoader.load();
 
-            TransactionBillController controller = nextSceneLoader.getController();
-            controller.loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
+            TransactionBillController billController = nextSceneLoader.getController();
+            billController.loadTransaction();
+
             TransactionManager.getInstance().removeNewTransaction();
 
             SceneUtils.switchScene(mainStage,nextSceneRoot);
         }
-        else{
+        else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");
         }
-        */
     }
 
 }

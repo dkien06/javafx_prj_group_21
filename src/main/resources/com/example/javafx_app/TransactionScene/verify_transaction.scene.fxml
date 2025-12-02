@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.VerifyTransactionController">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/login_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Transaction.VerifyTransactionController">
    <children>
       <Label layoutX="155.0" layoutY="21.0" text="Xác nhận">
          <font>
@@ -87,12 +87,12 @@
                   <Insets left="12.0" />
                </padding>
             </Label>
-            <Label styleClass="label_in_Vbox_black" text="Số tiền:">
+            <Label fx:id="amountLabel" prefHeight="27.0" prefWidth="307.0" styleClass="label_in_Vbox_black" text="Số tiền:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label prefWidth="204.0" styleClass="label_in_Vbox_black" text="//Hiện dạng chữ">
+            <Label fx:id="amountInTextLabel" prefWidth="204.0" styleClass="label_in_Vbox_black" text="//Hiện dạng chữ">
                <font>
                   <Font size="14.0" />
                </font>

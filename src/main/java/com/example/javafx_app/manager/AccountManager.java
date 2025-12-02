@@ -60,11 +60,14 @@ public class AccountManager {
     public Account getCurrentAccount() {
         return currentAccount;
     }
-    public void setCurrentAccount(Account currentAccount) {
-        this.currentAccount = currentAccount;
-    }
     public Map<String, Account> getAccountList(){
         return accountMap;
+    }
+
+    //Đăng nhập trá hình
+    public void setCurrentAccount(Account currentAccount) {
+        AccountManager.currentAccount = currentAccount;
+        UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserFromAccount(currentAccount));
     }
 
     //Đăng kí
@@ -251,8 +254,8 @@ public class AccountManager {
     }
     public static void main(String args[]) throws IOException {
         ExampleUser.init();
-        System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
-        List<Account> a = getInstance().findAccountFromCitizenID("010203008386");
+        System.out.println(UserManager.getInstance().findUserByCitizenID("010203004953"));
+        List<Account> a = getInstance().findAccountFromCitizenID("010203004953");
         for(Account a1 : a){
             System.out.println(a1.toString());
         }

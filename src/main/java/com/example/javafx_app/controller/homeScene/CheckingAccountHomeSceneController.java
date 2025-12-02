@@ -1,21 +1,25 @@
-package com.example.javafx_app.controller.HomeController;
+package com.example.javafx_app.controller.homeScene;
 
+import com.example.javafx_app.BankApplication;
+import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
 import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import com.example.javafx_app.object.Account.Account;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.io.IOException;
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class HomeCheckingController implements Initializable {
+public class CheckingAccountHomeSceneController implements Initializable {
 
     @FXML
     private Button VIP_btn;
@@ -62,51 +66,60 @@ public class HomeCheckingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Account currentAcc = AccountManager.getInstance().getCurrentAccount();
-        balance_btn.setText(currentAcc.getBalance()+currentAcc.getCurrency());
+        balance_btn.setText("Số dư: " + currentAcc.getBalance() + currentAcc.getCurrency());
     }
     @FXML
-    void ChuyenTien(ActionEvent event) {
-        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_between_accounts_scene.fxml");
+    public void ChuyenTien(ActionEvent event) {
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_scene.fxml");
     }
 
     @FXML
-    void XemCaiDat(ActionEvent event) {
+    public void XemCaiDat(ActionEvent event) {
         SceneUtils.switchScene(mainStage, "setting/setting.fxml");
     }
 
     @FXML
-    void XemDIchVu(ActionEvent event) {
+    public void XemDIchVu(ActionEvent event) {
         SceneUtils.switchScene(mainStage, "ServiceScene/service_home_scene.fxml");
     }
 
     @FXML
-    void XemHoTro(ActionEvent event) {
+    public void XemHoTro(ActionEvent event) {
 
     }
 
     @FXML
-    void XemHoaDon(ActionEvent event) {
+    public void XemHoaDon(ActionEvent event) {
         SceneUtils.switchScene(mainStage, "BillScene/bill_home_scene.fxml");
     }
 
     @FXML
-    void XemLichSuGiaoDich(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "TransactionScene/transaction_history_scene.fxml");
+    public void XemLichSuGiaoDich(ActionEvent event) throws IOException {
+        FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_history_scene.fxml"));
+        Parent nextSceneRoot = nextSceneLoader.load();
+
+        TransactionHistorySceneController controller = nextSceneLoader.getController();
+        controller.loadTransactionHistory();
+
+        SceneUtils.switchScene(mainStage,nextSceneRoot);
     }
 
     @FXML
-    void XemTaiKhoan(ActionEvent event) {
+    public void XemTaiKhoan(ActionEvent event) {
         SceneUtils.switchScene(mainStage, "/com/example/javafx_app/account_scene.fxml");
     }
 
     @FXML
-    void XemThongBao(ActionEvent event) {
+    public void XemThongBao(ActionEvent event) {
         SceneUtils.switchScene(mainStage, "/com/example/javafx_app/noti_scene.fxml");
     }
 
     @FXML
-    void XemVIP(ActionEvent event) {
+    public void XemVIP(ActionEvent event) {
 
     }
-
+    @FXML
+    public void SoTien(){
+        balance_btn.setText("VND: " + ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance());
+    }
 }

@@ -6,6 +6,7 @@ import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
+import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

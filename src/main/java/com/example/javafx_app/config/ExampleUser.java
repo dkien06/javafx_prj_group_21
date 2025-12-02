@@ -3,6 +3,9 @@ package com.example.javafx_app.config;
 import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.LoanAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 
@@ -56,8 +59,8 @@ public class ExampleUser {
             "Ngo Duc C",
             "020406006769",
             "12345678",
-            "        ",
-            0,                  // balance (mặc định 0)
+            "CuongDuc%2008",
+            2_000_000,                  // balance (mặc định 0)
             "VND",
             "112233"
     );
@@ -98,20 +101,43 @@ public class ExampleUser {
             "DLeThiThuy@outlook.com",
             "020406006967"
     );
+
+    // === USER E ===
+    private static final Account accountE = new CheckingAccount(
+            "Hoang Thi E",
+            "010102030508",
+            "16180340",
+            "EnHoang*1024",
+            1_000_000,                  // balance (mặc định 0)
+            "VND",
+            "258013"
+    );
+
+    private static final Customer userE = new Customer(
+            "Hoàng Thị E",
+            LocalDate.of(2000,1,1),
+            GENDER.FEMALE,
+            "0141421356",
+            "HoangVanThai1970@gmail.com",
+            "010102030508"
+    );
     public static void init(){
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
         AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
+        AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
         userA.addAccountID(accountA.getAccountID());
         userB.addAccountID(accountB.getAccountID());
         userC.addAccountID(accountC.getAccountID());
         userC.addAccountID(accountC1.getAccountID());
         userD.addAccountID(accountD.getAccountID());
+        userE.addAccountID(accountE.getAccountID());
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
+        UserManager.getInstance().addUser(userE);
     }
 }
