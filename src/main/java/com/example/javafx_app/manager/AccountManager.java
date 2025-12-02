@@ -60,6 +60,9 @@ public class AccountManager {
     public Account getCurrentAccount() {
         return currentAccount;
     }
+    public void setCurrentAccount(Account currentAccount) {
+        this.currentAccount = currentAccount;
+    }
     public Map<String, Account> getAccountList(){
         return accountMap;
     }

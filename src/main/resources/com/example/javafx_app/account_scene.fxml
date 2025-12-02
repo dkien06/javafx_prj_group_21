@@ -12,40 +12,25 @@
     <children>
         <Label fx:id="logo_label" layoutX="29.0" layoutY="54.0" prefHeight="60.0" prefWidth="85.0" />
       <Label fx:id="avatar" layoutX="168.0" layoutY="76.0" prefHeight="75.0" prefWidth="77.0" styleClass="icon_container" />
-      <Label layoutX="164.0" layoutY="162.0" prefHeight="25.0" prefWidth="85.0" text="User Name">
+      <Label fx:id="Name" layoutX="164.0" layoutY="162.0" prefHeight="25.0" prefWidth="85.0" text="User Name">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="return_btn" layoutX="168.0" layoutY="606.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
-      <VBox fx:id="my_vbox" layoutY="205.0" prefHeight="387.0" prefWidth="414.0">
+      <Button fx:id="return_btn" layoutX="167.0" layoutY="455.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+      <VBox fx:id="my_vbox" layoutX="-1.0" layoutY="228.0" prefHeight="202.0" prefWidth="414.0">
          <children>
-            <Label text="Họ Và Tên">
+            <Label fx:id="CitizenID" text="CCCD">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Họ Và Tên">
+            <Label fx:id="PhoneNumber" text="Số điện thoại">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Họ Và Tên">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Họ Và Tên">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Họ Và Tên">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Họ Và Tên">
+            <Label fx:id="Email" text="Email">
                <font>
                   <Font size="14.0" />
                </font>
@@ -57,8 +42,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefWidth="150.0" />
-                  <Button mnemonicParsing="false" prefHeight="7.0" prefWidth="71.0" text="Button" />
+                  <ChoiceBox fx:id="AccountType" prefWidth="150.0" />
+                  <Button fx:id="ChangeAccount" mnemonicParsing="false" onAction="#ChangeAccount" prefHeight="7.0" prefWidth="71.0" text="Button" />
                </children>
             </HBox>
          </children>

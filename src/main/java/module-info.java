@@ -22,4 +22,6 @@ module com.example.javafx_app {
     exports com.example.javafx_app.controller;
     opens com.example.javafx_app.controller to javafx.fxml, javafx.graphics;
     opens com.example.javafx_app.controller.Bill.Electric to javafx.fxml;
+    exports com.example.javafx_app.controller.HomeController;
+    opens com.example.javafx_app.controller.HomeController to javafx.fxml, javafx.graphics;
 }

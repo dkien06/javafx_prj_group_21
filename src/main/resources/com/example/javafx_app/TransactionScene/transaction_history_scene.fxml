@@ -14,10 +14,9 @@
             <Button fx:id="return_btn" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
             <VBox fx:id="vbox_so_du_sotaikhoan" prefHeight="37.0" prefWidth="387.0" styleClass="vbox">
                <children>
-                  <Label text="Họ và tên" />
-                  <Label text="Số dư" />
-                  <Label text="VND: " />
-                  <Label text="Số tài khoản: " />
+                  <Label fx:id="Name" text="Họ và tên" />
+                  <Label fx:id="Balance" text="Số dư" />
+                  <Label fx:id="AccountID" text="Số tài khoản: " />
                </children>
             </VBox>
             <VBox fx:id="vbox_lich_su_giao_dich" prefHeight="605.0" prefWidth="387.0" styleClass="vbox">
