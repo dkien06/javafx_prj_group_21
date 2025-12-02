@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/service_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.ServiceController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.ServiceController">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>
@@ -52,7 +52,7 @@
                     <graphic>
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="126.0">
                             <children>
-                                <Label fx:id="plane_icon" prefHeight="72.0" prefWidth="72.0" styleClass="icon_container" />
+                                <Label fx:id="contact_information_icon" prefHeight="68.0" prefWidth="92.0" styleClass="icon_container" />
                                 <Label fx:id="plane_icon1" prefHeight="9.0" prefWidth="101.0" styleClass="LabelInPane" text="Thông tin liên hệ" />
                             </children>
                         </VBox>
@@ -62,7 +62,7 @@
                     <graphic>
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="126.0">
                             <children>
-                                <Label fx:id="tien_dien_nuoc_icon" prefHeight="72.0" prefWidth="72.0" styleClass="icon_container" />
+                                <Label fx:id="frequently_asked_question_icon" prefHeight="72.0" prefWidth="72.0" styleClass="icon_container" />
                                 <Label fx:id="plane_icon11" prefHeight="17.0" prefWidth="115.0" styleClass="LabelInPane" text="Câu hỏi thường gặp" />
                             </children>
                         </VBox>
