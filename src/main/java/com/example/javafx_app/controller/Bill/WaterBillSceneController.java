@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller.Bill.Electric;
+package com.example.javafx_app.controller.Bill;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,10 +7,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ElectricBillSceneController {
+public class WaterBillSceneController {
 
     @FXML
     private Label WrongLoginLabel;
+
+    @FXML
+    private ChoiceBox<?> accountType;
 
     @FXML
     private Button continue_btn;
@@ -20,9 +23,6 @@ public class ElectricBillSceneController {
 
     @FXML
     private Label nguon_thanh_toan;
-
-    @FXML
-    private ChoiceBox<?> nha_cung_cap;
 
     @FXML
     private Button return_btn;
