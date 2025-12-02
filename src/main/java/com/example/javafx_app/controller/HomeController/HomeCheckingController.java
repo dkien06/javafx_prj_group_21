@@ -1,16 +1,21 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.HomeController;
 
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class HomeSceneController {
+public class HomeCheckingController implements Initializable {
 
     @FXML
     private Button VIP_btn;
@@ -27,11 +32,6 @@ public class HomeSceneController {
     @FXML
     private Button bill_btn;
 
-    @FXML
-    private GridPane gridpane1;
-
-    @FXML
-    private GridPane gridpane2;
 
     @FXML
     private Label logo_label;
@@ -59,7 +59,11 @@ public class HomeSceneController {
 
     @FXML
     private Button transfer_btn;
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Account currentAcc = AccountManager.getInstance().getCurrentAccount();
+        balance_btn.setText(currentAcc.getBalance()+currentAcc.getCurrency());
+    }
     @FXML
     void ChuyenTien(ActionEvent event) {
         SceneUtils.switchScene(mainStage,"TransactionScene/transaction_between_accounts_scene.fxml");

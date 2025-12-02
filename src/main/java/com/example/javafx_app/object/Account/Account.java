@@ -68,6 +68,9 @@ public  abstract class Account {
     public String getPassword() {
         return password;
     }
+    public  double getBalance() {
+        return balance;
+    }
     public LocalDate getStartDate() {
         return StartDate;
     }

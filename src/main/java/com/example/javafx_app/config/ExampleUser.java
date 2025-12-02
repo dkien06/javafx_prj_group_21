@@ -61,7 +61,15 @@ public class ExampleUser {
             "VND",
             "112233"
     );
-
+    private static final Account accountC1 = new SavingAccount(
+            "Ngo Duc C",
+            "020406006769",
+            "12345679",
+            "        ",
+            0,                  // balance (mặc định 0)
+            "VND",
+            "112233"
+    );
     private static final Customer userC = new Customer(
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
@@ -94,10 +102,12 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
+        AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
         userA.addAccountID(accountA.getAccountID());
         userB.addAccountID(accountB.getAccountID());
         userC.addAccountID(accountC.getAccountID());
+        userC.addAccountID(accountC1.getAccountID());
         userD.addAccountID(accountD.getAccountID());
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
