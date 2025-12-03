@@ -1,9 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.block.TransactionHistoryBlockController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
-import com.example.javafx_app.manager.UserManager;
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
@@ -11,11 +8,11 @@ import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.io.IOException;
 
@@ -67,14 +64,10 @@ public class VerifyTransactionController {
         );
     }
     @FXML
-    void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
-        Parent previousSceneRoot = previousSceneLoader.load();
-
-        TransactingController controller = previousSceneLoader.getController();
-        controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
-
-        SceneUtils.switchScene(mainStage,previousSceneRoot);
+    void QuayLai(ActionEvent event) {
+        Pair<Parent,TransactingController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_scene.fxml");
+        scene.getValue().loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
+        SceneUtils.switchScene(mainStage,scene.getKey());
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
@@ -90,15 +83,10 @@ public class VerifyTransactionController {
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
-            FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_bill_scene.fxml"));
-            Parent nextSceneRoot = nextSceneLoader.load();
-
-            TransactionBillController billController = nextSceneLoader.getController();
-            billController.loadTransaction();
-
+            Pair<Parent, TransactionBillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
+            scene.getValue().loadTransaction();
             TransactionManager.getInstance().removeNewTransaction();
-
-            SceneUtils.switchScene(mainStage,nextSceneRoot);
+            SceneUtils.switchScene(mainStage,scene.getKey());
         }
         else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");

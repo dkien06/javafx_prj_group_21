@@ -1,4 +1,4 @@
-package com.example.javafx_app.object.Account;
+package com.example.javafx_app.object;
 
 public enum FinancialProductType {
     SAVING,   // tiền gửi tiết kiệm

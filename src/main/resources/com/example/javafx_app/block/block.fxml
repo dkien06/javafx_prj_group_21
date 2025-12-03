@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<Button fx:id="button" mnemonicParsing="false" prefHeight="51.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.block.TransactionHistoryBlockController">
+<Button fx:id="button" mnemonicParsing="false" prefHeight="51.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.block.BlockController">
    <graphic>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_chua_lsgd">
          <children>

@@ -8,7 +8,6 @@ import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
-
 import java.time.LocalDate;
 
 /**
@@ -139,5 +138,6 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
+        AccountManager.getInstance().setCurrentAccount(accountC);
     }
 }

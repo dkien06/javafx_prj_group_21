@@ -1,4 +1,4 @@
-package com.example.javafx_app.object.Account;
+package com.example.javafx_app.object;
 
 import java.time.LocalDate;
 

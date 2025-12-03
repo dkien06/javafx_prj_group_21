@@ -2,8 +2,6 @@ package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.object.TransactionType;
-import com.example.javafx_app.object.User.User;
-import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
@@ -17,11 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,24 +50,26 @@ public class TransactingController implements Initializable {
     boolean isBankChosen = false;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         bankChoiceBox.getItems().addAll(banks);
         bankChoiceBox.setValue("Chọn ngân hàng");
         amountTextField.textProperty().addListener((observable, _, value) -> {
             try {
                 if (!value.isEmpty() && value.matches("\\d+")) {
-                    long amount = Long.parseLong(value);
-                    if(amount > ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()){
+                    double amount = Double.parseDouble(value);
+                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
                         amountLog.setText("Số tiền bạn nhập không đủ để chuyển");
                         amountLog.setFill(Color.rgb(255, 0, 0));
                         isAmountValid = false;
                     }
-                    String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
-                    amountLog.setText(amountInWords);
-                    amountLog.setFill(Color.rgb(0,0,0));
-                    isAmountValid = true;
+                    else{
+                        String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
+                        amountLog.setText(amountInWords);
+                        amountLog.setFill(Color.rgb(0,0,0));
+                        isAmountValid = true;
+                    }
                 } else {
-                    amountLog.setText("Số tiền không hợp lệ");
+                    if(value.isEmpty())amountLog.setText("Vui lòng nhập số tiền");
+                    else amountLog.setText("Số tiền không hợp lệ");
                     amountLog.setFill(Color.rgb(255, 0, 0));
                     isAmountValid = false;
                 }
@@ -127,18 +126,9 @@ public class TransactingController implements Initializable {
                     (CheckingAccount) AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
                     descriptionTextArea.getText()
             );
-            try{
-                FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/verify_transaction.scene.fxml"));
-                Parent nextSceneRoot = nextSceneLoader.load();
-
-                VerifyTransactionController controller = nextSceneLoader.getController();
-                controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
-
-                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
-            }
-            catch (IOException e){
-                System.out.println("Có lỗi xảy ra!");
-            }
+            Pair<Parent, VerifyTransactionController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+            SceneUtils.switchScene(mainStage,scene.getKey());
         }
     }
 }

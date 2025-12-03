@@ -1,8 +1,6 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.manager.TransactionManager;
-import com.example.javafx_app.object.Transaction;
-import com.example.javafx_app.object.TransactionType;
+import com.example.javafx_app.object.FinancialProduct;
 
 import java.util.ArrayList;
 import java.util.List;
