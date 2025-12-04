@@ -98,9 +98,6 @@ public class CheckingAccountHomeSceneController implements Initializable {
         FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_history_scene.fxml"));
         Parent nextSceneRoot = nextSceneLoader.load();
 
-        TransactionHistorySceneController controller = nextSceneLoader.getController();
-        controller.loadTransactionHistory();
-
         SceneUtils.switchScene(mainStage,nextSceneRoot);
     }
 
@@ -120,6 +117,6 @@ public class CheckingAccountHomeSceneController implements Initializable {
     }
     @FXML
     public void SoTien(){
-        balance_btn.setText("VND: " + ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance());
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_history_scene.fxml");
     }
 }

@@ -50,7 +50,7 @@ public class TransactionHistorySceneController {
     @FXML
     private VBox vbox_to;
 
-    public void loadTransactionHistory() throws IOException {
+    public void initialize() throws IOException {
         name.setText("Họ và tên: " + AccountManager.getInstance().getCurrentAccount().getAccountName());
         balance.setText("Số dư: " + ((CheckingAccount)AccountManager.getInstance().getCurrentAccount()).getBalance()
                                + AccountManager.getInstance().getCurrentAccount().getCurrency());

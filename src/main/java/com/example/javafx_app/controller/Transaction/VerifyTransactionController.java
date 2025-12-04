@@ -68,12 +68,13 @@ public class VerifyTransactionController {
     }
     @FXML
     void QuayLai(ActionEvent event) throws IOException {
-        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transacting_scene.fxml"));
+        FXMLLoader previousSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/transaction_scene.fxml"));
         Parent previousSceneRoot = previousSceneLoader.load();
 
         TransactingController controller = previousSceneLoader.getController();
         controller.loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
-
+        TransactionManager.getInstance().getTransactionsList().remove
+                (TransactionManager.getInstance().getCurrentTransaction());// xoa transaction hien tai di
         SceneUtils.switchScene(mainStage,previousSceneRoot);
     }
     @FXML
@@ -86,7 +87,7 @@ public class VerifyTransactionController {
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
             ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).transfer(
-                    (CheckingAccount) currentTransaction.getToAccount(),
+                     currentTransaction.getToAccount(),
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
