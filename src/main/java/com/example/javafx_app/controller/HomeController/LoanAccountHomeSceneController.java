@@ -63,15 +63,7 @@ public class LoanAccountHomeSceneController implements HomeSceneController {
 
     }
 
-    public void XemDIchVu(ActionEvent event) {
-
-    }
-
     public void XemHoTro(ActionEvent event) {
-
-    }
-
-    public void XemHoaDon(ActionEvent event) {
 
     }
 

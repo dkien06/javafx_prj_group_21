@@ -10,7 +10,6 @@ import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Bill.BillType ;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
-
 import java.time.LocalDate;
 
 /**
@@ -57,7 +56,7 @@ public class ExampleUser {
     );
 
     // === USER C ===
-    public static final Account accountC = new CheckingAccount(
+    private static final Account accountC = new CheckingAccount(
             "Ngo Duc C",
             "020406006769",
             "12345678",
@@ -105,7 +104,7 @@ public class ExampleUser {
     );
 
     // === USER E ===
-    public static final Account accountE = new CheckingAccount(
+    private static final Account accountE = new CheckingAccount(
             "Hoang Thi E",
             "010102030508",
             "16180340",
@@ -191,8 +190,7 @@ public class ExampleUser {
             "VND",
             "000004"
     );
-
-    public static void init(){
+    public static void addExample(){
         CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
         CheckingAccountC.addBill(bill1);
         CheckingAccountC.addBill(bill2);
@@ -219,6 +217,10 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
+    }
+    public static void init(){
+        addExample();
+        AccountManager.getInstance().setCurrentAccount(accountC);
     }
 
 }

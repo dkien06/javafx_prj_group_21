@@ -92,7 +92,7 @@ public class UserManager {
     }
     public static void main(String[] args) {
         ExampleUser.init();
-        System.out.println(getInstance().findUserByCitizenID("010102030508"));
+        System.out.println(getInstance().findUserByCitizenID("020406006769"));
     }
 
 }

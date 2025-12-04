@@ -16,13 +16,13 @@ import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import javax.swing.plaf.ColorUIResource;
 import java.io.IOException;
@@ -76,7 +76,8 @@ public class TransactingController implements Initializable {
                         isAmountValid = true;
                     }
                 } else {
-                    amountLog.setText("Số tiền không hợp lệ");
+                    if(value.isEmpty())amountLog.setText("Vui lòng nhập số tiền");
+                    else amountLog.setText("Số tiền không hợp lệ");
                     amountLog.setFill(Color.rgb(255, 0, 0));
                     isAmountValid = false;
                 }
@@ -149,18 +150,9 @@ public class TransactingController implements Initializable {
             // tra lai bien cho bill
             BillButtonController.isBillPayment=false;
             BillButtonController.bill=null ;
-            try{
-                FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/verify_transaction.scene.fxml"));
-                Parent nextSceneRoot = nextSceneLoader.load();
-
-                VerifyTransactionController controller = nextSceneLoader.getController();
-                controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
-
-                SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),nextSceneRoot);
-            }
-            catch (IOException e){
-                System.out.println("Có lỗi xảy ra!");
-            }
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+            SceneUtils.switchScene(mainStage,scene.getKey());
         }
     }
     private void initializePayment(){
