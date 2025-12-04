@@ -1,8 +1,9 @@
 package com.example.javafx_app.util;
 
 import com.example.javafx_app.BankApplication;
-import com.example.javafx_app.exception.NonExistedPath;
-import com.example.javafx_app.exception.NullController;
+import com.example.javafx_app.exception.MysteriousException;
+import com.example.javafx_app.exception.NonExistedPathException;
+import com.example.javafx_app.exception.NullControllerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,11 +23,13 @@ public class SceneUtils {
             T controller = loader.getController();
             return new Pair<>(root, controller);
         } catch (IllegalStateException e){
-            NonExistedPath.throwException();
+            NonExistedPathException.throwException();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (NullPointerException e){
+            NullControllerException.throwException();
         }
-        throw new NullController();
+        throw new MysteriousException();
     }
     public static void switchScene(Stage stage, Parent root) {
         Scene scene = new Scene(root);
@@ -41,7 +44,7 @@ public class SceneUtils {
             stage.setScene(scene);
             stage.show();
         } catch (IllegalStateException e) {
-            NonExistedPath.throwException();
+            NonExistedPathException.throwException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

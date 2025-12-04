@@ -2,7 +2,7 @@ package com.example.javafx_app;
 
 import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.config.ExampleUser;
-import com.example.javafx_app.exception.NonExistedPath;
+import com.example.javafx_app.exception.NonExistedPathException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -16,7 +16,7 @@ public class BankApplication extends Application {
         try{
             Constant.mainStage = stage;
             ExampleUser.init();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/saving_account_home_scene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/checking_account_home_scene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -25,7 +25,7 @@ public class BankApplication extends Application {
             stage.show();
         }
         catch (IllegalStateException e){
-            NonExistedPath.throwException();
+            NonExistedPathException.throwException();
         }
     }
     public static void main(String[] args) {launch();}//11/10/2025

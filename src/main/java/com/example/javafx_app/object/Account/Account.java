@@ -13,7 +13,7 @@ public  abstract class Account {
     protected String citizenID;
     protected String accountID;
     protected String password;
-    protected double balance;
+    protected long balance;
     protected String currency;
     protected String PIN;
     private List<Transaction> history;
@@ -21,7 +21,7 @@ public  abstract class Account {
     protected boolean isVIP;
 
     // ✅ Constructor đầy đủ
-    public Account(String fullName, String citizenID, String accountID, String password,double balance,
+    public Account(String fullName, String citizenID, String accountID, String password, long balance,
                    String currency, String PIN) {
         this.accountName = fullName;
         this.citizenID = citizenID;
@@ -62,7 +62,7 @@ public  abstract class Account {
     public String getPassword() {
         return password;
     }
-    public  double getBalance() {
+    public long getBalance() {
         return balance;
     }
     public LocalDate getStartDate() {

@@ -50,7 +50,7 @@ public class VerifyController {
         fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
         receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
         receiveBankLabel.setText("Ngân hàng: " + "21stBank");
-        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + newTransaction.getCurrency());
+        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + " "+newTransaction.getCurrency());
         amountInTextLabel.setText(NumberToVietnameseWord.numberToVietnameseWords(newTransaction.getAmount()));
         descriptionLabel.setText(newTransaction.getDescription());
         transactionTypeLabel.setText(

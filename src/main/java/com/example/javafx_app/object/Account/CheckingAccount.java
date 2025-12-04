@@ -1,7 +1,7 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
@@ -12,16 +12,17 @@ import java.util.List;
  * Tài khoản chuển tiền:)
  */
 public class CheckingAccount extends Account {
-    public CheckingAccount(String fullName, String citizenID, String accountID, String password,double balance, String currency, String PIN){
+    private List<Bill> bills;
+    public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){
         super(fullName, citizenID, accountID, password, balance, currency,  PIN);
+        bills = new ArrayList<>() ;
     }
 
-    public double getBalance() {
+    public long getBalance() {
         return balance;
     }
-
     // ✅ Chuyển tiền
-    public boolean transfer(CheckingAccount toAccount, double amount, String description) {
+    public boolean transfer(CheckingAccount toAccount, long amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
             return false;
         }
@@ -41,7 +42,7 @@ public class CheckingAccount extends Account {
         return true;
     }
     // ✅ Rút tiền để tiết kiệm hoặc trả nợ
-    public boolean withdraw(double amount) {
+    public boolean withdraw(long amount) {
         if (amount > 0 && balance > amount) {
             balance -= amount;
             return true;
@@ -49,7 +50,7 @@ public class CheckingAccount extends Account {
         else return false;
     }
     // ✅ Nạp tiền từ tiền tiết kiệm hoặc vay mượn
-    public boolean deposit(double amount) {
+    public boolean deposit(long amount) {
         if (amount > 0) {
             balance += amount;
             return true;
@@ -57,5 +58,14 @@ public class CheckingAccount extends Account {
     }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}
-
+    public void addBill(Bill bill){
+        bills.add(bill);
+    }
+    public List<Bill> getBills(){
+        return bills;
+    }
+    public boolean removeBill(Bill bill) {
+        // List.remove(Object o) sẽ sử dụng phương thức Bill.equals()
+        return bills.remove(bill);
+    }
 }

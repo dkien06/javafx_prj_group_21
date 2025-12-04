@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LoanAccount extends Account {
     private final List<FinancialProduct> loans = new ArrayList<FinancialProduct>();
-    public LoanAccount(String fullName, String citizenID, String accountID, String password,double balance,
+    public LoanAccount(String fullName, String citizenID, String accountID, String password, long balance,
                        String currency, String PIN){
         super(fullName, citizenID, accountID, password, balance, currency, PIN);
     }

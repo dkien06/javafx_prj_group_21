@@ -24,24 +24,19 @@
             <Text fx:id="dateLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="//Ngày tháng đã chuyển" />
          </children>
       </VBox>
-      <VBox fx:id="VBox_thong_tin_dich" alignment="TOP_CENTER" layoutX="76.0" layoutY="331.0" prefHeight="117.0" prefWidth="262.0">
+      <VBox fx:id="VBox_thong_tin_dich" alignment="TOP_CENTER" layoutX="39.0" layoutY="328.0" prefHeight="161.0" prefWidth="336.0">
          <children>
-            <Label styleClass="label_in_Vbox" text="Người nhận:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="toAccountFullNameLabel" styleClass="label_in_Vbox" text="//Tên người nhận">
+            <Label fx:id="toAccountFullNameLabel" prefHeight="36.0" prefWidth="232.0" styleClass="label_in_Vbox" text="Người nhận: Người nhận .......">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="toAccountIDLabel" styleClass="label_in_Vbox" text="//Số tài khoản người nhận">
+            <Label fx:id="toAccountIDLabel" prefHeight="36.0" prefWidth="188.0" styleClass="label_in_Vbox" text="Số tài khoản: 123456789">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="toBankLabel" styleClass="label_in_Vbox" text="//Ngân hàng">
+            <Label fx:id="toBankLabel" prefHeight="26.0" prefWidth="107.0" styleClass="label_in_Vbox" text="//Ngân hàng">
                <font>
                   <Font size="16.0" />
                </font>

@@ -2,13 +2,16 @@ package com.example.javafx_app.exception;
 
 import java.util.Random;
 
-public class NonExistedPath extends RuntimeException {
-    public NonExistedPath(String message) {
+/**
+ * Đường dẫn không đúng (Nhờ cái này đỡ debug mấy tiếng đồng hồ)
+ */
+public class NonExistedPathException extends RuntimeException {
+    public NonExistedPathException(String message) {
         super(message);
     }
     private static final String[] randomMessage = {
-            "Đường dẫn méo đúng kìa:)",
-            "Sai đường dẫn kìa mày:)",
+            "Đường dẫn không đúng kìa:)",
+            "Sai đường dẫn kìa bạn:)",
             "Check lại đường dẫn kìa bạn:)",
     };
     private static String generateMessage(){
@@ -16,6 +19,6 @@ public class NonExistedPath extends RuntimeException {
         return randomMessage[r.nextInt(randomMessage.length)];
     }
     public static void throwException(){
-        throw new NonExistedPath(generateMessage());
+        throw new NonExistedPathException(generateMessage());
     }
 }

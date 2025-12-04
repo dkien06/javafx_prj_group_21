@@ -6,6 +6,8 @@ import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.SavingAccount;
+import com.example.javafx_app.object.Bill.Bill;
+import com.example.javafx_app.object.Bill.BillType ;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 import java.time.LocalDate;
@@ -120,13 +122,90 @@ public class ExampleUser {
             "HoangVanThai1970@gmail.com",
             "010102030508"
     );
+    // ================== BILL GIẢ LẬP ==================
+    static final Bill bill1 = new Bill(
+            150_000,
+            LocalDate.of(2025, 2, 1),
+            BillType.ELECTRIC,
+            "EVN HÀ NỘI"
+    );
+
+    static final Bill bill2 = new Bill(
+            220_000,
+            LocalDate.of(2025, 2, 5),
+            BillType.WATER,
+            "NƯỚC SẠCH HÀ NỘI"
+    );
+
+    static final Bill bill3 = new Bill(
+            90_000,
+            LocalDate.of(2025, 2, 10),
+            BillType.INTERNET,
+            "VIETTEL"
+    );
+
+    static final Bill bill4 = new Bill(
+            300_000,
+            LocalDate.of(2025, 2, 18),
+            BillType.INTERNET,
+            "VINAPHONE"
+    );
+    // ================== NHÀ CUNG CẤP DỊCH VỤ (CHECKING ACCOUNT) ==================
+    public static final CheckingAccount ELECTRIC_PROVIDER = new CheckingAccount(
+            "EVN HÀ NỘI",
+            "999100000001",        // citizenID giả
+            "90000001",            // accountID
+            "EVN@123",             // password
+            10_000_000,            // balance (dùng để nhận tiền thanh toán)
+            "VND",
+            "000001"               // PIN
+    );
+
+    public static final CheckingAccount WATER_PROVIDER = new CheckingAccount(
+            "NƯỚC SẠCH HÀ NỘI",
+            "999100000002",
+            "90000002",
+            "WATER@123",
+            10_000_000,
+            "VND",
+            "000002"
+    );
+
+    public static final CheckingAccount INTERNET_PROVIDER = new CheckingAccount(
+            "VIETTEL INTERNET",
+            "999100000003",
+            "90000003",
+            "INTERNET@123",
+            10_000_000,
+            "VND",
+            "000003"
+    );
+
+    public static final CheckingAccount SCHOOL_PROVIDER = new CheckingAccount(
+            "ĐẠI HỌC BÁCH KHOA",
+            "999100000004",
+            "90000004",
+            "EDU@123",
+            10_000_000,
+            "VND",
+            "000004"
+    );
     public static void addExample(){
+        CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
+        CheckingAccountC.addBill(bill1);
+        CheckingAccountC.addBill(bill2);
+        CheckingAccountC.addBill(bill3);
+        CheckingAccountC.addBill(bill4);
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
         AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
         AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
+        AccountManager.getInstance().getAccountList().put(ELECTRIC_PROVIDER.getAccountID(), ELECTRIC_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(WATER_PROVIDER.getAccountID(), WATER_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(INTERNET_PROVIDER.getAccountID(), INTERNET_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(SCHOOL_PROVIDER.getAccountID(), SCHOOL_PROVIDER);
         userA.addAccountID(accountA.getAccountID());
         userB.addAccountID(accountB.getAccountID());
         userC.addAccountID(accountC.getAccountID());
@@ -141,10 +220,7 @@ public class ExampleUser {
     }
     public static void init(){
         addExample();
-        AccountManager.getInstance().setCurrentAccount(accountA);
+        AccountManager.getInstance().setCurrentAccount(accountC);
     }
-    public static void init(Account currentAccount){
-        addExample();
-        AccountManager.getInstance().setCurrentAccount(currentAccount);
-    }
+
 }

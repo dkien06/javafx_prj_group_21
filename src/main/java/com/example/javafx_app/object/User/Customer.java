@@ -20,7 +20,6 @@ public class Customer extends User {
         public String toString() {
             return  super.toString();
         }
-        public USER_TYPE getUserType() { return  USER_TYPE.Customer; }
         public List<String> getAccountIDs() { return accountIDs; }
         public void addAccountID(String newAccountID) { accountIDs.add(newAccountID); }
         @Override
