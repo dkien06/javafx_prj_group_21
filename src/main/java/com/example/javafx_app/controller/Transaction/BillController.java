@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class TransactionBillController {
+public class BillController {
     @FXML
     private Label amountLabel;
     @FXML

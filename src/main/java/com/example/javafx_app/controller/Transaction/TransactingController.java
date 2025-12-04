@@ -2,7 +2,6 @@ package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.object.TransactionType;
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.Account;
@@ -11,7 +10,6 @@ import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
@@ -52,7 +50,7 @@ public class TransactingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bankChoiceBox.getItems().addAll(banks);
         bankChoiceBox.setValue("Chọn ngân hàng");
-        amountTextField.textProperty().addListener((observable, _, value) -> {
+        amountLog.textProperty().addListener((observable, _, value) -> {
             try {
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     double amount = Double.parseDouble(value);
@@ -126,7 +124,7 @@ public class TransactingController implements Initializable {
                     (CheckingAccount) AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
                     descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyTransactionController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }

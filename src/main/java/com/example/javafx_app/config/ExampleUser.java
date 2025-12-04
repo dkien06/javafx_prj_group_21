@@ -120,7 +120,7 @@ public class ExampleUser {
             "HoangVanThai1970@gmail.com",
             "010102030508"
     );
-    public static void init(){
+    public static void addExample(){
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
@@ -138,6 +138,13 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
-        AccountManager.getInstance().setCurrentAccount(accountC);
+    }
+    public static void init(){
+        addExample();
+        AccountManager.getInstance().setCurrentAccount(accountA);
+    }
+    public static void init(Account currentAccount){
+        addExample();
+        AccountManager.getInstance().setCurrentAccount(currentAccount);
     }
 }

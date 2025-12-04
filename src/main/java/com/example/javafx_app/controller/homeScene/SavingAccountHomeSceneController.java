@@ -64,15 +64,7 @@ public class SavingAccountHomeSceneController implements HomeSceneController{
 
     }
 
-    public void XemDIchVu(ActionEvent event) {
-
-    }
-
     public void XemHoTro(ActionEvent event) {
-
-    }
-
-    public void XemHoaDon(ActionEvent event) {
 
     }
 

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 
 import java.io.IOException;
 
@@ -44,19 +45,15 @@ public class TransactionHistorySceneController {
     @FXML
     private VBox vbox_to;
 
-    public void loadTransactionHistory() throws IOException {
+    public void loadTransactionHistory() {
         name.setText("Họ và tên: " + AccountManager.getInstance().getCurrentAccount().getAccountName());
-        balance.setText("Số dư: " + ((CheckingAccount)AccountManager.getInstance().getCurrentAccount()).getBalance()
+        balance.setText("Số dư: " + AccountManager.getInstance().getCurrentAccount().getBalance()
                                + AccountManager.getInstance().getCurrentAccount().getCurrency());
         accountID.setText("Số tài khoản: " + AccountManager.getInstance().getCurrentAccount().getAccountID());
         for(Transaction t : (AccountManager.getInstance().getCurrentAccount()).getHistory()){
-            FXMLLoader loader = new FXMLLoader(BankApplication.class.getResource("block/block.fxml"));
-            Parent block = loader.load();
-
-            BlockController blockController = loader.getController();
-            blockController.setData(t);
-
-            vbox_lich_su_giao_dich.getChildren().add(block);
+            Pair<Parent, BlockController> block = SceneUtils.getRootAndController("block/block.fxml");
+            block.getValue().setData(t);
+            vbox_lich_su_giao_dich.getChildren().add(block.getKey());
         }
     }
     @FXML

@@ -8,12 +8,11 @@ import java.util.Map;
  * Class dữ trữ mấy biến hằng số, éo thích thì vào mà chỉnh:)
  */
 public class Constant {
-    private Constant() {
-    }
+    private Constant() {}
 
-    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = 5.1;
-    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR = 5.8;
-    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = 4.75;
+    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = -9.99;
+    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR =  -19.99;
+    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = -14.99;
 
     public static final int PHONE_NUMBER_LENGTH = 10;
     public static final int MINIUM_PASSWORD_LENGTH = 8;

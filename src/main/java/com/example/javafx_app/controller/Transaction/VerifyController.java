@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class VerifyTransactionController {
+public class VerifyController {
     @FXML
     Label fullSendingNameLabel;
     @FXML
@@ -83,7 +83,7 @@ public class VerifyTransactionController {
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
-            Pair<Parent, TransactionBillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
+            Pair<Parent, BillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
             scene.getValue().loadTransaction();
             TransactionManager.getInstance().removeNewTransaction();
             SceneUtils.switchScene(mainStage,scene.getKey());

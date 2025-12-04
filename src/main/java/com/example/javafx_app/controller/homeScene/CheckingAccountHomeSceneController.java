@@ -1,13 +1,11 @@
 package com.example.javafx_app.controller.homeScene;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import com.example.javafx_app.object.Account.Account;
 import javafx.fxml.Initializable;
@@ -18,7 +16,7 @@ import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.io.IOException;
+
 import static com.example.javafx_app.config.Constant.mainStage;
 
 public class CheckingAccountHomeSceneController implements Initializable,HomeSceneController {
@@ -96,7 +94,7 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     }
 
     @FXML
-    public void XemLichSuGiaoDich(ActionEvent event) throws IOException {
+    public void XemLichSuGiaoDich(ActionEvent event) {
         Pair<Parent, TransactionHistorySceneController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_history_scene.fxml");
         scene.getValue().loadTransactionHistory();
         SceneUtils.switchScene(mainStage,scene.getKey());
