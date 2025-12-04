@@ -27,7 +27,7 @@ public class TransactionManager {
         return transactions;
     }
 
-    public void newTransaction(TransactionType type, double amount, String currency, Account fromAccount, Account toAccount, String description){
+    public void newTransaction(TransactionType type, long amount, String currency, Account fromAccount, Account toAccount, String description){
         currentTransaction = new Transaction(type,amount,currency,fromAccount, toAccount,description);
     }
     public void removeNewTransaction(){

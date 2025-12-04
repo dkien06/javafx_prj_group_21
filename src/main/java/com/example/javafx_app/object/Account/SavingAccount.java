@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SavingAccount extends Account {
     private final List<FinancialProduct> savings = new ArrayList<>();
-    public SavingAccount(String fullName, String citizenID, String accountID, String password,double balance,
+    public SavingAccount(String fullName, String citizenID, String accountID, String password, long balance,
                          String currency, String PIN) {
         super(fullName, citizenID, accountID, password, balance, currency, PIN);
     }

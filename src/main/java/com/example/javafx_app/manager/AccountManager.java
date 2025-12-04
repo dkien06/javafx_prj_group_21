@@ -2,6 +2,7 @@ package com.example.javafx_app.manager;
 
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.object.Account.*;
+import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.Staff;
 import com.example.javafx_app.object.User.USER_TYPE;
@@ -11,6 +12,8 @@ import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.util.SceneUtils;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class AccountManager {
@@ -70,51 +73,13 @@ public class AccountManager {
         UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserFromAccount(currentAccount));
     }
 
-    //Đăng kí
-    public boolean resister(User signUpUser,ACCOUNT_TYPE accountType, String password, String pin){
-        Map<String, SignUpInformationState> checkSignUpUserInfo = BankManager.CheckAllSignUpInfo(
-                signUpUser.getFullName(),
-                signUpUser.getDateOfBirth(),
-                UserManager.genderToString(signUpUser.getGender()),
-                signUpUser.getEmail(),
-                signUpUser.getPhoneNumber(),
-                signUpUser.getCitizenID()
-        );
-        if(checkSignUpUserInfo.get("fullName") == SignUpInformationState.RIGHT
-        && checkSignUpUserInfo.get("dateOfBirth") == SignUpInformationState.RIGHT
-        && checkSignUpUserInfo.get("gender") == SignUpInformationState.RIGHT
-        && checkSignUpUserInfo.get("email") == SignUpInformationState.RIGHT
-        && checkSignUpUserInfo.get("phoneNumber") == SignUpInformationState.RIGHT
-        && checkSignUpUserInfo.get("citizenID") == SignUpInformationState.RIGHT
-        && BankManager.checkNewPassword(password) == BankManager.PasswordState.RIGHT
-        && BankManager.checkNewPIN(pin) == BankManager.PINState.RIGHT){
-            Account account ;
-            String accountID = getInstance().generateUniqueAccountID();
-            if(accountType==ACCOUNT_TYPE.CHECKING){
-                account = new CheckingAccount(signUpUser.getFullName(), signUpUser.getCitizenID(),accountID
-                                                ,password,Constant.DEFAULT_BALANCE,"VND",pin);
-            }
-            else if(accountType==ACCOUNT_TYPE.LOAN){
-                account = new LoanAccount(signUpUser.getFullName(),signUpUser.getCitizenID(),accountID,
-                                            password,Constant.DEFAULT_BALANCE,"VND",pin) ;
-            }
-            else {
-                account= new SavingAccount(signUpUser.getFullName(),signUpUser.getCitizenID(),accountID,
-                                            password,Constant.DEFAULT_BALANCE,"VND",pin) ;
-            }
-            UserManager.getInstance().addUser(signUpUser);
-            accountMap.put(account.getAccountID(), account);
-            return true;
-        }
-        else return false;
-    }
     // Đăng kí thêm một tài khoản
     public void addAccountForCustomer(Customer Customer,String accountType, String password, String pin){
         Account account ;
-        if(accountType==ACCOUNT_TYPE.SAVING.toString()){
+        if(accountType.equals(ACCOUNT_TYPE.SAVING.toString())){
             account = new SavingAccount(Customer.getFullName(), Customer.getCitizenID(),generateUniqueAccountID(),
                      password,Constant.DEFAULT_BALANCE,"VND",pin);
-        } else if (accountType==ACCOUNT_TYPE.CHECKING.toString()) {
+        } else if (accountType.equals(ACCOUNT_TYPE.CHECKING.toString())) {
             account = new CheckingAccount(Customer.getFullName(),Customer.getCitizenID(),generateUniqueAccountID(),password
             ,Constant.DEFAULT_BALANCE,"VND",pin);
 
@@ -239,6 +204,19 @@ public class AccountManager {
         else {
             return accountMap.get(((Staff)user).getAccountID());
         }
+    }
+    // ham tim bill
+    public Bill findBillFromAccount(CheckingAccount account,String Amount,String Date,String Supplier){
+        long amount = Long.parseLong(Amount);
+        LocalDate date = LocalDate.parse(Date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        for(Bill bill : account.getBills()){
+            if(bill.getAmount()==amount&&
+                bill.getDate().equals(date)&&
+                bill.getSupplier().equals(Supplier)){
+                return bill;
+            }
+        }
+        return null;
     }
     //In log
     public void accountListLog(){

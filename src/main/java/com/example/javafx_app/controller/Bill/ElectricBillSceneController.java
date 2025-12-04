@@ -1,12 +1,14 @@
 package com.example.javafx_app.controller.Bill;
 
-import com.example.javafx_app.controller.Bill.BillScene;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class ElectricBillSceneController implements BillScene {
 
@@ -30,11 +32,12 @@ public class ElectricBillSceneController implements BillScene {
 
     @FXML
     public void QuayLai(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage,"BillScene/bill_home_scene.fxml");
     }
 
     @FXML
     public void TiepTuc(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage,"BillScene/clause_scene.fxml");
     }
+
 }

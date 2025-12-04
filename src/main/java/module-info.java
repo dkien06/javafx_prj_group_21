@@ -22,7 +22,7 @@ module com.example.javafx_app {
     opens com.example.javafx_app.object.Account to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app.object.User;
     opens com.example.javafx_app.object.User to javafx.fxml, javafx.graphics;
-    opens com.example.javafx_app.controller.homeScene to javafx.fxml;
+    opens com.example.javafx_app.controller.HomeController to javafx.fxml;
     opens com.example.javafx_app.controller.saving to javafx.fxml;
     exports com.example.javafx_app.controller;
     //opens com.example.javafx_app.controller.Bill.Electric to javafx.fxml;

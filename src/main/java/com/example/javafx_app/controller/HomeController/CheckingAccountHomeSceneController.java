@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller.homeScene;
+package com.example.javafx_app.controller.HomeController;
 
 import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;

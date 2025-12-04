@@ -28,8 +28,8 @@ public class TransactionBillController {
         User user = UserManager.getInstance().findUserByCitizenID(cur.getToAccount().getCitizenID());
         amountLabel.setText(cur.getAmount() + " " + cur.getCurrency());
         dateLabel.setText(String.valueOf(cur.getDate()));
-        toAccountFullNameLabel.setText(user.getFullName());
-        toAccountIDLabel.setText(cur.getToAccount().getAccountID());
+        toAccountFullNameLabel.setText("Người nhận: "+cur.getToAccount().getAccountName());
+        toAccountIDLabel.setText("Số tài khoản: "+cur.getToAccount().getAccountID());
         toBankLabel.setText("21stBank");
     }
     @FXML
