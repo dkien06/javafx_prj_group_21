@@ -116,6 +116,6 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     }
     @FXML
     public void SoTien(){
-        balance_btn.setText("VND: " + ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance());
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_history_scene.fxml");
     }
 }

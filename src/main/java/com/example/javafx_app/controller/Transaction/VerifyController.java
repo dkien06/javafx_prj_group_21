@@ -67,6 +67,8 @@ public class VerifyController {
     void QuayLai(ActionEvent event) {
         Pair<Parent,TransactingController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_scene.fxml");
         scene.getValue().loadTransaction(AccountManager.getInstance().getCurrentAccount(), TransactionManager.getInstance().getCurrentTransaction());
+        TransactionManager.getInstance().getTransactionsList().remove
+                (TransactionManager.getInstance().getCurrentTransaction());// xoa transaction hien tai di
         SceneUtils.switchScene(mainStage,scene.getKey());
     }
     @FXML
@@ -79,13 +81,14 @@ public class VerifyController {
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
             ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).transfer(
-                    (CheckingAccount) currentTransaction.getToAccount(),
+                     currentTransaction.getToAccount(),
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );
             Pair<Parent, BillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
             scene.getValue().loadTransaction();
             TransactionManager.getInstance().removeNewTransaction();
+
             SceneUtils.switchScene(mainStage,scene.getKey());
         }
         else {

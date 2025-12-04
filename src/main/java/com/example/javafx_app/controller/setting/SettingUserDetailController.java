@@ -86,6 +86,8 @@ public class SettingUserDetailController implements Initializable {
                 break;
         }
         if(isValidPhoneNumber && isValidEmail){
+            currentUser.setPhoneNumber(PhoneNumberTextField.getText());
+            currentUser.setEmail(EmailTextField.getText());
             SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }

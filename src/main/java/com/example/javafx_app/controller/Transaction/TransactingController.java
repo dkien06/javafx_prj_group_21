@@ -34,7 +34,7 @@ import static com.example.javafx_app.config.Constant.mainStage;
 public class TransactingController implements Initializable {
     @FXML
     private ChoiceBox<String> bankChoiceBox;
-    private final String[] banks = {"21stBank","MB Bank","BIDV","Techcombank","..."}; //Tự add đi
+    private final String[] banks = {"21stBank"}; //Tự add đi
     @FXML
     private Text bankChoiceErrorLog;
     @FXML
@@ -49,7 +49,9 @@ public class TransactingController implements Initializable {
     private TextField descriptionTextArea;
     private CheckingAccount CurrentAccount= (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
     void loadTransaction(Account account, Transaction transaction){
-        //Chờ scene sau đã
+        amountTextField.setText(String.valueOf(transaction.getAmount()));
+        receiveAccountIDTextField.setText(String.valueOf(transaction.getToAccount().getAccountID()));
+        bankChoiceBox.setValue("21stBank");
     }
     boolean isReceiveAccountValid = false;
     boolean isAmountValid = false;

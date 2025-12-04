@@ -22,7 +22,7 @@ public class CheckingAccount extends Account {
         return balance;
     }
     // ✅ Chuyển tiền
-    public boolean transfer(CheckingAccount toAccount, long amount, String description) {
+    public boolean transfer(Account toAccount, long amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
             return false;
         }
