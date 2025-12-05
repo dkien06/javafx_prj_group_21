@@ -108,14 +108,14 @@ public class TransactingController implements Initializable {
                 isReceiveAccountValid = true;
             }
         });
-        if(BillButtonController.isBillPayment==true){
+        if(BillButtonController.isBillPayment){
             initializePayment();
         }
     }
     @FXML
     void QuayLai(ActionEvent event){
         TransactionManager.getInstance().removeNewTransaction();
-        SceneUtils.switchScene(mainStage,"HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage, "TransactionScene/transaction_options_scene.fxml");
     }
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {

@@ -41,21 +41,6 @@ public class CheckingAccount extends Account {
         toAccount.addTransaction(newReceive);
         return true;
     }
-    // ✅ Rút tiền để tiết kiệm hoặc trả nợ
-    public boolean withdraw(long amount) {
-        if (amount > 0 && balance > amount) {
-            balance -= amount;
-            return true;
-        }
-        else return false;
-    }
-    // ✅ Nạp tiền từ tiền tiết kiệm hoặc vay mượn
-    public boolean deposit(long amount) {
-        if (amount > 0) {
-            balance += amount;
-            return true;
-        } else return false;
-    }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}
     public void addBill(Bill bill){

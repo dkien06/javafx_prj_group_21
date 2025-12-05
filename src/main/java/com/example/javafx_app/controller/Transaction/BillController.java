@@ -25,7 +25,6 @@ public class BillController {
     private Label toBankLabel;
     void loadTransaction(){
         Transaction cur = TransactionManager.getInstance().getCurrentTransaction();
-        User user = UserManager.getInstance().findUserByCitizenID(cur.getToAccount().getCitizenID());
         amountLabel.setText(cur.getAmount() + " " + cur.getCurrency());
         dateLabel.setText(String.valueOf(cur.getDate()));
         toAccountFullNameLabel.setText("Người nhận: "+cur.getToAccount().getAccountName());
@@ -38,6 +37,6 @@ public class BillController {
     }
     @FXML
     void ThucHienGiaoDichKhac(ActionEvent event){
-        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_options_scene.fxml");
     }
 }

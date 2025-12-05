@@ -3,8 +3,10 @@ package com.example.javafx_app.controller.Transaction;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.util.Pair;
 import java.io.IOException;
 
 import static com.example.javafx_app.config.Constant.mainStage;
+import  com.example.javafx_app.object.TransactionType;
 
 public class VerifyController {
     @FXML
@@ -43,6 +46,7 @@ public class VerifyController {
     PasswordField PINField;
     @FXML
     Text PINErrorLog;
+    Account currentAccount = AccountManager.getInstance().getCurrentAccount();
     void displayTransactionInformation(Transaction newTransaction){
         fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
         sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
@@ -80,11 +84,34 @@ public class VerifyController {
         }
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
-            ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).transfer(
-                     currentTransaction.getToAccount(),
-                    currentTransaction.getAmount(),
-                    currentTransaction.getDescription()
-            );
+            Account fromAccount = currentTransaction.getFromAccount();
+            Account toAccount = currentTransaction.getToAccount();
+            long amount = currentTransaction.getAmount();
+            String description = currentTransaction.getDescription();
+            switch (currentTransaction.getType()) {
+                case TransactionType.TRANSFER:
+                    // Thực hiện hành động cho Chuyển khoản
+                    fromAccount.transfer(toAccount, amount, description);
+                    break;
+                case TransactionType.DEPOSIT:
+                    // Thực hiện hành động cho Nạp tiền
+                    fromAccount.deposit(amount);
+                    break;
+                case TransactionType.WITHDRAW:
+                    // Thực hiện hành động cho Rút tiền
+                    fromAccount.withdraw(amount);
+                    break;
+                case TransactionType.LOAN:
+                    // Thực hiện hành động cho Vay tiền
+                    System.out.println("Đây là giao dịch Vay tiền.");
+                    break;
+                case TransactionType.REPAY:
+                    // Thực hiện hành động cho Trả nợ
+                    System.out.println("Đây là giao dịch Trả nợ.");
+                    break;
+                default:
+                    break;
+            }
             Pair<Parent, BillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
             scene.getValue().loadTransaction();
             TransactionManager.getInstance().removeNewTransaction();

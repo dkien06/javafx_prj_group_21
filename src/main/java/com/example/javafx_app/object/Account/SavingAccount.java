@@ -1,6 +1,9 @@
 package com.example.javafx_app.object.Account;
 
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.FinancialProduct;
+import com.example.javafx_app.object.Transaction;
+import com.example.javafx_app.object.TransactionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +22,27 @@ public class SavingAccount extends Account {
         this.savings.add(saving);
         return true;
     }
-    // ✅ Nạp tiền
-    public boolean deposit(Account account, FinancialProduct financialProduct, double amount, String description) {
-        return true ;
-    }
-    // ✅ Rút tiền
-    public boolean withdraw(Account account, FinancialProduct financialProduct, double amount, String description) {
-        return true ;
-    }
+    @Override
+   public boolean transfer(Account toAccount, long amount,String description) {
+       if (toAccount == null || amount <= 0 || amount > balance) {
+           return false;
+       }
+       if(!toAccount.getCitizenID().equals(citizenID)){ return false;}
+       // rút tiền bên gửi
+       this.balance -= amount;
+       // nạp tiền bên nhận
+       toAccount.balance += amount;
 
-    public boolean withdrawAll(Account account, FinancialProduct financialProduct, String description){
-        return withdraw(account,financialProduct, financialProduct.getPrincipal(), description);
-    }
+       // thêm lịch sử giao dịch cho cả 2
+       Transaction newTransfer = new Transaction(TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
+       this.addTransaction(newTransfer);
+       TransactionManager.getInstance().addTransaction(newTransfer);
+
+       Transaction newReceive = new Transaction(TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
+       toAccount.addTransaction(newReceive);
+       return true;
+   }
+
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.SAVING ;}
 }

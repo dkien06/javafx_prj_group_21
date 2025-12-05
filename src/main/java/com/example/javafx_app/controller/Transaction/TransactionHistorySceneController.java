@@ -44,8 +44,8 @@ public class TransactionHistorySceneController {
 
     @FXML
     private VBox vbox_to;
-
-    public void loadTransactionHistory() {
+    @FXML
+    public void initialize() {
         name.setText("Họ và tên: " + AccountManager.getInstance().getCurrentAccount().getAccountName());
         balance.setText("Số dư: " + AccountManager.getInstance().getCurrentAccount().getBalance()
                                + AccountManager.getInstance().getCurrentAccount().getCurrency());

@@ -5,6 +5,9 @@ public class StaffAccount extends Account {
                         String currency, String PIN) {
         super(fullName,citizenID,accountID,password,balance,currency,PIN);
     }
+    public boolean transfer(Account fromAccount, long amount,String PIN) {
+        return true ;
+    }
     public ACCOUNT_TYPE getAccountType() {
         return ACCOUNT_TYPE.STAFF;
     }

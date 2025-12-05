@@ -70,7 +70,7 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     }
     @FXML
     public void ChuyenTien(ActionEvent event) {
-        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_scene.fxml");
+        SceneUtils.switchScene(mainStage,"TransactionScene/transaction_options_scene.fxml");
     }
 
     @FXML
@@ -96,7 +96,6 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     @FXML
     public void XemLichSuGiaoDich(ActionEvent event) {
         Pair<Parent, TransactionHistorySceneController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_history_scene.fxml");
-        scene.getValue().loadTransactionHistory();
         SceneUtils.switchScene(mainStage,scene.getKey());
     }
 
