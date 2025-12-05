@@ -99,3 +99,49 @@
 #frequently_asked_question_icon {
     -fx-background-image: url("image/frequently_asked_question_icon.png");
 }
+.myscroll {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* nền viewport */
+.myscroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.myscroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.myscroll .scroll-bar:vertical .thumb,
+.myscroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #b0b0b0;
+    -fx-background-radius: 10;
+}
+
+.myscroll .scroll-bar:vertical .thumb:hover,
+.myscroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #7a7a7a;
+}
+
+.myscroll .increment-button,
+.myscroll .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+
+.myscroll .corner {
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+#myVBox {
+    -fx-spacing: 10;
+}
