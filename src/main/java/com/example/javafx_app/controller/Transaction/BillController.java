@@ -1,8 +1,6 @@
 package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.manager.TransactionManager;
-import com.example.javafx_app.object.User.User;
-import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.util.SceneUtils;
 import com.example.javafx_app.object.Transaction;
 import javafx.event.ActionEvent;
@@ -25,7 +23,6 @@ public class BillController {
     private Label toBankLabel;
     void loadTransaction(){
         Transaction cur = TransactionManager.getInstance().getCurrentTransaction();
-        User user = UserManager.getInstance().findUserByCitizenID(cur.getToAccount().getCitizenID());
         amountLabel.setText(cur.getAmount() + " " + cur.getCurrency());
         dateLabel.setText(String.valueOf(cur.getDate()));
         toAccountFullNameLabel.setText("Người nhận: "+cur.getToAccount().getAccountName());

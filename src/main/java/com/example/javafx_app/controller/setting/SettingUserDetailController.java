@@ -84,6 +84,8 @@ public class SettingUserDetailController implements Initializable {
                 SettingEmailLog.setText("");
                 isValidEmail = true;
                 break;
+            default:
+                break;
         }
         if(isValidPhoneNumber && isValidEmail){
             currentUser.setPhoneNumber(PhoneNumberTextField.getText());

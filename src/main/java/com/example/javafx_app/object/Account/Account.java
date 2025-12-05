@@ -1,6 +1,5 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Transaction;
 

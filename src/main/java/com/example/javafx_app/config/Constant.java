@@ -24,7 +24,7 @@ public class Constant {
     public static final String ADMIN_CURRENCY = "VND";
     public static final String ADMIN_PIN = "000000";
 
-    public static final long START_ACCOUNT_ID = 10000000;
+    public static final int START_ACCOUNT_ID = 10000000;
     public static final long DEFAULT_BALANCE = 0;
     public static Stage mainStage = new Stage();
     public static final Map<String, String> CURRENCY = Map.ofEntries(

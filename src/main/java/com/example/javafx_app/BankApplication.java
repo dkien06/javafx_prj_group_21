@@ -16,7 +16,7 @@ public class BankApplication extends Application {
         try{
             Constant.mainStage = stage;
             ExampleUser.init();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/checking_account_home_scene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

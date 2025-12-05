@@ -7,7 +7,6 @@ import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import com.example.javafx_app.object.Account.Account;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,7 +64,7 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     private Button transfer_btn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Account currentAcc = AccountManager.getInstance().getCurrentAccount();
+        CheckingAccount currentAcc = (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
         balance_btn.setText("Số dư: " + currentAcc.getBalance() + currentAcc.getCurrency());
     }
     @FXML

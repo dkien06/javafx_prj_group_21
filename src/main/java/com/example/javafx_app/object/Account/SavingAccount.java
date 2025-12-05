@@ -7,6 +7,11 @@ public class SavingAccount extends Account {
         super(fullName, citizenID, accountID, password, currency, PIN);
         this.saving = saving;
     }
+
+    public long getSaving() {
+        return saving;
+    }
+
     // ✅ Nạp tiền
     public boolean deposit(CheckingAccount account, long amount) {
         if (!this.citizenID.equals(account.getCitizenID())) {
@@ -36,15 +41,7 @@ public class SavingAccount extends Account {
         }
     }
     public boolean withdrawAll(CheckingAccount account){
-        if (!this.citizenID.equals(account.getCitizenID())) {
-            System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
-            return false;
-        }
-        if(account.deposit(saving)){
-            saving = 0;
-            return true;
-        }
-        else return false;
+        return withdraw(account, saving);
     }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.SAVING ;}

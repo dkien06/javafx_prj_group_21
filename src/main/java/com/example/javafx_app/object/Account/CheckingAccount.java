@@ -14,7 +14,7 @@ import java.util.List;
 public class CheckingAccount extends Account {
     private long balance;
     private List<Bill> bills;
-    public CheckingAccount(String fullName, String citizenID, String accountID, long balance, String password, String currency, String PIN){
+    public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){
         super(fullName, citizenID, accountID, password, currency,  PIN);
         bills = new ArrayList<>() ;
         this.balance = balance;
@@ -23,12 +23,12 @@ public class CheckingAccount extends Account {
     public long getBalance() {
         return balance;
     }
+
     // ✅ Chuyển tiền
     public boolean transfer(CheckingAccount toAccount, long amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
             return false;
         }
-
         // rút tiền bên gửi
         this.balance -= amount;
         // nạp tiền bên nhận
