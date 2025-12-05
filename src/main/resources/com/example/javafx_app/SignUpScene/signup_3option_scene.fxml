@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignUp.SignUp3OptionsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignUp.SignUp3OptionsController">
     <children>
       <Button fx:id="new_customer" layoutX="134.0" layoutY="262.0" mnemonicParsing="false" onAction="#new_Customer" prefHeight="33.0" prefWidth="146.0" text="Khách hàng mới" />
       <Button fx:id="existing_customer" layoutX="134.0" layoutY="309.0" mnemonicParsing="false" onAction="#existing_Customer" prefHeight="33.0" prefWidth="146.0" text="Khách hàng cũ" />
       <Button fx:id="new_employee" layoutX="134.0" layoutY="357.0" mnemonicParsing="false" onAction="#GoToStaffForm1" prefHeight="34.0" prefWidth="146.0" text="Nhân viên mới" />
-      <Label layoutX="171.0" layoutY="219.0" stylesheets="@../css_file/signup_3option_decor.css" text="Bạn là ?">
+      <Label layoutX="182.0" layoutY="226.0" text="Bạn là ?">
          <font>
-            <Font size="11.0" />
+            <Font size="25.0" />
          </font></Label>
       <Button fx:id="TurnBack" layoutX="166.0" layoutY="459.0" mnemonicParsing="false" onAction="#TurnBack" text="Quay lại " />
     </children>
