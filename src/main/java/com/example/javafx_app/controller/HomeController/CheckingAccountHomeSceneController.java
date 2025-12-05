@@ -2,7 +2,6 @@ package com.example.javafx_app.controller.HomeController;
 
 import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
 import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -106,7 +105,7 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
 
     @FXML
     public void XemThongBao(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/noti_scene.fxml");
+        SceneUtils.switchScene(mainStage, "/com/example/javafx_app/NotiScene/noti_scene.fxml");
     }
 
     @FXML

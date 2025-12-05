@@ -5,32 +5,20 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Notification {
-    private String notificationID;
     private NotificationType type;
     private LocalDateTime timestamp;
     private String title;
     private String message;
     private boolean isRead;
 
-    // Có thể là TransactionID, BillID, hoặc một chuỗi tham chiếu khác
-    private String referenceID;
-
     // Constructor
-    /**
-     * Tạo một đối tượng Thông báo mới.
-     * @param type Loại thông báo (ví dụ: BALANCE_CHANGE, NEW_BILL).
-     * @param title Tiêu đề ngắn gọn của thông báo.
-     * @param message Nội dung chi tiết của thông báo.
-     * @param referenceID ID liên quan (ví dụ: ID giao dịch, ID hóa đơn), có thể là null.
-     */
-    public Notification(NotificationType type, String title, String message, String referenceID) {
-        this.notificationID = generateID();
+
+    public Notification(NotificationType type, String title, String message) {
         this.type = type;
         this.timestamp = LocalDateTime.now();
         this.title = title;
         this.message = message;
         this.isRead = false; // Mặc định là chưa đọc
-        this.referenceID = referenceID;
     }
 
     // Phương thức tạo ID ngẫu nhiên (tương tự như trong Transaction.java)
@@ -45,9 +33,6 @@ public class Notification {
     }
 
     // Getters
-    public String getNotificationID() {
-        return notificationID;
-    }
 
     public NotificationType getType() {
         return type;
@@ -67,10 +52,6 @@ public class Notification {
 
     public boolean isRead() {
         return isRead;
-    }
-
-    public String getReferenceID() {
-        return referenceID;
     }
 
     // Setter

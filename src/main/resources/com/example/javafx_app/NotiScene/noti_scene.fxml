@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/noti_scene_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.NotificationController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/noti_scene_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Noti.NotificationController">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>
@@ -32,7 +32,7 @@
                     </graphic></Button>
             </children>
         </GridPane>
-      <ScrollPane layoutX="57.0" layoutY="125.0" prefHeight="422.0" prefWidth="317.0" styleClass="myscroll" stylesheets="@css_file/noti_scene_decor.css">
+      <ScrollPane layoutX="57.0" layoutY="125.0" prefHeight="422.0" prefWidth="317.0" styleClass="myscroll" stylesheets="@../css_file/noti_scene_decor.css">
          <content>
             <VBox fx:id="myVBox" prefHeight="699.0" prefWidth="304.0">
                <children>

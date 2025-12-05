@@ -145,11 +145,6 @@ public class TransactingController implements Initializable {
                      AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
                     descriptionTextArea.getText()
             );
-            // xoa bill
-            CurrentAccount.removeBill(BillButtonController.bill);
-            // tra lai bien cho bill
-            BillButtonController.isBillPayment=false;
-            BillButtonController.bill=null ;
             Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());

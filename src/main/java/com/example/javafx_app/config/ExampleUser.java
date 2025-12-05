@@ -8,6 +8,8 @@ import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Bill.BillType ;
+import com.example.javafx_app.object.Noti.Notification;
+import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 import java.time.LocalDate;
@@ -60,7 +62,7 @@ public class ExampleUser {
             "Ngo Duc C",
             "020406006769",
             "12345678",
-            "CuongDuc%2008",
+            "1",
             2_000_000,                  // balance (mặc định 0)
             "VND",
             "112233"
@@ -108,7 +110,7 @@ public class ExampleUser {
             "Hoang Thi E",
             "010102030508",
             "16180340",
-            "EnHoang*1024",
+            "1",
             1_000_000,                  // balance (mặc định 0)
             "VND",
             "258013"
@@ -190,12 +192,16 @@ public class ExampleUser {
             "VND",
             "000004"
     );
+    //========Noti Gia Lap ================
+    public static Notification noti1 = new Notification(NotificationType.BALANCE_CHANGE,
+            NotificationType.BALANCE_CHANGE.toString(),"abc") ;
     public static void addExample(){
         CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
         CheckingAccountC.addBill(bill1);
         CheckingAccountC.addBill(bill2);
         CheckingAccountC.addBill(bill3);
         CheckingAccountC.addBill(bill4);
+        CheckingAccountC.addNotification(noti1);
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);

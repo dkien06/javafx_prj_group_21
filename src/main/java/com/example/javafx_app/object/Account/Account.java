@@ -3,6 +3,7 @@ package com.example.javafx_app.object.Account;
 import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
@@ -19,6 +20,7 @@ public  abstract class Account {
     protected String currency;
     protected String PIN;
     private List<Transaction> history;
+    private List<Notification> notifications;
     private LocalDate StartDate = null;
     protected boolean isVIP;
 
@@ -33,6 +35,7 @@ public  abstract class Account {
         this.currency = currency;
         this.PIN = PIN;
         this.history = new ArrayList<>();
+        this.notifications = new ArrayList<>();
         this.StartDate = BankManager.getCurrentDate();// Lay ngay hom nay , gia lap thoi
         this.isVIP = false;
     }
@@ -72,7 +75,9 @@ public  abstract class Account {
     }
     public  boolean isVIP() { return isVIP; }
     public abstract ACCOUNT_TYPE getAccountType();
-
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
 
     // === Setter ===
     public void setAccountName(String accountName) {
@@ -90,7 +95,7 @@ public  abstract class Account {
     public void setVIP(boolean VIP) {
         isVIP = VIP;
     }
-
+    public void addNotification(Notification notification) { this.notifications.add(notification); }
     // ✅ Thêm giao dịch
     public void addTransaction(Transaction t) {
         history.add(t);
