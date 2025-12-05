@@ -81,7 +81,7 @@ public class VerifyController {
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
             Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
             ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).transfer(
-                     currentTransaction.getToAccount(),
+                    (CheckingAccount) currentTransaction.getToAccount(),
                     currentTransaction.getAmount(),
                     currentTransaction.getDescription()
             );

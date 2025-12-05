@@ -1,35 +1,23 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.object.FinancialProduct;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class LoanAccount extends Account {
-    private final List<FinancialProduct> loans = new ArrayList<FinancialProduct>();
-    public LoanAccount(String fullName, String citizenID, String accountID, String password, long balance,
+    private long loan;
+    public LoanAccount(String fullName, String citizenID, String accountID, String password, long loan,
                        String currency, String PIN){
-        super(fullName, citizenID, accountID, password, balance, currency, PIN);
-    }
-    public List<FinancialProduct> getLoans() {
-        return loans;
-    }
-    public boolean addLoan(FinancialProduct loan) {
-        if(!loans.isEmpty()&&!this.isVIP) return false ;
-        loans.add(loan);
-        return true;
+        super(fullName, citizenID, accountID, password, currency, PIN);
+        this.loan = loan;
     }
     //Vay tiền
-    public boolean loan(Account account,FinancialProduct financialProduct, double amount, String description){
+    public boolean loan(CheckingAccount account, double amount){
         return true ;
     }
     //Trả nợ
-    public boolean repay(Account account, FinancialProduct financialProduct, double amount, String description){
+    public boolean repay(CheckingAccount account, double amount){
         return true ;
 
     }
-    public boolean repayAll(Account account, FinancialProduct financialProduct, String description){
-        return repay(account,financialProduct, financialProduct.getPrincipal(), description);
+    public boolean repayAll(Account account, String description){
+        return true;
     }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.LOAN ;}
