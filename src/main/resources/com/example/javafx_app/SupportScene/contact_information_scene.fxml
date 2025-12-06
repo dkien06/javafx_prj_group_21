@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.ServiceController">
+    <children>
+        <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button fx:id="account_btn" mnemonicParsing="false" onAction="#XemTaiKhoan" prefHeight="181.0" prefWidth="231.0" styleClass="navbar-btn" text="Tài khoản" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <graphic>
+                        <Label fx:id="account_icon" prefHeight="30.0" prefWidth="30.0" styleClass="icon_container" />
+                    </graphic>
+                </Button>
+                <Button fx:id="settings_btn" mnemonicParsing="false" onAction="#XemCaiDat" prefHeight="209.0" prefWidth="241.0" styleClass="navbar-btn" text="Cài đặt" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <graphic>
+                        <Label fx:id="setting_icon" prefHeight="36.0" prefWidth="36.0" styleClass="icon_container" />
+                    </graphic></Button>
+            </children>
+        </GridPane>
+      <VBox fx:id="balance_box" layoutX="80.0" layoutY="104.0" prefHeight="413.0" prefWidth="255.0">
+         <children>
+            <Label fx:id="hotline_label" text="Hotline hỗ trợ:" />
+            <Label fx:id="hotline_number_label" text="1900-2121" />
+            <Label fx:id="phnmbr_label" text="Điện thoại trụ sở:" />
+            <Label fx:id="phnmbr_number_label" text="(028) 7302-2121" />
+            <Label fx:id="support_email_label" text="Email hỗ trợ khách hàng:" />
+            <Label fx:id="specific_sp_email" text="support@21stbank.com.vn" />
+            <Label fx:id="organisation_email" text="Email hỗ trợ doanh nghiệp:" />
+            <Label fx:id="organisation_email_specific" text="corporate@21stbank.com.vn" />
+            <Label fx:id="place_label" text="Địa chỉ trụ sở chính:" />
+            <Label fx:id="specific_place_label" text="36 Bạch Mai, Hai Bà Trưng, Hà Nội" />
+         </children>
+      </VBox>
+        <Label layoutX="125.0" layoutY="50.0" prefHeight="41.0" prefWidth="164.0" text="Thông tin liên hệ">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="return_btn" layoutX="166.0" layoutY="570.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
+    </children>
+</AnchorPane>
