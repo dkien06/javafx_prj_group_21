@@ -200,13 +200,13 @@
     -fx-font-weight: bold;
     -fx-padding: 4 4;
 }
-place_label{
+#place_label{
     -fx-background-color: transparent;
     -fx-text-fill: #27A4F2;
     -fx-font-weight: bold;
     -fx-padding: 4 8;
 }
-specific_place_label{
+#specific_place_label{
     -fx-background-color: transparent;
     -fx-text-fill: #6C757D;
     -fx-font-weight: bold;
