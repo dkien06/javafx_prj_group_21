@@ -150,68 +150,23 @@
     -fx-text-fill: #27A4F2;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
+    -fx-padding: 8;
 }
-#hotline_number_label {
+
+.label_tt {
     -fx-background-color: transparent;
     -fx-text-fill: #6C757D;
+    -fx-font-weight: bold;
+    -fx-padding: 4 8;
+}
+
+.label_nd {
+    -fx-background-color: transparent;
+    -fx-text-fill: #27A4F2;
     -fx-font-weight: bold;
     -fx-padding: 4 4;
 }
 
-#hotline_label {
-    -fx-background-color: transparent;
-    -fx-text-fill: #27A4F2;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-}
-#phnmbr_label {
-    -fx-background-color: transparent;
-    -fx-text-fill: #27A4F2;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-}
-#phnmbr_number_label {
-    -fx-background-color: transparent;
-    -fx-text-fill: #6C757D;
-    -fx-font-weight: bold;
-    -fx-padding: 4 4;
-}
-#support_email_label{
-    -fx-background-color: transparent;
-    -fx-text-fill: #27A4F2;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-}
-#specific_sp_email{
-    -fx-background-color: transparent;
-    -fx-text-fill: #6C757D;
-    -fx-font-weight: bold;
-    -fx-padding: 4 4;
-}
-#organisation_email{
-    -fx-background-color: transparent;
-    -fx-text-fill: #27A4F2;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-}
-#organisation_email_specific{
-    -fx-background-color: transparent;
-    -fx-text-fill: #6C757D;
-    -fx-font-weight: bold;
-    -fx-padding: 4 4;
-}
-#place_label{
-    -fx-background-color: transparent;
-    -fx-text-fill: #27A4F2;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-}
-#specific_place_label{
-    -fx-background-color: transparent;
-    -fx-text-fill: #6C757D;
-    -fx-font-weight: bold;
-    -fx-padding: 4 4;
-}
 
 
 
