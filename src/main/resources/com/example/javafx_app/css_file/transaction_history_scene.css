@@ -109,3 +109,11 @@
 #icon_tien_hoc_phi {
     -fx-background-image: url("image/mu_cu_nhan.png");
 }
+
+#notificationButton {
+
+}
+
+#icon_thong_bao {
+    -fx-background-image: url("image/blue_bell.png");
+}
