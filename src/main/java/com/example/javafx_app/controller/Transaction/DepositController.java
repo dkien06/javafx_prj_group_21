@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
+/**
+ * "Nạp tiền" ở checkingAccount là chuyển tiền từ savingAccount hoặc loanAccount sang hay sao đấy?
+ */
 public class DepositController implements Initializable {
     @FXML
     private TextField amountTextField;

@@ -2,10 +2,12 @@ package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.controller.Bill.BillButtonController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
+import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.Transaction;
@@ -24,7 +26,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import static com.example.javafx_app.config.Constant.mainStage;
-import  com.example.javafx_app.object.TransactionType;
 
 public class VerifyController {
     @FXML
@@ -97,15 +98,15 @@ public class VerifyController {
             switch (currentTransaction.getType()) {
                 case TransactionType.TRANSFER:
                     // Thực hiện hành động cho Chuyển khoản
-                    fromAccount.transfer(toAccount, amount, description);
+                    ((CheckingAccount)fromAccount).transfer((CheckingAccount) toAccount, amount, description);
                     break;
                 case TransactionType.DEPOSIT:
                     // Thực hiện hành động cho Nạp tiền
-                    fromAccount.deposit(amount);
+                    ((SavingAccount)fromAccount).deposit((CheckingAccount) toAccount, amount);
                     break;
                 case TransactionType.WITHDRAW:
                     // Thực hiện hành động cho Rút tiền
-                    fromAccount.withdraw(amount);
+                    ((SavingAccount)fromAccount).withdraw((CheckingAccount) toAccount, amount);
                     break;
                 case TransactionType.LOAN:
                     // Thực hiện hành động cho Vay tiền
@@ -116,11 +117,11 @@ public class VerifyController {
                     System.out.println("Đây là giao dịch Trả nợ.");
                     break;
                 default:
-                    break;
+                    throw new MysteriousException();
             }
             Pair<Parent, BillController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
             scene.getValue().loadTransaction();
-            // Them notification
+            // Thêm notification
             if(currentTransaction.getType().equals(TransactionType.TRANSFER)){
                 toAccount.addNotification(new Notification(NotificationType.BALANCE_CHANGE,
                         NotificationType.BALANCE_CHANGE.toString(), generateInboundNotification(currentTransaction)));
@@ -135,7 +136,6 @@ public class VerifyController {
             }
             SceneUtils.switchScene(mainStage,scene.getKey());
         }
-
         else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");
         }

@@ -66,6 +66,8 @@ public class SettingPasswordController {
                     NewPasswordLog.setText("");
                     isNewPasswordValid = true;
                     break;
+                default:
+                    break;
             }
             if(isNewPasswordValid){
                 switch (BankManager.checkPasswordAgain(newPass,newPassAgain)){
@@ -78,6 +80,8 @@ public class SettingPasswordController {
                     case RIGHT:
                         NewPasswordAgainLog.setText("");
                         isNewPasswordAgainValid = true;
+                        break;
+                    default:
                         break;
                 }
             }

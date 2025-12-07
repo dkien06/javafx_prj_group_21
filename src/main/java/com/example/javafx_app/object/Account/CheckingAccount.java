@@ -12,21 +12,23 @@ import java.util.List;
  * Tài khoản chuển tiền:)
  */
 public class CheckingAccount extends Account {
+    private long balance;
     private List<Bill> bills;
     public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){
-        super(fullName, citizenID, accountID, password, balance, currency,  PIN);
+        super(fullName, citizenID, accountID, password, currency,  PIN);
         bills = new ArrayList<>() ;
+        this.balance = balance;
     }
 
     public long getBalance() {
         return balance;
     }
+
     // ✅ Chuyển tiền
-    public boolean transfer(Account toAccount, long amount, String description) {
+    public boolean transfer(CheckingAccount toAccount, long amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
             return false;
         }
-
         // rút tiền bên gửi
         this.balance -= amount;
         // nạp tiền bên nhận
@@ -40,6 +42,21 @@ public class CheckingAccount extends Account {
         Transaction newReceive = new Transaction(TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
         toAccount.addTransaction(newReceive);
         return true;
+    }
+    // ✅ Rút tiền để tiết kiệm hoặc trả nợ
+    public boolean withdraw(long amount) {
+        if (amount > 0 && balance > amount) {
+            balance -= amount;
+            return true;
+        }
+        else return false;
+    }
+    // ✅ Nạp tiền từ tiền tiết kiệm hoặc vay mượn
+    public boolean deposit(long amount) {
+        if (amount > 0) {
+            balance += amount;
+            return true;
+        } else return false;
     }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}

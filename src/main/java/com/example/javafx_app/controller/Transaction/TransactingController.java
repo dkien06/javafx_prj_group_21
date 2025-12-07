@@ -7,7 +7,6 @@ import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Bill.BillType;
 import com.example.javafx_app.object.TransactionType;
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.Account;
@@ -24,7 +23,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-import javax.swing.plaf.ColorUIResource;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,7 +62,7 @@ public class TransactingController implements Initializable {
             try {
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     long amount = Long.parseLong(value);
-                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
+                    if(amount > ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()){
                         amountLog.setText("Số tiền bạn nhập không đủ để chuyển");
                         amountLog.setFill(Color.rgb(255, 0, 0));
                         isAmountValid = false;

@@ -1,11 +1,8 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.manager.BankManager;
-import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Transaction;
-import com.example.javafx_app.object.TransactionType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +13,6 @@ public  abstract class Account {
     protected String citizenID;
     protected String accountID;
     protected String password;
-    protected long balance;
     protected String currency;
     protected String PIN;
     private List<Transaction> history;
@@ -25,12 +21,11 @@ public  abstract class Account {
     protected boolean isVIP;
 
     // ✅ Constructor đầy đủ
-    public Account(String fullName, String citizenID, String accountID, String password, long balance,
+    public Account(String fullName, String citizenID, String accountID, String password,
                    String currency, String PIN) {
         this.accountName = fullName;
         this.citizenID = citizenID;
         this.accountID = accountID;
-        this.balance = balance;
         this.password = password;
         this.currency = currency;
         this.PIN = PIN;
@@ -66,9 +61,6 @@ public  abstract class Account {
     }
     public String getPassword() {
         return password;
-    }
-    public long getBalance() {
-        return balance;
     }
     public LocalDate getStartDate() {
         return StartDate;
@@ -107,25 +99,6 @@ public  abstract class Account {
     public boolean isPasswordMatched(String password){
         return this.password != null && this.password.equals(password);
     }
-    // ✅ Rút tiền
-    public boolean withdraw(long amount) {
-        if (amount > 0 && balance > amount) {
-            balance -= amount;
-            history.add(TransactionManager.getInstance().getCurrentTransaction()) ;
-            return true;
-        }
-        else return false;
-    }
-    // ✅ Nạp tiền
-    public boolean deposit(long amount) {
-        if (amount > 0) {
-            balance += amount;
-            // them lich su giao dich
-            history.add(TransactionManager.getInstance().getCurrentTransaction()) ;
-            return true;
-        } else return false;
-    }
-    public abstract boolean transfer(Account toAccount, long amount, String description);
     // ✅ In ra thông tin tài khoản (dễ debug)
     @Override
     public String toString() {

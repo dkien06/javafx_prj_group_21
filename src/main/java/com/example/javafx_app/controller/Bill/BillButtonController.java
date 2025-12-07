@@ -6,10 +6,7 @@ import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.time.LocalDate;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 

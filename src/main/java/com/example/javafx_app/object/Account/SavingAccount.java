@@ -1,48 +1,73 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.manager.TransactionManager;
-import com.example.javafx_app.object.FinancialProduct;
-import com.example.javafx_app.object.Transaction;
-import com.example.javafx_app.object.TransactionType;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.manager.AccountManager;
 
 public class SavingAccount extends Account {
-    private final List<FinancialProduct> savings = new ArrayList<>();
-    public SavingAccount(String fullName, String citizenID, String accountID, String password, long balance,
+    private long saving;
+    private SavingType type;
+    public SavingAccount(String fullName, String citizenID, String accountID, String password, long saving,
                          String currency, String PIN) {
-        super(fullName, citizenID, accountID, password, balance, currency, PIN);
+        super(fullName, citizenID, accountID, password, currency, PIN);
+        this.saving = saving;
+        this.type = SavingType.NONE;
     }
-    public List<FinancialProduct> getSavings() {
-        return savings;
+
+    public long getSaving() {
+        return saving;
     }
-    public boolean addSavings(FinancialProduct saving) {
-        if (!savings.isEmpty() && this.isVIP) return false;
-        this.savings.add(saving);
-        return true;
+
+    // ✅ Nạp tiền
+    public boolean deposit(CheckingAccount account, long amount) {
+        if (!this.citizenID.equals(account.getCitizenID())) {
+            System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
+            return false;
+        }
+        if (account.withdraw(amount)) {
+            saving += amount;
+            return true;
+        }
+        else return false;
     }
-    @Override
-   public boolean transfer(Account toAccount, long amount,String description) {
-       if (toAccount == null || amount <= 0 || amount > balance) {
-           return false;
-       }
-       if(!toAccount.getCitizenID().equals(citizenID)){ return false;}
-       // rút tiền bên gửi
-       this.balance -= amount;
-       // nạp tiền bên nhận
-       toAccount.balance += amount;
+    // ✅ Rút tiền
+    public boolean withdraw(CheckingAccount account, long amount) {
+        if (!this.citizenID.equals(account.getCitizenID())) {
+            System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
+            return false;
+        }
+        if (amount <= saving) {
+            if(account.deposit(amount)){
+                saving -= amount;
+                if(saving == 0){
+                    this.type = SavingType.NONE;
+                }
+                return true;
+            }
+            else return false;
+        } else {
+            return false;
+        }
+    }
+    public boolean withdrawAll(CheckingAccount account){
+        return withdraw(account, saving);
+    }
 
-       // thêm lịch sử giao dịch cho cả 2
-       Transaction newTransfer = new Transaction(TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
-       this.addTransaction(newTransfer);
-       TransactionManager.getInstance().addTransaction(newTransfer);
-
-       Transaction newReceive = new Transaction(TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
-       toAccount.addTransaction(newReceive);
-       return true;
-   }
-
+    public void applyFlexibleInterest(){
+        saving = (long)Math.abs(saving * Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR);
+    }
+    public void applyFixedInterest(int duration){
+        CheckingAccount checkingAccount = AccountManager.getInstance().findCheckingAccount(this);
+        saving = (long) (saving * Math.pow(Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR, duration));
+        withdrawAll(checkingAccount);
+    }
+    public void applyAccumulatedInterest(long accumulatedAmount){
+        CheckingAccount checkingAccount = AccountManager.getInstance().findCheckingAccount(this);
+        saving = (long)Math.abs(saving * Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR);
+        if(checkingAccount.withdraw(accumulatedAmount)){
+            saving += accumulatedAmount;
+        }
+        else withdrawAll(checkingAccount);
+    }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.SAVING ;}
 }

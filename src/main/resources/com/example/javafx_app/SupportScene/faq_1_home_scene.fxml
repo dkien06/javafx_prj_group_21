@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.NotificationController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>
@@ -34,7 +40,7 @@
         <Button fx:id="return_btn" layoutX="166.0" layoutY="570.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
       <ScrollPane layoutX="-6.0" layoutY="108.0" prefHeight="412.0" prefWidth="420.0" styleClass="myscroll" stylesheets="@../css_file/support_home_scene_decor.css">
          <content>
-            <TextArea prefHeight="437.0" prefWidth="430.0" styleClass="button" text="Q: Tôi có thể đăng ký dịch vụ Ngân hàng số 21st Bank bằng cách nào? &#10;A: Bạn có thể đăng ký qua hai kênh:&#10;1. Trực tuyến (Ưu tiên): Tải ứng dụng 21st Bank Mobile, chọn &quot;Đăng ký Ngân hàng số&quot; và hoàn tất quy trình xác thực eKYC (chụp ảnh giấy tờ tùy thân, nhận diện khuôn mặt).&#10;2. Tại Quầy: Mang theo giấy tờ tùy thân đến Chi nhánh/Phòng Giao dịch của 21st Bank để được hỗ trợ thủ tục.&#10;&#10;Q: Tôi cần làm gì để kích hoạt tài khoản Ngân hàng số sau khi đăng ký? &#10;A: Sau khi đăng ký thành công, bạn sẽ nhận được Tên đăng nhập và Mật khẩu tạm thời qua SMS/Email. Bạn nhập thông tin này trên ứng dụng, đồng ý với Điều khoản dịch vụ và đổi mật khẩu lần đầu để kích hoạt.&#10;&#10;Q: Tài khoản 21st Bank Digital của tôi bị khóa, tôi phải làm gì? &#10;A: Tài khoản bị khóa thường do nhập sai thông tin quá số lần quy định. Bạn có thể tự mở khóa bằng cách chọn &quot;Quên Tên đăng nhập/Mật khẩu&quot; trên màn hình đăng nhập và làm theo hướng dẫn, hoặc liên hệ trực tiếp Chi nhánh/Phòng Giao dịch để được hỗ trợ mở khóa ngay lập tức.&#10;&#10;Q: Khi quên tên đăng nhập hoặc mật khẩu, tôi có thể lấy lại bằng cách nào?&#10;A: Bạn có thể lấy lại ngay trên ứng dụng 21st Bank Mobile. Chọn chức năng &quot;Quên Tên đăng nhập&quot; hoặc &quot;Quên Mật khẩu&quot;, nhập thông tin xác thực (ví dụ: Số CMND/CCCD) và xác nhận bằng Mã OTP gửi qua SMS để thiết lập lại thông tin mới.&#10;&#10;Q: Làm thế nào để thiết lập đăng nhập bằng vân tay/khuôn mặt trên Ứng dụng di động? &#10;A: Nếu điện thoại của bạn hỗ trợ tính năng này, bạn có thể thiết lập bằng cách: Nhấn vào biểu tượng Vân tay/Khuôn mặt trên màn hình đăng nhập hoặc vào mục &quot;Cài đặt/Hồ sơ cá nhân&quot; sau khi đăng nhập và chọn &quot;Đăng nhập bằng sinh trắc học&quot;.&#10;" />
+            <TextArea prefHeight="437.0" prefWidth="430.0" styleClass="button" text="Q: Tôi có thể đăng ký dịch vụ Ngân hàng số 21st Bank bằng cách nào? &#10;A: Bạn có thể đăng ký qua hai kênh:&#10;1. Trực tuyến (Ưu tiên): Tải ứng dụng 21st Bank Mobile, chọn &quot;Đăng ký Ngân hàng số&quot; và hoàn tất quy trình xác thực eKYC (chụp ảnh giấy tờ tùy thân, nhận diện khuôn mặt).&#10;2. Tại Quầy: Mang theo giấy tờ tùy thân đến Chi nhánh/Phòng Giao dịch của 21st Bank để được hỗ trợ thủ tục.&#10;&#10;Q: Tôi cần làm gì để kích hoạt tài khoản Ngân hàng số sau khi đăng ký? &#10;A: Sau khi đăng ký thành công, bạn sẽ nhận được Tên đăng nhập và Mật khẩu tạm thời qua SMS/Email. Bạn nhập thông tin này trên ứng dụng, đồng ý với Điều khoản dịch vụ và đổi mật khẩu lần đầu để kích hoạt.&#10;&#10;Q: Tài khoản 21st Bank Digital của tôi bị khóa, tôi phải làm gì? &#10;A: Tài khoản bị khóa thường do nhập sai thông tin quá số lần quy định. Bạn có thể tự mở khóa bằng cách chọn &quot;Quên Tên đăng nhập/Mật khẩu&quot; trên màn hình đăng nhập và làm theo hướng dẫn, hoặc liên hệ trực tiếp Chi nhánh/Phòng Giao dịch để được hỗ trợ mở khóa ngay lập tức.&#10;&#10;Q: Khi quên tên đăng nhập hoặc mật khẩu, tôi có thể lấy lại bằng cách nào?&#10;A: Bạn có thể lấy lại ngay trên ứng dụng 21st Bank Mobile. Chọn chức năng &quot;Quên Tên đăng nhập&quot; hoặc &quot;Quên Mật khẩu&quot;, nhập thông tin xác thực (ví dụ: Số CMND/CCCD) và xác nhận bằng Mã OTP gửi qua SMS để thiết lập lại thông tin mới.&#10;&#10;Q: Làm thế nào để thiết lập đăng nhập bằng vân tay/khuôn mặt trên Ứng dụng di động? &#10;A: Nếu điện thoại của bạn hỗ trợ tính năng này, bạn có thể thiết lập bằng cách: Nhấn vào biểu tượng Vân tay/Khuôn mặt trên màn hình đăng nhập hoặc vào mục &quot;Cài đặt/Hồ sơ cá nhân&quot; sau khi đăng nhập và chọn &quot;Đăng nhập bằng sinh trắc học&quot;.&#10;" wrapText="true" />
          </content>
       </ScrollPane>
     </children>

@@ -53,10 +53,10 @@ public class StartScene implements Initializable {
             checkPhone = false ;
 
         }
-        if(false){
-            DateLog.setText("Không thể đặt thời gian trước thời điểm cuối cùng");
-            checkDate = false ;
-        }
+//        if(false){
+//            DateLog.setText("Không thể đặt thời gian trước thời điểm cuối cùng");
+//            checkDate = false ;
+//        }
         BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
         BankManager.setCurrentDate(DatePicker.getValue());
         BankManager.setCurrentEmail(EmailTextField.getText());

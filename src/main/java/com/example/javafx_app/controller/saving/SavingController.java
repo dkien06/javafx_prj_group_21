@@ -2,6 +2,7 @@ package com.example.javafx_app.controller.saving;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class SavingController {
             try {
                 if (!value.isEmpty() && value.matches("\\d+")) {
                     double amount = Double.parseDouble(value);
-                    if(amount > AccountManager.getInstance().getCurrentAccount().getBalance()){
+                    if(amount > AccountManager.getInstance().findCheckingAccount((SavingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()){
                         amountLog.setText("Số tiền bạn nhập không đủ để chuyển");
                         amountLog.setFill(Color.rgb(255, 0, 0));
                         isAmountValid = false;

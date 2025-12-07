@@ -9,29 +9,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends User {
-        private List<String> accountIDs ;
-        public Customer(String fullName, LocalDate dateOfBirth,
-                        GENDER gender, String phoneNumber, String email, String citizenID) {
-            super(fullName, dateOfBirth, gender, phoneNumber, email, citizenID);
-            accountIDs = new ArrayList<>();
-        }
+    private List<String> accountIDs ;
+    public Customer(String fullName, LocalDate dateOfBirth,
+                    GENDER gender, String phoneNumber, String email, String citizenID) {
+        super(fullName, dateOfBirth, gender, phoneNumber, email, citizenID);
+        accountIDs = new ArrayList<>();
+    }
 
-        @Override
-        public String toString() {
-            return  super.toString();
+    public String getCheckingAccountID(){
+        for(String s : accountIDs){
+            if (s.charAt(0) == '1') return s;
         }
-        public List<String> getAccountIDs() { return accountIDs; }
-        public void addAccountID(String newAccountID) { accountIDs.add(newAccountID); }
-        @Override
-        public USER_TYPE getType() { return USER_TYPE.Customer; }
-        public Account getMainAccount(){
-            for(String accountID : accountIDs){
-                Account account = AccountManager.getInstance().findAccount(accountID);
-                if(account!=null&&account.getAccountType()== ACCOUNT_TYPE.CHECKING){
-                    return account;
-                }
+        return null;
+    }
+    public String getSavingAccountID(){
+        for(String s : accountIDs){
+            if (s.charAt(0) == '2') return s;
+        }
+        return null;
+    }
+    public String getLoanAccountID(){
+        for(String s : accountIDs){
+            if (s.charAt(0) == '3') return s;
+        }
+        return null;
+    }
+    @Override
+    public String toString() {
+        return  super.toString();
+    }
+    public List<String> getAccountIDs() { return accountIDs; }
+    public void addAccountID(String newAccountID) { accountIDs.add(newAccountID); }
+    @Override
+    public USER_TYPE getType() { return USER_TYPE.Customer; }
+    public Account getMainAccount(){
+        for(String accountID : accountIDs){
+            Account account = AccountManager.getInstance().findAccount(accountID);
+            if(account!=null&&account.getAccountType()== ACCOUNT_TYPE.CHECKING){
+                return account;
             }
-            return null;
         }
+        return null;
+    }
 }
 

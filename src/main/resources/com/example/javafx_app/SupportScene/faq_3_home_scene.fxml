@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.NotificationController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>
@@ -34,7 +40,7 @@
         <Button fx:id="return_btn" layoutX="166.0" layoutY="570.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
         <ScrollPane layoutX="-6.0" layoutY="108.0" prefHeight="412.0" prefWidth="420.0" styleClass="myscroll" stylesheets="@../css_file/support_home_scene_decor.css">
             <content>
-                <TextArea prefHeight="437.0" prefWidth="430.0" styleClass="button" text="Q: Dịch vụ thông báo biến động số dư trên Ứng dụng di động hoạt động như thế nào? &#10;A: Dịch vụ này sử dụng hình thức Thông báo OTT (Over-The-Top), gửi thông báo trực tiếp qua ứng dụng khi có kết nối Internet. Ưu điểm là: Miễn phí, không phụ thuộc vào nhà mạng, và nhận thông báo tức thời.&#10;&#10;Q: Phương thức xác thực Soft OTP là gì và có an toàn hơn các hình thức khác không? &#10;A: Soft OTP là giải pháp tạo Mã xác thực một lần (OTP) ngay trên ứng dụng di động. Nó an toàn hơn vì mã được tạo bằng thuật toán độc lập, chỉ có hiệu lực trong 30 giây và không thể bị đánh cắp qua tin nhắn SMS.&#10;&#10;Q: Ứng dụng 21st Bank Mobile yêu cầu những quyền truy cập nào trên điện thoại của tôi? &#10;A: Ứng dụng yêu cầu các quyền như: Camera (quét mã QR/eKYC), Vị trí (GPS) (tìm kiếm ATM/Chi nhánh), Danh bạ (nạp tiền/chuyển tiền) và Thông báo (gửi tin nhắn biến động số dư).&#10;&#10;Q: Tôi phải trả những loại phí gì khi sử dụng dịch vụ Ngân hàng số của 21st Bank? &#10;A: Chi phí dịch vụ tùy thuộc vào gói tài khoản hiện tại. Chúng tôi cam kết miễn phí hầu hết các giao dịch cơ bản (như phí chuyển khoản trong và ngoài hệ thống 24/7). Vui lòng tham khảo Biểu phí Dịch vụ Khách hàng Cá nhân chi tiết trên website chính thức." />
+                <TextArea prefHeight="437.0" prefWidth="430.0" styleClass="button" text="Q: Dịch vụ thông báo biến động số dư trên Ứng dụng di động hoạt động như thế nào? &#10;A: Dịch vụ này sử dụng hình thức Thông báo OTT (Over-The-Top), gửi thông báo trực tiếp qua ứng dụng khi có kết nối Internet. Ưu điểm là: Miễn phí, không phụ thuộc vào nhà mạng, và nhận thông báo tức thời.&#10;&#10;Q: Phương thức xác thực Soft OTP là gì và có an toàn hơn các hình thức khác không? &#10;A: Soft OTP là giải pháp tạo Mã xác thực một lần (OTP) ngay trên ứng dụng di động. Nó an toàn hơn vì mã được tạo bằng thuật toán độc lập, chỉ có hiệu lực trong 30 giây và không thể bị đánh cắp qua tin nhắn SMS.&#10;&#10;Q: Ứng dụng 21st Bank Mobile yêu cầu những quyền truy cập nào trên điện thoại của tôi? &#10;A: Ứng dụng yêu cầu các quyền như: Camera (quét mã QR/eKYC), Vị trí (GPS) (tìm kiếm ATM/Chi nhánh), Danh bạ (nạp tiền/chuyển tiền) và Thông báo (gửi tin nhắn biến động số dư).&#10;&#10;Q: Tôi phải trả những loại phí gì khi sử dụng dịch vụ Ngân hàng số của 21st Bank? &#10;A: Chi phí dịch vụ tùy thuộc vào gói tài khoản hiện tại. Chúng tôi cam kết miễn phí hầu hết các giao dịch cơ bản (như phí chuyển khoản trong và ngoài hệ thống 24/7). Vui lòng tham khảo Biểu phí Dịch vụ Khách hàng Cá nhân chi tiết trên website chính thức." wrapText="true" />
             </content>
         </ScrollPane>
     </children>
