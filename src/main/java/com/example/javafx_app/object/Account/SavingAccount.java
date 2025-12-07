@@ -1,5 +1,8 @@
 package com.example.javafx_app.object.Account;
 
+import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.manager.AccountManager;
+
 public class SavingAccount extends Account {
     private long saving;
     public SavingAccount(String fullName, String citizenID, String accountID, String password, long saving,
@@ -42,6 +45,23 @@ public class SavingAccount extends Account {
     }
     public boolean withdrawAll(CheckingAccount account){
         return withdraw(account, saving);
+    }
+
+    public void applyFlexibleInterest(){
+        saving = (long)Math.abs(saving * Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR);
+    }
+    public void applyFixedInterest(int duration){
+        CheckingAccount checkingAccount = AccountManager.getInstance().findCheckingAccount(this);
+        saving = (long) (saving * Math.pow(Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR, duration));
+        withdrawAll(checkingAccount);
+    }
+    public void applyAccumulatedInterest(long accumulatedAmount){
+        CheckingAccount checkingAccount = AccountManager.getInstance().findCheckingAccount(this);
+        saving = (long)Math.abs(saving * Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR);
+        if(checkingAccount.withdraw(accumulatedAmount)){
+            saving += accumulatedAmount;
+        }
+        else withdrawAll(checkingAccount);
     }
     @Override
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.SAVING ;}
