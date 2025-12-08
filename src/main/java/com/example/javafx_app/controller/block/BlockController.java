@@ -1,4 +1,4 @@
-package com.example.javafx_app.block;
+package com.example.javafx_app.controller.block;
 
 import com.example.javafx_app.object.Transaction;
 import javafx.fxml.FXML;
@@ -32,8 +32,11 @@ public class BlockController {
                     icon.getStyleClass().addAll("icon_container","chuyen_vao");
                     button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
                 }
+            //Thêm icon rút tiền với nạp tiên đi
             case WITHDRAW:
-                //Từ từ đã
+                amount.setText((-transaction.getAmount()) + transaction.getFromAccount().getCurrency());
+                icon.getStyleClass().addAll("icon_container","chuyen_di");
+                button.getStyleClass().addAll("nut_chua_lsgd", "nut_do");
             case DEPOSIT:
                 //Từ từ đã
             case LOAN:

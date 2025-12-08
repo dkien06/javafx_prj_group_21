@@ -7,7 +7,6 @@ import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
-import com.example.javafx_app.config.ExampleUser;
 
 import java.util.*;
 

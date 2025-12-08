@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Button fx:id="notificationButton" mnemonicParsing="false" onAction="#GoToDetails" prefHeight="51.0" prefWidth="347.0" styleClass="nut_chua_lsgd" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.block.NotificationBlockController">
+<Button fx:id="notificationButton" mnemonicParsing="false" onAction="#GoToDetails" prefHeight="51.0" prefWidth="347.0" styleClass="nut_chua_lsgd" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.NotificationBlockController">
     <graphic>
         <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0" spacing="12.0" styleClass="hbox_chua_lsgd">
             <children>

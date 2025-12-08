@@ -1,9 +1,7 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
-import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

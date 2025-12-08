@@ -1,9 +1,8 @@
-package com.example.javafx_app.block;
+package com.example.javafx_app.controller.block;
 
 import com.example.javafx_app.controller.Noti.NotificationController;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.util.SceneUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

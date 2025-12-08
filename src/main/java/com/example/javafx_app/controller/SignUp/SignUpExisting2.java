@@ -54,10 +54,10 @@ public class SignUpExisting2 implements Initializable {
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
         Customer currentCustomer = (Customer) UserManager.getInstance().getCurrentUser() ;
-        if(!AccountManager.getInstance().isExistingSavingAccount(currentCustomer)){
+        if(currentCustomer.getSavingAccountID() == null){
             account_type.getItems().add(ACCOUNT_TYPE.SAVING.toString());
         }
-        if(!AccountManager.getInstance().isExistLoanAccount(currentCustomer)){
+        if(currentCustomer.getLoanAccountID() == null){
             account_type.getItems().add(ACCOUNT_TYPE.LOAN.toString());
         }
         account_type.setValue(account_type.getItems().getFirst());

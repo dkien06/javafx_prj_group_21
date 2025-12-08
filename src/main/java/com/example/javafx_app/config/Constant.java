@@ -10,9 +10,9 @@ import java.util.Map;
 public class Constant {
     private Constant() {}
 
-    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = -9.99;
-    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR =  -19.99;
-    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = -14.99;
+    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = 5;
+    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR =  15;
+    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = 10;
 
     public static final int PHONE_NUMBER_LENGTH = 10;
     public static final int MINIUM_PASSWORD_LENGTH = 8;
@@ -24,7 +24,7 @@ public class Constant {
     public static final String ADMIN_CURRENCY = "VND";
     public static final String ADMIN_PIN = "000000";
 
-    public static final long START_ACCOUNT_ID = 10000000;
+    public static final int START_ACCOUNT_ID = 10000000;
     public static final long DEFAULT_BALANCE = 0;
     public static Stage mainStage = new Stage();
     public static final Map<String, String> CURRENCY = Map.ofEntries(

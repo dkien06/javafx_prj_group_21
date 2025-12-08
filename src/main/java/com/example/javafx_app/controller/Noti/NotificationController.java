@@ -1,6 +1,6 @@
 package com.example.javafx_app.controller.Noti;
 
-import com.example.javafx_app.block.NotificationBlockController;
+import com.example.javafx_app.controller.block.NotificationBlockController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.util.SceneUtils;

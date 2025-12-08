@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.HomeController;
 
+import com.example.javafx_app.exception.CodeUnderConstruction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,30 +57,30 @@ public class LoanAccountHomeSceneController implements HomeSceneController {
     @FXML
     private Button transfer_btn;
     public void ChuyenTien(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemCaiDat(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemHoTro(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemLichSuGiaoDich(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemTaiKhoan(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemThongBao(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemVIP(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 }
