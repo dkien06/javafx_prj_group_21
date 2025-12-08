@@ -117,3 +117,38 @@
 #icon_thong_bao {
     -fx-background-image: url("image/blue_bell.png");
 }
+
+/*phần này dành cho support*/
+.noi_dung_chinh_cua_feq {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+.myscroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.myscroll .scroll-bar:vertical .thumb,
+.myscroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #b0b0b0;
+    -fx-background-radius: 10;
+}
+
+.myscroll .scroll-bar:vertical .thumb:hover,
+.myscroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #7a7a7a;
+}
+
+.myscroll .increment-button,
+.myscroll .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+
+.myscroll .corner {
+    -fx-background-color: transparent;
+}
