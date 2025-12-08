@@ -1,4 +1,4 @@
-package com.example.javafx_app.block;
+package com.example.javafx_app.controller.block;
 
 import com.example.javafx_app.controller.Noti.NotificationController;
 import com.example.javafx_app.object.Noti.Notification;

@@ -25,8 +25,8 @@ module com.example.javafx_app {
     opens com.example.javafx_app.controller.HomeController to javafx.fxml;
     opens com.example.javafx_app.controller.saving to javafx.fxml;
     exports com.example.javafx_app.controller;
-    opens com.example.javafx_app.block to javafx.fxml;
+    opens com.example.javafx_app.controller.block to javafx.fxml;
     exports com.example.javafx_app.controller.Noti;
     opens com.example.javafx_app.controller.Noti to javafx.fxml;
-    exports com.example.javafx_app.block;
+    exports com.example.javafx_app.controller.block;
 }

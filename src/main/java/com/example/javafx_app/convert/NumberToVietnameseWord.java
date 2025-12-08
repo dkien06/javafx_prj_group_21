@@ -1,5 +1,7 @@
 package com.example.javafx_app.convert;
 
+import com.example.javafx_app.manager.AccountManager;
+
 public class NumberToVietnameseWord {
     private NumberToVietnameseWord(){};
     private static final String[] soDonVi = {"", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"};
@@ -34,20 +36,19 @@ public class NumberToVietnameseWord {
         }
         return ketQua.trim();
     }
-    public static String numberToVietnameseWords(double amount){
-        long longAmount = (long) amount;
-        if (longAmount == 0) return "không";
+    public static String numberToVietnameseWords(long amount){
+        if (amount == 0) return "không";
 
         // ================================================================
         // SỬA LỖI 1: Thêm dòng bảo vệ
         // Giới hạn ở dưới 1 triệu tỷ (1,000,000,000,000,000)
         // Bạn có thể tăng giới hạn này nếu mở rộng thêm mảng 'hangNghin'
-        if (longAmount >= 1_000_000_000_000_000L) {
+        if (amount >= 1_000_000_000_000_000L) {
             return "Số tiền quá lớn"; // Trả về thông báo lỗi, không chạy tiếp
         }
         // ================================================================
 
-        String sAmount = String.valueOf(longAmount);
+        String sAmount = String.valueOf(amount);
         StringBuilder ketQua = new StringBuilder();
 
         // ================================================================
@@ -89,5 +90,20 @@ public class NumberToVietnameseWord {
         // Viết hoa chữ cái đầu
         if (ketQua.isEmpty()) return "Không đồng"; // Đề phòng trường hợp không mong muốn
         return ketQua.substring(0, 1).toUpperCase() + ketQua.substring(1);
+    }
+    public static String displayError(String value){
+        try {
+            if (!value.isEmpty() && value.matches("\\d+")) {
+                long amount = Long.parseLong(value);
+                if(amount > AccountManager.getInstance().findCheckingAccount(AccountManager.getInstance().getCurrentAccount()).getBalance())
+                    return "Số tiền bạn nhập không đủ để chuyển";
+                else return "";
+            } else {
+                if(value.isEmpty())return "Vui lòng nhập số tiền";
+                else return  "Số tiền không hợp lệ";
+            }
+        } catch (NumberFormatException e) {
+            return  "Số tiền không hợp lệ";
+        }
     }
 }

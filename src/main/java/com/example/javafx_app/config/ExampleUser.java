@@ -250,6 +250,7 @@ public class ExampleUser {
     }
     public static void init(){
         addExample();
+        AccountManager.getInstance().setCurrentAccount(accountA1);
     }
 
 }

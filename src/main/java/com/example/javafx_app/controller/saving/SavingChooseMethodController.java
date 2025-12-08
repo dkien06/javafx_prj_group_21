@@ -1,6 +1,9 @@
 package com.example.javafx_app.controller.saving;
 
 import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.SavingAccount;
+import com.example.javafx_app.object.Account.SavingType;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,19 +29,19 @@ public class SavingChooseMethodController implements Initializable {
     }
     @FXML
     void MoNgay1(ActionEvent event){
-        MoNgay(event,"Tiền gửi linh hoạt", Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR);
+        MoNgay(event, SavingType.FLEXIBLE);
     }
     @FXML
     void MoNgay2(ActionEvent event){
-        MoNgay(event,"Tiền gửi kì hạn", Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR);
+        MoNgay(event, SavingType.FIXED);
     }
     @FXML
     void MoNgay3(ActionEvent event){
-        MoNgay(event,"Tiền gửi tích góp", Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR);
+        MoNgay(event, SavingType.ACCUMULATED);
     }
-    void MoNgay(ActionEvent event, String type, double interestRate){
+    void MoNgay(ActionEvent event, SavingType type){
+        ((SavingAccount)AccountManager.getInstance().getCurrentAccount()).setType(type);
         Pair<Parent,SavingController> scene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
-        scene.getValue().loadInfo(type, interestRate);
         SceneUtils.switchScene(mainStage,scene.getKey());
     }
     @FXML

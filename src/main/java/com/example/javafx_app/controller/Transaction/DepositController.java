@@ -1,20 +1,20 @@
 package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.BankApplication;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.util.SceneUtils;
+import com.example.javafx_app.controller.VerifyController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,18 +93,9 @@ public class DepositController implements Initializable {
                     CurrentAccount, // Tới tài khoản hiện tại
                      descriptionTextArea.getText()
             );
-
-            try {
-                FXMLLoader nextSceneLoader = new FXMLLoader(BankApplication.class.getResource("TransactionScene/verify_transaction.scene.fxml"));
-                Parent nextSceneRoot = nextSceneLoader.load();
-
-                VerifyController controller = nextSceneLoader.getController();
-                controller.displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
-
-                SceneUtils.switchScene(mainStage, nextSceneRoot);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+            SceneUtils.switchScene(mainStage, scene.getKey());
         }
     }
 }

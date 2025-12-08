@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller.HomeController;
 
 import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
+import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
@@ -110,7 +111,7 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
 
     @FXML
     public void XemVIP(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
     @FXML
     public void SoTien(){

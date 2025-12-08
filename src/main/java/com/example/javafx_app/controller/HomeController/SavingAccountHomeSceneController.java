@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.HomeController;
 
+import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class SavingAccountHomeSceneController implements HomeSceneController{
     @FXML
@@ -61,26 +64,26 @@ public class SavingAccountHomeSceneController implements HomeSceneController{
     }
 
     public void XemCaiDat(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage, "setting/setting.fxml");
     }
 
     public void XemHoTro(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemLichSuGiaoDich(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemTaiKhoan(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemThongBao(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 
     public void XemVIP(ActionEvent event) {
-
+        CodeUnderConstruction.throwException();
     }
 }

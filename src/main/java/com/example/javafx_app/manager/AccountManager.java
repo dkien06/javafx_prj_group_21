@@ -150,6 +150,17 @@ public class AccountManager {
     public Account findAccount(String accountID) {
         return accountMap.get(accountID);
     }
+    public CheckingAccount findCheckingAccount(Account account){
+        return switch (account) {
+            case CheckingAccount checkingAccount -> checkingAccount;
+            case SavingAccount savingAccount -> findCheckingAccount(savingAccount);
+            case LoanAccount loanAccount -> findCheckingAccount(loanAccount);
+            case null, default -> throw new MysteriousException();
+        };
+    }
+    public CheckingAccount findCheckingAccount(CheckingAccount checkingAccount){
+        return checkingAccount;
+    }
     public CheckingAccount findCheckingAccount(SavingAccount savingAccount){
         StringBuilder checkingAccountID = new StringBuilder(savingAccount.getAccountID());
         checkingAccountID.setCharAt(0,'1');
@@ -246,6 +257,7 @@ public class AccountManager {
     }
     public static void main(String args[]) throws IOException {
         ExampleUser.init();
+        System.out.println(currentAccount.getPIN());
         System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
         System.out.println(AccountManager.getInstance().findAccountFromUser(UserManager.getInstance().findUserByCitizenID("010203008386")));
     }
