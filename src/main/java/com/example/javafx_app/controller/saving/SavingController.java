@@ -49,6 +49,8 @@ public class SavingController implements Initializable {
             case ACCUMULATED:
                 extraInfoField.setText(Long.toString(currentSavingAccount.getAccumulatedAmount()));
                 break;
+            case FLEXIBLE:
+                break;
             default:
                 throw new MysteriousException();
         }
@@ -158,6 +160,18 @@ public class SavingController implements Initializable {
     }
     @FXML
     void TiepTuc(ActionEvent event){
+        if(!isAmountValid){
+            if(amount.getText().isEmpty()){
+                amountLog.setText("Vui lòng nhập số tiền của bạn");
+                amountLog.setFill(Color.rgb(255,0,0));
+            }
+        }
+        if(!isExtraInfoValid){
+            if(extraInfoField.getText().isEmpty()){
+                extraInfoLog.setText("Vui lòng nhập thng tin này");
+                extraInfoLog.setFill(Color.rgb(255,0,0));
+            }
+        }
         if(isAmountValid && isExtraInfoValid){
             TransactionManager.getInstance().newTransaction(
                     TransactionType.DEPOSIT,
@@ -174,10 +188,12 @@ public class SavingController implements Initializable {
                 case ACCUMULATED:
                     ((SavingAccount)AccountManager.getInstance().getCurrentAccount()).setAccumulatedAmount(Long.parseLong(extraInfoField.getText()));
                     break;
+                case FLEXIBLE:
+                    break;
                 default:
                     throw new MysteriousException();
             }
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }
