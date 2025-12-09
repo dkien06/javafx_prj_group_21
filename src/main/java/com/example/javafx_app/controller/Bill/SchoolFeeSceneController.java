@@ -1,5 +1,7 @@
 package com.example.javafx_app.controller.Bill;
 
+import com.example.javafx_app.config.ExampleUser;
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +21,7 @@ public class SchoolFeeSceneController implements BillScene {
     private Label WrongLoginLabel;
 
     @FXML
-    private ChoiceBox<?> co_so_dao_tao;
+    private ChoiceBox<String> co_so_dao_tao;
 
     @FXML
     private Button continue_btn;
@@ -29,7 +31,13 @@ public class SchoolFeeSceneController implements BillScene {
 
     @FXML
     private Button return_btn;
-
+    @FXML
+    void initialize() {
+        co_so_dao_tao.getItems().addAll(ExampleUser.SCHOOL_PROVIDER.getAccountName());
+        co_so_dao_tao.setValue(ExampleUser.SCHOOL_PROVIDER.getAccountName());
+        co_so_dao_tao.setMouseTransparent(true);
+        nguon_thanh_toan.setText(AccountManager.getInstance().getCurrentAccount().getAccountID());
+    }
     @FXML
     public void QuayLai(ActionEvent event) {
         SceneUtils.switchScene(mainStage,"BillScene/bill_home_scene.fxml");

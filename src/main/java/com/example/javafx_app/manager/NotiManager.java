@@ -6,7 +6,7 @@ import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.Transaction;
 
 public class NotiManager {
-    public static boolean isMarked
+    public static boolean isMarkedAsRead = false;
     public static Notification getNotifromTransaction(Transaction t) {
         // 1. Chuẩn bị dữ liệu
         long absoluteAmount = Math.abs(t.getAmount());

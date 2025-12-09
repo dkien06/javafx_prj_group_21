@@ -22,15 +22,6 @@ public class Notification {
     }
 
     // Phương thức tạo ID ngẫu nhiên (tương tự như trong Transaction.java)
-    private String generateID() {
-        String numbers = "0123456789";
-        StringBuilder id = new StringBuilder("N"); // Bắt đầu bằng 'N'
-        Random random = new Random();
-        for(int i = 0; i < 9; i++){ // Tổng cộng 10 ký tự
-            id.append(numbers.charAt(random.nextInt(numbers.length())));
-        }
-        return String.valueOf(id);
-    }
 
     // Getters
 

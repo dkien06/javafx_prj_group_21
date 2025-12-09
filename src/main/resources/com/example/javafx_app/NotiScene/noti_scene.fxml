@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -62,11 +63,16 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Label layoutX="154.0" layoutY="51.0" prefHeight="47.0" prefWidth="105.0" text="Thông báo">
+      <Label layoutX="163.0" layoutY="31.0" prefHeight="47.0" prefWidth="113.0" text="Thông báo">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Button fx:id="return_btn" layoutX="166.0" layoutY="570.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
+      <CheckBox fx:id="ReadCheckBox" layoutX="247.0" layoutY="89.0" mnemonicParsing="false" text="Đánh dấu là đã đọc" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </CheckBox>
     </children>
 </AnchorPane>
