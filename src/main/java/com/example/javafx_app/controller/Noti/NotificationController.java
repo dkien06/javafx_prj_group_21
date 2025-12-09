@@ -30,6 +30,10 @@ public class NotificationController {
         }
     }
 
+    @FXML void GoToDetails() {
+
+    }
+
     @FXML
     void XemCaiDat() {
         SceneUtils.switchScene(mainStage, "setting/setting.fxml");
