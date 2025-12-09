@@ -70,7 +70,7 @@ public class SavingAccount extends Account {
             System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
             return false;
         }
-        if (account.withdraw(amount,"")) {
+        if (account.withdraw(amount)) {
             if(saving == 0) startSavingDate = LocalDateTime.now();
             saving += amount;
             Transaction newSaving = new Transaction(TransactionType.DEPOSIT, amount, account.getCurrency(), account, this, description);
@@ -90,7 +90,7 @@ public class SavingAccount extends Account {
             return false;
         }
         if (amount <= saving) {
-            if(account.deposit(amount,"")){
+            if(account.deposit(amount)){
                 saving -= amount;
                 if(saving == 0) this.type = SavingType.NONE;
                 return true;
@@ -115,7 +115,7 @@ public class SavingAccount extends Account {
     public void applyAccumulatedInterest(){
         CheckingAccount checkingAccount = AccountManager.getInstance().findCheckingAccount(this);
         saving = (long)Math.abs(saving * Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR);
-        if(checkingAccount.withdraw(accumulatedAmount,"")){
+        if(checkingAccount.withdraw(accumulatedAmount)){
             saving += accumulatedAmount;
         }
         else withdrawAll(checkingAccount);
