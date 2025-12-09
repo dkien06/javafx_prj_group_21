@@ -40,11 +40,17 @@ public class CompletedController {
                 toAccountFullNameLabel.setVisible(false);
                 toAccountIDLabel.setVisible(false);
                 break;
+            case WITHDRAW:
+                billHeadLabel.setText("Rút tiền thành công");
+                toAccountFullNameLabel.setVisible(false);
+                toAccountIDLabel.setVisible(false);
+                break;
             default:
                 CodeUnderConstruction.throwException();
                 break;
         }
-        amountLabel.setText(cur.getAmount() + " " + cur.getCurrency());
+        amountLabel.setText(TransactionManager.getInstance().
+                formatCurrency(cur.getAmount(), cur.getCurrency()));
         dateLabel.setText(String.valueOf(cur.getDate()));
         toBankLabel.setText("21stBank");
         descriptionLabel.setText(cur.getDescription());

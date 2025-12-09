@@ -1,9 +1,10 @@
-package com.example.javafx_app.controller.Transaction;
+package com.example.javafx_app.controller.checking;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.util.SceneUtils;
 import com.example.javafx_app.controller.VerifyController;
@@ -36,33 +37,24 @@ public class DepositController implements Initializable {
     private final CheckingAccount CurrentAccount = (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
     private boolean isAmountValid = false;
 
+    public void loadDeposit(Transaction transaction){
+        amountTextField.setText("" + transaction.getAmount());
+        descriptionTextArea.setText(transaction.getDescription());
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Listener kiểm tra số tiền nhập vào
-        amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                if (!newValue.isEmpty() && newValue.matches("\\d+")) {
-                    long amount = Long.parseLong(newValue);
-                    if (amount <= 0) {
-                        amountLog.setText("Số tiền phải lớn hơn 0");
-                        amountLog.setFill(Color.RED);
-                        isAmountValid = false;
-                    } else {
-                        String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
-                        amountLog.setText(amountInWords);
-                        amountLog.setFill(Color.BLACK);
-                        isAmountValid = true;
-                    }
-                } else {
-                    if (newValue.isEmpty()) amountLog.setText("Vui lòng nhập số tiền");
-                    else amountLog.setText("Số tiền không hợp lệ");
-                    amountLog.setFill(Color.RED);
-                    isAmountValid = false;
-                }
-            } catch (NumberFormatException e) {
-                amountLog.setText("Số tiền không hợp lệ");
-                amountLog.setFill(Color.RED);
+        descriptionTextArea.setText(CurrentAccount.getAccountName().toUpperCase() + " nap tien");
+        amountTextField.textProperty().addListener((observable, _, value) -> {
+            amountLog.setText(NumberToVietnameseWord.displayError(value));
+            if(!amountLog.getText().isEmpty()){
+                amountLog.setFill(Color.rgb(255,0,0));
                 isAmountValid = false;
+            }
+            else{
+                amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(Long.parseLong(value)));
+                amountLog.setFill(Color.rgb(255,255,255));
+                isAmountValid = true;
             }
         });
     }
@@ -89,11 +81,11 @@ public class DepositController implements Initializable {
                     TransactionType.DEPOSIT,
                     Long.parseLong(amountTextField.getText()),
                     "VND",
-                    CurrentAccount, // Từ đâu đó (ngân hàng)
+                    CurrentAccount,
                     CurrentAccount, // Tới tài khoản hiện tại
                      descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());
         }

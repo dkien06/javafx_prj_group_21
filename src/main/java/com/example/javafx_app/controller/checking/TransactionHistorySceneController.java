@@ -1,7 +1,8 @@
-package com.example.javafx_app.controller.Transaction;
+package com.example.javafx_app.controller.checking;
 
 import com.example.javafx_app.controller.block.HistoryBlockController;
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
@@ -40,11 +41,12 @@ public class TransactionHistorySceneController {
 
     @FXML
     private VBox vbox_to;
+    CheckingAccount currentAccount = (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
     @FXML
     public void initialize() {
         name.setText("Họ và tên: " + AccountManager.getInstance().getCurrentAccount().getAccountName());
-        balance.setText("Số dư: " + ((CheckingAccount)(AccountManager.getInstance().getCurrentAccount())).getBalance()
-                               + AccountManager.getInstance().getCurrentAccount().getCurrency());
+        balance.setText("Số dư: " + TransactionManager.getInstance().
+                formatCurrency(currentAccount.getBalance(),currentAccount.getCurrency()));
         accountID.setText("Số tài khoản: " + AccountManager.getInstance().getCurrentAccount().getAccountID());
         for(Transaction t : (AccountManager.getInstance().getCurrentAccount()).getHistory()){
             Pair<Parent, HistoryBlockController> block = SceneUtils.getRootAndController("TransactionScene/history_block.fxml");

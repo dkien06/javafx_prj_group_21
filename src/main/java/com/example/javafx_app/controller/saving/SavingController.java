@@ -160,6 +160,18 @@ public class SavingController implements Initializable {
     }
     @FXML
     void TiepTuc(ActionEvent event){
+        if(!isAmountValid){
+            if(amount.getText().isEmpty()){
+                amountLog.setText("Vui lòng nhập số tiền của bạn");
+                amountLog.setFill(Color.rgb(255,0,0));
+            }
+        }
+        if(!isExtraInfoValid){
+            if(extraInfoField.getText().isEmpty()){
+                extraInfoLog.setText("Vui lòng nhập thng tin này");
+                extraInfoLog.setFill(Color.rgb(255,0,0));
+            }
+        }
         if(isAmountValid && isExtraInfoValid){
             TransactionManager.getInstance().newTransaction(
                     TransactionType.DEPOSIT,

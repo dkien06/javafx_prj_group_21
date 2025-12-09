@@ -1,17 +1,19 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.controller.Bill.BillButtonController;
-import com.example.javafx_app.controller.Transaction.TransactingController;
+import com.example.javafx_app.controller.checking.DepositController;
+import com.example.javafx_app.controller.checking.TransactingController;
+import com.example.javafx_app.controller.checking.WithdrawController;
 import com.example.javafx_app.controller.block.VerifyReceiveBlockController;
 import com.example.javafx_app.controller.block.VerifySendingBlockController;
 import com.example.javafx_app.controller.saving.SavingController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
-import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Noti.NotificationType;
@@ -46,67 +48,160 @@ public class VerifyController {
     public void displayTransactionInformation(Transaction newTransaction){
         Pair<Parent, VerifyReceiveBlockController> receiveBlock;
         Pair<Parent, VerifySendingBlockController> sendingBlock;
-        switch (currentTransaction.getType()) {
-            case TRANSFER:
-                sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
-                sendingBlock.getValue().setData(newTransaction);
-                VBox_Thong_Tin_Xac_Nhan.getChildren().add(sendingBlock.getKey());
+        switch (currentAccount) {
+            case CheckingAccount checkingAccount -> {
+                switch (currentTransaction.getType()) {
+                    case TRANSFER, WITHDRAW:
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(sendingBlock.getKey());
 
-                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
-                receiveBlock.getValue().setData(newTransaction);
-                VBox_Thong_Tin_Xac_Nhan.getChildren().add(receiveBlock.getKey());
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(receiveBlock.getKey());
 
-                transactionTypeLabel.setText("Chuyển khoản");
-                break;
-            case DEPOSIT:
-                sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
-                sendingBlock.getValue().setData(newTransaction);
-                VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(sendingBlock.getKey());
-
-                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
-                receiveBlock.getValue().setData(newTransaction);
-                VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(receiveBlock.getKey());
-
-                switch (((SavingAccount) currentAccount).getType()) {
-                    case FLEXIBLE:
-                        transactionTypeLabel.setText("Gửi tiền - Linh hoạt");
                         break;
-                    case FIXED:
-                        transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + ((SavingAccount) currentAccount).getFixedDuration() + " tháng");
-                        break;
-                    case ACCUMULATED:
-                        transactionTypeLabel.setText("Gửi tiền - Tích góp: " + ((SavingAccount) currentAccount).getAccumulatedAmount() + currentAccount.getCurrency());
+                    case DEPOSIT:
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(sendingBlock.getKey());
+
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(receiveBlock.getKey());
+
                         break;
                     default:
                         throw new MysteriousException();
                 }
-                break;
-            default:
-                CodeUnderConstruction.throwException();
-                break;
+                switch (currentTransaction.getType()) {
+                    case TRANSFER:
+                        transactionTypeLabel.setText("Chuyển khoản");
+                        break;
+                    case DEPOSIT:
+                        transactionTypeLabel.setText("Nạp tiền");
+                        break;
+                    case WITHDRAW:
+                        transactionTypeLabel.setText("Rút tiền");
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case SavingAccount savingAccount -> {
+                switch (currentTransaction.getType()) {
+                    case DEPOSIT:
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(receiveBlock.getKey());
+
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(sendingBlock.getKey());
+
+                        break;
+                    case WITHDRAW:
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(sendingBlock.getKey());
+
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(receiveBlock.getKey());
+
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+                switch (currentTransaction.getType()) {
+                    case DEPOSIT:
+                        switch (savingAccount.getType()) {
+                            case FLEXIBLE:
+                                transactionTypeLabel.setText("Gửi tiền - Linh hoạt");
+                                break;
+                            case FIXED:
+                                transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + savingAccount.getFixedDuration() + " tháng");
+                                break;
+                            case ACCUMULATED:
+                                transactionTypeLabel.setText("Gửi tiền - Tích góp: " + savingAccount.getAccumulatedAmount() + currentAccount.getCurrency());
+                                break;
+                            default:
+                                throw new MysteriousException();
+                        }
+                        break;
+                    case WITHDRAW:
+                        if (currentTransaction.getAmount() == savingAccount.getSaving())
+                            transactionTypeLabel.setText("Rút tiền: Tất cả");
+                        else
+                            transactionTypeLabel.setText("Rút tiền: Một phần");
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case LoanAccount loanAccount -> {
+                switch (currentTransaction.getType()) {
+                    case LOAN:
+                        break;
+                    case REPAY:
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+                switch (currentTransaction.getType()) {
+                    case LOAN:
+                        break;
+                    case REPAY:
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case null, default -> throw new MysteriousException();
         }
-        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + " " + newTransaction.getCurrency());
+        amountLabel.setText("Số tiền: " + TransactionManager.getInstance().formatCurrency(
+                newTransaction.getAmount(), newTransaction.getCurrency()));
         amountInTextLabel.setText(NumberToVietnameseWord.numberToVietnameseWords(newTransaction.getAmount()));
         descriptionLabel.setText(newTransaction.getDescription());
     }
     @FXML
     void QuayLai(ActionEvent event) {
-        switch (TransactionManager.getInstance().getCurrentTransaction().getType()){
-            case TRANSFER:
-                Pair<Parent, TransactingController> transactingScene = SceneUtils.getRootAndController("TransactionScene/transaction_scene.fxml");
-                transactingScene.getValue().loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
-                TransactionManager.getInstance().removeNewTransaction();
-                SceneUtils.switchScene(mainStage,transactingScene.getKey());
-                break;
-            case DEPOSIT:
+        switch (currentAccount) {
+            case CheckingAccount checkingAccount -> {
+                switch (currentTransaction.getType()) {
+                    case TRANSFER:
+                        Pair<Parent, TransactingController> transactingScene = SceneUtils.getRootAndController("TransactionScene/transaction_scene.fxml");
+                        transactingScene.getValue().loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
+                        TransactionManager.getInstance().removeNewTransaction();
+                        SceneUtils.switchScene(mainStage, transactingScene.getKey());
+                        break;
+                    case DEPOSIT:
+                        Pair<Parent, DepositController> depositScene = SceneUtils.getRootAndController("TransactionScene/deposit_scene.fxml");
+                        depositScene.getValue().loadDeposit(TransactionManager.getInstance().getCurrentTransaction());
+                        TransactionManager.getInstance().removeNewTransaction();
+                        SceneUtils.switchScene(mainStage, depositScene.getKey());
+                        break;
+                    case WITHDRAW:
+                        Pair<Parent, WithdrawController> withdrawScene = SceneUtils.getRootAndController("TransactionScene/withdraw_scene.fxml");
+                        withdrawScene.getValue().loadWithdraw(TransactionManager.getInstance().getCurrentTransaction());
+                        TransactionManager.getInstance().removeNewTransaction();
+                        SceneUtils.switchScene(mainStage, withdrawScene.getKey());
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case SavingAccount savingAccount -> {
+                ((SavingAccount) AccountManager.getInstance().getCurrentAccount()).setFixedDuration(0);
+                ((SavingAccount) AccountManager.getInstance().getCurrentAccount()).setAccumulatedAmount(0);
                 Pair<Parent, SavingController> savingScene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
                 savingScene.getValue().loadSaving(TransactionManager.getInstance().getCurrentTransaction());
                 TransactionManager.getInstance().removeNewTransaction();
-                SceneUtils.switchScene(mainStage,savingScene.getKey());
-                break;
-            default:
-                CodeUnderConstruction.throwException();
-                break;
+                SceneUtils.switchScene(mainStage, savingScene.getKey());
+            }
+            case LoanAccount loanAccount -> {
+                //Hehe
+            }
+            case null, default -> throw new MysteriousException();
         }
     }
     @FXML
@@ -123,31 +218,52 @@ public class VerifyController {
             Account toAccount = currentTransaction.getToAccount();
             long amount = currentTransaction.getAmount();
             String description = currentTransaction.getDescription();
-            switch (currentTransaction.getType()) {
-                case TransactionType.TRANSFER:
-                    // Thực hiện hành động cho Chuyển khoản
-                    ((CheckingAccount)fromAccount).transfer((CheckingAccount) toAccount, amount, description);
-                    break;
-                case TransactionType.DEPOSIT:
-                    // Thực hiện hành động cho Nạp tiền
-                    ((SavingAccount)fromAccount).deposit(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
-                    break;
-                case TransactionType.WITHDRAW:
-                    // Thực hiện hành động cho Rút tiền
-                    ((SavingAccount)fromAccount).withdraw((CheckingAccount) toAccount, amount);
-                    break;
-                case TransactionType.LOAN:
-                    // Thực hiện hành động cho Vay tiền
-                    System.out.println("Đây là giao dịch Vay tiền.");
-                    break;
-                case TransactionType.REPAY:
-                    // Thực hiện hành động cho Trả nợ
-                    System.out.println("Đây là giao dịch Trả nợ.");
-                    break;
-                default:
-                    throw new MysteriousException();
+            switch (currentAccount) {
+                case CheckingAccount checkingAccount -> {
+                    switch (currentTransaction.getType()) {
+                        case TRANSFER:
+                            // Thực hiện hành động cho Chuyển khoản
+                            ((CheckingAccount) fromAccount).transfer((CheckingAccount) toAccount, amount, description);
+                            break;
+                        case DEPOSIT:
+                            ((CheckingAccount) toAccount).deposit(amount);
+                            break;
+                        case WITHDRAW:
+                            ((CheckingAccount) fromAccount).withdraw(amount);
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                }
+                case SavingAccount savingAccount -> {
+                    switch (currentTransaction.getType()) {
+                        case TransactionType.DEPOSIT:
+                            // Thực hiện hành động cho Nạp tiền
+                            ((SavingAccount) toAccount).deposit(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
+                            break;
+                        case TransactionType.WITHDRAW:
+                            // Thực hiện hành động cho Rút tiền
+                            ((SavingAccount) fromAccount).withdraw((CheckingAccount) toAccount, amount);
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                }
+                case LoanAccount loanAccount -> {
+                    switch ((currentTransaction.getType())) {
+                        case LOAN:
+                            ((LoanAccount) toAccount).loan(AccountManager.getInstance().findCheckingAccount(toAccount), amount);
+                            break;
+                        case REPAY:
+                            ((LoanAccount) fromAccount).repay(AccountManager.getInstance().findCheckingAccount(fromAccount), amount);
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                }
+                case null, default -> throw new MysteriousException();
             }
-            Pair<Parent, CompletedController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
+            Pair<Parent, CompletedController> scene = SceneUtils.getRootAndController("completed_scene.fxml");
             scene.getValue().loadTransaction();
             // Thêm notification
             if(currentTransaction.getType().equals(TransactionType.TRANSFER)){
