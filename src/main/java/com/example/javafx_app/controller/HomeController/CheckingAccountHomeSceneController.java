@@ -3,6 +3,7 @@ package com.example.javafx_app.controller.HomeController;
 import com.example.javafx_app.controller.Transaction.TransactionHistorySceneController;
 import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
@@ -66,7 +67,8 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         CheckingAccount currentAcc = (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
-        balance_btn.setText("Số dư: " + currentAcc.getBalance() + currentAcc.getCurrency());
+        balance_btn.setText("Số dư: " + TransactionManager.getInstance().formatCurrency(currentAcc.getBalance()
+                , currentAcc.getCurrency()));
     }
     @FXML
     public void ChuyenTien(ActionEvent event) {
