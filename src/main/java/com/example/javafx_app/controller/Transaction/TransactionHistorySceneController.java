@@ -1,6 +1,6 @@
-package com.example.javafx_app.controller.checking;
+package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.controller.block.HistoryBlockController;
+import com.example.javafx_app.controller.block.BlockController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Account.CheckingAccount;
@@ -49,7 +49,7 @@ public class TransactionHistorySceneController {
                 formatCurrency(currentAccount.getBalance(),currentAccount.getCurrency()));
         accountID.setText("Số tài khoản: " + AccountManager.getInstance().getCurrentAccount().getAccountID());
         for(Transaction t : (AccountManager.getInstance().getCurrentAccount()).getHistory()){
-            Pair<Parent, HistoryBlockController> block = SceneUtils.getRootAndController("TransactionScene/history_block.fxml");
+            Pair<Parent, BlockController> block = SceneUtils.getRootAndController("controller/block/block.fxml");
             block.getValue().setData(t);
             vbox_lich_su_giao_dich.getChildren().add(block.getKey());
         }

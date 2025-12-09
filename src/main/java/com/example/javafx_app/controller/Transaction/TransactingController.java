@@ -1,8 +1,7 @@
-package com.example.javafx_app.controller.checking;
+package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.controller.Bill.BillButtonController;
-import com.example.javafx_app.convert.ConvertToLatinString;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Bill.Bill;
@@ -129,10 +128,10 @@ public class TransactingController implements Initializable {
                     Long.parseLong(amountTextField.getText()),
                     "VND", //Tạm thời thế này đi
                     AccountManager.getInstance().getCurrentAccount(),
-                    AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
-                    ConvertToLatinString.convert(descriptionTextArea.getText())
+                     AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
+                    descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }

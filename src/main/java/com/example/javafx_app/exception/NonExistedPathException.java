@@ -1,7 +1,5 @@
 package com.example.javafx_app.exception;
 
-import com.example.javafx_app.util.DialogUtils;
-
 import java.util.Random;
 
 /**
@@ -21,12 +19,6 @@ public class NonExistedPathException extends RuntimeException {
         return randomMessage[r.nextInt(randomMessage.length)];
     }
     public static void throwException(){
-        DialogUtils.errorDialogButton(
-                "Lỗi đường dẫn",
-                "Đường dẫn không tồn tại",
-                generateMessage(),
-                "OK"
-        );
         throw new NonExistedPathException(generateMessage());
     }
 }

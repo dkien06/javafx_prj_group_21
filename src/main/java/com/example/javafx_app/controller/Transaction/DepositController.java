@@ -1,14 +1,12 @@
-package com.example.javafx_app.controller.checking;
+package com.example.javafx_app.controller.Transaction;
 
-import com.example.javafx_app.controller.VerifyController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
-import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Account.CheckingAccount;
-import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.util.SceneUtils;
+import com.example.javafx_app.controller.VerifyController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +22,10 @@ import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class WithdrawController implements Initializable {
+/**
+ * "Nạp tiền" ở checkingAccount là chuyển tiền từ savingAccount hoặc loanAccount sang hay sao đấy?
+ */
+public class DepositController implements Initializable {
     @FXML
     private TextField amountTextField;
     @FXML
@@ -35,24 +36,33 @@ public class WithdrawController implements Initializable {
     private final CheckingAccount CurrentAccount = (CheckingAccount) AccountManager.getInstance().getCurrentAccount();
     private boolean isAmountValid = false;
 
-    public void loadWithdraw(Transaction transaction){
-        amountTextField.setText("" + transaction.getAmount());
-        descriptionTextArea.setText(transaction.getDescription());
-    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Listener kiểm tra số tiền nhập vào (bao gồm check số dư)
-        descriptionTextArea.setText(CurrentAccount.getAccountName().toUpperCase() + " rut tien");
-        amountTextField.textProperty().addListener((observable, _, value) -> {
-            amountLog.setText(NumberToVietnameseWord.displayError(value));
-            if(!amountLog.getText().isEmpty()){
-                amountLog.setFill(Color.rgb(255,0,0));
+        // Listener kiểm tra số tiền nhập vào
+        amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                if (!newValue.isEmpty() && newValue.matches("\\d+")) {
+                    long amount = Long.parseLong(newValue);
+                    if (amount <= 0) {
+                        amountLog.setText("Số tiền phải lớn hơn 0");
+                        amountLog.setFill(Color.RED);
+                        isAmountValid = false;
+                    } else {
+                        String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(amount);
+                        amountLog.setText(amountInWords);
+                        amountLog.setFill(Color.BLACK);
+                        isAmountValid = true;
+                    }
+                } else {
+                    if (newValue.isEmpty()) amountLog.setText("Vui lòng nhập số tiền");
+                    else amountLog.setText("Số tiền không hợp lệ");
+                    amountLog.setFill(Color.RED);
+                    isAmountValid = false;
+                }
+            } catch (NumberFormatException e) {
+                amountLog.setText("Số tiền không hợp lệ");
+                amountLog.setFill(Color.RED);
                 isAmountValid = false;
-            }
-            else{
-                amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(Long.parseLong(value)));
-                amountLog.setFill(Color.rgb(255,255,255));
-                isAmountValid = true;
             }
         });
     }
@@ -61,28 +71,29 @@ public class WithdrawController implements Initializable {
     void QuayLai(ActionEvent event) {
         // Quay về màn hình chính của tài khoản thanh toán
         SceneUtils.switchScene(mainStage, "TransactionScene/transaction_options_scene.fxml");
+
     }
 
     @FXML
     void TiepTuc(ActionEvent event) throws IOException {
         amountLog.setText("");
         if (amountTextField.getText().isEmpty()) {
-            amountLog.setText("Vui lòng nhập số tiền rút");
+            amountLog.setText("Vui lòng nhập số tiền nạp");
             amountLog.setFill(Color.RED);
             return;
         }
 
         if (isAmountValid) {
-            // Tạo TransactionType.WITHDRAW. Sử dụng CurrentAccount cho cả from và to
+            // Tạo TransactionType.DEPOSIT. Sử dụng CurrentAccount cho cả from và to
             TransactionManager.getInstance().newTransaction(
-                    TransactionType.WITHDRAW,
+                    TransactionType.DEPOSIT,
                     Long.parseLong(amountTextField.getText()),
                     "VND",
                     CurrentAccount,
-                    CurrentAccount,
-                    descriptionTextArea.getText()
+                    CurrentAccount, // Tới tài khoản hiện tại
+                     descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());
         }

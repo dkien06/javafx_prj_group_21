@@ -1,4 +1,4 @@
-package com.example.javafx_app.controller.checking;
+package com.example.javafx_app.controller.Transaction;
 
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
