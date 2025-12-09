@@ -1,5 +1,7 @@
 package com.example.javafx_app.controller.Bill;
 
+import com.example.javafx_app.config.ExampleUser;
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,11 +27,16 @@ public class ElectricBillSceneController implements BillScene {
     private Label nguon_thanh_toan;
 
     @FXML
-    private ChoiceBox<?> nha_cung_cap;
-
+    private ChoiceBox<String> nha_cung_cap;
+    @FXML
+    void initialize() {
+        nha_cung_cap.getItems().add(ExampleUser.ELECTRIC_PROVIDER.getAccountName()) ;
+        nha_cung_cap.setValue(ExampleUser.ELECTRIC_PROVIDER.getAccountName());
+        nha_cung_cap.setMouseTransparent(true);
+        nguon_thanh_toan.setText(AccountManager.getInstance().getCurrentAccount().getAccountID());
+    }
     @FXML
     private Button return_btn;
-
     @FXML
     public void QuayLai(ActionEvent event) {
         SceneUtils.switchScene(mainStage,"BillScene/bill_home_scene.fxml");

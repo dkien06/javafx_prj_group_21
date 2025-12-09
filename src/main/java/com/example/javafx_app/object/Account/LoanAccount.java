@@ -13,7 +13,7 @@ public class LoanAccount extends Account {
             System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
             return false;
         }
-        if(account.deposit(amount)){
+        if(account.deposit(amount,"")){
             debt += amount;
             return true;
         }
@@ -25,7 +25,7 @@ public class LoanAccount extends Account {
             System.out.println("Không thể nạp tiền từ tài khoản khác chủ.");
             return false;
         }
-        if(account.withdraw(amount)){
+        if(account.withdraw(amount,"")){
             debt -= amount;
             return true;
         }

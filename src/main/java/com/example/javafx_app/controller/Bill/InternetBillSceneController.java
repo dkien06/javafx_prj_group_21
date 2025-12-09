@@ -1,5 +1,7 @@
 package com.example.javafx_app.controller.Bill;
 
+import com.example.javafx_app.config.ExampleUser;
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +17,7 @@ public class InternetBillSceneController implements BillScene {
     private Label WrongLoginLabel;
 
     @FXML
-    private ChoiceBox<?> accountType;
+    private ChoiceBox<String> accountType;
 
     @FXML
     private Button continue_btn;
@@ -25,7 +27,13 @@ public class InternetBillSceneController implements BillScene {
 
     @FXML
     private Button return_btn;
-
+    @FXML
+    void initialize() {
+        accountType.getItems().add(ExampleUser.INTERNET_PROVIDER.getAccountName()) ;
+        accountType.setValue(ExampleUser.INTERNET_PROVIDER.getAccountName());
+        accountType.setMouseTransparent(true);
+        nguon_thanh_toan.setText(AccountManager.getInstance().getCurrentAccount().getAccountID());
+    }
     @FXML
     public void QuayLai(ActionEvent event) {
         SceneUtils.switchScene(mainStage,"BillScene/bill_home_scene.fxml");
