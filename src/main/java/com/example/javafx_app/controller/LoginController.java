@@ -1,9 +1,7 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
-import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +10,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class LoginController implements Initializable {
 
@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
             }
         }
         if(AccountManager.getInstance().logIn(CCCD, password, selectedType)) {
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+            SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
         else WrongLoginLabel.setText("Tài khoản hoặc mật khẩu bị sai");
@@ -63,6 +63,10 @@ public class LoginController implements Initializable {
 
     @FXML
     void TaoTaiKhoanMoi(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "SignUpScene/signup_3option_scene.fxml");
+        SceneUtils.switchScene(mainStage, "SignUpScene/signup_3option_scene.fxml");
+    }
+    @FXML
+    public void QuenMatKhau(MouseEvent event) {
+        SceneUtils.switchScene(mainStage,"forget_password.fxml");
     }
 }

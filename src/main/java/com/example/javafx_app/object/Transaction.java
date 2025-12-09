@@ -9,14 +9,14 @@ public class Transaction {
     private String transactionID;
     private LocalDateTime date;
     private TransactionType type;
-    private double amount;
+    private long amount;
     private String currency;
     private Account fromAccount;
     private Account toAccount;
     private String description;
 
     // Constructor
-    public Transaction(TransactionType type, double amount, String currency, Account fromAccount,
+    public Transaction(TransactionType type, long amount, String currency, Account fromAccount,
                        Account toAccount, String description) {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
@@ -51,7 +51,7 @@ public class Transaction {
         return type;
     }
 
-    public double getAmount() {
+    public long getAmount() {
         return amount;
     }
 

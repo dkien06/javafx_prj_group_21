@@ -3,8 +3,16 @@ package com.example.javafx_app.config;
 import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.UserManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.LoanAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
+import com.example.javafx_app.object.Bill.Bill;
+import com.example.javafx_app.object.Bill.BillType ;
+import com.example.javafx_app.object.Noti.Notification;
+import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
+import com.example.javafx_app.object.User.Staff;
 
 import java.time.LocalDate;
 
@@ -12,10 +20,19 @@ import java.time.LocalDate;
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
-    public static final Account accountA = new SavingAccount(
+    public static final Account accountA = new CheckingAccount(
             "Nguyen Van A",
             "010203008386",     // citizenID
-            "49538386",         // accountID
+            "149538386",         // accountID
+            "NguyenVanA#1970",  // password
+            10_000_000,          // balance
+            "VND",              // currency
+            "010170"            // PIN
+    );
+    public static final Account accountA1 = new SavingAccount(
+            "Nguyen Van A",
+            "010203008386",     // citizenID
+            "249538386",         // accountID
             "NguyenVanA#1970",  // password
             2_000_000,          // balance
             "VND",              // currency
@@ -32,10 +49,19 @@ public class ExampleUser {
     );
 
     // === USER B ===
-    private static final Account accountB = new LoanAccount(
+    private static final Account accountB = new CheckingAccount(
             "kkk",
             "010203004953",
-            "83864953",
+            "183864953",
+            "TranThiB@1975",
+            5_000_000,          // balance (1.000.000 từ code cũ)
+            "VND",
+            "123456"
+    );
+    private static final Account accountB1 = new LoanAccount(
+            "kkk",
+            "010203004953",
+            "383864953",
             "TranThiB@1975",
             1_000_000,          // balance (1.000.000 từ code cũ)
             "VND",
@@ -55,13 +81,21 @@ public class ExampleUser {
     private static final Account accountC = new CheckingAccount(
             "Ngo Duc C",
             "020406006769",
-            "12345678",
+            "112345678",
+            "CuongDuc%2008",
+            2_000_000,                  // balance (mặc định 0)
+            "VND",
+            "112233"
+    );
+    private static final Account accountC1 = new SavingAccount(
+            "Ngo Duc C",
+            "020406006769",
+            "212345678",
             "        ",
             0,                  // balance (mặc định 0)
             "VND",
             "112233"
     );
-
     private static final Customer userC = new Customer(
             "Ngô Đức C",
             LocalDate.of(2007,3,6),
@@ -76,32 +110,147 @@ public class ExampleUser {
             "Le Thi Thuy D",
             "020406006967",
             "87654321",
-            "ThuyDXinhGai><2006",
-            0,                  // balance (mặc định 0)
+            "ThuyDXinhGai><2000",
             "VND",
             "112233"
     );
 
-    private static final Customer userD = new Customer(
+    private static final Staff userD = new Staff(
+            "CA_2022_1012",
+            "87654321",
             "Lê Thị Thúy D",
-            LocalDate.of(2006,6,7),
+            LocalDate.of(2000, 3,8),
             GENDER.FEMALE,
-            "0246813579",
-            "DLeThiThuy@outlook.com",
+            "0173205081",
+            "DLeThi2000@21stbank.com",
             "020406006967"
     );
-    public static void init(){
+
+    // === USER E ===
+    private static final Account accountE = new CheckingAccount(
+            "Hoang Thi E",
+            "010102030508",
+            "116180340",
+            "EnHoang*1024",
+            1_000_000,                  // balance (mặc định 0)
+            "VND",
+            "258013"
+    );
+
+    private static final Customer userE = new Customer(
+            "Hoàng Thị E",
+            LocalDate.of(2000,1,1),
+            GENDER.FEMALE,
+            "0141421356",
+            "HoangVanThai1970@gmail.com",
+            "010102030508"
+    );
+    // ================== BILL GIẢ LẬP ==================
+    static final Bill bill1 = new Bill(
+            150_000,
+            LocalDate.of(2025, 2, 1),
+            BillType.ELECTRIC,
+            "EVN HÀ NỘI"
+    );
+
+    static final Bill bill2 = new Bill(
+            220_000,
+            LocalDate.of(2025, 2, 5),
+            BillType.WATER,
+            "NƯỚC SẠCH HÀ NỘI"
+    );
+
+    static final Bill bill3 = new Bill(
+            90_000,
+            LocalDate.of(2025, 2, 10),
+            BillType.INTERNET,
+            "VIETTEL"
+    );
+
+    static final Bill bill4 = new Bill(
+            300_000,
+            LocalDate.of(2025, 2, 18),
+            BillType.INTERNET,
+            "VINAPHONE"
+    );
+    // ================== NHÀ CUNG CẤP DỊCH VỤ (CHECKING ACCOUNT) ==================
+    public static final CheckingAccount ELECTRIC_PROVIDER = new CheckingAccount(
+            "EVN HÀ NỘI",
+            "999100000001",        // citizenID giả
+            "90000001",            // accountID
+            "EVN@123",             // password
+            10_000_000,            // balance (dùng để nhận tiền thanh toán)
+            "VND",
+            "000001"               // PIN
+    );
+
+    public static final CheckingAccount WATER_PROVIDER = new CheckingAccount(
+            "NƯỚC SẠCH HÀ NỘI",
+            "999100000002",
+            "90000002",
+            "WATER@123",
+            10_000_000,
+            "VND",
+            "000002"
+    );
+
+    public static final CheckingAccount INTERNET_PROVIDER = new CheckingAccount(
+            "VIETTEL INTERNET",
+            "999100000003",
+            "90000003",
+            "INTERNET@123",
+            10_000_000,
+            "VND",
+            "000003"
+    );
+
+    public static final CheckingAccount SCHOOL_PROVIDER = new CheckingAccount(
+            "ĐẠI HỌC BÁCH KHOA",
+            "999100000004",
+            "90000004",
+            "EDU@123",
+            10_000_000,
+            "VND",
+            "000004"
+    );
+    //========Noti Gia Lap ================
+    public static Notification noti1 = new Notification(NotificationType.BALANCE_CHANGE,
+            NotificationType.BALANCE_CHANGE.toString(),"abc") ;
+    public static void addExample(){
+        CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
+        CheckingAccountC.addBill(bill1);
+        CheckingAccountC.addBill(bill2);
+        CheckingAccountC.addBill(bill3);
+        CheckingAccountC.addBill(bill4);
+        CheckingAccountC.addNotification(noti1);
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
+        AccountManager.getInstance().getAccountList().put(accountA1.getAccountID(), accountA1);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
+        AccountManager.getInstance().getAccountList().put(accountB1.getAccountID(), accountB1);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
+        AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
+        AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
+        AccountManager.getInstance().getAccountList().put(ELECTRIC_PROVIDER.getAccountID(), ELECTRIC_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(WATER_PROVIDER.getAccountID(), WATER_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(INTERNET_PROVIDER.getAccountID(), INTERNET_PROVIDER);
+        AccountManager.getInstance().getAccountList().put(SCHOOL_PROVIDER.getAccountID(), SCHOOL_PROVIDER);
         userA.addAccountID(accountA.getAccountID());
+        userA.addAccountID(accountA1.getAccountID());
         userB.addAccountID(accountB.getAccountID());
+        userB.addAccountID(accountB1.getAccountID());
         userC.addAccountID(accountC.getAccountID());
-        userD.addAccountID(accountD.getAccountID());
+        userC.addAccountID(accountC1.getAccountID());
+        userE.addAccountID(accountE.getAccountID());
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
+        UserManager.getInstance().addUser(userE);
     }
+    public static void init(){
+        addExample();
+        AccountManager.getInstance().setCurrentAccount(accountA1);
+    }
+
 }

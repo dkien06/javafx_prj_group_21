@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SignUpStaff2Controller {
 
     @FXML
@@ -52,11 +54,11 @@ public class SignUpStaff2Controller {
                 pinState == BankManager.PINState.RIGHT) {
             UserManager.getInstance().addUser(UserManager.getInstance().getSignUpUser());
             AccountManager.getInstance().addAccountForStaff((Staff) UserManager.getInstance().getSignUpUser(),password,pin);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "login_scene.fxml");
+            SceneUtils.switchScene(mainStage, "login_scene.fxml");
         }
     }
     @FXML
     private void returnToSignUpStaff1(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SignUpScene/signup_staff1_scene.fxml");
+        SceneUtils.switchScene(mainStage,"SignUpScene/signup_staff1_scene.fxml");
     }
 }

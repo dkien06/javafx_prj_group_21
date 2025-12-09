@@ -44,6 +44,17 @@ public class BankManager {
         }
         return null;
     }
+    public static String generateOTP() {
+        Random random = new Random();
+
+        // Đảm bảo số ngẫu nhiên nằm trong khoảng [100000, 999999]
+        int min = 100000;
+        int max = 999999;
+
+        int otp = random.nextInt(max - min + 1) + min;
+
+        return String.valueOf(otp);
+    }
     /*Mấy cái hàm này cho phần đăng kí*/
     public enum SignUpInformationState {
         EMPTY,
@@ -166,6 +177,7 @@ public class BankManager {
     //Check số căn cước công dân
     public static SignUpInformationState checkSignUpCitizenID(String citizenID){
         if(citizenID.isEmpty()) return SignUpInformationState.EMPTY;
+        if(AccountManager.getInstance().findAccountFromCitizenID(citizenID) != null)return SignUpInformationState.EXISTED;
         if(citizenID.length()!=12) return SignUpInformationState.WRONG_SIZE;
         for(int i = 0; i < citizenID.length(); i++){
             if(!Character.isDigit(citizenID.charAt(i)))return SignUpInformationState.WRONG_FORM;

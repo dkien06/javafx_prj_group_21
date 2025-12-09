@@ -18,4 +18,13 @@ public enum ACCOUNT_TYPE {
     public String toString() {
         return label;
     }
+    public static ACCOUNT_TYPE fromLabel(String label) {
+        for (ACCOUNT_TYPE type : values()) {
+            if (type.label.equalsIgnoreCase(label)) {
+                return type;
+            }
+        }
+        // Ném ngoại lệ để xử lý lỗi nếu không tìm thấy (giống như valueOf)
+        throw new IllegalArgumentException("Không tìm thấy loại tài khoản với label: " + label);
+    }
 }

@@ -2,6 +2,8 @@ module com.example.javafx_app {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires javafx.graphics;
+    requires javafx.base;
 
     opens com.example.javafx_app.controller.SignUp to javafx.fxml;
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
@@ -20,4 +22,11 @@ module com.example.javafx_app {
     opens com.example.javafx_app.object.Account to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app.object.User;
     opens com.example.javafx_app.object.User to javafx.fxml, javafx.graphics;
+    opens com.example.javafx_app.controller.HomeController to javafx.fxml;
+    opens com.example.javafx_app.controller.saving to javafx.fxml;
+    exports com.example.javafx_app.controller;
+    opens com.example.javafx_app.controller.block to javafx.fxml;
+    exports com.example.javafx_app.controller.Noti;
+    opens com.example.javafx_app.controller.Noti to javafx.fxml;
+    exports com.example.javafx_app.controller.block;
 }

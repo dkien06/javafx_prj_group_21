@@ -14,6 +14,8 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SettingUserDetailController implements Initializable {
     @FXML
     private TextField PhoneNumberTextField ,EmailTextField ;
@@ -35,7 +37,7 @@ public class SettingUserDetailController implements Initializable {
     }
     @FXML
     public void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
+        SceneUtils.switchScene(mainStage,"setting/setting.fxml");
     }
     public void HoanThanh(ActionEvent event){
         boolean isValidPhoneNumber = false;
@@ -82,9 +84,13 @@ public class SettingUserDetailController implements Initializable {
                 SettingEmailLog.setText("");
                 isValidEmail = true;
                 break;
+            default:
+                break;
         }
         if(isValidPhoneNumber && isValidEmail){
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+            currentUser.setPhoneNumber(PhoneNumberTextField.getText());
+            currentUser.setEmail(EmailTextField.getText());
+            SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
     }

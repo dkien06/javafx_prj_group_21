@@ -3,7 +3,6 @@ package com.example.javafx_app.controller.SignUp;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.UserManager;
-import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.USER_TYPE;
@@ -15,7 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import java.util.List;
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class SignUpExisting1 {
     @FXML
@@ -63,7 +62,7 @@ public class SignUpExisting1 {
                     }
                     else {
                         UserManager.getInstance().setCurrentUser(UserManager.getInstance().findUserByCitizenID(CCCD));
-                        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+                        SceneUtils.switchScene(mainStage,
                                 "SignUpScene/signup_existing_customer2_scene.fxml");
                     }
 
@@ -75,7 +74,7 @@ public class SignUpExisting1 {
 
     @FXML
     public void backTo3SignUpOption(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+        SceneUtils.switchScene(mainStage,
                 "/com/example/javafx_app/SignUpScene/signup_3option_scene.fxml");
     }
 

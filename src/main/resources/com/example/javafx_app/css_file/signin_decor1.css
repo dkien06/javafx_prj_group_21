@@ -44,3 +44,21 @@ AnchorPane {
     -fx-font-weight: bold;
     -fx-letter-spacing: 0.3px;
 }
+
+.red_text {
+    -fx-font-weight: bold;
+}
+
+.choice-box {
+    -fx-background-color: white;
+    -fx-background-radius: 4;
+    -fx-padding: 2;
+}
+
+.choice-box > .label {
+    -fx-text-fill: black;
+}
+
+.menu-item > .label {
+    -fx-text-fill: black;
+}

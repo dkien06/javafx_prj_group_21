@@ -1,9 +1,7 @@
 package com.example.javafx_app.controller.SignUp;
 
-import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.UserManager;
-import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.util.SceneUtils;
@@ -18,6 +16,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class SignUpNew1 implements Initializable {
 
@@ -107,7 +107,7 @@ public class SignUpNew1 implements Initializable {
             GENDER Gender = UserManager.stringToGender(gender);
             UserManager.getInstance().setSignUpUser(new Customer(fullName,dateOfBirth,Gender,
                     phoneNumber,email,citizenID));
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+            SceneUtils.switchScene(mainStage,
                     "SignUpScene/signup_new_customer2_scene.fxml");
             System.out.println(UserManager.getInstance().getSignUpUser().getFullName());
         }
@@ -115,7 +115,7 @@ public class SignUpNew1 implements Initializable {
 
     @FXML
     private void returnToLoginScene(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
+        SceneUtils.switchScene(mainStage,
                 "SignUpScene/signup_3option_scene.fxml");
     }
 }

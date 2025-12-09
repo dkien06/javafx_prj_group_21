@@ -87,3 +87,16 @@
 #setting_icon {
     -fx-background-image: url("image/icon_setting_blue.png");
 }
+
+/*phần này dành cho danh sách các loại gửi tiền */
+#tien_gui_linh_hoat {
+    -fx-background-color: #1fb9ff;
+}
+
+#tien_gui_ki_han {
+    -fx-background-color: #21d5ff;
+}
+
+#tien_gui_tich_gop {
+    -fx-background-color: #219fff;
+}

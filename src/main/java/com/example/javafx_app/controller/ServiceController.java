@@ -1,5 +1,10 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.exception.MysteriousException;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.CheckingAccount;
+import com.example.javafx_app.object.Account.LoanAccount;
+import com.example.javafx_app.object.Account.SavingAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class ServiceController {
 
@@ -66,12 +73,20 @@ public class ServiceController {
 
     @FXML
     void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        switch (AccountManager.getInstance().getCurrentAccount()) {
+            case CheckingAccount checkingAccount ->
+                    SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+            case SavingAccount savingAccount ->
+                    SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+            case LoanAccount loanAccount ->
+                    SceneUtils.switchScene(mainStage, "/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+            case null, default -> throw new MysteriousException();
+        }
     }
 
     @FXML
     void XemCaiDat(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "setting/setting.fxml");
+        SceneUtils.switchScene(mainStage, "setting/setting.fxml");
     }
 
     @FXML

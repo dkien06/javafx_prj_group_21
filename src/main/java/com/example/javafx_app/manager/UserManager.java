@@ -5,8 +5,8 @@ import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.GENDER;
+import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
-import com.example.javafx_app.config.ExampleUser;
 
 import java.util.*;
 
@@ -60,6 +60,21 @@ public class UserManager {
         }
         return null;
     }
+    public List<ACCOUNT_TYPE> getAccountList(User user){
+        List<ACCOUNT_TYPE> list = new ArrayList<>();
+        if(user == null) return list;
+        if(user.getType()== USER_TYPE.Customer){
+            Customer cos = (Customer) user ;
+            for(String AccountID: cos.getAccountIDs()){
+                Account account = AccountManager.getInstance().findAccount(AccountID);
+                list.add(account.getAccountType());
+            }
+        }
+        else{
+            list.add(ACCOUNT_TYPE.STAFF) ;
+        }
+        return list;
+    }
     public static GENDER stringToGender(String gender){
         return switch (gender) {
             case "MALE" -> GENDER.MALE;
@@ -76,7 +91,7 @@ public class UserManager {
     }
     public static void main(String[] args) {
         ExampleUser.init();
-        System.out.println(getInstance().findUserByCitizenID("010203008386"));
+        System.out.println(getInstance().findUserByCitizenID("020406006769"));
     }
 
 }

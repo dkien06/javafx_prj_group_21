@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SignUpExisting2 implements Initializable {
 
     @FXML
@@ -52,10 +54,10 @@ public class SignUpExisting2 implements Initializable {
         PasswordAgainErrorLog.setText("");
         PINErrorLog.setText("");
         Customer currentCustomer = (Customer) UserManager.getInstance().getCurrentUser() ;
-        if(!AccountManager.getInstance().isExistingSavingAccount(currentCustomer)){
+        if(currentCustomer.getSavingAccountID() == null){
             account_type.getItems().add(ACCOUNT_TYPE.SAVING.toString());
         }
-        if(!AccountManager.getInstance().isExistLoanAccount(currentCustomer)){
+        if(currentCustomer.getLoanAccountID() == null){
             account_type.getItems().add(ACCOUNT_TYPE.LOAN.toString());
         }
         account_type.setValue(account_type.getItems().getFirst());
@@ -78,13 +80,13 @@ public class SignUpExisting2 implements Initializable {
             pinState == BankManager.PINState.RIGHT){
             AccountManager.getInstance().addAccountForCustomer((Customer) UserManager.getInstance().getCurrentUser(),accountType,
             password,pin);
-            SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"login_scene.fxml");
+            SceneUtils.switchScene(mainStage,"login_scene.fxml");
         }
 
     }
 
     @FXML
     private void returnToForm1(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"SignUpScene/signup_existing_customer1_scene.fxml");
+        SceneUtils.switchScene(mainStage,"SignUpScene/signup_existing_customer1_scene.fxml");
     }
 }

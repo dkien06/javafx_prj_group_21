@@ -23,6 +23,7 @@
             <Button layoutX="10.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToThemeSettings" prefHeight="34.0" prefWidth="290.0" text="Đổi theme" />
             </children>
         </VBox>
-        <Button fx:id="btn_return" layoutX="178.0" layoutY="497.0" mnemonicParsing="false" onAction="#returnToHomeScene" text="Quay lại" />
+        <Button fx:id="btn_return" layoutX="96.0" layoutY="496.0" mnemonicParsing="false" onAction="#returnToHomeScene" text="Quay lại" />
+      <Button layoutX="256.0" layoutY="496.0" mnemonicParsing="false" onAction="#DangXuat" text="Đăng xuất" />
     </children>
 </AnchorPane>

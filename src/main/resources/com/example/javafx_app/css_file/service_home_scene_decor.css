@@ -68,6 +68,8 @@
     -fx-text-fill: #27A4F2;
 }
 
+
+/*phần này dành cho scene hóa đơn tại vì 2 scene trông giống nhau*/
 #tien_dien_nuoc_icon {
     -fx-background-image: url("image/tien_dien_nuoc.png");
 }

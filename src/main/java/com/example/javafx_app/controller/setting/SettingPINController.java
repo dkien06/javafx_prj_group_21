@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
+import static com.example.javafx_app.config.Constant.mainStage;
+
 public class SettingPINController {
 
     @FXML
@@ -32,7 +34,7 @@ public class SettingPINController {
     // Nút "Quay lại"
     @FXML
     private void QuayLai(ActionEvent event) {
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),"setting/setting.fxml");
+        SceneUtils.switchScene(mainStage,"setting/setting.fxml");
     }
 
     // Nút "Hoàn thành"
@@ -82,11 +84,13 @@ public class SettingPINController {
         else NewPinLog.setText("");
 
         // ✅ Nếu vượt qua tất cả kiểm tra
-        if(isNewPinAgainValid)currentAccount.setPIN(newPin);
+        if(isNewPinAgainValid){
+            currentAccount.setPIN(newPin);
 
-        // Chuyển về trang chính
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event),
-                AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
+            // Chuyển về trang chính
+            SceneUtils.switchScene(mainStage,
+                    AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
+        }
     }
 
 
