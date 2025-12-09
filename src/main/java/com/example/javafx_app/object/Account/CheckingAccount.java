@@ -1,6 +1,5 @@
 package com.example.javafx_app.object.Account;
 
-import com.example.javafx_app.manager.NotiManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Transaction;
@@ -39,32 +38,23 @@ public class CheckingAccount extends Account {
         Transaction newTransfer = new Transaction(TransactionType.TRANSFER, amount, "VND", this, toAccount, description);
         this.addTransaction(newTransfer);
         TransactionManager.getInstance().addTransaction(newTransfer);
-        addNotification(NotiManager.getNotifromTransaction(newTransfer));
+
         Transaction newReceive = new Transaction(TransactionType.TRANSFER, -amount, "VND", this, toAccount, description);
         toAccount.addTransaction(newReceive);
-        toAccount.addNotification(NotiManager.getNotifromTransaction(newReceive));
         return true;
     }
-    public boolean withdraw(long amount,String description) {
+    // ✅ Rút tiền để tiết kiệm hoặc trả nợ
+    public boolean withdraw(long amount) {
         if (amount > 0 && balance > amount) {
             balance -= amount;
-            Transaction newWithdraw = new Transaction(TransactionType.WITHDRAW,amount,"VND",this,this,description) ;
-            this.addTransaction(newWithdraw);
-            TransactionManager.getInstance().addTransaction(newWithdraw);
-            addNotification(NotiManager.getNotifromTransaction(newWithdraw));
             return true;
         }
         else return false;
     }
     // ✅ Nạp tiền từ tiền tiết kiệm hoặc vay mượn
-    public boolean deposit(long amount, String description) {
+    public boolean deposit(long amount) {
         if (amount > 0) {
             balance += amount;
-            Transaction newDeposit = new Transaction(TransactionType.DEPOSIT,amount,"VND",this,this,description) ;
-            this.addTransaction(newDeposit);
-            TransactionManager.getInstance().addTransaction(newDeposit);
-            addNotification(NotiManager.getNotifromTransaction(newDeposit));
-
             return true;
         } else return false;
     }
