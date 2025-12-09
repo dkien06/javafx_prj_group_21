@@ -31,17 +31,20 @@ public class VerifyReceiveBlockController implements Initializable {
                 fullReceiveNameLabel.setText("Họ tên: " + transaction.getToAccount().getAccountName());
                 receiveAccountIDLabel.setText("Mã tài khoản: " + transaction.getToAccount().getAccountID());
                 receiveBankLabel.setText("Ngân hàng: " + "21stBank");
+                break;
             case DEPOSIT:
                 receiveLabel.setText("Người gửi");
                 fullReceiveNameLabel.setText("Họ tên: " + transaction.getFromAccount().getAccountName());
                 receiveAccountIDLabel.setText("Mã tài khoản: " + transaction.getFromAccount().getAccountID());
                 receiveBankLabel.setText("Ngân hàng: " + "21stBank");
+                break;
             default:
                 icon_nhan_tien.setVisible(false);
                 receiveLabel.setVisible(false);
                 fullReceiveNameLabel.setVisible(false);
                 receiveAccountIDLabel.setVisible(false);
                 receiveBankLabel.setVisible(false);
+                break;
         }
     }
 }

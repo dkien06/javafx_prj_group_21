@@ -34,7 +34,7 @@ import java.util.Locale;
 import static com.example.javafx_app.config.Constant.mainStage;
 
 public class VerifyController {
-    @FXML VBox VBox_thong_tin_nguoi_nhan_va_chuyen;
+    @FXML VBox VBox_Thong_Tin_Xac_Nhan;
     @FXML Label amountLabel;
     @FXML Label amountInTextLabel;
     @FXML Label descriptionLabel;
@@ -46,36 +46,36 @@ public class VerifyController {
     public void displayTransactionInformation(Transaction newTransaction){
         Pair<Parent, VerifyReceiveBlockController> receiveBlock;
         Pair<Parent, VerifySendingBlockController> sendingBlock;
-        switch (currentTransaction.getType()){
+        switch (currentTransaction.getType()) {
             case TRANSFER:
-                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
-                receiveBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().add(receiveBlock.getKey());
-
                 sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
                 sendingBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().add(sendingBlock.getKey());
+                VBox_Thong_Tin_Xac_Nhan.getChildren().add(sendingBlock.getKey());
+
+                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                receiveBlock.getValue().setData(newTransaction);
+                VBox_Thong_Tin_Xac_Nhan.getChildren().add(receiveBlock.getKey());
 
                 transactionTypeLabel.setText("Chuyển khoản");
                 break;
             case DEPOSIT:
                 sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
                 sendingBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(sendingBlock.getKey());
+                VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(sendingBlock.getKey());
 
                 receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
                 receiveBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(receiveBlock.getKey());
+                VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(receiveBlock.getKey());
 
-                switch (((SavingAccount)currentAccount).getType()){
+                switch (((SavingAccount) currentAccount).getType()) {
                     case FLEXIBLE:
                         transactionTypeLabel.setText("Gửi tiền - Linh hoạt");
                         break;
                     case FIXED:
-                        transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + ((SavingAccount)currentAccount).getFixedDuration() + " tháng");
+                        transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + ((SavingAccount) currentAccount).getFixedDuration() + " tháng");
                         break;
                     case ACCUMULATED:
-                        transactionTypeLabel.setText("Gửi tiền - Tích góp: " + ((SavingAccount)currentAccount).getAccumulatedAmount() + currentAccount.getCurrency());
+                        transactionTypeLabel.setText("Gửi tiền - Tích góp: " + ((SavingAccount) currentAccount).getAccumulatedAmount() + currentAccount.getCurrency());
                         break;
                     default:
                         throw new MysteriousException();

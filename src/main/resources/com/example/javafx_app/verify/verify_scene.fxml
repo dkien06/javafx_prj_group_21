@@ -18,22 +18,23 @@
       </Label>
       <VBox fx:id="VBox_thong_tin_nguoi_nhan_va_chuyen" layoutX="27.0" layoutY="68.0" prefWidth="356.0" styleClass="VBox">
          <children>
-            <Label fx:id="amountLabel" prefHeight="22.0" prefWidth="307.0" styleClass="label_in_Vbox_black" text="Số tiền:">
+            <VBox fx:id="VBox_Thong_Tin_Xac_Nhan" VBox.vgrow="ALWAYS" />
+            <Label fx:id="amountLabel" prefHeight="27.0" prefWidth="321.0" styleClass="label_in_Vbox_black" text="Số tiền:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="amountInTextLabel" prefHeight="20.0" prefWidth="338.0" styleClass="label_in_Vbox_black" text="//Hiện dạng chữ" />
+            <Label fx:id="amountInTextLabel" prefHeight="20.0" prefWidth="313.0" styleClass="label_in_Vbox_black" text="//Hiện dạng chữ" wrapText="true" />
             <HBox prefHeight="0.0" prefWidth="316.0">
                <children>
                   <Label prefHeight="18.0" prefWidth="64.0" styleClass="label_in_Vbox_black" text="Nội dung: " />
-                  <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="252.0" styleClass="label_in_Vbox_black" text="//Nội dung chuyển tiền" wrapText="true" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="244.0" styleClass="label_in_Vbox_black" text="//Nội dung chuyển tiền" wrapText="true" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox prefHeight="0.0" prefWidth="316.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="18.0" prefWidth="308.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label styleClass="label_in_Vbox_black" text="Hình thức: " />
-                  <Label fx:id="transactionTypeLabel" prefHeight="0.0" prefWidth="230.0" styleClass="label_in_Vbox_black" text="//Hình thức" wrapText="true" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="transactionTypeLabel" prefHeight="18.0" prefWidth="241.0" styleClass="label_in_Vbox_black" text="//Hình thức" wrapText="true" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>

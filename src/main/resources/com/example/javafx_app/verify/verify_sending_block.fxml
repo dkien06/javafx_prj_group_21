@@ -11,14 +11,14 @@
       <HBox prefHeight="2.0" prefWidth="316.0" spacing="4.0">
          <children>
             <Label fx:id="icon_chuyen_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_container" />
-            <Label fx:id="sendingLabel" prefHeight="27.0" prefWidth="418.0" styleClass="label_in_Vbox_black" text="Người chuyển:">
+            <Label fx:id="sendingLabel" prefHeight="27.0" prefWidth="274.0" styleClass="label_in_Vbox_black" text="Người chuyển:" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Label fx:id="fullSendingNameLabel" prefHeight="27.0" prefWidth="457.0" styleClass="label_in_Vbox_black" text="Họ tên:">
+      <Label fx:id="fullSendingNameLabel" prefHeight="27.0" prefWidth="305.0" styleClass="label_in_Vbox_black" text="Họ tên:" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
@@ -26,7 +26,7 @@
             <Insets left="12.0" />
          </padding>
       </Label>
-      <Label fx:id="sendingAccountIDLabel" prefHeight="27.0" prefWidth="430.0" styleClass="label_in_Vbox_black" text="Số tài khoản:">
+      <Label fx:id="sendingAccountIDLabel" prefHeight="27.0" prefWidth="304.0" styleClass="label_in_Vbox_black" text="Số tài khoản:" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
@@ -34,7 +34,7 @@
             <Insets left="12.0" />
          </padding>
       </Label>
-      <Label fx:id="sendingBankLabel" prefHeight="27.0" prefWidth="377.0" styleClass="label_in_Vbox_black" text="Ngân hàng:">
+      <Label fx:id="sendingBankLabel" prefHeight="27.0" prefWidth="308.0" styleClass="label_in_Vbox_black" text="Ngân hàng:" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>

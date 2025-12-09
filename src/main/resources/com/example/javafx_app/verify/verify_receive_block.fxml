@@ -11,14 +11,14 @@
       <HBox prefHeight="0.0" prefWidth="316.0" spacing="4.0">
          <children>
             <Label fx:id="icon_nhan_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_container" />
-            <Label fx:id="receiveLabel" prefHeight="13.0" prefWidth="200.0" styleClass="label_in_Vbox_black" text="Người nhận:">
+            <Label fx:id="receiveLabel" prefHeight="27.0" prefWidth="282.0" styleClass="label_in_Vbox_black" text="Người nhận:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Label fx:id="fullReceiveNameLabel" prefHeight="20.0" prefWidth="252.0" styleClass="label_in_Vbox_black" text="Họ tên:">
+      <Label fx:id="fullReceiveNameLabel" prefHeight="26.0" prefWidth="286.0" styleClass="label_in_Vbox_black" text="Họ tên:">
          <font>
             <Font size="16.0" />
          </font>
@@ -26,7 +26,7 @@
             <Insets left="12.0" />
          </padding>
       </Label>
-      <Label fx:id="receiveAccountIDLabel" prefHeight="26.0" prefWidth="351.0" styleClass="label_in_Vbox_black" text="Mã tài khoản:">
+      <Label fx:id="receiveAccountIDLabel" prefHeight="26.0" prefWidth="296.0" styleClass="label_in_Vbox_black" text="Mã tài khoản:">
          <font>
             <Font size="16.0" />
          </font>
@@ -34,7 +34,7 @@
             <Insets left="12.0" />
          </padding>
       </Label>
-      <Label fx:id="receiveBankLabel" prefHeight="20.0" prefWidth="252.0" styleClass="label_in_Vbox_black" text="Ngân hàng:">
+      <Label fx:id="receiveBankLabel" prefHeight="26.0" prefWidth="318.0" styleClass="label_in_Vbox_black" text="Ngân hàng:">
          <font>
             <Font size="16.0" />
          </font>
