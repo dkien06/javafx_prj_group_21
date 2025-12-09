@@ -49,6 +49,8 @@ public class SavingController implements Initializable {
             case ACCUMULATED:
                 extraInfoField.setText(Long.toString(currentSavingAccount.getAccumulatedAmount()));
                 break;
+            case FLEXIBLE:
+                break;
             default:
                 throw new MysteriousException();
         }

@@ -35,15 +35,6 @@ import static com.example.javafx_app.config.Constant.mainStage;
 
 public class VerifyController {
     @FXML VBox VBox_thong_tin_nguoi_nhan_va_chuyen;
-    @FXML Label icon_chuyen_tien;
-    @FXML Label fullSendingNameLabel;
-    @FXML Label sendingAccountIDLabel;
-    @FXML Label sendingBankLabel;
-    @FXML Label icon_nhan_tien;
-    @FXML Label receiveLabel;
-    @FXML Label fullReceiveNameLabel;
-    @FXML Label receiveAccountIDLabel;
-    @FXML Label receiveBankLabel;
     @FXML Label amountLabel;
     @FXML Label amountInTextLabel;
     @FXML Label descriptionLabel;
@@ -59,11 +50,11 @@ public class VerifyController {
             case TRANSFER:
                 receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
                 receiveBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(receiveBlock.getKey());
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().add(receiveBlock.getKey());
 
                 sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
                 sendingBlock.getValue().setData(newTransaction);
-                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(sendingBlock.getKey());
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().add(sendingBlock.getKey());
 
                 transactionTypeLabel.setText("Chuyển khoản");
                 break;
