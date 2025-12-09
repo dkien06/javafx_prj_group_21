@@ -21,7 +21,7 @@
          <children>
             <HBox prefHeight="2.0" prefWidth="316.0" spacing="4.0">
                <children>
-                  <Label fx:id="icon_chuyen_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_container" />
+                  <Label fx:id="icon_chuyen_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_chuyen_tien" />
                   <Label prefHeight="27.0" prefWidth="152.0" styleClass="label_in_Vbox_black" text="Người chuyển:">
                      <font>
                         <Font size="18.0" />
@@ -55,7 +55,7 @@
             </Label>
             <HBox prefHeight="0.0" prefWidth="316.0" spacing="4.0">
                <children>
-                  <Label fx:id="icon_nhan_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_container" />
+                  <Label fx:id="icon_nhan_tien" prefHeight="29.0" prefWidth="29.0" styleClass="icon_nhan_tien" />
                   <Label fx:id="receiveLabel" prefHeight="13.0" prefWidth="200.0" styleClass="label_in_Vbox_black" text="Người nhận:">
                      <font>
                         <Font size="18.0" />

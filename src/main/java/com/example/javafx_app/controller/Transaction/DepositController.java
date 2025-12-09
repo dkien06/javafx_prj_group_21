@@ -93,7 +93,7 @@ public class DepositController implements Initializable {
                     CurrentAccount, // Tới tài khoản hiện tại
                      descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());
         }

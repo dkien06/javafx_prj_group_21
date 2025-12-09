@@ -131,7 +131,7 @@ public class TransactingController implements Initializable {
                      AccountManager.getInstance().findAccount(receiveAccountIDTextField.getText()),
                     descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }

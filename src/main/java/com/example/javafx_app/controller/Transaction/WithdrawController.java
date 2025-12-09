@@ -97,7 +97,7 @@ public class WithdrawController implements Initializable {
                     CurrentAccount,
                     descriptionTextArea.getText().isEmpty() ? "Rút tiền" : descriptionTextArea.getText()
             );
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());
         }

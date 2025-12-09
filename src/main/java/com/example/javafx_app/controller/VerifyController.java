@@ -2,6 +2,8 @@ package com.example.javafx_app.controller;
 
 import com.example.javafx_app.controller.Bill.BillButtonController;
 import com.example.javafx_app.controller.Transaction.TransactingController;
+import com.example.javafx_app.controller.block.VerifyReceiveBlockController;
+import com.example.javafx_app.controller.block.VerifySendingBlockController;
 import com.example.javafx_app.controller.saving.SavingController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.exception.CodeUnderConstruction;
@@ -21,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
@@ -31,6 +34,7 @@ import java.util.Locale;
 import static com.example.javafx_app.config.Constant.mainStage;
 
 public class VerifyController {
+    @FXML VBox VBox_thong_tin_nguoi_nhan_va_chuyen;
     @FXML Label icon_chuyen_tien;
     @FXML Label fullSendingNameLabel;
     @FXML Label sendingAccountIDLabel;
@@ -49,39 +53,28 @@ public class VerifyController {
     Account currentAccount = AccountManager.getInstance().getCurrentAccount();
     Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
     public void displayTransactionInformation(Transaction newTransaction){
+        Pair<Parent, VerifyReceiveBlockController> receiveBlock;
+        Pair<Parent, VerifySendingBlockController> sendingBlock;
         switch (currentTransaction.getType()){
             case TRANSFER:
-                icon_chuyen_tien.getStyleClass().removeAll();
-                icon_chuyen_tien.getStyleClass().addAll("icon_container");
-                fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
-                sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
-                sendingBankLabel.setText("Ngân hàng: " + "21stBank");
+                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                receiveBlock.getValue().setData(newTransaction);
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(receiveBlock.getKey());
 
-                icon_nhan_tien.setVisible(true);
-                icon_nhan_tien.getStyleClass().removeAll();
-                icon_nhan_tien.getStyleClass().addAll("icon_container");
-                receiveLabel.setVisible(true);
-                fullReceiveNameLabel.setVisible(true);
-                fullReceiveNameLabel.setText("Họ tên: " + newTransaction.getToAccount().getAccountName());
-                receiveAccountIDLabel.setVisible(true);
-                receiveAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getToAccount().getAccountID());
-                receiveBankLabel.setVisible(true);
-                receiveBankLabel.setText("Ngân hàng: " + "21stBank");
+                sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                sendingBlock.getValue().setData(newTransaction);
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(sendingBlock.getKey());
 
                 transactionTypeLabel.setText("Chuyển khoản");
                 break;
             case DEPOSIT:
-                icon_chuyen_tien.getStyleClass().removeAll();
-                icon_chuyen_tien.getStyleClass().addAll("icon_container");
-                fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
-                sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
-                sendingBankLabel.setText("Ngân hàng: " + "21stBank");
+                sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                sendingBlock.getValue().setData(newTransaction);
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(sendingBlock.getKey());
 
-                receiveLabel.setVisible(false);
-                icon_nhan_tien.setVisible(false);
-                fullReceiveNameLabel.setVisible(false);
-                receiveAccountIDLabel.setVisible(false);
-                receiveBankLabel.setVisible(false);
+                receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                receiveBlock.getValue().setData(newTransaction);
+                VBox_thong_tin_nguoi_nhan_va_chuyen.getChildren().addFirst(receiveBlock.getKey());
 
                 switch (((SavingAccount)currentAccount).getType()){
                     case FLEXIBLE:

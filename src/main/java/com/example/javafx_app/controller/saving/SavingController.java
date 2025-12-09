@@ -174,10 +174,12 @@ public class SavingController implements Initializable {
                 case ACCUMULATED:
                     ((SavingAccount)AccountManager.getInstance().getCurrentAccount()).setAccumulatedAmount(Long.parseLong(extraInfoField.getText()));
                     break;
+                case FLEXIBLE:
+                    break;
                 default:
                     throw new MysteriousException();
             }
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }
