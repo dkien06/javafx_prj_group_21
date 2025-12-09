@@ -83,18 +83,42 @@ public class VerifyController {
                 receiveAccountIDLabel.setVisible(false);
                 receiveBankLabel.setVisible(false);
 
-                switch (((SavingAccount)currentAccount).getType()){
-                    case FLEXIBLE:
-                        transactionTypeLabel.setText("Gửi tiền - Linh hoạt");
-                        break;
-                    case FIXED:
-                        transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + ((SavingAccount)currentAccount).getFixedDuration() + " tháng");
-                        break;
-                    case ACCUMULATED:
-                        transactionTypeLabel.setText("Gửi tiền - Tích góp: " + ((SavingAccount)currentAccount).getAccumulatedAmount() + currentAccount.getCurrency());
-                        break;
-                    default:
-                        throw new MysteriousException();
+                if(currentAccount instanceof CheckingAccount){
+                    transactionTypeLabel.setText("Nạp tiền");
+                    break;
+                }
+                else if(currentAccount instanceof SavingAccount){
+                    switch (((SavingAccount)currentAccount).getType()){
+                        case FLEXIBLE:
+                            transactionTypeLabel.setText("Gửi tiền - Linh hoạt");
+                            break;
+                        case FIXED:
+                            transactionTypeLabel.setText("Gửi tiền - Kì hạn: " + ((SavingAccount)currentAccount).getFixedDuration() + " tháng");
+                            break;
+                        case ACCUMULATED:
+                            transactionTypeLabel.setText("Gửi tiền - Tích góp: " + ((SavingAccount)currentAccount).getAccumulatedAmount() + currentAccount.getCurrency());
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                    break;
+                }
+            case WITHDRAW:
+                icon_chuyen_tien.getStyleClass().removeAll();
+                icon_chuyen_tien.getStyleClass().addAll("icon_container");
+                fullSendingNameLabel.setText("Họ tên: " + newTransaction.getFromAccount().getAccountName());
+                sendingAccountIDLabel.setText("Mã tài khoản: " + newTransaction.getFromAccount().getAccountID());
+                sendingBankLabel.setText("Ngân hàng: " + "21stBank");
+
+                receiveLabel.setVisible(false);
+                icon_nhan_tien.setVisible(false);
+                fullReceiveNameLabel.setVisible(false);
+                receiveAccountIDLabel.setVisible(false);
+                receiveBankLabel.setVisible(false);
+
+                if(currentAccount instanceof CheckingAccount){
+                    transactionTypeLabel.setText("Rút tiền");
+                    break;
                 }
                 break;
             default:
@@ -114,11 +138,19 @@ public class VerifyController {
                 TransactionManager.getInstance().removeNewTransaction();
                 SceneUtils.switchScene(mainStage,transactingScene.getKey());
                 break;
-            case DEPOSIT:
-                Pair<Parent, SavingController> savingScene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
-                savingScene.getValue().loadSaving(TransactionManager.getInstance().getCurrentTransaction());
-                TransactionManager.getInstance().removeNewTransaction();
-                SceneUtils.switchScene(mainStage,savingScene.getKey());
+            case DEPOSIT, WITHDRAW:
+                if(currentAccount instanceof CheckingAccount){
+                    Pair<Parent, TransactingController> savingScene = SceneUtils.getRootAndController("TransactionScene/transaction_scene.fxml");
+                    savingScene.getValue().loadTransaction(TransactionManager.getInstance().getCurrentTransaction());
+                    TransactionManager.getInstance().removeNewTransaction();
+                    SceneUtils.switchScene(mainStage,savingScene.getKey());
+                }
+                if(currentAccount instanceof SavingAccount){
+                    Pair<Parent, SavingController> savingScene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
+                    savingScene.getValue().loadSaving(TransactionManager.getInstance().getCurrentTransaction());
+                    TransactionManager.getInstance().removeNewTransaction();
+                    SceneUtils.switchScene(mainStage,savingScene.getKey());
+                }
                 break;
             default:
                 CodeUnderConstruction.throwException();
@@ -139,29 +171,33 @@ public class VerifyController {
             Account toAccount = currentTransaction.getToAccount();
             long amount = currentTransaction.getAmount();
             String description = currentTransaction.getDescription();
-            switch (currentTransaction.getType()) {
-                case TransactionType.TRANSFER:
-                    // Thực hiện hành động cho Chuyển khoản
-                    ((CheckingAccount)fromAccount).transfer((CheckingAccount) toAccount, amount, description);
-                    break;
-                case TransactionType.DEPOSIT:
-                    // Thực hiện hành động cho Nạp tiền
-                    ((SavingAccount)fromAccount).deposit(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
-                    break;
-                case TransactionType.WITHDRAW:
-                    // Thực hiện hành động cho Rút tiền
-                    ((SavingAccount)fromAccount).withdraw((CheckingAccount) toAccount, amount);
-                    break;
-                case TransactionType.LOAN:
-                    // Thực hiện hành động cho Vay tiền
-                    System.out.println("Đây là giao dịch Vay tiền.");
-                    break;
-                case TransactionType.REPAY:
-                    // Thực hiện hành động cho Trả nợ
-                    System.out.println("Đây là giao dịch Trả nợ.");
-                    break;
-                default:
-                    throw new MysteriousException();
+            if(currentAccount instanceof CheckingAccount){
+                switch (currentTransaction.getType()){
+                    case TRANSFER:
+                        // Thực hiện hành động cho Chuyển khoản
+                        ((CheckingAccount)fromAccount).transfer((CheckingAccount) toAccount, amount, description);
+                        break;
+                    case DEPOSIT:
+                        ((CheckingAccount)toAccount).deposit(amount);
+                        break;
+                    case WITHDRAW:
+                        ((CheckingAccount)fromAccount).withdraw(amount);
+                        break;
+                }
+            }
+            else if(currentAccount instanceof SavingAccount){
+                switch (currentTransaction.getType()) {
+                    case TransactionType.DEPOSIT:
+                        // Thực hiện hành động cho Nạp tiền
+                        ((SavingAccount)fromAccount).deposit(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
+                        break;
+                    case TransactionType.WITHDRAW:
+                        // Thực hiện hành động cho Rút tiền
+                        ((SavingAccount)fromAccount).withdraw((CheckingAccount) toAccount, amount);
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
             }
             Pair<Parent, CompletedController> scene = SceneUtils.getRootAndController("TransactionScene/transaction_bill_scene.fxml");
             scene.getValue().loadTransaction();
