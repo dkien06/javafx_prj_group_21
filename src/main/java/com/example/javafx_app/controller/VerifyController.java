@@ -125,7 +125,8 @@ public class VerifyController {
                 CodeUnderConstruction.throwException();
                 break;
         }
-        amountLabel.setText("Số tiền: " + newTransaction.getAmount() + " " + newTransaction.getCurrency());
+        amountLabel.setText("Số tiền: " + TransactionManager.getInstance().formatCurrency(
+                newTransaction.getAmount(), newTransaction.getCurrency()));
         amountInTextLabel.setText(NumberToVietnameseWord.numberToVietnameseWords(newTransaction.getAmount()));
         descriptionLabel.setText(newTransaction.getDescription());
     }

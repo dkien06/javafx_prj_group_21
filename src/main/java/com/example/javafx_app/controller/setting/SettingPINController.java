@@ -52,13 +52,13 @@ public class SettingPINController {
         String oldPin = OldPinField.getText();
         String newPin = NewPinField.getText();
         String newPinAgain = NewPinAgainField.getText();
-
+        System.out.println(currentAccount.getPIN());
         boolean isOldPinMatched = false;
         boolean isNewPinValid = false;
         boolean isNewPinAgainValid = false;
         // Kiểm tra mã PIN cũ
         if(oldPin.isEmpty()) OldPinErrorLog.setText("Vui lòng nhập mã PIN hiện tại của bạn");
-        else if(currentAccount.isPinMatched(oldPin)) OldPinErrorLog.setText("Mã PIN hiện tại không đúng");
+        else if(!currentAccount.isPinMatched(oldPin)) OldPinErrorLog.setText("Mã PIN hiện tại không đúng");
         else isOldPinMatched = true;
 
         if(isOldPinMatched){
@@ -76,10 +76,10 @@ public class SettingPINController {
             }
             if(isNewPinValid){
                 if(newPinAgain.isEmpty())NewPinAgainLog.setText("Vui lòng xác nhận laại mã PIN");
-                else if(newPinAgain.equals(newPin))NewPinAgainLog.setText("Mã PIN nhập lại không khớp");
+                else if(!newPinAgain.equals(newPin))NewPinAgainLog.setText("Mã PIN nhập lại không khớp");
                 else isNewPinAgainValid = true;
             }
-            else NewPinLog.setText("");
+            else NewPinAgainField.setText("");
         }
         else NewPinLog.setText("");
 
