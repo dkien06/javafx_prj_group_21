@@ -40,6 +40,11 @@ public class CompletedController {
                 toAccountFullNameLabel.setVisible(false);
                 toAccountIDLabel.setVisible(false);
                 break;
+            case WITHDRAW:
+                billHeadLabel.setText("Rút tiền thành công");
+                toAccountFullNameLabel.setVisible(false);
+                toAccountIDLabel.setVisible(false);
+                break;
             default:
                 CodeUnderConstruction.throwException();
                 break;

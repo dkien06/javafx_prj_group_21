@@ -89,7 +89,7 @@ public class DepositController implements Initializable {
                     TransactionType.DEPOSIT,
                     Long.parseLong(amountTextField.getText()),
                     "VND",
-                    CurrentAccount, // Từ đâu đó (ngân hàng)
+                    CurrentAccount,
                     CurrentAccount, // Tới tài khoản hiện tại
                      descriptionTextArea.getText()
             );
