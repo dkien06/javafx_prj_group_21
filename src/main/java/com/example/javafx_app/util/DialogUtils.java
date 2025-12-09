@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class DialogUtils {
-    public static int dialogButton(String title, String header, String content, String... buttons){
-        Alert alert = new Alert(Alert.AlertType.NONE);
+    public static int errorDialogButton(String title, String header, String content, String... buttons){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
@@ -25,13 +25,6 @@ public class DialogUtils {
         // Hiển thị và lấy kết quả
         Optional<ButtonType> result = alert.showAndWait();
         return result.map(buttonList::indexOf).orElse(-1);
-    }
-    public static void dialog(Alert.AlertType alertType, String title, String header, String content){
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
     public static String dialogTextField(){
         return "";
