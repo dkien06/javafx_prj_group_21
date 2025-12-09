@@ -110,10 +110,6 @@ public class CheckingAccountHomeSceneController implements Initializable,HomeSce
     }
 
     @FXML
-    public void XemVIP(ActionEvent event) {
-        CodeUnderConstruction.throwException();
-    }
-    @FXML
     public void SoTien(){
         SceneUtils.switchScene(mainStage,"TransactionScene/transaction_history_scene.fxml");
     }

@@ -9,5 +9,4 @@ interface HomeSceneController {
     void XemLichSuGiaoDich(ActionEvent event);
     void XemTaiKhoan(ActionEvent event);
     void XemThongBao(ActionEvent event);
-    void XemVIP(ActionEvent event);
 }
