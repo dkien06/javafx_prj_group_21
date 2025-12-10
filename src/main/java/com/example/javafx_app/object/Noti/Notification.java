@@ -1,8 +1,6 @@
 package com.example.javafx_app.object.Noti;
 
-
 import java.time.LocalDateTime;
-import java.util.Random;
 
 public class Notification {
     private NotificationType type;

@@ -60,7 +60,7 @@ public class SavingController implements Initializable {
         savingAccountID.setText(currentSavingAccount.getAccountID());
         savingAccountID.setEditable(false);
         savingMethod.setEditable(false);
-        description.setText(currentSavingAccount.getAccountName().toUpperCase() + " chuyen tien");
+        description.setText(currentSavingAccount.getAccountName().toUpperCase() + " gui tien");
         switch (currentSavingAccount.getType()){
             case FLEXIBLE:
                 savingMethod.setText("Tiền gửi linh hoạt - " + Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR + "%/năm");
@@ -163,8 +163,8 @@ public class SavingController implements Initializable {
                     TransactionType.DEPOSIT,
                     Long.parseLong(amount.getText()),
                     "VND",
-                    AccountManager.getInstance().getCurrentAccount(),
                     AccountManager.getInstance().findCheckingAccount(currentSavingAccount),
+                    AccountManager.getInstance().getCurrentAccount(),
                     description.getText()
             );
             switch (currentSavingAccount.getType()){
@@ -174,10 +174,12 @@ public class SavingController implements Initializable {
                 case ACCUMULATED:
                     ((SavingAccount)AccountManager.getInstance().getCurrentAccount()).setAccumulatedAmount(Long.parseLong(extraInfoField.getText()));
                     break;
+                case FLEXIBLE:
+                    break;
                 default:
                     throw new MysteriousException();
             }
-            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("TransactionScene/verify_transaction.scene.fxml");
+            Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage,scene.getKey());
         }
