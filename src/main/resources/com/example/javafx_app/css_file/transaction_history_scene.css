@@ -110,8 +110,8 @@
     -fx-background-image: url("image/mu_cu_nhan.png");
 }
 
-#notificationButton {
-
+.notificationButton {
+    -fx-background-color: white;
 }
 
 #icon_thong_bao {

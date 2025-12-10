@@ -40,7 +40,7 @@ public class UserManager {
     }
     public User findUserFromAccount(Account account){
         if(account == null) return null;
-        return userMap.get(account.getAccountID()) ;
+        return userMap.get(account.getCitizenID()) ;
     }
     // Hàm tìm kiếm khi userMap đang lưu theo CCCD
     public User findUserFromEmail(String email){

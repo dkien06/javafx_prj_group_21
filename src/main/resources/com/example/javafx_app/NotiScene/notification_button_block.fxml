@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<Button fx:id="notificationButton" mnemonicParsing="false" onAction="#GoToDetails" prefHeight="51.0" prefWidth="347.0" styleClass="nut_chua_lsgd" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.NotificationBlockController">
+<Button mnemonicParsing="false" onAction="#GoToDetails" prefHeight="51.0" prefWidth="347.0" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.NotificationBlockController">
     <graphic>
-        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="320.0" spacing="12.0" styleClass="hbox_chua_lsgd">
+        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="320.0" spacing="12.0" styleClass="hbox_chua_lsgd">
             <children>
                 <Label fx:id="icon_thong_bao" prefHeight="40.0" prefWidth="44.0" styleClass="icon_container" />
 
                 <VBox alignment="CENTER" prefHeight="40.0" prefWidth="175.0">
                     <children>
                         <Label fx:id="titleLabel" prefHeight="20.0" prefWidth="175.0" styleClass="label" text="Tiêu đề thông báo" />
-                        <Label fx:id="detailLabel" opacity="0.7" prefHeight="20.0" prefWidth="175.0" styleClass="label" text="Chi tiết ngắn" />
+                        <Label fx:id="dateLabel" opacity="0.7" prefHeight="20.0" prefWidth="175.0" styleClass="label" text="Ngày tháng" />
                     </children>
                 </VBox>
-
-                <Label fx:id="dateLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="80.0" styleClass="label" text="Ngày/Trạng thái">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Label>
             </children>
         </HBox>
     </graphic>
+   <styleClass>
+      <String fx:value="nut_chua_lsgd" />
+      <String fx:value="notificationButton" />
+   </styleClass>
 </Button>

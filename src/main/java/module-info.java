@@ -10,7 +10,6 @@ module com.example.javafx_app {
     exports com.example.javafx_app;
     opens com.example.javafx_app.controller to javafx.fxml;
     opens com.example.javafx_app.controller.setting to javafx.fxml;
-    opens com.example.javafx_app.controller.Transaction to javafx.fxml;
     opens com.example.javafx_app.controller.Bill to javafx.fxml;
     exports com.example.javafx_app.manager;
     opens com.example.javafx_app.manager to javafx.fxml, javafx.graphics;
@@ -29,4 +28,6 @@ module com.example.javafx_app {
     exports com.example.javafx_app.controller.Noti;
     opens com.example.javafx_app.controller.Noti to javafx.fxml;
     exports com.example.javafx_app.controller.block;
+    exports com.example.javafx_app.controller.checking to javafx.fxml;
+    opens com.example.javafx_app.controller.checking to javafx.fxml;
 }

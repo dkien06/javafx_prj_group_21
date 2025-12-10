@@ -29,7 +29,6 @@ public class NotificationBlockController {
     public void setData(Notification notification) {
         if(notification == null) {return;}
         titleLabel.setText(notification.getTitle());
-        detailLabel.setText(notification.getMessage());
         dateLabel.setText(notification.getTimestamp().toString());
         this.thisNotification = notification;
     }

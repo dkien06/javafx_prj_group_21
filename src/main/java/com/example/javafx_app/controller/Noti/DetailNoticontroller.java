@@ -24,6 +24,7 @@ public class DetailNoticontroller {
         Notification cur = NotificationController.currentNotification;
         Title.setText(cur.getTitle());
         messageLabel.setText(cur.getMessage());
+        cur.setRead(true);
     }
     @FXML
     public void QuayLai(ActionEvent event) {

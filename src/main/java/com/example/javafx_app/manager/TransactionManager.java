@@ -4,9 +4,12 @@ import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class TransactionManager {
@@ -50,7 +53,24 @@ public class TransactionManager {
     public List<Transaction> filterByDate(Account account, LocalDate start, LocalDate end){
         return null;
     }
+    public  String formatCurrency(long balance, String currency) {
+        // 1. Khởi tạo ký hiệu định dạng cho Locale Việt Nam (vi_VN)
+        Locale vietnameseLocale = new Locale("vi", "VN");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(vietnameseLocale);
 
+        // 2. Đặt dấu phân cách hàng nghìn là dấu chấm (.), theo chuẩn Việt Nam
+        symbols.setGroupingSeparator('.');
+
+        // 3. Định nghĩa format với pattern "#,###" và symbols đã định nghĩa
+        // Pattern này đảm bảo dấu phân cách hàng nghìn sẽ được áp dụng.
+        DecimalFormat formatter = new DecimalFormat("#,###", symbols);
+
+        // 4. Định dạng số tiền
+        String formattedBalance = formatter.format(balance);
+
+        // 5. Trả về chuỗi kết hợp với mã tiền tệ
+        return formattedBalance + " " + currency;
+    }
     public void TransactionsListLog(){
         for(Transaction t : transactions){
             System.out.println(
