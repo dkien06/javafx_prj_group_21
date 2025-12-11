@@ -19,28 +19,7 @@ import java.util.*;
 public class AccountManager {
     private static final AccountManager instance = new AccountManager();
     private AccountManager(){}
-
     private static final Map<String, Account> accountMap = new HashMap<>();
-
-    // 2. Khối static khởi tạo dữ liệu giả
-    static {
-        for (int i = 1; i <= 100; i++) {
-            Account a = new CheckingAccount(
-                    "Name" + i,
-                    "123456789" + i,     // citizenID
-                    getInstance().generateUniqueAccountID(),           // accountID
-                    "pwd" + i,// password
-                    Constant.DEFAULT_BALANCE,
-                    "VND",               // currency
-                    "0000"               // PIN
-            );
-
-            // QUAN TRỌNG: Dùng put(Key, Value) thay vì add(Value)
-            // Ở đây ta map: "AC1" -> Object Account 1
-            accountMap.put(a.getAccountID(), a);
-        }
-    }
-    // ham tao accountID
     private String generateUniqueAccountID() {
         Random random = new Random();
         String newID;
@@ -53,7 +32,7 @@ public class AccountManager {
             // Nhờ dùng Map, lệnh containsKey này chạy siêu nhanh (O(1))
         } while (accountMap.containsKey(newID));
 
-        return newID;
+        return "1"+newID;
     }
     private static Account currentAccount;
 
@@ -66,7 +45,13 @@ public class AccountManager {
     public Map<String, Account> getAccountList(){
         return accountMap;
     }
-
+    // Thêm setter để lớp Persistence có thể ghi đè dữ liệu
+    public void setAccountMap(Map<String, Account> newAccountMap) {
+        if (newAccountMap != null) {
+            accountMap.clear();
+            accountMap.putAll(newAccountMap);
+        }
+    }
     //Đăng nhập trá hình
     public void setCurrentAccount(Account currentAccount) {
         AccountManager.currentAccount = currentAccount;

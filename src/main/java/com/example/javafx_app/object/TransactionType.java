@@ -1,6 +1,8 @@
 package com.example.javafx_app.object;
 
-public enum TransactionType {
+import java.io.Serializable;
+
+public enum TransactionType implements Serializable {
     DEPOSIT,
     WITHDRAW,
     TRANSFER,
