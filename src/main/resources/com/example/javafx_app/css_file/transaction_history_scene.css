@@ -152,3 +152,18 @@
 .myscroll .corner {
     -fx-background-color: transparent;
 }
+#wish_to_proceed_btn {
+    -fx-background-color: white;
+    -fx-text-fill: #27A4F2;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+}
+
+#wish_to_proceed_btn:hover {
+    -fx-background-color: #e6f4ff; /* xanh nhạt khi hover */
+}
+
+#wish_to_proceed_btn:pressed {
+    -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
+}
