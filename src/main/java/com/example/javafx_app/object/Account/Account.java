@@ -4,11 +4,12 @@ import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Transaction;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public  abstract class Account {
+public  abstract class Account implements Serializable {
     protected String accountName;
     protected String citizenID;
     protected String accountID;

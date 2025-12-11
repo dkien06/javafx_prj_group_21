@@ -1,8 +1,9 @@
 package com.example.javafx_app.object.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class User {
+public abstract class User implements Serializable {
     private String fullName;
     private LocalDate dateOfBirth;
     private GENDER gender;
