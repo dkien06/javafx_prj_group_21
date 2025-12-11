@@ -106,4 +106,13 @@ public class NumberToVietnameseWord {
             return  "Số tiền không hợp lệ";
         }
     }
+    public static String displayErrorDeposit(String value){
+        try {
+            if (value.isEmpty()) { return "Vui lòng nhập số tiền" ;}
+            else if(value.matches("\\d+")){return  "Số tiền không hợp lệ" ;}
+            else return "";
+        } catch (NumberFormatException e) {
+            return  "Số tiền không hợp lệ";
+        }
+    }
 }
