@@ -6,11 +6,12 @@ import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 
-public class SavingAccount extends Account {
+public class SavingAccount extends Account implements Serializable {
     private long saving;
     private SavingType type;
     private LocalDateTime startSavingDate;

@@ -1,8 +1,9 @@
 package com.example.javafx_app.object.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Staff extends User {
+public class Staff extends User implements Serializable {
     private String staffID;
     private String accountID;
 

@@ -10,7 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.ServiceController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css"
+            xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.javafx_app.controller.Support.ContactController">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>

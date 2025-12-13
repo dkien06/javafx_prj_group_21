@@ -1,16 +1,14 @@
 package com.example.javafx_app.controller.HomeController;
 
-import com.example.javafx_app.exception.CodeUnderConstruction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
-public class LoanAccountHomeSceneController implements HomeSceneController {
-    @FXML
-    private Button VIP_btn;
+public class LoanAccountHomeSceneController {
 
     @FXML
     private Button account_btn;
@@ -19,10 +17,7 @@ public class LoanAccountHomeSceneController implements HomeSceneController {
     private Label account_icon;
 
     @FXML
-    private Button balance_btn;
-
-    @FXML
-    private Button bill_btn;
+    private VBox du_no_box;
 
     @FXML
     private GridPane gridpane1;
@@ -40,47 +35,50 @@ public class LoanAccountHomeSceneController implements HomeSceneController {
     private AnchorPane rootPane;
 
     @FXML
-    private Button service_btn;
-
-    @FXML
     private Label setting_icon;
 
     @FXML
     private Button settings_btn;
 
     @FXML
-    private Button transaction_btn;
+    private Label so_du_no;
 
     @FXML
-    private Button transaction_btn1;
+    private Label so_du_no_label;
 
     @FXML
-    private Button transfer_btn;
-    public void ChuyenTien(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    void XemCaiDat(ActionEvent event) {
+
     }
 
-    public void XemCaiDat(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void XemTaiKhoan(ActionEvent event) {
+
     }
 
-    public void XemHoTro(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void XemThongBao(ActionEvent event) {
+
     }
 
-    public void XemLichSuGiaoDich(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void hoTro(ActionEvent event) {
+
     }
 
-    public void XemTaiKhoan(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void thanhToanKhoanVay(ActionEvent event) {
+
     }
 
-    public void XemThongBao(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void thongTinVay(ActionEvent event) {
+
     }
 
-    public void XemVIP(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    @FXML
+    void vayMoi(ActionEvent event) {
+
     }
+
 }

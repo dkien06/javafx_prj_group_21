@@ -4,11 +4,12 @@ import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Transaction;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public  abstract class Account {
+public  abstract class Account implements Serializable {
     protected String accountName;
     protected String citizenID;
     protected String accountID;
@@ -18,7 +19,6 @@ public  abstract class Account {
     private List<Transaction> history;
     private List<Notification> notifications;
     private LocalDate StartDate = null;
-    protected boolean isVIP;
 
     // ✅ Constructor đầy đủ
     public Account(String fullName, String citizenID, String accountID, String password,
@@ -32,7 +32,6 @@ public  abstract class Account {
         this.history = new ArrayList<>();
         this.notifications = new ArrayList<>();
         this.StartDate = BankManager.getCurrentDate();// Lay ngay hom nay , gia lap thoi
-        this.isVIP = false;
     }
 
     // ✅ Constructor rỗng (cần cho JavaFX hoặc khởi tạo tạm)
@@ -65,7 +64,6 @@ public  abstract class Account {
     public LocalDate getStartDate() {
         return StartDate;
     }
-    public  boolean isVIP() { return isVIP; }
     public abstract ACCOUNT_TYPE getAccountType();
     public List<Notification> getNotifications() {
         return notifications;
@@ -83,9 +81,6 @@ public  abstract class Account {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-    public void setVIP(boolean VIP) {
-        isVIP = VIP;
     }
     public void addNotification(Notification notification) { this.notifications.add(notification); }
     // ✅ Thêm giao dịch
