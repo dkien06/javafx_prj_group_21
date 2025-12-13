@@ -2,6 +2,7 @@ package com.example.javafx_app;
 
 import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.config.ExampleUser;// THÊM IMPORT NÀY
+import com.example.javafx_app.exception.NonExistedPathException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -12,18 +13,23 @@ import java.io.IOException;
 public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Constant.mainStage = stage;
+        try{
+            Constant.mainStage = stage;
 
-        // B1: Tải dữ liệu khi ứng dụng bắt đầu
-        DataPersistence.loadAllData(); // THÊM LỆNH NÀY (sẽ tự động khởi tạo dữ liệu giả nếu file không tồn tại)
+            // B1: Tải dữ liệu khi ứng dụng bắt đầu
+            DataPersistence.loadAllData(); // THÊM LỆNH NÀY (sẽ tự động khởi tạo dữ liệu giả nếu file không tồn tại)
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("21stBank");
-        stage.setResizable(false);
-        stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("21stBank");
+            stage.setResizable(false);
+            stage.show();
+        }
+        catch (IllegalStateException e){
+            NonExistedPathException.throwException();
+        }
     }
 
     @Override // Thêm phương thức stop để lưu dữ liệu khi ứng dụng đóng
