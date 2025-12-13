@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <Button fx:id="tien_gui_linh_hoat" layoutX="29.0" layoutY="118.0" mnemonicParsing="false" onAction="#MoNgay1" prefHeight="103.0" prefWidth="355.0">
+         <graphic>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Vay tiêu dùng">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dành cho việc mua những món đồ thiết yếu phù hợp với nhu cầu của bạn" wrappingWidth="338.078857421875" />
+                  <Label />
+                  <Label fx:id="flexibleInterestRateLabel" text="Hạn mức: 75.000.000 VND ">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
+      <Button fx:id="tien_gui_ki_han" layoutX="29.0" layoutY="260.0" mnemonicParsing="false" onAction="#MoNgay2" prefHeight="128.0" prefWidth="355.0">
+         <graphic>
+            <VBox prefHeight="120.0" prefWidth="335.0">
+               <children>
+                  <Label text="Vay gia dụng">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dành cho việc mua những món đồ gia dụng như TV, tủ lạnh, bàn ghế,..." wrappingWidth="322.66168212890625" />
+                  <Label />
+                  <Label fx:id="fixedInterestRateLabel" prefHeight="35.0" prefWidth="323.0" text="Hạn mức: 400.000.000 VND">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
+      <Button fx:id="tien_gui_tich_gop" layoutX="28.0" layoutY="401.0" mnemonicParsing="false" onAction="#MoNgay3" prefHeight="119.0" prefWidth="355.0">
+         <graphic>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Vay tài sản lớn">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mua sắm những món đồ xa xỉ và cao cấp cho bạn" />
+                  <Label />
+                  <Label fx:id="accumulatedInterestLabel" prefHeight="39.0" prefWidth="291.0" text="Hạn mức: 1.600.000.000 VND">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
+      <Label layoutX="29.0" layoutY="33.0" prefHeight="38.0" prefWidth="290.0" text="Vay tiền" wrapText="true">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="61.0" layoutY="88.0" prefHeight="24.0" prefWidth="290.0" text="Lựa chọn danh mục vay:" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" text="Quay lại" />
+   </children>
+</AnchorPane>

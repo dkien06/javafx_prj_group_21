@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <Button fx:id="tien_gui_linh_hoat" layoutX="29.0" layoutY="118.0" mnemonicParsing="false" onAction="#MoNgay1" prefHeight="103.0" prefWidth="355.0">
+         <graphic>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Vay kỳ hạn">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Khi đến thời hạn thì bạn phải trả số tiền vay hoặc thực hiện gia hạn" wrappingWidth="338.078857421875" />
+                  <Label />
+                  <Label fx:id="flexibleInterestRateLabel" text="0.00%/tháng">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
+      <Button fx:id="tien_gui_ki_han" layoutX="29.0" layoutY="260.0" mnemonicParsing="false" onAction="#MoNgay2" prefHeight="128.0" prefWidth="355.0">
+         <graphic>
+            <VBox prefHeight="120.0" prefWidth="335.0">
+               <children>
+                  <Label text="Vay trả góp">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trong khoảng thời gian kì hạn, mỗi tháng tài khoản sẽ tự động trả lại một khoản tiền vay." wrappingWidth="322.66168212890625" />
+                  <Label />
+                  <Label fx:id="fixedInterestRateLabel" text="0.00%/tháng">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
+      <Label layoutX="29.0" layoutY="33.0" prefHeight="38.0" prefWidth="290.0" text="Vay tiền" wrapText="true">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="61.0" layoutY="88.0" prefHeight="24.0" prefWidth="290.0" text="Lựa chọn phương thức vay:" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" text="Quay lại" />
+   </children>
+</AnchorPane>
