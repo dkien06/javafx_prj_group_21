@@ -4,7 +4,8 @@ module com.example.javafx_app {
     requires java.desktop;
     requires javafx.graphics;
     requires javafx.base;
-
+    requires java.sql;
+    opens com.example.javafx_app.controller.Staff to javafx.fxml;
     opens com.example.javafx_app.controller.SignUp to javafx.fxml;
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
     exports com.example.javafx_app;

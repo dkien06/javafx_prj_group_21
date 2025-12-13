@@ -1,5 +1,9 @@
 package com.example.javafx_app.controller.saving;
 
+import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.SavingAccount;
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,9 +36,15 @@ public class SavingHistoryController {
 
     @FXML
     private VBox vbox_to;
-
+    SavingAccount cur = (SavingAccount) AccountManager.getInstance().getCurrentAccount();
+    @FXML
+    void initialize() {
+        accountID.setText("Số tài khoản : "+cur.getAccountID());
+        name.setText("Họ và tên : "+cur.getAccountName());
+        so_tien_da_gui.setText("Số tiền gửi : "+cur.getSaving());
+    }
     @FXML
     void QuayLai(ActionEvent event) {
-
+        SceneUtils.switchScene(Constant.mainStage,"HomeScenes/saving_account_home_scene.fxml");
     }
 }
