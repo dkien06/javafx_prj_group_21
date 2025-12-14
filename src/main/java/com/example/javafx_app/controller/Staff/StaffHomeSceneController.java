@@ -56,7 +56,7 @@ public class StaffHomeSceneController  {
 
     @FXML
     void XemThongTinKhachHang(ActionEvent event) {
-        SceneUtils.switchScene(mainStage, "StaffScene/staff_find_customer.fxml");
+        SceneUtils.switchScene(mainStage, "StaffScene/staff_find_transaction1.fxml");
     }
 
     // --- Các hàm xử lý sự kiện khác (Navigation) ---
