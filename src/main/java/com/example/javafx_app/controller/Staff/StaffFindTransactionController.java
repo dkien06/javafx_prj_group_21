@@ -2,58 +2,52 @@ package com.example.javafx_app.controller.Staff;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class StaffFindTransactionController {
 
     @FXML
-    private Label amountLabel;
+    private TableColumn<?, ?> amountColumn;
 
     @FXML
-    private Label date_label;
+    private TableColumn<?, ?> currencyColumn;
 
     @FXML
-    private Label descriptionLabel;
+    private TableColumn<?, ?> dateColumn;
 
     @FXML
-    private Text errorLog;
+    private TableColumn<?, ?> fromAccountColumn;
+
+    @FXML
+    private TableColumn<?, ?> idColumn;
 
     @FXML
     private TextField maxAmountField;
 
     @FXML
+    private Label messageLabel;
+
+    @FXML
     private TextField minAmountField;
-
-    @FXML
-    private VBox resultVBox;
-
-    @FXML
-    private Button returnButton;
 
     @FXML
     private AnchorPane rootPane;
 
     @FXML
-    private Button searchButton;
+    private TableColumn<?, ?> toAccountColumn;
 
     @FXML
-    private Label transactionIdLabel;
+    private TableView<?> transactionTable;
 
     @FXML
-    private Label typeLabel;
+    private TableColumn<?, ?> typeColumn;
 
     @FXML
-    void QuayLai(ActionEvent event) {
-
-    }
-
-    @FXML
-    void TimKiemGiaoDich(ActionEvent event) {
+    void handleSearch(ActionEvent event) {
 
     }
 
