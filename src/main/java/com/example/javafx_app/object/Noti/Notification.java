@@ -1,8 +1,9 @@
 package com.example.javafx_app.object.Noti;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Notification {
+public class Notification implements Serializable {
     private NotificationType type;
     private LocalDateTime timestamp;
     private String title;

@@ -1,9 +1,10 @@
 package com.example.javafx_app.object.Bill;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Bill {
+public class Bill implements Serializable {
     long amount;
     LocalDate date;
     BillType billType;

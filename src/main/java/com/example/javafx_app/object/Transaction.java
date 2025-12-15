@@ -2,10 +2,11 @@ package com.example.javafx_app.object;
 
 import com.example.javafx_app.object.Account.Account;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private String transactionID;
     private LocalDateTime date;
     private TransactionType type;

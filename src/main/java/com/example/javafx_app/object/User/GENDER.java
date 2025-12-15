@@ -1,5 +1,7 @@
 package com.example.javafx_app.object.User;
 
-public enum GENDER {
+import java.io.Serializable;
+
+public enum GENDER implements Serializable {
     MALE, FEMALE, OTHER
 }

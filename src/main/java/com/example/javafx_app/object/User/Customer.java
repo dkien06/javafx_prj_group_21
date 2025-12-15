@@ -4,11 +4,12 @@ import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer extends User {
+public class Customer extends User implements Serializable {
     private List<String> accountIDs ;
     public Customer(String fullName, LocalDate dateOfBirth,
                     GENDER gender, String phoneNumber, String email, String citizenID) {

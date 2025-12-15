@@ -1,6 +1,8 @@
 package com.example.javafx_app.object.Noti;
 
-public enum NotificationType {
+import java.io.Serializable;
+
+public enum NotificationType implements Serializable {
     // 1. Biến động số dư / Giao dịch
     BALANCE_CHANGE("Biến động số dư"),
     TRANSFER_SUCCESS("Chuyển khoản thành công"),

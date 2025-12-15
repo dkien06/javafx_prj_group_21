@@ -15,7 +15,7 @@ public class UserManager {
     private UserManager(){}
 
     private static User currentUser,signUpUser;
-    private static final Map<String, User> userMap = new HashMap<>();
+    private static  Map<String, User> userMap = new HashMap<>();
 
     public static UserManager getInstance() {
         return instance;
@@ -27,7 +27,12 @@ public class UserManager {
     public Map<String,User> getUserList() {
         return userMap;
     }
-
+    public void setUserMap(Map<String, User> newUserMap) {
+        if (newUserMap != null) {
+            userMap.clear();
+            userMap.putAll(newUserMap);
+        }
+    }
     public void setCurrentUser(User user){
         currentUser = user;
     }

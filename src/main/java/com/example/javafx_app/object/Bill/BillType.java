@@ -1,6 +1,8 @@
 package com.example.javafx_app.object.Bill;
 
-public enum BillType {
+import java.io.Serializable;
+
+public enum BillType implements Serializable {
     // 1. Định nghĩa các hằng số với nhãn hiển thị (label)
     ELECTRIC("Điện"),
     WATER("Nước"),

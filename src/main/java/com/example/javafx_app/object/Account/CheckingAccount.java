@@ -6,13 +6,14 @@ import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Tài khoản chuển tiền:)
  */
-public class CheckingAccount extends Account {
+public class CheckingAccount extends Account implements Serializable {
     private long balance;
     private List<Bill> bills;
     public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){

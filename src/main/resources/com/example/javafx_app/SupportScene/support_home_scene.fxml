@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.ServiceController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0"
+            stylesheets="@../css_file/support_home_scene_decor.css" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.Support.SupportHomeController">
     <children>
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
             <columnConstraints>
@@ -48,7 +46,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button mnemonicParsing="false" prefHeight="182.0" prefWidth="281.0" styleClass="ButtonInGridPane">
+                <Button mnemonicParsing="false" onAction="#GoToContactScene" prefHeight="182.0" prefWidth="281.0" styleClass="ButtonInGridPane">
                     <graphic>
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="126.0">
                             <children>
@@ -58,7 +56,7 @@
                         </VBox>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="182.0" prefWidth="281.0" styleClass="ButtonInGridPane" GridPane.columnIndex="1">
+                <Button mnemonicParsing="false" onAction="#GoToQuestionScene" prefHeight="182.0" prefWidth="281.0" styleClass="ButtonInGridPane" GridPane.columnIndex="1">
                     <graphic>
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="126.0">
                             <children>

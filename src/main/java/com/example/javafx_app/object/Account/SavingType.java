@@ -1,6 +1,8 @@
 package com.example.javafx_app.object.Account;
 
-public enum SavingType {
+import java.io.Serializable;
+
+public enum SavingType implements Serializable {
     NONE("Không có"),
     FLEXIBLE("Linh hoạt"),
     FIXED("Kì hạn"),

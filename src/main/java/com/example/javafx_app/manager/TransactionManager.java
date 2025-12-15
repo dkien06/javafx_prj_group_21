@@ -17,7 +17,7 @@ public class TransactionManager {
     private TransactionManager(){}
 
     private static Transaction currentTransaction;
-    private static final List<Transaction> transactions = new ArrayList<>();
+    private static  List<Transaction> transactions = new ArrayList<>();
 
     public static TransactionManager getInstance() {
         return instance;
@@ -28,7 +28,13 @@ public class TransactionManager {
     public List<Transaction> getTransactionsList() {
         return transactions;
     }
-
+    // Thêm setter để lớp Persistence có thể ghi đè dữ liệu
+    public void setTransactionsList(List<Transaction> newTransactionsList) {
+        if (newTransactionsList != null) {
+            transactions.clear();
+            transactions.addAll(newTransactionsList);
+        }
+    }
     public void newTransaction(TransactionType type, long amount, String currency, Account fromAccount, Account toAccount, String description){
         currentTransaction = new Transaction(type,amount,currency,fromAccount, toAccount,description);
     }

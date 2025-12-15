@@ -1,7 +1,9 @@
 package com.example.javafx_app.object.Account;
 
 
-public enum ACCOUNT_TYPE {
+import java.io.Serializable;
+
+public enum ACCOUNT_TYPE implements Serializable {
     CHECKING("Tài khoản thanh toán"), // Tên hiển thị cho CHECKING
     SAVING("Tài khoản tiết kiệm"),    // Tên hiển thị cho SAVING
     LOAN("Tài khoản vay"),// Tên hiển thị cho LOAN

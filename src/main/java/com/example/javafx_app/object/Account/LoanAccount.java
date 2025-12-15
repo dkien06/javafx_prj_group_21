@@ -1,6 +1,8 @@
 package com.example.javafx_app.object.Account;
 
-public class LoanAccount extends Account {
+import java.io.Serializable;
+
+public class LoanAccount extends Account implements Serializable {
     private long debt;
     public LoanAccount(String fullName, String citizenID, String accountID, String password, long debt,
                        String currency, String PIN){

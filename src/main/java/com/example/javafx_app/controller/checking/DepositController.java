@@ -46,8 +46,8 @@ public class DepositController implements Initializable {
         // Listener kiểm tra số tiền nhập vào
         descriptionTextArea.setText(CurrentAccount.getAccountName().toUpperCase() + " nap tien");
         amountTextField.textProperty().addListener((observable, _, value) -> {
-            amountLog.setText(NumberToVietnameseWord.displayError(value));
-            if(!amountLog.getText().isEmpty()){
+            amountLog.setText(NumberToVietnameseWord.displayErrorDeposit(value));
+            if(!amountLog.getText().isEmpty()&&amountLog.getText().equals("")){
                 amountLog.setFill(Color.rgb(255,0,0));
                 isAmountValid = false;
             }

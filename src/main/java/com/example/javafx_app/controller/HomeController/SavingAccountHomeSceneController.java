@@ -68,22 +68,18 @@ public class SavingAccountHomeSceneController implements HomeSceneController{
     }
 
     public void XemHoTro(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+        SceneUtils.switchScene(mainStage, "SupportScene/support_home_scene.fxml");
     }
 
     public void XemLichSuGiaoDich(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+        SceneUtils.switchScene(mainStage, "SavingScene/saving_history_scene.fxml");
     }
 
     public void XemTaiKhoan(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+        SceneUtils.switchScene(mainStage, "account_scene.fxml");
     }
 
     public void XemThongBao(ActionEvent event) {
-        CodeUnderConstruction.throwException();
-    }
-
-    public void XemVIP(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+        SceneUtils.switchScene(mainStage, "NotiScene/noti_scene.fxml");
     }
 }
