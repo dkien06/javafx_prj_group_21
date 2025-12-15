@@ -1,6 +1,35 @@
 package com.example.javafx_app.controller.loan;
 
 public class LoanChooseCategoriesController {
+    private final String[] head = {
+            "Vay tiêu dùng",
+            "Vay gia dụng",
+            "Vay tài sản lớn",
+            "Vay kinh doanh nhỏ",
+            "Vay kinh doanh mở rộng",
+            "Vay kinh doanh quy mô lớn",
+            "Vay mua ô tô phổ thông",
+            "Vay mua ô tô cao cấp",
+            "Vay mua nhà ở",
+            "Vay đầu tư bất động sản",
+            "Vay đầu tư nâng cao"
+    };
+    private final String[] title = {
+            "Vay tiêu dùng",
+            "Vay gia dụng",
+            "Vay tài sản lớn",
+            "Vay kinh doanh nhỏ",
+            "Vay kinh doanh mở rộng",
+            "Vay kinh doanh quy mô lớn",
+            "Vay mua ô tô phổ thông",
+            "Vay mua ô tô cao cấp",
+            "Vay mua nhà ở",
+            "Vay đầu tư bất động sản",
+            "Vay đầu tư nâng cao"
+    };
+    void loadMethod(){
+
+    }
     /*
     Scene này dùng để hiển thị các danh mục vay theo từng mục đích,
     cho người dùng lựa chọn các mức tiền vay khác nhau dựa vào nhu cầu của họ.

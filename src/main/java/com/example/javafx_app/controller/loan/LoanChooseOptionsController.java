@@ -1,5 +1,7 @@
 package com.example.javafx_app.controller.loan;
 
+import javafx.event.ActionEvent;
+
 public class LoanChooseOptionsController {
     /*
     Khác với gửi tiền, cái phần trăm tiền lãi của vay nó tùy thuộc vào mục đích vay và số tiền vay của người vay
@@ -8,4 +10,25 @@ public class LoanChooseOptionsController {
     Còn option cuối (Khoản vay mới) thì đi thẳng đến scene loan_choose_method.fxml
     Đấy thế thôi:)
      */
+    void DangKyNgay1(ActionEvent event){
+
+    }
+    void DangKyNgay2(ActionEvent event){
+
+    }
+    void DangKyNgay3(ActionEvent event){
+
+    }
+    void DangKyNgay4(ActionEvent event){
+
+    }
+    void DangKyNgay5(ActionEvent event){
+
+    }
+    void DangKyNgay6(ActionEvent event){
+
+    }
+    void DangKyNgay(ActionEvent event, int type){
+
+    }
 }

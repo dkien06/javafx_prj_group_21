@@ -1,6 +1,7 @@
 package com.example.javafx_app.controller.loan;
 
 public class LoanChooseMethodController {
+
     /*
     Scene này cho phép người dùng lựa chọn phương thức vay vốn.
     Hiện tại hệ thống hỗ trợ 2 phương thức: Vay kỳ hạn và Vay trả góp.
