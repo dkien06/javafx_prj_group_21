@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/transaction_between_account_scnene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.checking.TransactingController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/transaction_between_account_scnene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.saving.WithdrawController">
     <children>
         <Label fx:id="logo_label" layoutX="29.0" layoutY="54.0" prefHeight="60.0" prefWidth="85.0" />
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
@@ -50,7 +50,7 @@
          </children>
       </VBox>
       <Label alignment="TOP_LEFT" layoutX="65.0" layoutY="419.0" prefHeight="78.0" prefWidth="282.0" text="CẢNH BÁO: Số tiền của bạn đang gửi với phương thức gửi kỳ hạn, nếu bạn rút tiền ngay bây giờ, toàn bộ số tiền của bạn sẽ được rút mà không hưởng một khoản lãi nào." textAlignment="JUSTIFY" textFill="#ff8000" wrapText="true" />
-      <Button layoutX="97.0" layoutY="537.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
-      <Button layoutX="239.0" layoutY="537.0" mnemonicParsing="false" onAction="#TiepTuc" text="Tiếp tục" />
+      <Button layoutX="97.0" layoutY="537.0" mnemonicParsing="false" text="Quay lại" />
+      <Button layoutX="239.0" layoutY="537.0" mnemonicParsing="false" text="Tiếp tục" />
     </children>
 </AnchorPane>

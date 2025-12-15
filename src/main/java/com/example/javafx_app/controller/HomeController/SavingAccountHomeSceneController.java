@@ -83,7 +83,7 @@ public class SavingAccountHomeSceneController implements HomeSceneController{
         CodeUnderConstruction.throwException();
     }
 
-    public void XemVIP(ActionEvent event) {
-        CodeUnderConstruction.throwException();
+    public void RutTien(ActionEvent event) {
+       SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "SavingScene/withdraw_scene.fxml");
     }
 }
