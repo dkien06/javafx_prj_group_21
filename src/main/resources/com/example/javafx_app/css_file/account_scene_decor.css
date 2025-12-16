@@ -89,3 +89,16 @@
 .hbox {
     -fx-spacing: 8;
 }
+.choice-box {
+    -fx-background-color: white;
+    -fx-background-radius: 4;
+    -fx-padding: 2;
+}
+
+.choice-box > .label {
+    -fx-text-fill: black;
+}
+
+.menu-item > .label {
+    -fx-text-fill: black;
+}

@@ -19,6 +19,7 @@ public  abstract class Account implements Serializable {
     private List<Transaction> history;
     private List<Notification> notifications;
     private LocalDate StartDate = null;
+    private boolean ElectricService, InternetService, WaterService, SchoolService ;
 
     // ✅ Constructor đầy đủ
     public Account(String fullName, String citizenID, String accountID, String password,
@@ -68,6 +69,7 @@ public  abstract class Account implements Serializable {
     public List<Notification> getNotifications() {
         return notifications;
     }
+
 
     // === Setter ===
     public void setAccountName(String accountName) {

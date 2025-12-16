@@ -15,8 +15,9 @@ public class BankApplication extends Application {
         Constant.mainStage = stage;
 
         // B1: Tải dữ liệu khi ứng dụng bắt đầu
-        DataPersistence.loadAllData(); // THÊM LỆNH NÀY (sẽ tự động khởi tạo dữ liệu giả nếu file không tồn tại)
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
+       // DataPersistence.loadAllData(); // THÊM LỆNH NÀY (sẽ tự động khởi tạo dữ liệu giả nếu file không tồn tại)
+        ExampleUser.init();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/staff_home_scene.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -27,7 +28,7 @@ public class BankApplication extends Application {
 
     @Override // Thêm phương thức stop để lưu dữ liệu khi ứng dụng đóng
     public void stop() {
-        DataPersistence.saveAllData();
+        //DataPersistence.saveAllData();
         System.out.println("Ứng dụng đang đóng và dữ liệu đã được lưu.");
     }
 

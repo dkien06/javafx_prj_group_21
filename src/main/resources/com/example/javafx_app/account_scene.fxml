@@ -17,8 +17,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="return_btn" layoutX="167.0" layoutY="455.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
-      <VBox fx:id="my_vbox" layoutX="-1.0" layoutY="228.0" prefHeight="202.0" prefWidth="414.0">
+      <Button fx:id="return_btn" layoutX="167.0" layoutY="447.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+      <VBox fx:id="my_vbox" layoutX="-1.0" layoutY="228.0" prefHeight="0.0" prefWidth="414.0">
          <children>
             <Label fx:id="CitizenID" text="CCCD">
                <font>
@@ -35,18 +35,18 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+            <HBox prefHeight="55.0" prefWidth="375.0" styleClass="hbox">
                <children>
                   <Label text="Chuyển đổi tài khoản">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="AccountType" prefWidth="150.0" />
-                  <Button fx:id="ChangeAccount" mnemonicParsing="false" onAction="#ChangeAccount" prefHeight="7.0" prefWidth="71.0" text="Button" />
+                  <ChoiceBox fx:id="AccountType" prefHeight="26.0" prefWidth="230.0" />
                </children>
             </HBox>
          </children>
       </VBox>
+      <Button fx:id="ChangeAccount" alignment="CENTER" layoutX="163.0" layoutY="372.0" mnemonicParsing="false" onAction="#ChangeAccount" prefHeight="34.0" prefWidth="88.0" text="Chuyển" />
     </children>
 </AnchorPane>

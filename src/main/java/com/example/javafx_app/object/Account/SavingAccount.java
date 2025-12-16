@@ -41,6 +41,7 @@ public class SavingAccount extends Account implements Serializable {
     public SavingType getType() {
         return type;
     }
+
     public void setType(SavingType type) {
         this.type = type;
     }

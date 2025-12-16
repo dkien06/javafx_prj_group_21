@@ -116,4 +116,7 @@ public class DataPersistence {
             System.err.println("Lỗi khi xóa tệp dữ liệu: " + e.getMessage());
         }
     }
+    public static void main(String[] args) {
+        clearAllData();
+    }
 }
