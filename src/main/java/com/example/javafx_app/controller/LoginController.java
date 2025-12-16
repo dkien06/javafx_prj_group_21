@@ -30,6 +30,7 @@ public class LoginController implements Initializable {
         // Nạp các loại tài khoản vào ChoiceBox (hiển thị bằng tên tiếng Việt từ toString)
         if(!DataPersistence.savedAccountID.isEmpty()){
             CCCDField.setText(DataPersistence.savedAccountID);
+            RememberPass.setSelected(true);
         }
         if(!DataPersistence.savedPassword.isEmpty()){
             PasswordField.setText(DataPersistence.savedPassword);
@@ -40,6 +41,7 @@ public class LoginController implements Initializable {
         if(!DataPersistence.accountType.isEmpty()){
             accountType.setValue(DataPersistence.accountType);
         }
+
         // Chọn mặc định là CHECKING
         else accountType.setValue(ACCOUNT_TYPE.CHECKING.toString());
     }
@@ -67,6 +69,11 @@ public class LoginController implements Initializable {
                 DataPersistence.savedPassword = PasswordField.getText();
                 DataPersistence.accountType= selectedLabel ;
                 System.out.println("CHeck");
+            }
+            else {
+                DataPersistence.savedAccountID = "" ;
+                DataPersistence.savedPassword = "" ;
+                DataPersistence.accountType = selectedLabel;
             }
             SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));

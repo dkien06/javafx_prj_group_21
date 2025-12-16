@@ -101,6 +101,7 @@ public class CheckingAccount extends Account implements Serializable {
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}
     public void addBill(Bill bill){
         bills.add(bill);
+        addNotification(NotiManager.getNotifromBill(bill));
     }
     public List<Bill> getBills(){
         return bills;

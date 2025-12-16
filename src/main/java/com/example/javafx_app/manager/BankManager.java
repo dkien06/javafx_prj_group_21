@@ -1,9 +1,11 @@
 package com.example.javafx_app.manager;
 
+import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.config.Constant;
+import com.example.javafx_app.object.Account.CheckingAccount;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -54,6 +56,21 @@ public class BankManager {
         int otp = random.nextInt(max - min + 1) + min;
 
         return String.valueOf(otp);
+    }
+    /* Hàm update information để update các thông tin cho từng account vào lần sử dụng này
+    ví dụ như checking account cần update về số lượng bill
+    saving account cần update về lượng tiền tiết kiệm hiện có
+    loan account cần update về số dư nợ
+    */
+    public static void updateInformation(){
+        Map<String,Account> accountMap = AccountManager.getInstance().getAccountList() ;
+        LocalDate previousDate = DataPersistence.lastAppUsageDate ;
+        for(Map.Entry<String,Account> entry:accountMap.entrySet()){
+            Account account = entry.getValue();
+            if(account.getAccountType().equals(ACCOUNT_TYPE.CHECKING)){
+                AccountManager.getInstance().addMonthlyBills((CheckingAccount) account,previousDate,currentDate);
+            }
+        }
     }
     /*Mấy cái hàm này cho phần đăng kí*/
     public enum SignUpInformationState {

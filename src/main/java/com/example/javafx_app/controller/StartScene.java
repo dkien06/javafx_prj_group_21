@@ -37,7 +37,7 @@ public class StartScene implements Initializable {
         PhoneLog.setText("");
         EmailLog.setText("");
         DateLog.setText("");
-        DatePicker.setValue(BankManager.getCurrentDate()) ;
+        DatePicker.setValue(DataPersistence.lastAppUsageDate) ;
     }
     @FXML
     private void NextToLogin(ActionEvent event) {
@@ -57,16 +57,18 @@ public class StartScene implements Initializable {
             checkPhone = false ;
 
         }
-      if(today.isBefore(BankManager.getCurrentDate())){
+      if(today.isBefore(DataPersistence.lastAppUsageDate)) {
            DateLog.setText("Không thể đặt thời gian trước thời điểm cuối cùng");
            checkDate = false ;
        }
-        BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
-        BankManager.setCurrentDate(DatePicker.getValue());
-        BankManager.setCurrentEmail(EmailTextField.getText());
 
-        if(checkDate&&checkEmail&&checkPhone)
+        if(checkDate&&checkEmail&&checkPhone){
+            BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
+            BankManager.setCurrentDate(DatePicker.getValue());
+            BankManager.setCurrentEmail(EmailTextField.getText());
+            BankManager.updateInformation();
             SceneUtils.switchScene(mainStage,"login_scene.fxml");
+        }
     }
     @FXML
     public void Exit(ActionEvent event) {

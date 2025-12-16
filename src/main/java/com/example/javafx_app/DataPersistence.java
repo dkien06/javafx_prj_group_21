@@ -110,14 +110,14 @@ public class DataPersistence {
                 Map<String, Serializable> loginStateData = (Map<String, Serializable>) loadData(LOGIN_STATE_FILE); //
 
                 // Gán lại các giá trị đã tải vào các trường static
-                lastAppUsageDate = (LocalDate) loginStateData.get("lastUsageDate"); //
+                lastAppUsageDate = (LocalDate) loginStateData.get("lastUsageDate");
                 savedAccountID = (String) loginStateData.get("savedAccountID"); //
                 savedPassword = (String) loginStateData.get("savedPassword"); //
                 accountType = (String) loginStateData.get("accountType");
-                // Cập nhật ngày sử dụng ứng dụng gần nhất vào BankManager
-                BankManager.setCurrentDate(lastAppUsageDate);
+                System.out.println(savedAccountID+savedPassword+accountType);
             } catch (FileNotFoundException e) {
                 System.out.println("Không tìm thấy tệp lưu trữ thông tin đăng nhập. Bỏ qua.");
+
             } catch (Exception e) {
                 System.err.println("Lỗi khi tải thông tin đăng nhập: " + e.getMessage());
             }
@@ -126,6 +126,10 @@ public class DataPersistence {
         } catch (FileNotFoundException e) {
             System.out.println("Không tìm thấy tệp dữ liệu. Đang khởi tạo dữ liệu giả lập...");
             ExampleUser.init(); // Khởi tạo dữ liệu giả lập nếu không có tệp
+            lastAppUsageDate = LocalDate.of(2020,1,1) ;
+            savedAccountID = "" ;
+            savedPassword = "" ;
+            accountType = "" ;
             saveAllData(); // Lưu dữ liệu giả lập vừa tạo vào tệp
             System.out.println("Đã khởi tạo và lưu dữ liệu giả lập.");
         } catch (Exception e) {
@@ -169,6 +173,6 @@ public class DataPersistence {
         }
     }
     public static void main(String[] args) {
-
+        DataPersistence.clearAllData();
     }
 }
