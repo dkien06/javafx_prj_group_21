@@ -1,15 +1,13 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,15 +24,24 @@ public class LoginController implements Initializable {
     private Label WrongLoginLabel;
     @FXML
     private ChoiceBox<String> accountType;
-
+    @FXML private CheckBox RememberPass ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Nạp các loại tài khoản vào ChoiceBox (hiển thị bằng tên tiếng Việt từ toString)
+        if(!DataPersistence.savedAccountID.isEmpty()){
+            CCCDField.setText(DataPersistence.savedAccountID);
+        }
+        if(!DataPersistence.savedPassword.isEmpty()){
+            PasswordField.setText(DataPersistence.savedPassword);
+        }
         for (ACCOUNT_TYPE type : ACCOUNT_TYPE.values()) {
             accountType.getItems().add(type.toString());
         }
+        if(!DataPersistence.accountType.isEmpty()){
+            accountType.setValue(DataPersistence.accountType);
+        }
         // Chọn mặc định là CHECKING
-        accountType.setValue(ACCOUNT_TYPE.CHECKING.toString());
+        else accountType.setValue(ACCOUNT_TYPE.CHECKING.toString());
     }
 
     @FXML
@@ -55,6 +62,12 @@ public class LoginController implements Initializable {
             }
         }
         if(AccountManager.getInstance().logIn(CCCD, password, selectedType)) {
+            if(RememberPass.isSelected()) {
+                DataPersistence.savedAccountID = CCCDField.getText();
+                DataPersistence.savedPassword = PasswordField.getText();
+                DataPersistence.accountType= selectedLabel ;
+                System.out.println("CHeck");
+            }
             SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }

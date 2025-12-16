@@ -30,7 +30,7 @@ public class BankManager {
     public static LocalDate getCurrentDate() {
         return currentDate;
     }
-    public static void setCurrentDate(LocalDate currentDate) {}
+    public static void setCurrentDate(LocalDate currentDate) { BankManager.currentDate = currentDate; }
     public static Account VerifyPassword(String citizenID, String password, ACCOUNT_TYPE accountType) {
         List<Account> VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
 
