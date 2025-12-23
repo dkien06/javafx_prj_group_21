@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseOptionsController">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseOptionsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21baff" height="175.0" layoutX="26.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="175.0" layoutX="213.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
@@ -85,6 +84,6 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" text="Quay lại" />
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
    </children>
 </AnchorPane>

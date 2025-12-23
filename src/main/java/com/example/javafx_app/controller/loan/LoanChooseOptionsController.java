@@ -43,4 +43,9 @@ public class LoanChooseOptionsController {
         scene.getValue().loadMethod(type);
         SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), scene.getKey());
     }
+
+    @FXML
+    void QuayLai(ActionEvent event){
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "HomeScenes/loan_account_home_scene.fxml");
+    }
 }

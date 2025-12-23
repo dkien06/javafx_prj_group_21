@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
@@ -131,7 +131,7 @@ public class LoanChooseCategoriesController {
     }
     @FXML
     void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(mainStage, "loanScene/loan_choose_categories.fxml");
+        SceneUtils.switchScene(mainStage, "loanScene/loan_choose_option.fxml");
     }
     /*
     Scene này dùng để hiển thị các danh mục vay theo từng mục đích,
