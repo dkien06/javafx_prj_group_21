@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseCategoriesController">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseCategoriesController">
    <children>
       <Label layoutX="29.0" layoutY="33.0" prefHeight="38.0" prefWidth="290.0" text="Vay tiền" wrapText="true">
          <font>
@@ -16,7 +16,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" onAction="#QuayLai" styleClass="btn_xanh_nen_trang" text="Quay lại" />
       <VBox fx:id="v_box_contain_loan_categories_info" layoutX="29.0" layoutY="114.0" prefHeight="200.0" prefWidth="100.0" />
    </children>
 </AnchorPane>

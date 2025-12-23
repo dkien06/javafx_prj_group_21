@@ -1,0 +1,21 @@
+.rootLoan {
+    -fx-background-image: url("image/background2.png");
+}
+
+.label {
+    -fx-font-weight: bold;
+}
+
+.btn_xanh_nen_trang {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+}
+
+.btn_chu_den_nen_trang {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}

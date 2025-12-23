@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
    <children>
       <Button fx:id="tien_gui_linh_hoat" layoutX="29.0" layoutY="118.0" mnemonicParsing="false" onAction="#MoNgay1" prefHeight="103.0" prefWidth="355.0">
          <graphic>
@@ -59,6 +56,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" text="Quay lại" />
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" styleClass="btn_xanh_nen_trang" text="Quay lại" />
    </children>
 </AnchorPane>

@@ -168,3 +168,12 @@
 #wish_to_proceed_btn:pressed {
     -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
 }
+
+/*cần một phần cho Loan */
+.rootLoan{
+    -fx-background-image: url("image/background2.png");
+}
+
+.black_label {
+    -fx-text-fill: black;
+}

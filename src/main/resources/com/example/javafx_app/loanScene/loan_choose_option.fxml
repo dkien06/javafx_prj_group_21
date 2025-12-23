@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseOptionsController">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseOptionsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21baff" height="175.0" layoutX="26.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="175.0" layoutX="213.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
@@ -84,6 +84,6 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+      <Button layoutX="168.0" layoutY="644.0" mnemonicParsing="false" onAction="#QuayLai" styleClass="btn_xanh_nen_trang" text="Quay lại" />
    </children>
 </AnchorPane>

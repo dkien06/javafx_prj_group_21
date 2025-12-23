@@ -19,7 +19,7 @@ public class BankApplication extends Application {
             // B1: Tải dữ liệu khi ứng dụng bắt đầu
             DataPersistence.loadAllData(); // THÊM LỆNH NÀY (sẽ tự động khởi tạo dữ liệu giả nếu file không tồn tại)
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/loan_account_home_scene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login_scene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
