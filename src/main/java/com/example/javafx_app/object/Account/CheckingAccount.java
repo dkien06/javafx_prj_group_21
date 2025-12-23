@@ -16,16 +16,44 @@ import java.util.List;
 public class CheckingAccount extends Account implements Serializable {
     private long balance;
     private List<Bill> bills;
+    private boolean ElectricService, InternetService, WaterService, SchoolService ;
     public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){
         super(fullName, citizenID, accountID, password, currency,  PIN);
         bills = new ArrayList<>() ;
         this.balance = balance;
+        this.ElectricService = false;
+        this.InternetService = false;
+        this.WaterService = false;
+        this.SchoolService = false;
     }
 
     public long getBalance() {
         return balance;
     }
-
+    public boolean isElectricService() {
+        return ElectricService;
+    }
+    public boolean isInternetService() {
+        return InternetService;
+    }
+    public boolean isWaterService() {
+        return WaterService;
+    }
+    public boolean isSchoolService() {
+        return SchoolService;
+    }
+    public void setElectricService(boolean ElectricService) {
+        this.ElectricService = ElectricService;
+    }
+    public void setInternetService(boolean InternetService) {
+        this.InternetService = InternetService;
+    }
+    public void setWaterService(boolean WaterService) {
+        this.WaterService = WaterService;
+    }
+    public void setSchoolService(boolean SchoolService) {
+        this.SchoolService = SchoolService;
+    }
     // ✅ Chuyển tiền
     public boolean transfer(CheckingAccount toAccount, long amount, String description) {
         if (toAccount == null || amount <= 0 || amount > balance) {
@@ -73,6 +101,7 @@ public class CheckingAccount extends Account implements Serializable {
     public ACCOUNT_TYPE getAccountType(){ return ACCOUNT_TYPE.CHECKING ;}
     public void addBill(Bill bill){
         bills.add(bill);
+        addNotification(NotiManager.getNotifromBill(bill));
     }
     public List<Bill> getBills(){
         return bills;

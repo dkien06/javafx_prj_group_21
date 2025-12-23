@@ -5,6 +5,7 @@ import com.example.javafx_app.exception.IllegalAccountSignUpException;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.object.Bill.Bill;
+import com.example.javafx_app.object.Bill.BillType;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.Staff;
 import com.example.javafx_app.object.User.USER_TYPE;
@@ -13,6 +14,7 @@ import com.example.javafx_app.config.Constant;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -224,6 +226,71 @@ public class AccountManager {
             }
         }
         return null;
+    }
+    public void addMonthlyBills(CheckingAccount account, LocalDate previousDate, LocalDate startDate) {
+        // Đảm bảo previousDate không lớn hơn hoặc bằng startDate
+        if (previousDate.isAfter(startDate) || previousDate.isEqual(startDate)) {
+            return;
+        }
+
+        // Bắt đầu từ tháng tiếp theo sau previousDate
+        YearMonth currentMonth = YearMonth.from(previousDate).plusMonths(1);
+        // Lặp cho đến tháng chứa startDate
+        YearMonth endMonth = YearMonth.from(startDate);
+
+        Random random = new Random();
+
+        // Lặp qua từng tháng
+        while (!currentMonth.isAfter(endMonth)) {
+            // Ngày 10 của tháng hiện tại
+            LocalDate billDate;
+            try {
+                billDate = currentMonth.atDay(10);
+            } catch (Exception e) {
+                // Xử lý nếu tháng không có ngày 10 (thực tế không xảy ra)
+                currentMonth = currentMonth.plusMonths(1);
+                continue;
+            }
+
+            // Chỉ thêm hóa đơn nếu ngày 10 nằm trong khoảng (previousDate, startDate]
+            // Tức là lớn hơn ngày trước đó và nhỏ hơn hoặc bằng ngày hiện tại
+            if (billDate.isAfter(previousDate) && (billDate.isBefore(startDate) || billDate.isEqual(startDate))) {
+
+                // Thêm hóa đơn cho các dịch vụ đã đăng ký (giả định có các getter trong CheckingAccount)
+                // Các giá trị amount và supplier là giả định/placeholder
+
+                if (account.isElectricService()) {
+                    long electricAmount = 500000 + random.nextInt(200000); // Số tiền ngẫu nhiên
+                    Bill electricBill = new Bill(electricAmount, billDate, BillType.ELECTRIC,
+                            ExampleUser.ELECTRIC_PROVIDER.getAccountName()); //
+                    account.addBill(electricBill); //
+                }
+
+                if (account.isWaterService()) {
+                    long waterAmount = 200000 + random.nextInt(100000); // Số tiền ngẫu nhiên
+                    Bill waterBill = new Bill(waterAmount, billDate, BillType.WATER,
+                            ExampleUser.WATER_PROVIDER.getAccountName()); //
+                    account.addBill(waterBill); //
+                }
+
+                if (account.isInternetService()) {
+                    long internetAmount = 150000 + random.nextInt(50000); // Số tiền ngẫu nhiên
+                    Bill internetBill = new Bill(internetAmount, billDate, BillType.INTERNET,
+                            ExampleUser.INTERNET_PROVIDER.getAccountName()); //
+                    account.addBill(internetBill); //
+                }
+
+                if (account.isSchoolService()) {
+                    long tuitionAmount = 3000000 + random.nextInt(1000000); // Số tiền ngẫu nhiên
+                    Bill tuitionBill = new Bill(tuitionAmount, billDate, BillType.TUITION,
+                            ExampleUser.SCHOOL_PROVIDER.getAccountName()); //
+                    account.addBill(tuitionBill); //
+                }
+            }
+
+            // Chuyển sang tháng tiếp theo
+            currentMonth = currentMonth.plusMonths(1);
+        }
     }
     //In log
     public void accountListLog(){

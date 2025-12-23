@@ -247,10 +247,44 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
+        // Gọi hàm thêm giao dịch mẫu
+        addTransactionData();
     }
     public static void init(){
         addExample();
-        AccountManager.getInstance().setCurrentAccount(accountC);
+        AccountManager.getInstance().setCurrentAccount(accountD);
+    }
+    private static void addTransactionData() {
+        // Cần cast các Account để gọi hàm transfer (chỉ có trong CheckingAccount)
+        CheckingAccount accA = (CheckingAccount) accountA;
+        CheckingAccount accB = (CheckingAccount) accountB;
+        CheckingAccount accC = (CheckingAccount) accountC;
+
+        // ------------------ TRANSACTION DATA SETUP ------------------
+        // Giao dịch 1: Số tiền nhỏ (10,000)
+        accA.transfer(accB, 10_000, "Chuyen tien thu nghiem 1");
+
+        // Giao dịch 2: Số tiền trung bình (100,000)
+        accB.transfer(accA, 100_000, "Chuyen tien thu nghiem 2");
+
+        // Giao dịch 3: Số tiền lớn (500,000)
+        accC.transfer(accA, 500_000, "Thanh toan hang hoa");
+
+        // Giao dịch 4: Số tiền lớn hơn (1,000,000) - Thanh toán cho nhà cung cấp
+        accA.transfer(ELECTRIC_PROVIDER, 1_000_000, "Dong tien dien thang 11");
+
+        // Giao dịch 5: Số tiền nhỏ khác (15,000)
+        accB.transfer(accC, 15_000, "Chuyen khoan chi tieu ca nhan");
+
+        // Giao dịch 6: Số tiền rất lớn (5,000,000)
+        accA.transfer(accB, 5_000_000, "Mua ban tren mang");
+
+        // Giao dịch 7: Số tiền chính xác để test cận (300,000)
+        accC.transfer(accB, 300_000, "Giao dich chinh xac");
+
+        // Giao dịch 8: Số tiền cao nhất (5,000,000)
+        accB.transfer(accC, 5_000_000, "Giao dich lon nhat");
+        // ------------------ END TRANSACTION DATA SETUP ------------------
     }
 
 }

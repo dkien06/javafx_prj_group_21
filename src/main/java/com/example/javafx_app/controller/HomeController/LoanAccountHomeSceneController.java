@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.HomeController;
 
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
+import static com.example.javafx_app.config.Constant.mainStage;
 
 public class LoanAccountHomeSceneController {
 
@@ -78,7 +81,7 @@ public class LoanAccountHomeSceneController {
 
     @FXML
     void vayMoi(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage, "loanScene/loan_choose_option.fxml");
     }
 
 }

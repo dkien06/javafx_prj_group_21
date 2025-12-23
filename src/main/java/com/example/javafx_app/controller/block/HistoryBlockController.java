@@ -35,12 +35,14 @@ public class HistoryBlockController {
                 break;
             //Thêm icon rút tiền với nạp tiên đi
             case WITHDRAW:
-                amount.setText((-transaction.getAmount()) + transaction.getFromAccount().getCurrency());
+                amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
                 icon.getStyleClass().addAll("icon_container","chuyen_di");
                 button.getStyleClass().addAll("nut_chua_lsgd", "nut_do");
                 break;
             case DEPOSIT:
-                //Từ từ đã
+                amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
+                icon.getStyleClass().addAll("icon_container","chuyen_vao");
+                button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
             case LOAN:
                 //Từ từ đã
             case REPAY:

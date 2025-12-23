@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseOptionsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21baff" height="175.0" layoutX="26.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="175.0" layoutX="213.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
@@ -44,12 +44,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="112.0" layoutY="230.0" mnemonicParsing="false" text="Đăng ký ngay" />
-      <Button layoutX="299.0" layoutY="230.0" mnemonicParsing="false" text="Đăng ký ngay" />
-      <Button layoutX="110.0" layoutY="417.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Đăng ký ngay" />
-      <Button layoutX="299.0" layoutY="417.0" mnemonicParsing="false" text="Đăng ký ngay" />
-      <Button layoutX="111.0" layoutY="604.0" mnemonicParsing="false" text="Đăng ký ngay" />
-      <Button layoutX="328.0" layoutY="604.0" mnemonicParsing="false" text="Đăng ký" />
+      <Button layoutX="112.0" layoutY="230.0" mnemonicParsing="false" onAction="#DangKyNgay1" text="Đăng ký ngay" />
+      <Button layoutX="299.0" layoutY="230.0" mnemonicParsing="false" onAction="#DangKyNgay2" text="Đăng ký ngay" />
+      <Button layoutX="110.0" layoutY="417.0" mnemonicParsing="false" onAction="#DangKyNgay3" prefHeight="26.0" prefWidth="89.0" text="Đăng ký ngay" />
+      <Button layoutX="299.0" layoutY="417.0" mnemonicParsing="false" onAction="#DangKyNgay4" text="Đăng ký ngay" />
+      <Button layoutX="111.0" layoutY="604.0" mnemonicParsing="false" onAction="#DangKyNgay5" text="Đăng ký ngay" />
+      <Button layoutX="328.0" layoutY="604.0" mnemonicParsing="false" onAction="#DangKyNgay6" text="Đăng ký" />
       <Label layoutX="33.0" layoutY="194.0" prefHeight="38.0" prefWidth="170.0" text="Mua sắm thả ga, tiêu dùng thỏa thích" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />

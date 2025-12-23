@@ -126,3 +126,50 @@ AnchorPane {
 #icon_nhan_tien {
     -fx-background-image: url("image/nhan_tien.png");
 }
+
+/*Phần này dành cho các Staff Scene*/
+#resultVBox {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+}
+
+.myscroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.myscroll .scroll-bar:vertical .thumb,
+.myscroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #b0b0b0;
+    -fx-background-radius: 10;
+}
+
+.myscroll .scroll-bar:vertical .thumb:hover,
+.myscroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #7a7a7a;
+}
+
+.myscroll .increment-button,
+.myscroll .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+
+.myscroll .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #333333; /* Màu chữ */
+    -fx-font-weight: bold; /* In đậm */
+}
+
+.table-view .column-header {
+    -fx-background-color: #CCCCCC;
+    -fx-background-insets: 0 0 0 1;
+}

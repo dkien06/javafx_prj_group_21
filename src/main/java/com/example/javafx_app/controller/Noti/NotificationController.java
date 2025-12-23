@@ -71,7 +71,8 @@ public class NotificationController {
 
     @FXML
     void QuayLai() {
-        SceneUtils.switchScene(mainStage,"/com/example/javafx_app/HomeScenes/checking_account_home_scene.fxml");
+        SceneUtils.switchScene(mainStage,AccountManager.getInstance().chooseHomeScene(
+                AccountManager.getInstance().getCurrentAccount()));
     }
 
 }

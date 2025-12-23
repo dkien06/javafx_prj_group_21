@@ -2,6 +2,7 @@ package com.example.javafx_app.controller.Bill;
 
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Bill.BillType;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +42,7 @@ public class InternetBillSceneController implements BillScene {
 
     @FXML
     public void TiepTuc(ActionEvent event) {
+        ClauseController.billType = BillType.INTERNET  ;
         SceneUtils.switchScene(mainStage,"BillScene/clause_scene.fxml");
     }
 

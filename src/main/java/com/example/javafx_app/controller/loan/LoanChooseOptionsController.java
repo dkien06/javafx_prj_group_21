@@ -1,6 +1,10 @@
 package com.example.javafx_app.controller.loan;
 
+import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.util.Pair;
 
 public class LoanChooseOptionsController {
     /*
@@ -10,25 +14,33 @@ public class LoanChooseOptionsController {
     Còn option cuối (Khoản vay mới) thì đi thẳng đến scene loan_choose_method.fxml
     Đấy thế thôi:)
      */
+    @FXML
     void DangKyNgay1(ActionEvent event){
-
+        DangKyNgay(event, 1);
     }
+    @FXML
     void DangKyNgay2(ActionEvent event){
-
+        DangKyNgay(event, 2);
     }
+    @FXML
     void DangKyNgay3(ActionEvent event){
-
+        DangKyNgay(event, 3);
     }
+    @FXML
     void DangKyNgay4(ActionEvent event){
-
+        DangKyNgay(event, 4);
     }
+    @FXML
     void DangKyNgay5(ActionEvent event){
-
+        DangKyNgay(event, 5);
     }
+    @FXML
     void DangKyNgay6(ActionEvent event){
-
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "loanScene/loan_choose_method.fxml");
     }
     void DangKyNgay(ActionEvent event, int type){
-
+        Pair<Parent, LoanChooseCategoriesController> scene = SceneUtils.getRootAndController("loanScene/loan_choose_categories.fxml");
+        scene.getValue().loadMethod(type);
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), scene.getKey());
     }
 }
