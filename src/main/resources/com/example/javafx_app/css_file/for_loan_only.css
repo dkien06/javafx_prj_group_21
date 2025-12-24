@@ -19,3 +19,40 @@
     -fx-text-fill: black;
     -fx-font-weight: bold;
 }
+
+#btn1 {
+    -fx-background-color: #21baff;
+}
+#btn2 {
+    -fx-background-color: #1e90ff;
+}
+#btn3 {
+    -fx-background-color: #0f7fe7;
+}
+#btn4 {
+    -fx-background-color: #148af2;
+}
+#btn5 {
+    -fx-background-color: #1fcaff;
+}
+#btn6 {
+    -fx-background-color: #3ea5ff;
+}
+
+.gray_btn {
+    /* Màu xám trung tính vừa mắt */
+    -fx-background-color: #9E9E9E;
+
+    /* Chữ trắng và in đậm */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI", Arial;
+
+    /* Bo góc lớn (tròn trịa) */
+    -fx-background-radius: 25;
+    -fx-padding: 8 16;
+
+    /* Hiệu ứng bóng đổ nhẹ để tạo độ sâu */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);
+}
