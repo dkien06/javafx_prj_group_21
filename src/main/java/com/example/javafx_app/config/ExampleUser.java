@@ -21,31 +21,22 @@ import java.time.LocalDate;
  */
 public class ExampleUser {
     public static final Account accountA = new CheckingAccount(
-            "Nguyen Van A",
-            "010203008386",     // citizenID
+            "Phan Đức Kiên",
+            "031206018246",     // citizenID
             "149538386",         // accountID
-            "NguyenVanA#1970",  // password
+            "Kien8906@@",  // password
             10_000_000,          // balance
-            "VND",              // currency
-            "010170"            // PIN
-    );
-    public static final Account accountA1 = new SavingAccount(
-            "Nguyen Van A",
-            "010203008386",     // citizenID
-            "249538386",         // accountID
-            "NguyenVanA#1970",  // password
-            2_000_000,          // balance
             "VND",              // currency
             "010170"            // PIN
     );
     // Sử dụng Customer thay vì User vì User là abstract
     public static final Customer userA = new Customer(// customerID (mới thêm)
-            "Nguyễn Văn A",
+            "Phan Đức Kiên",
             LocalDate.of(1970,1,1),
             GENDER.MALE,
-            "0123456789",
-            "NguyenVanA@gmail.com",
-            "010203008386"
+            "0904004116",
+            "Kien@gmail.com",
+            "031206018246"
     );
 
     // === USER B ===
@@ -146,33 +137,6 @@ public class ExampleUser {
             "010102030508"
     );
     // ================== BILL GIẢ LẬP ==================
-    static final Bill bill1 = new Bill(
-            150_000,
-            LocalDate.of(2025, 2, 1),
-            BillType.ELECTRIC,
-            "EVN HÀ NỘI"
-    );
-
-    static final Bill bill2 = new Bill(
-            220_000,
-            LocalDate.of(2025, 2, 5),
-            BillType.WATER,
-            "NƯỚC SẠCH HÀ NỘI"
-    );
-
-    static final Bill bill3 = new Bill(
-            90_000,
-            LocalDate.of(2025, 2, 10),
-            BillType.INTERNET,
-            "VIETTEL"
-    );
-
-    static final Bill bill4 = new Bill(
-            300_000,
-            LocalDate.of(2025, 2, 18),
-            BillType.INTERNET,
-            "VINAPHONE"
-    );
     // ================== NHÀ CUNG CẤP DỊCH VỤ (CHECKING ACCOUNT) ==================
     public static final CheckingAccount ELECTRIC_PROVIDER = new CheckingAccount(
             "EVN HÀ NỘI",
@@ -214,17 +178,9 @@ public class ExampleUser {
             "000004"
     );
     //========Noti Gia Lap ================
-    public static Notification noti1 = new Notification(NotificationType.BALANCE_CHANGE,
-            NotificationType.BALANCE_CHANGE.toString(),"abc") ;
     public static void addExample(){
         CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
-        CheckingAccountC.addBill(bill1);
-        CheckingAccountC.addBill(bill2);
-        CheckingAccountC.addBill(bill3);
-        CheckingAccountC.addBill(bill4);
-        CheckingAccountC.addNotification(noti1);
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
-        AccountManager.getInstance().getAccountList().put(accountA1.getAccountID(), accountA1);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountB1.getAccountID(), accountB1);
         AccountManager.getInstance().getAccountList().put(accountC.getAccountID(),accountC);
@@ -236,7 +192,6 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().put(INTERNET_PROVIDER.getAccountID(), INTERNET_PROVIDER);
         AccountManager.getInstance().getAccountList().put(SCHOOL_PROVIDER.getAccountID(), SCHOOL_PROVIDER);
         userA.addAccountID(accountA.getAccountID());
-        userA.addAccountID(accountA1.getAccountID());
         userB.addAccountID(accountB.getAccountID());
         userB.addAccountID(accountB1.getAccountID());
         userC.addAccountID(accountC.getAccountID());
@@ -248,43 +203,9 @@ public class ExampleUser {
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
         // Gọi hàm thêm giao dịch mẫu
-        addTransactionData();
     }
     public static void init(){
         addExample();
-        AccountManager.getInstance().setCurrentAccount(accountD);
-    }
-    private static void addTransactionData() {
-        // Cần cast các Account để gọi hàm transfer (chỉ có trong CheckingAccount)
-        CheckingAccount accA = (CheckingAccount) accountA;
-        CheckingAccount accB = (CheckingAccount) accountB;
-        CheckingAccount accC = (CheckingAccount) accountC;
-
-        // ------------------ TRANSACTION DATA SETUP ------------------
-        // Giao dịch 1: Số tiền nhỏ (10,000)
-        accA.transfer(accB, 10_000, "Chuyen tien thu nghiem 1");
-
-        // Giao dịch 2: Số tiền trung bình (100,000)
-        accB.transfer(accA, 100_000, "Chuyen tien thu nghiem 2");
-
-        // Giao dịch 3: Số tiền lớn (500,000)
-        accC.transfer(accA, 500_000, "Thanh toan hang hoa");
-
-        // Giao dịch 4: Số tiền lớn hơn (1,000,000) - Thanh toán cho nhà cung cấp
-        accA.transfer(ELECTRIC_PROVIDER, 1_000_000, "Dong tien dien thang 11");
-
-        // Giao dịch 5: Số tiền nhỏ khác (15,000)
-        accB.transfer(accC, 15_000, "Chuyen khoan chi tieu ca nhan");
-
-        // Giao dịch 6: Số tiền rất lớn (5,000,000)
-        accA.transfer(accB, 5_000_000, "Mua ban tren mang");
-
-        // Giao dịch 7: Số tiền chính xác để test cận (300,000)
-        accC.transfer(accB, 300_000, "Giao dich chinh xac");
-
-        // Giao dịch 8: Số tiền cao nhất (5,000,000)
-        accB.transfer(accC, 5_000_000, "Giao dich lon nhat");
-        // ------------------ END TRANSACTION DATA SETUP ------------------
     }
 
 }

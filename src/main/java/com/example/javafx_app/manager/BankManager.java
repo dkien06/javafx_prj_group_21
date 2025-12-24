@@ -69,6 +69,7 @@ public class BankManager {
             Account account = entry.getValue();
             if(account.getAccountType().equals(ACCOUNT_TYPE.CHECKING)){
                 AccountManager.getInstance().addMonthlyBills((CheckingAccount) account,previousDate,currentDate);
+                AccountManager.getInstance().checkAndCancelAllServices((CheckingAccount) account);
             }
         }
     }

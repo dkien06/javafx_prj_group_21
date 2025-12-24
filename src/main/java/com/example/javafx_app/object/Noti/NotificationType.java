@@ -12,6 +12,7 @@ public enum NotificationType implements Serializable {
     NEW_BILL("Hóa đơn mới"),
     BILL_PAID_SUCCESS("Thanh toán hóa đơn thành công"),
     BILL_PAID_FAILED("Thanh toán hóa đơn thất bại"),
+    BILL_CANCELLATION("Dịch vụ bị hủy") ,
 
     // 3. Tài khoản / Bảo mật
     LOGIN_ALERT("Cảnh báo đăng nhập"),

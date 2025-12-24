@@ -6,6 +6,8 @@ import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.Transaction;
 
+import java.time.LocalDate;
+
 public class NotiManager {
     public static boolean isMarkedAsRead = false;
     public static Notification getNotifromTransaction(Transaction t) {
@@ -13,7 +15,6 @@ public class NotiManager {
         long absoluteAmount = Math.abs(t.getAmount());
         String formattedAmount = TransactionManager.getInstance().formatCurrency(absoluteAmount, t.getCurrency());
         String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(absoluteAmount );
-
         String title;
         String message;
         NotificationType notiType = NotificationType.BALANCE_CHANGE;
@@ -78,6 +79,21 @@ public class NotiManager {
 
         return new Notification(
                 notiType,
+                title,
+                message
+        );
+    }
+    public static Notification getNotiForServiceCancellation(String serviceName, LocalDate oldestDate) {
+        String title = NotificationType.BILL_CANCELLATION.toString();
+        String message = String.format(
+                "Dịch vụ %s của bạn đã bị tạm dừng do có hóa đơn từ ngày %s đã quá hạn 3 tháng. Vui lòng thanh toán để khôi phục.",
+                serviceName,
+                oldestDate.toString()
+        );
+
+        // Sử dụng NotificationType phù hợp (ví dụ TRANSFER_FAILED hoặc bổ sung loại mới)
+        return new Notification(
+                NotificationType.BILL_CANCELLATION,
                 title,
                 message
         );

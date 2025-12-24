@@ -1,14 +1,15 @@
 package com.example.javafx_app.object;
 
+import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.object.Account.Account;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Random;
 
 public class Transaction implements Serializable {
     private String transactionID;
-    private LocalDateTime date;
+    private LocalDate date;
     private TransactionType type;
     private long amount;
     private String currency;
@@ -30,7 +31,7 @@ public class Transaction implements Serializable {
             id.append(numbers.charAt(random.nextInt(numbers.length())));
         }
         this.transactionID = String.valueOf(id);
-        date = LocalDateTime.now();
+        date = BankManager.getCurrentDate();
         this.type = type;
         this.amount = amount;
         this.currency = currency;
@@ -44,7 +45,7 @@ public class Transaction implements Serializable {
         return transactionID;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

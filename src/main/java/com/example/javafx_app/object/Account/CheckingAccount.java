@@ -17,6 +17,7 @@ public class CheckingAccount extends Account implements Serializable {
     private long balance;
     private List<Bill> bills;
     private boolean ElectricService, InternetService, WaterService, SchoolService ;
+
     public CheckingAccount(String fullName, String citizenID, String accountID, String password, long balance, String currency, String PIN){
         super(fullName, citizenID, accountID, password, currency,  PIN);
         bills = new ArrayList<>() ;
@@ -26,6 +27,7 @@ public class CheckingAccount extends Account implements Serializable {
         this.WaterService = false;
         this.SchoolService = false;
     }
+
 
     public long getBalance() {
         return balance;
@@ -75,7 +77,7 @@ public class CheckingAccount extends Account implements Serializable {
         return true;
     }
     public boolean withdraw(long amount,String description) {
-        if (amount > 0 && balance > amount) {
+        if (amount > 0 && balance >= amount) {
             balance -= amount;
             Transaction newWithdraw = new Transaction(TransactionType.WITHDRAW,amount,"VND",this,this,description) ;
             this.addTransaction(newWithdraw);

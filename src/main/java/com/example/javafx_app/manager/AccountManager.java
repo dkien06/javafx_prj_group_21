@@ -6,6 +6,7 @@ import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Bill.BillType;
+import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.object.User.Staff;
 import com.example.javafx_app.object.User.USER_TYPE;
@@ -290,6 +291,58 @@ public class AccountManager {
 
             // Chuyển sang tháng tiếp theo
             currentMonth = currentMonth.plusMonths(1);
+        }
+    }
+    public void checkAndCancelAllServices(CheckingAccount account) {
+        List<Bill> bills = account.getBills();
+        if (bills == null || bills.isEmpty()) return;
+
+        LocalDate today = BankManager.getCurrentDate();
+        LocalDate limitDate = today.minusMonths(3);
+
+        // 1. Tìm ngày xa nhất cho từng loại
+        Map<BillType, LocalDate> oldestDates = new HashMap<>();
+        for (Bill bill : bills) {
+            BillType type = bill.getBillType();
+            LocalDate date = bill.getDate();
+            if (!oldestDates.containsKey(type) || date.isBefore(oldestDates.get(type))) {
+                oldestDates.put(type, date);
+            }
+        }
+
+        // 2. Kiểm tra quá hạn và gửi Notification
+        for (Map.Entry<BillType, LocalDate> entry : oldestDates.entrySet()) {
+            BillType type = entry.getKey();
+            LocalDate oldestDate = entry.getValue();
+
+            if (oldestDate.isBefore(limitDate)) {
+                String serviceName = "";
+                switch (type) {
+                    case ELECTRIC:
+                        account.setElectricService(false);
+                        serviceName = "Điện";
+                        break;
+                    case WATER:
+                        account.setWaterService(false);
+                        serviceName = "Nước";
+                        break;
+                    case INTERNET:
+                        account.setInternetService(false);
+                        serviceName = "Internet";
+                        break;
+                    case TUITION:
+                        account.setSchoolService(false);
+                        serviceName = "Học phí";
+                        break;
+                }
+
+                // Tạo thông báo và thêm vào tài khoản thay vì chỉ sout
+                if (!serviceName.isEmpty()) {
+                    bills.removeIf(b -> b.getBillType() == type);
+                    Notification cancelNoti = NotiManager.getNotiForServiceCancellation(serviceName, oldestDate);
+                    account.addNotification(cancelNoti); //
+                }
+            }
         }
     }
     //In log

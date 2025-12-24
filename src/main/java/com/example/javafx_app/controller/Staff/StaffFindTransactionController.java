@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -33,7 +33,7 @@ public class StaffFindTransactionController implements Initializable {
     @FXML private Label messageLabel;
     @FXML private TableView<Transaction> transactionTable;
     @FXML private TableColumn<Transaction, String> idColumn;
-    @FXML private TableColumn<Transaction, LocalDateTime> dateColumn;
+    @FXML private TableColumn<Transaction, LocalDate> dateColumn;
     @FXML private TableColumn<Transaction, TransactionType> typeColumn;
     @FXML private TableColumn<TableColumn<Transaction, Long>, Long> amountColumn;
     @FXML private TableColumn<Transaction, String> currencyColumn;
@@ -82,11 +82,11 @@ public class StaffFindTransactionController implements Initializable {
             return new javafx.beans.property.SimpleStringProperty("N/A");
         });
 
-        // 3. Custom formatting for date/time (LocalDateTime)
+        // 3. Custom formatting for date/time (LocalDate)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        dateColumn.setCellFactory(column -> new javafx.scene.control.TableCell<Transaction, LocalDateTime>() {
+        dateColumn.setCellFactory(column -> new javafx.scene.control.TableCell<Transaction, LocalDate>() {
             @Override
-            protected void updateItem(LocalDateTime item, boolean empty) {
+            protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);

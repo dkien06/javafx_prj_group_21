@@ -1,6 +1,8 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +19,7 @@ import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
-public class VerifyOTPController implements Initializable {
+public class VerifyOTPTransaction implements Initializable {
 
     @FXML
     private TextField otpField;
@@ -35,9 +37,9 @@ public class VerifyOTPController implements Initializable {
     private static final int INITIAL_COUNTDOWN = 30;
     private int currentCountdown;
     private Timeline timeline;
-    boolean isValid = ((ForgetPassword.MethodVerify.equals("PhoneNumber")&&ForgetPassword.identity.equals(BankManager.getCurrentPhoneNumber()))
-                        || (ForgetPassword.MethodVerify.equals("Email")&&ForgetPassword.identity.equals(BankManager.getCurrentEmail())) ) ;
+    boolean isValid = true;
     private String OTP = BankManager.generateOTP() ;
+    public  static String Type ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         OTPLabel.setVisible(false);
@@ -91,7 +93,7 @@ public class VerifyOTPController implements Initializable {
         // LOGIC TIMER: Dừng đồng hồ
         if (timeline != null) timeline.stop();
 
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "forget_password.fxml");
+        SceneUtils.switchScene(mainStage, "verify/verify_scene.fxml");
     }
 
     @FXML
@@ -115,7 +117,6 @@ public class VerifyOTPController implements Initializable {
         }
         // Hoan thanh
 
-        ForgetPassword.accountToUpdate.setPassword(ForgetPassword.passwordToUpdate);
-        SceneUtils.switchScene(mainStage, "login_scene.fxml");
+        VerifyController.complete();
     }
 }

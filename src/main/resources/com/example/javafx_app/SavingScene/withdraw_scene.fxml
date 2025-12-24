@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/transaction_between_account_scnene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.saving.WithdrawController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/transaction_between_account_scnene.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.saving.WithdrawController">
     <children>
         <Label fx:id="logo_label" layoutX="29.0" layoutY="54.0" prefHeight="60.0" prefWidth="85.0" />
         <GridPane fx:id="gridpane2" layoutY="652.0" prefHeight="47.0" prefWidth="414.0">
@@ -37,20 +37,20 @@
         <Label layoutX="29.0" layoutY="114.0" text="Xin chào " />
       <VBox fx:id="main_vbox" layoutX="38.0" layoutY="150.0" prefHeight="363.0" prefWidth="331.0">
          <children>
-            <Label styleClass="LabelInVBox" text="Số tài khoản" />
+            <Label prefHeight="18.0" prefWidth="106.0" styleClass="LabelInVBox" text="Số tài khoản đích" />
             <TextField fx:id="receiveAccountIDTextField" />
             <Text fx:id="receiveAccountIDLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.8000030517578" />
-            <Label styleClass="LabelInVBox" text="Số tiền gửi" />
+            <Label styleClass="LabelInVBox" text="Số tiền rút" />
             <TextField fx:id="amountTextField" />
             <Text fx:id="amountLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.6000518798828" />
             <Label styleClass="LabelInVBox" text="Nội dung chuyển khoản" />
             <TextField fx:id="descriptionTextArea" prefHeight="104.0" prefWidth="283.0" />
             <Text fill="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="281.3367462158203" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffff0080" height="79.0" stroke="#feff00" strokeType="INSIDE" width="297.0" />
+            <Rectangle fx:id="warning" arcHeight="5.0" arcWidth="5.0" fill="#ffff0080" height="79.0" stroke="#feff00" strokeType="INSIDE" visible="false" width="297.0" />
          </children>
       </VBox>
-      <Label alignment="TOP_LEFT" layoutX="65.0" layoutY="419.0" prefHeight="78.0" prefWidth="282.0" text="CẢNH BÁO: Số tiền của bạn đang gửi với phương thức gửi kỳ hạn, nếu bạn rút tiền ngay bây giờ, toàn bộ số tiền của bạn sẽ được rút mà không hưởng một khoản lãi nào." textAlignment="JUSTIFY" textFill="#ff8000" wrapText="true" />
-      <Button layoutX="97.0" layoutY="537.0" mnemonicParsing="false" text="Quay lại" />
-      <Button layoutX="239.0" layoutY="537.0" mnemonicParsing="false" text="Tiếp tục" />
+      <Label fx:id="WarningLabel" alignment="TOP_LEFT" layoutX="65.0" layoutY="419.0" prefHeight="78.0" prefWidth="282.0" text="CẢNH BÁO: Số tiền của bạn đang gửi với phương thức gửi kỳ hạn, nếu bạn rút tiền ngay bây giờ, toàn bộ số tiền của bạn sẽ được rút mà không hưởng một khoản lãi nào." textAlignment="JUSTIFY" textFill="#ff8000" visible="false" wrapText="true" />
+      <Button fx:id="QuayLai" layoutX="97.0" layoutY="537.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
+      <Button fx:id="TiepTuc" layoutX="239.0" layoutY="537.0" mnemonicParsing="false" onAction="#TiepTuc" text="Tiếp tục" />
     </children>
 </AnchorPane>

@@ -19,7 +19,6 @@ public  abstract class Account implements Serializable {
     private List<Transaction> history;
     private List<Notification> notifications;
     private LocalDate StartDate = null;
-    private boolean ElectricService, InternetService, WaterService, SchoolService ;
 
     // ✅ Constructor đầy đủ
     public Account(String fullName, String citizenID, String accountID, String password,
@@ -32,7 +31,7 @@ public  abstract class Account implements Serializable {
         this.PIN = PIN;
         this.history = new ArrayList<>();
         this.notifications = new ArrayList<>();
-        this.StartDate = LocalDate.now();// Lay ngay hom nay , gia lap thoi
+        this.StartDate = BankManager.getCurrentDate();// Lay ngay hom nay , gia lap thoi
     }
 
     // ✅ Constructor rỗng (cần cho JavaFX hoặc khởi tạo tạm)
@@ -88,6 +87,10 @@ public  abstract class Account implements Serializable {
     // ✅ Thêm giao dịch
     public void addTransaction(Transaction t) {
         history.add(t);
+        if (history.size() > 20) {
+            // 3. Xóa phần tử đầu tiên (vị trí 0) - đây là giao dịch cũ nhất trong danh sách
+            history.remove(0);
+        }
     }
     //Đối chiếu PIN
     public boolean isPinMatched(String pin) {
