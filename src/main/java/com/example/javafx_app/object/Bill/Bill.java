@@ -1,7 +1,9 @@
 package com.example.javafx_app.object.Bill;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Bill implements Serializable {
@@ -40,6 +42,25 @@ public class Bill implements Serializable {
                 Objects.equals(date, bill.date) &&
                 billType == bill.billType &&
                 Objects.equals(Supplier, bill.Supplier);
+    }
+    public String toNotificationString() {
+        // Định dạng số tiền có dấu phân cách hàng nghìn cho dễ đọc
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.forLanguageTag("vi-VN"));
+        String formattedAmount = formatter.format(amount);
+
+        // Định dạng ngày theo kiểu Việt Nam (DD/MM/YYYY)
+        String formattedDate = date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear();
+
+        // Sử dụng BillType.toString() để lấy nhãn tiếng Việt (ví dụ: "Điện")
+        String billLabel = billType.toString();
+
+        return String.format(
+                "Thông báo: Hóa đơn %s trị giá %s VND của %s được gửi đến vào ngày %s.",
+                billLabel,
+                formattedAmount,
+                Supplier,
+                formattedDate
+        );
     }
 
     // Bổ sung phương thức hashCode() để tuân thủ nguyên tắc của equals/hashCode

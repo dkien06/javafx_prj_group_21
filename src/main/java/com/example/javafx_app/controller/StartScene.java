@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller;
 
+import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
@@ -35,11 +37,13 @@ public class StartScene implements Initializable {
         PhoneLog.setText("");
         EmailLog.setText("");
         DateLog.setText("");
+        DatePicker.setValue(DataPersistence.lastAppUsageDate) ;
     }
     @FXML
     private void NextToLogin(ActionEvent event) {
         BankManager.SignUpInformationState emailState = BankManager.checkSignUpEmail(EmailTextField.getText());
         BankManager.SignUpInformationState phoneState = BankManager.checkSignUpPhoneNumber(PhoneTextField.getText());
+        LocalDate today = DatePicker.getValue() ;
         System.out.println(emailState+" "+phoneState);
         boolean checkEmail = true , checkPhone = true, checkDate = true ;
         if(emailState != BankManager.SignUpInformationState.EXISTED && emailState != BankManager.SignUpInformationState.RIGHT) {
@@ -53,16 +57,18 @@ public class StartScene implements Initializable {
             checkPhone = false ;
 
         }
-//        if(false){
-//            DateLog.setText("Không thể đặt thời gian trước thời điểm cuối cùng");
-//            checkDate = false ;
-//        }
-        BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
-        BankManager.setCurrentDate(DatePicker.getValue());
-        BankManager.setCurrentEmail(EmailTextField.getText());
+      if(today.isBefore(DataPersistence.lastAppUsageDate)) {
+           DateLog.setText("Không thể đặt thời gian trước thời điểm cuối cùng");
+           checkDate = false ;
+       }
 
-        if(checkDate&&checkEmail&&checkPhone)
+        if(checkDate&&checkEmail&&checkPhone){
+            BankManager.setCurrentPhoneNumber(PhoneTextField.getText());
+            BankManager.setCurrentDate(DatePicker.getValue());
+            BankManager.setCurrentEmail(EmailTextField.getText());
+            BankManager.updateInformation();
             SceneUtils.switchScene(mainStage,"login_scene.fxml");
+        }
     }
     @FXML
     public void Exit(ActionEvent event) {

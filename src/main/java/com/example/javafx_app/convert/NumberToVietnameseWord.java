@@ -1,6 +1,7 @@
 package com.example.javafx_app.convert;
 
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.SavingAccount;
 
 public class NumberToVietnameseWord {
     private NumberToVietnameseWord(){};
@@ -96,6 +97,21 @@ public class NumberToVietnameseWord {
             if (!value.isEmpty() && value.matches("\\d+")) {
                 long amount = Long.parseLong(value);
                 if(amount > AccountManager.getInstance().findCheckingAccount(AccountManager.getInstance().getCurrentAccount()).getBalance())
+                    return "Số tiền bạn nhập không đủ để chuyển";
+                else return "";
+            } else {
+                if(value.isEmpty())return "Vui lòng nhập số tiền";
+                else return  "Số tiền không hợp lệ";
+            }
+        } catch (NumberFormatException e) {
+            return  "Số tiền không hợp lệ";
+        }
+    }
+    public static String displayErrorForSaving(String value, SavingAccount savingAccount){
+        try {
+            if (!value.isEmpty() && value.matches("\\d+")) {
+                long amount = Long.parseLong(value);
+                if(amount > savingAccount.getSaving())
                     return "Số tiền bạn nhập không đủ để chuyển";
                 else return "";
             } else {

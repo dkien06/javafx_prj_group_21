@@ -130,10 +130,12 @@ public class VerifyController {
                         }
                         break;
                     case WITHDRAW:
+                        System.out.println(currentTransaction.getAmount()+" "+savingAccount.getSaving());
                         if (currentTransaction.getAmount() == savingAccount.getSaving())
                             transactionTypeLabel.setText("Rút tiền: Tất cả");
                         else
                             transactionTypeLabel.setText("Rút tiền: Một phần");
+                        break;
                     default:
                         throw new MysteriousException();
                 }
@@ -213,76 +215,79 @@ public class VerifyController {
         }
         System.out.println(PINField.getText());
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
-            Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
-            Account fromAccount = currentTransaction.getFromAccount();
-            Account toAccount = currentTransaction.getToAccount();
-            long amount = currentTransaction.getAmount();
-            String description = currentTransaction.getDescription();
-            switch (currentAccount) {
-                case CheckingAccount checkingAccount -> {
-                    switch (currentTransaction.getType()) {
-                        case TRANSFER:
-                            // Thực hiện hành động cho Chuyển khoản
-                            ((CheckingAccount) fromAccount).transfer((CheckingAccount) toAccount, amount, description);
-                            break;
-                        case DEPOSIT:
-                            ((CheckingAccount) toAccount).deposit(amount, description);
-                            break;
-                        case WITHDRAW:
-                            ((CheckingAccount) fromAccount).withdraw(amount, description);
-                            break;
-                        default:
-                            throw new MysteriousException();
-                    }
-                }
-                case SavingAccount savingAccount -> {
-                    switch (currentTransaction.getType()) {
-                        case TransactionType.DEPOSIT:
-                            // Thực hiện hành động cho Nạp tiền
-                            ((SavingAccount) toAccount).deposit(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
-                            break;
-                        case TransactionType.WITHDRAW:
-                            // Thực hiện hành động cho Rút tiền
-                            ((SavingAccount) fromAccount).withdraw((CheckingAccount) toAccount, amount);
-                            break;
-                        default:
-                            throw new MysteriousException();
-                    }
-                }
-                case LoanAccount loanAccount -> {
-                    switch ((currentTransaction.getType())) {
-                        case LOAN:
-                            ((LoanAccount) toAccount).loan(AccountManager.getInstance().findCheckingAccount(toAccount), amount);
-                            break;
-                        case REPAY:
-                            ((LoanAccount) fromAccount).repay(AccountManager.getInstance().findCheckingAccount(fromAccount), amount);
-                            break;
-                        default:
-                            throw new MysteriousException();
-                    }
-                }
-                case null, default -> throw new MysteriousException();
-            }
-            Pair<Parent, CompletedController> scene = SceneUtils.getRootAndController("completed_scene.fxml");
-            scene.getValue().loadTransaction();
-            // Thêm notification
-            if(currentTransaction.getType().equals(TransactionType.TRANSFER)){
-                toAccount.addNotification(new Notification(NotificationType.BALANCE_CHANGE,
-                        NotificationType.BALANCE_CHANGE.toString(), generateInboundNotification(currentTransaction)));
-            }
-            TransactionManager.getInstance().removeNewTransaction();
-            // xoa bill
-            if(BillButtonController.isBillPayment){
-                ((CheckingAccount) AccountManager.getInstance().getCurrentAccount()).removeBill(BillButtonController.bill);
-                // tra lai bien cho bill
-                BillButtonController.isBillPayment=false;
-                BillButtonController.bill=null ;
-            }
-            SceneUtils.switchScene(mainStage,scene.getKey());
+                SceneUtils.switchScene(mainStage,"verify_otp_transaction.fxml");
         }
         else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");
         }
+    }
+    public static void complete(){
+        Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
+        Account fromAccount = currentTransaction.getFromAccount();
+        Account toAccount = currentTransaction.getToAccount();
+        long amount = currentTransaction.getAmount();
+        String description = currentTransaction.getDescription();
+        switch (AccountManager.getInstance().getCurrentAccount()) {
+            case CheckingAccount checkingAccount -> {
+                switch (currentTransaction.getType()) {
+                    case TRANSFER:
+                        // Thực hiện hành động cho Chuyển khoản
+                        ((CheckingAccount) fromAccount).transfer((CheckingAccount) toAccount, amount, description);
+                        break;
+                    case DEPOSIT:
+                        ((CheckingAccount) toAccount).deposit(amount, description);
+                        break;
+                    case WITHDRAW:
+                        ((CheckingAccount) fromAccount).withdraw(amount, description);
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case SavingAccount savingAccount -> {
+                switch (currentTransaction.getType()) {
+                    case TransactionType.DEPOSIT:
+                        // Thực hiện hành động cho Nạp tiền
+                        ((SavingAccount) toAccount).deposit(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
+                        break;
+                    case TransactionType.WITHDRAW:
+                        // Thực hiện hành động cho Rút tiền
+                        ((SavingAccount) fromAccount).withdraw((CheckingAccount) toAccount, amount, description);
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case LoanAccount loanAccount -> {
+                switch ((currentTransaction.getType())) {
+                    case LOAN:
+                        ((LoanAccount) toAccount).loan(AccountManager.getInstance().findCheckingAccount(toAccount), amount);
+                        break;
+                    case REPAY:
+                        ((LoanAccount) fromAccount).repay(AccountManager.getInstance().findCheckingAccount(fromAccount), amount);
+                        break;
+                    default:
+                        throw new MysteriousException();
+                }
+            }
+            case null, default -> throw new MysteriousException();
+        }
+        Pair<Parent, CompletedController> scene = SceneUtils.getRootAndController("completed_scene.fxml");
+        scene.getValue().loadTransaction();
+        // Thêm notification
+        if(currentTransaction.getType().equals(TransactionType.TRANSFER)){
+            toAccount.addNotification(new Notification(NotificationType.BALANCE_CHANGE,
+                    NotificationType.BALANCE_CHANGE.toString(), generateInboundNotification(currentTransaction)));
+        }
+        TransactionManager.getInstance().removeNewTransaction();
+        // xoa bill
+        if(BillButtonController.isBillPayment){
+            ((CheckingAccount) AccountManager.getInstance().getCurrentAccount()).removeBill(BillButtonController.bill);
+            // tra lai bien cho bill
+            BillButtonController.isBillPayment=false;
+            BillButtonController.bill=null ;
+        }
+        SceneUtils.switchScene(mainStage,scene.getKey());
     }
     public static String generateInboundNotification(Transaction transaction) {
         if (transaction == null) {

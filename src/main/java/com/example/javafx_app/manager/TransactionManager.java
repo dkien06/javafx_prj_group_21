@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class TransactionManager {
     private final static TransactionManager instance = new TransactionManager();
@@ -58,6 +59,20 @@ public class TransactionManager {
     }
     public List<Transaction> filterByDate(Account account, LocalDate start, LocalDate end){
         return null;
+    }
+    public List<Transaction> filterByAmountRange(List<Transaction> transactions, long lowerBound, long upperBound) {
+        if (transactions == null || transactions.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // Đảm bảo cận dưới không lớn hơn cận trên bằng cách hoán đổi nếu cần
+        long minAmount = Math.min(lowerBound, upperBound);
+        long maxAmount = Math.max(lowerBound, upperBound);
+
+        return transactions.stream()
+                // Lọc các giao dịch thoả mãn: (amount >= minAmount) VÀ (amount <= maxAmount)
+                .filter(t -> t.getAmount() >= minAmount && t.getAmount() <= maxAmount)
+                .collect(Collectors.toList());
     }
     public  String formatCurrency(long balance, String currency) {
         // 1. Khởi tạo ký hiệu định dạng cho Locale Việt Nam (vi_VN)

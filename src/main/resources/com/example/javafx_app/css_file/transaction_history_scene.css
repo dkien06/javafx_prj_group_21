@@ -6,6 +6,7 @@
     -fx-background-image: url("image/backgroundhome.png");
 }
 
+
 .label {
     -fx-text-fill: #121212;
     -fx-font-weight: bold;
@@ -21,7 +22,7 @@
     -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
 }
 
-#return_btn {
+.btn_xanh_nen_trang {
     -fx-background-color: white;
     -fx-text-fill: #27A4F2;
     -fx-font-weight: bold;
@@ -166,4 +167,13 @@
 
 #wish_to_proceed_btn:pressed {
     -fx-background-color: #cce9ff; /* xanh nhạt hơn khi nhấn */
+}
+
+/*cần một phần cho Loan */
+.rootLoan{
+    -fx-background-image: url("image/background2.png");
+}
+
+.black_label {
+    -fx-text-fill: black;
 }

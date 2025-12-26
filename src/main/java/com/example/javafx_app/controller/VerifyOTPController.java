@@ -111,8 +111,10 @@ public class VerifyOTPController implements Initializable {
         }
         if(!inputOTP.equals(OTP)){
             otpErrorLog.setText("OTP không đúng");
+            return;
         }
         // Hoan thanh
+
         ForgetPassword.accountToUpdate.setPassword(ForgetPassword.passwordToUpdate);
         SceneUtils.switchScene(mainStage, "login_scene.fxml");
     }

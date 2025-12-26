@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <VBox layoutX="33.0" layoutY="104.0" prefHeight="426.0" prefWidth="348.0">
+         <children>
+            <Label text="Số tài khoản gửi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="savingAccountID" editable="false" />
+            <Label text="Phương thức gửi tiền">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="savingMethod" editable="false" prefHeight="26.0" prefWidth="320.0" />
+            <Label prefHeight="26.0" prefWidth="59.0" text="Số tiền">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="amount" />
+            <Text fx:id="amountLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.1366310119629" />
+            <Label fx:id="extraInfoLabel" layoutX="10.0" layoutY="116.0" prefHeight="27.0" prefWidth="362.0" text="Thời hạn">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="extraInfoField" layoutX="10.0" layoutY="144.0" />
+            <Text fx:id="extraInfoLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="344.53669357299805" />
+            <Label prefHeight="27.0" prefWidth="178.0" text="Nội dung vay tiền">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập nội dung vay tiền để chúng tôi có thể căn cứ và xét duyệt khoản vay của bạn" wrappingWidth="343.7367057800293" />
+            <TextArea fx:id="description" prefHeight="114.0" prefWidth="348.0" />
+         </children>
+      </VBox>
+      <Button layoutX="99.0" layoutY="575.0" mnemonicParsing="false" styleClass="btn_xanh_nen_trang" text="Quay lại" />
+      <Button layoutX="253.0" layoutY="575.0" mnemonicParsing="false" styleClass="btn_xanh_nen_trang" text="Tiếp tục" />
+   </children>
+</AnchorPane>

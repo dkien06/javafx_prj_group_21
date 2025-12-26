@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public enum SavingType implements Serializable {
     NONE("Không có"),
-    FLEXIBLE("Linh hoạt"),
-    FIXED("Kì hạn"),
-    ACCUMULATED("Tích góp");
+    FLEXIBLE("Gửi tiền linh hoạt"),
+    FIXED("Gửi tiền kì hạn"),
+    ACCUMULATED("Gửi tiền tích góp");
 
     private final String label;
 
@@ -17,5 +17,13 @@ public enum SavingType implements Serializable {
     @Override
     public String toString() {
         return this.label;
+    }
+    public SavingType fromString(String label) {
+        for (SavingType type : SavingType.values()) {
+            if (type.toString().equals(label)) {
+                return type;
+            }
+        }
+        return NONE;
     }
 }

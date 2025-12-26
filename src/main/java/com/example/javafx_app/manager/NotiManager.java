@@ -1,9 +1,12 @@
 package com.example.javafx_app.manager;
 
 import com.example.javafx_app.convert.NumberToVietnameseWord;
+import com.example.javafx_app.object.Bill.Bill;
 import com.example.javafx_app.object.Noti.Notification;
 import com.example.javafx_app.object.Noti.NotificationType;
 import com.example.javafx_app.object.Transaction;
+
+import java.time.LocalDate;
 
 public class NotiManager {
     public static boolean isMarkedAsRead = false;
@@ -12,7 +15,6 @@ public class NotiManager {
         long absoluteAmount = Math.abs(t.getAmount());
         String formattedAmount = TransactionManager.getInstance().formatCurrency(absoluteAmount, t.getCurrency());
         String amountInWords = NumberToVietnameseWord.numberToVietnameseWords(absoluteAmount );
-
         String title;
         String message;
         NotificationType notiType = NotificationType.BALANCE_CHANGE;
@@ -60,6 +62,38 @@ public class NotiManager {
         // 3. Tạo và trả về Notification mới
         return new Notification(
                 notiType,
+                title,
+                message
+        );
+    }
+    public static Notification getNotifromBill(Bill bill) {
+        String title = "Thông báo Hóa đơn đến hạn";
+
+        // Sử dụng hàm toNotificationString() đã định nghĩa trong class Bill
+        // để tạo chuỗi thông báo chi tiết: "Thông báo: Hóa đơn [Loại] trị giá [Số tiền] của [NCC] đến hạn thanh toán vào [Ngày]."
+        String message = bill.toNotificationString();
+
+        // Sử dụng NotificationType.BALANCE_CHANGE làm loại thông báo chung
+        // (Có thể thay đổi thành NotificationType.BILL_DUE nếu bạn định nghĩa thêm loại này)
+        NotificationType notiType = NotificationType.BALANCE_CHANGE;
+
+        return new Notification(
+                notiType,
+                title,
+                message
+        );
+    }
+    public static Notification getNotiForServiceCancellation(String serviceName, LocalDate oldestDate) {
+        String title = NotificationType.BILL_CANCELLATION.toString();
+        String message = String.format(
+                "Dịch vụ %s của bạn đã bị tạm dừng do có hóa đơn từ ngày %s đã quá hạn 3 tháng. Vui lòng thanh toán để khôi phục.",
+                serviceName,
+                oldestDate.toString()
+        );
+
+        // Sử dụng NotificationType phù hợp (ví dụ TRANSFER_FAILED hoặc bổ sung loại mới)
+        return new Notification(
+                NotificationType.BILL_CANCELLATION,
                 title,
                 message
         );

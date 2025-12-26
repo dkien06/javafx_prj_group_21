@@ -70,7 +70,7 @@ public class TransactingController implements Initializable {
             }
             else{
                 amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(Long.parseLong(value)));
-                amountLog.setFill(Color.rgb(255,255,255));
+                amountLog.setFill(Color.BLACK);
                 isAmountValid = true;
             }
         });
@@ -91,7 +91,7 @@ public class TransactingController implements Initializable {
             }
             else{
                 receiveAccountIDLog.setText(receiveAccount.getAccountName().toUpperCase());
-                receiveAccountIDLog.setFill(Color.rgb(255, 255, 255));
+                receiveAccountIDLog.setFill(Color.BLACK);
                 isReceiveAccountValid = true;
             }
         });

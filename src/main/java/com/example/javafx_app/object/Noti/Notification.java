@@ -1,11 +1,13 @@
 package com.example.javafx_app.object.Noti;
 
+import com.example.javafx_app.manager.BankManager;
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Notification implements Serializable {
     private NotificationType type;
-    private LocalDateTime timestamp;
+    private LocalDate timestamp;
     private String title;
     private String message;
     private boolean isRead;
@@ -14,7 +16,7 @@ public class Notification implements Serializable {
 
     public Notification(NotificationType type, String title, String message) {
         this.type = type;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = BankManager.getCurrentDate();
         this.title = title;
         this.message = message;
         this.isRead = false; // Mặc định là chưa đọc
@@ -28,7 +30,7 @@ public class Notification implements Serializable {
         return type;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 

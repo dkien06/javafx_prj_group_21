@@ -33,4 +33,6 @@ module com.example.javafx_app {
     opens com.example.javafx_app.controller.checking to javafx.fxml;
     exports com.example.javafx_app.controller.Support;
     opens com.example.javafx_app.controller.Support to javafx.fxml;
+    exports com.example.javafx_app.controller.loan to javafx.fxml;
+    opens com.example.javafx_app.controller.loan to javafx.fxml;
 }

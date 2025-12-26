@@ -50,7 +50,7 @@ public class WithdrawController implements Initializable {
             }
             else{
                 amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(Long.parseLong(value)));
-                amountLog.setFill(Color.rgb(255,255,255));
+                amountLog.setFill(Color.BLACK);
                 isAmountValid = true;
             }
         });

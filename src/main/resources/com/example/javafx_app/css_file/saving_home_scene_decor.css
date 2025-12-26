@@ -100,3 +100,7 @@
 #tien_gui_tich_gop {
     -fx-background-color: #219fff;
 }
+
+#MethodLabel{
+    -fx-text-fill: #27A4F2 ;
+}

@@ -51,7 +51,7 @@ public class TransactionHistorySceneController {
         for(Transaction t : (AccountManager.getInstance().getCurrentAccount()).getHistory()){
             Pair<Parent, HistoryBlockController> block = SceneUtils.getRootAndController("TransactionScene/history_block.fxml");
             block.getValue().setData(t);
-            vbox_lich_su_giao_dich.getChildren().add(block.getKey());
+            vbox_lich_su_giao_dich.getChildren().add(1,block.getKey());
         }
     }
     @FXML

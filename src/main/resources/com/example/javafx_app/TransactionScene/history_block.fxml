@@ -7,7 +7,7 @@
    <graphic>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_chua_lsgd">
          <children>
-            <Label fx:id="icon" prefHeight="40.0" prefWidth="43.0" />
+            <Label fx:id="icon" prefHeight="40.0" prefWidth="50.0" styleClass="icon_container" />
             <VBox prefHeight="43.0" prefWidth="175.0">
                <children>
                   <Label fx:id="toAccountName" prefHeight="20.0" prefWidth="151.0" text="Họ và tên" />
