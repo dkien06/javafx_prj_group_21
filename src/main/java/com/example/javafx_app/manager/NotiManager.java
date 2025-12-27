@@ -98,4 +98,38 @@ public class NotiManager {
                 message
         );
     }
+    public static Notification getNotiForSavingUpdate(String accountID, long newBalance, long totalMonths) {
+        // Giả định bạn có loại thông báo SAVING_UPDATE trong enum NotificationType
+        // Nếu chưa có, bạn có thể dùng một loại mặc định hoặc bổ sung vào enum
+        String title = "CẬP NHẬT TIỀN TIẾT KIỆM";
+
+        String message = String.format(
+                "Tài khoản tiết kiệm %s của bạn đã được cộng lãi. Số tiền hiện tại đã tăng lên thành %d VND sau %d tháng tích lũy.",
+                accountID,
+                newBalance,
+                totalMonths
+        );
+
+        return new Notification(
+                NotificationType.SAVING_UPDATE, // Bạn cần đảm bảo loại này tồn tại trong NotificationType
+                title,
+                message
+        );
+    }public static Notification getNotiForFixedSavingMaturity(String accountID, long amount, String targetAccountID) {
+        // Tiêu đề thông báo
+        String title = "TẤT TOÁN TIẾT KIỆM ĐẾN HẠN";
+
+        // Nội dung thông báo chi tiết
+        String message = String.format(
+                "Khoản tiết kiệm  của bạn đã đến kỳ hạn nhận. Tổng số tiền %d VND (bao gồm gốc và lãi) đã được chuyển về tài khoản thanh toán %s.",
+                amount,
+                targetAccountID
+        );
+
+        return new Notification(
+                NotificationType.SAVING_UPDATE, // Giả định bạn có loại này trong NotificationType
+                title,
+                message
+        );
+    }
 }

@@ -23,9 +23,9 @@ public class SavingChooseMethodController implements Initializable {
     @FXML private Label accumulatedInterestLabel;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        flexibleInterestRateLabel.setText(Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR + "%/năm");
-        fixedInterestRateLabel.setText(Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR + "%/năm");
-        accumulatedInterestLabel.setText(Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR + "%/năm");
+        flexibleInterestRateLabel.setText(Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
+        fixedInterestRateLabel.setText(Constant.SAVING_FIXED_INTEREST_RATE_PER_MONTH*100 + "%/năm");
+        accumulatedInterestLabel.setText(Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
     }
     @FXML
     void MoNgay1(ActionEvent event){

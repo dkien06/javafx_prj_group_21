@@ -2,10 +2,8 @@ package com.example.javafx_app.manager;
 
 import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.config.ExampleUser;
-import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
-import com.example.javafx_app.object.Account.Account;
+import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.config.Constant;
-import com.example.javafx_app.object.Account.CheckingAccount;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -70,6 +68,10 @@ public class BankManager {
             if(account.getAccountType().equals(ACCOUNT_TYPE.CHECKING)){
                 AccountManager.getInstance().addMonthlyBills((CheckingAccount) account,previousDate,currentDate);
                 AccountManager.getInstance().checkAndCancelAllServices((CheckingAccount) account);
+            }
+            else if(account.getAccountType().equals(ACCOUNT_TYPE.SAVING)
+                    &&!((SavingAccount)account).getType().equals(SavingType.NONE)){
+                AccountManager.getInstance().updateSavingBalance((SavingAccount) account,previousDate,currentDate);
             }
         }
     }

@@ -12,7 +12,7 @@
       <Button layoutX="178.0" layoutY="613.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay Lại" />
       <Button fx:id="tien_gui_linh_hoat" layoutX="29.0" layoutY="141.0" mnemonicParsing="false" onAction="#MoNgay1" prefHeight="103.0" prefWidth="355.0">
          <graphic>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button-title-label">
                <children>
                   <Label text="Tiền gửi linh hoạt">
                      <font>
@@ -38,7 +38,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gửi một khoản tiền cố định trong khoảng thời gian cố định (1 tháng, 3 tháng, 6 tháng,...)" wrappingWidth="322.66168212890625" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="button-title-label" text="Gửi một khoản tiền cố định trong khoảng thời gian cố định (1 tháng, 3 tháng, 6 tháng,...)" wrappingWidth="322.66168212890625" />
                   <Label />
                   <Label fx:id="fixedInterestRateLabel" text="5.8%/năm">
                      <font>
@@ -50,7 +50,7 @@
          </graphic></Button>
       <Button fx:id="tien_gui_tich_gop" layoutX="29.0" layoutY="446.0" mnemonicParsing="false" onAction="#MoNgay3" prefHeight="119.0" prefWidth="355.0">
          <graphic>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button-title-label">
                <children>
                   <Label text="Tiền gửi tích góp">
                      <font>

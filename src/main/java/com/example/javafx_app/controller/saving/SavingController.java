@@ -63,13 +63,13 @@ public class SavingController implements Initializable {
         description.setText(currentSavingAccount.getAccountName().toUpperCase() + " gui tien");
         switch (currentSavingAccount.getType()){
             case FLEXIBLE:
-                savingMethod.setText("Tiền gửi linh hoạt - " + Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi linh hoạt - " + Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
                 break;
             case FIXED:
-                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_FIXED_INTEREST_RATE_PER_MONTH *100+ "%/năm");
                 break;
             case ACCUMULATED:
-                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
                 break;
             default:
                 throw new MysteriousException();

@@ -10,9 +10,9 @@ import java.util.Map;
 public class Constant {
     private Constant() {}
 
-    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR = 5;
-    public static final double SAVING_FIXED_INTEREST_RATE_PER_YEAR =  15;
-    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR = 10;
+    public static final double SAVING_FLEXIBLE_INTEREST_RATE_PER_MONTH= 0.004;
+    public static final double SAVING_FIXED_INTEREST_RATE_PER_MONTH =  0.008;
+    public static final double SAVING_ACCUMULATE_INTEREST_RATE_PER_MONTH = 0.006;
 
     public static final int PHONE_NUMBER_LENGTH = 10;
     public static final int MINIUM_PASSWORD_LENGTH = 8;

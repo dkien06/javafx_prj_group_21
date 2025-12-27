@@ -31,13 +31,9 @@ public  abstract class Account implements Serializable {
         this.PIN = PIN;
         this.history = new ArrayList<>();
         this.notifications = new ArrayList<>();
-        this.StartDate = BankManager.getCurrentDate();// Lay ngay hom nay , gia lap thoi
+        this.StartDate =(BankManager.getCurrentDate()!=null)?BankManager.getCurrentDate():LocalDate.of(2010,1, 1);// Lay ngay hom nay , gia lap thoi
     }
 
-    // ✅ Constructor rỗng (cần cho JavaFX hoặc khởi tạo tạm)
-    public Account() {
-        this.history = new ArrayList<>();
-    }
 
     // === Getter ===
     public String getAccountName() {
@@ -83,13 +79,18 @@ public  abstract class Account implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void addNotification(Notification notification) { this.notifications.add(notification); }
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
+        if(notifications.size() > 20){
+            notifications.removeFirst();
+        }
+    }
     // ✅ Thêm giao dịch
     public void addTransaction(Transaction t) {
         history.add(t);
         if (history.size() > 20) {
             // 3. Xóa phần tử đầu tiên (vị trí 0) - đây là giao dịch cũ nhất trong danh sách
-            history.remove(0);
+            history.removeFirst();
         }
     }
     //Đối chiếu PIN

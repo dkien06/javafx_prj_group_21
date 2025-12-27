@@ -53,6 +53,6 @@
             </content>
          </ScrollPane>
         </VBox>
-      <Button layoutX="20.0" layoutY="29.0" mnemonicParsing="false" text="Quay lại" />
+      <Button layoutX="20.0" layoutY="29.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
     </children>
 </AnchorPane>

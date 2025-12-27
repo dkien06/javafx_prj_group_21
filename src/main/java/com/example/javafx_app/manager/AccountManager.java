@@ -1,5 +1,6 @@
 package com.example.javafx_app.manager;
 
+import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.exception.IllegalAccountSignUpException;
 import com.example.javafx_app.exception.MysteriousException;
@@ -15,8 +16,10 @@ import com.example.javafx_app.config.Constant;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class AccountManager {
@@ -345,6 +348,43 @@ public class AccountManager {
             }
         }
     }
+    public  void updateSavingBalance(SavingAccount savingAccount,LocalDate oldDate,LocalDate newDate) {
+        // 1. Tính tổng số tháng trọn vẹn từ lúc gửi đến hôm nay
+        LocalDate startDate = savingAccount.getStartSavingDate();
+        long totalMonthsToToday = ChronoUnit.MONTHS.between(startDate, newDate);
+
+        // 2. Tính tổng số tháng trọn vẹn từ lúc gửi đến lần đăng nhập cuối
+        long totalMonthsToLastLogin = ChronoUnit.MONTHS.between(startDate, oldDate);
+
+        // 3. Số tháng chênh lệch cần phải trả lãi thêm
+        long totalMonths = totalMonthsToToday - totalMonthsToLastLogin;
+        if(totalMonths <= 0){
+            return;
+        }
+        switch (savingAccount.getType()) {
+            case SavingType.FLEXIBLE :
+                for (int i = 1; i <= totalMonths; i++) {
+                    savingAccount.applyFlexibleInterest();
+                }
+                savingAccount.addNotification(NotiManager.getNotiForSavingUpdate(savingAccount.getAccountID(),
+                        savingAccount.getSaving(),totalMonths));
+                break;
+            case SavingType.ACCUMULATED:
+                for (int i = 1; i <= totalMonths; i++) {
+                    savingAccount.applyAccumulatedInterest();
+                }
+                savingAccount.addNotification(NotiManager.getNotiForSavingUpdate(savingAccount.getAccountID(),
+                        savingAccount.getSaving(),totalMonths));
+                break;
+            case SavingType.FIXED:
+                if(savingAccount.isOverdue()){
+                    savingAccount.addNotification(NotiManager.getNotiForFixedSavingMaturity(
+                            savingAccount.getAccountID(), savingAccount.applyFixedInterest(),
+                            findCheckingAccount(savingAccount).getAccountID() ));
+                }
+                break;
+        }
+    }
     //In log
     public void accountListLog(){
         int i = 0;
@@ -354,13 +394,16 @@ public class AccountManager {
                                  + "\n\tAccountID: "+a.getAccountID()
                                  + "\n\tPassword: "+a.getPassword()
                                  + "\n\tCurrency: "+a.getCurrency()
-                                 + "\n\tPIN: "+a.getPIN() + "\n");
+                                 + "\n\tPIN: "+a.getPIN()
+                                    + "\n\tPIN: "+a.getStartDate()
+                    + "\n");
         }
     }
-    public static void main(String args[]) throws IOException {
-        ExampleUser.init();
-        System.out.println(currentAccount.getPIN());
-        System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
-        System.out.println(AccountManager.getInstance().findAccountFromUser(UserManager.getInstance().findUserByCitizenID("010203008386")));
+    public static void main(String[] args) {
+        DataPersistence.loadAllData();
+        AccountManager.getInstance().accountListLog();
     }
+
+    // Hàm của bạn cần test (đưa vào static để gọi trong main)
+
 }

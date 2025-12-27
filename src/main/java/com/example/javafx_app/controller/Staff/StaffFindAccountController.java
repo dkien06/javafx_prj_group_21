@@ -84,8 +84,8 @@ public class StaffFindAccountController {
         citizenIdLabel.setText("CCCD: " + account.getCitizenID()); //
         typeLabel.setText("Loại tài khoản: " + account.getAccountType().toString()); //
         accountIdResultLabel.setText("Số tài khoản: " + account.getAccountID()); //
-        startDateLabel.setText("Ngày mở tài khoản: " + account.getStartDate().toString()); //
-
+        if(account.getStartDate()!=null)startDateLabel.setText("Ngày mở tài khoản: " + account.getStartDate().toString()); //
+        else startDateLabel.setText("KHONG CO GIA TRI");
         // 3. Cập nhật thông tin User (Phone và Email)
         if (user != null) {
             phoneNumberLabel.setText("Số điện thoại: " + user.getPhoneNumber()); //

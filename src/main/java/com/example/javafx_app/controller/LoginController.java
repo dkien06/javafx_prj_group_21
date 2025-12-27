@@ -73,7 +73,7 @@ public class LoginController implements Initializable {
             else {
                 DataPersistence.savedAccountID = "" ;
                 DataPersistence.savedPassword = "" ;
-                DataPersistence.accountType = selectedLabel;
+                DataPersistence.accountType = "";
             }
             SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
