@@ -37,6 +37,7 @@ public class BankManager {
         List<Account> VerifyAccount = AccountManager.getInstance().findAccountFromCitizenID(citizenID);
 
         if(VerifyAccount==null) {
+            System.out.println("Không tồn tại user!");
             return null;}
         System.out.println("Verify Password");
         for(Account account:VerifyAccount){

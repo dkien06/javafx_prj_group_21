@@ -1,9 +1,9 @@
 package com.example.javafx_app.controller.loan;
 
+import com.example.javafx_app.config.Constant;
 import com.example.javafx_app.controller.block.LoanCategoriesBlockController;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -15,112 +15,47 @@ import static com.example.javafx_app.config.Constant.mainStage;
 
 public class LoanChooseCategoriesController {
     @FXML private VBox v_box_contain_loan_categories_info;
-    private final String[] head1 = {
-            "Vay tiêu dùng",
-            "Vay gia dụng",
-            "Vay tài sản lớn"
-    };
-    private final String[] head2 = {
-            "Vay kinh doanh nhỏ",
-            "Vay kinh doanh mở rộng",
-            "Vay kinh doanh quy mô lớn"
-    };
-    private final String[] head3 = {
-            "Vay mua ô tô phổ thông",
-            "Vay mua ô tô cao cấp",
-    };
-    private final String[] head4 = {
-            "Vay mua nhà ở",
-            "Vay đầu tư bất động sản",
-    };
-    private final String[] head5 = {
-            "Vay đầu tư cá nhân",
-            "Vay đầu tư nâng cao"
-    };
-
-    private final String[] title1 = {
-            "Dành cho việc mua những món đồ thiết yếu phục vụ nhu cầu cá nhân hằng ngày",
-            "Dành cho việc mua các thiết bị gia dụng như TV, tủ lạnh, máy giặt, nội thất,...",
-            "Dành cho việc mua các tài sản tiêu dùng giá trị cao"
-    };
-    private final String[] title2 = {
-            "Phù hợp với hộ kinh doanh cá thể, bán hàng online, vốn quay vòng nhanh",
-            "Phục vụ mở rộng cửa hàng, nhập thêm hàng hóa, đầu tư thiết bị",
-            "Dành cho doanh nghiệp nhỏ và vừa, đầu tư dài hạn"
-    };
-    private final String[] title3 = {
-            "Dành cho cá nhân, gia đình mua xe phục vụ đi lại",
-            "Dành cho xe sang, xe phục vụ kinh doanh"
-    };
-    private final String[] title4 = {
-            "Dành cho nhu cầu an cư, mua căn hộ, nhà ở",
-            "Dành cho đầu tư, mua để cho thuê hoặc sinh lời"
-    };
-    private final String[] title5 = {
-            "Dành cho các kế hoạch đầu tư tài chính trung và dài hạn",
-            "Phù hợp với nhà đầu tư có kinh nghiệm, danh mục rõ ràng"
-    };
-
-    private final long[] max1 = {
-            75_000_000L,
-            400_000_000L,
-            1_600_000_000L
-    };
-    private final long[] max2 = {
-            100_000_000L,
-            500_000_000L,
-            2_000_000_000L
-    };
-    private final long[] max3 = {
-            1_000_000_000L,
-            2_000_000_000L
-    };
-    private final long[] max4 = {
-            3_000_000_000L,
-            5_000_000_000L
-    };
-    private final long[] max5 = {
-            1_000_000_000L,
-            3_000_000_000L
-    };
-    void loadMethod(int type){
-        switch (type){
+    private int type = 0;
+    void loadMethod(int type) {
+        this.type = type;
+        System.out.println(type);
+        switch (type) {
             case 1:
-                for(int i = 0; i < 3; i++){
+                for (int i = 0; i < 3; i++) {
                     Pair<Parent, LoanCategoriesBlockController> block = SceneUtils.getRootAndController("loanScene/loan_categories_block.fxml");
-                    block.getValue().setData(head1[i], title1[i], max1[i]);
+                    block.getValue().setData(Constant.head1[i], Constant.title1[i], i, 1);
                     v_box_contain_loan_categories_info.getChildren().add(block.getKey());
                     v_box_contain_loan_categories_info.getChildren().add(new Text());
                 }
                 break;
             case 2:
-                for(int i = 0; i < 3; i++){
+                for (int i = 0; i < 3; i++) {
                     Pair<Parent, LoanCategoriesBlockController> block = SceneUtils.getRootAndController("loanScene/loan_categories_block.fxml");
-                    block.getValue().setData(head2[i], title2[i], max2[i]);
+                    block.getValue().setData(Constant.head2[i], Constant.title2[i], i, 2);
                     v_box_contain_loan_categories_info.getChildren().add(block.getKey());
                     v_box_contain_loan_categories_info.getChildren().add(new Text());
                 }
                 break;
             case 3:
-                for(int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     Pair<Parent, LoanCategoriesBlockController> block = SceneUtils.getRootAndController("loanScene/loan_categories_block.fxml");
-                    block.getValue().setData(head3[i], title3[i], max3[i]);
+                    block.getValue().setData(Constant.head3[i], Constant.title3[i], i, 3);
                     v_box_contain_loan_categories_info.getChildren().add(block.getKey());
                     v_box_contain_loan_categories_info.getChildren().add(new Text());
                 }
                 break;
             case 4:
-                for(int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     Pair<Parent, LoanCategoriesBlockController> block = SceneUtils.getRootAndController("loanScene/loan_categories_block.fxml");
-                    block.getValue().setData(head4[i], title4[i], max4[i]);
+                    block.getValue().setData(Constant.head4[i], Constant.title4[i], i, 4);
                     v_box_contain_loan_categories_info.getChildren().add(block.getKey());
                     v_box_contain_loan_categories_info.getChildren().add(new Text());
                 }
                 break;
             case 5:
-                for(int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     Pair<Parent, LoanCategoriesBlockController> block = SceneUtils.getRootAndController("loanScene/loan_categories_block.fxml");
-                    block.getValue().setData(head5[i], title5[i], max5[i]);
+                    block.getValue().setData(Constant.head5[i], Constant.title5[i], i, 5);
                     v_box_contain_loan_categories_info.getChildren().add(block.getKey());
                     v_box_contain_loan_categories_info.getChildren().add(new Text());
                 }

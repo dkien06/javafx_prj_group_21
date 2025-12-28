@@ -1,5 +1,6 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.verify;
 
+import com.example.javafx_app.controller.ForgetPassword;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.animation.KeyFrame;

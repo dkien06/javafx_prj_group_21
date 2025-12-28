@@ -45,7 +45,7 @@ public class ExampleUser {
             "010203004953",
             "183864953",
             "TranThiB@1975",
-            5_000_000,          // balance (1.000.000 từ code cũ)
+            5_000_000_000L,          // balance (1.000.000 từ code cũ)
             "VND",
             "123456"
     );
@@ -54,7 +54,7 @@ public class ExampleUser {
             "010203004953",
             "383864953",
             "TranThiB@1975",
-            1_000_000,          // balance (1.000.000 từ code cũ)
+            0,          // balance (1.000.000 từ code cũ)
             "VND",
             "123456"
     );
@@ -83,7 +83,7 @@ public class ExampleUser {
             "020406006769",
             "212345678",
             "        ",
-            0,                  // balance (mặc định 0)
+            1_000_000,                  // balance (mặc định 0)
             "VND",
             "112233"
     );
@@ -207,5 +207,8 @@ public class ExampleUser {
     public static void init(){
         addExample();
     }
-
+    public static void setCurrentAccount(){
+        ((SavingAccount)accountC1).setType(SavingType.FLEXIBLE);
+        AccountManager.getInstance().setCurrentAccount(accountC1);
+    }
 }

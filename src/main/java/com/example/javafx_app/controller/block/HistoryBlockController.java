@@ -33,8 +33,7 @@ public class HistoryBlockController {
                     button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
                 }
                 break;
-            //Thêm icon rút tiền với nạp tiên đi
-            case WITHDRAW:
+            case WITHDRAW, REPAY:
                 amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
                 icon.getStyleClass().addAll("icon_container","chuyen_di");
                 button.getStyleClass().addAll("nut_chua_lsgd", "nut_do");
@@ -43,11 +42,12 @@ public class HistoryBlockController {
                 amount.setText(transaction.getAmount() + transaction.getFromAccount().getCurrency());
                 icon.getStyleClass().addAll("icon_container","chuyen_vao");
                 button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
+                break;
             case LOAN:
-                //Từ từ đã
-            case REPAY:
-                //Từ từ đã
+                amount.setText(transaction.getAmount() + transaction.getToAccount().getCurrency());
+                icon.getStyleClass().addAll("icon_container","chuyen_vao");
+                button.getStyleClass().addAll("nut_chua_lsgd", "nut_xanh");
+                break;
         }
-
     }
 }

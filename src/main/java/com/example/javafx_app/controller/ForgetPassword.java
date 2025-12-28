@@ -43,10 +43,10 @@ public class ForgetPassword implements Initializable {
     private Text NewPasswordErrorLog;
     @FXML
     private Text ConfirmNewPasswordErrorLog;
-    static Account accountToUpdate; // account dung de quen mat khau
-    static String passwordToUpdate; // matkhau dung de doi
-    static String MethodVerify ;
-    static String identity ;
+    public static Account accountToUpdate; // account dung de quen mat khau
+    public static String passwordToUpdate; // matkhau dung de doi
+    public static String MethodVerify ;
+    public static String identity ;
     private final String[] recoveryOptions = {"Email", "Số điện thoại"};
 
     @Override

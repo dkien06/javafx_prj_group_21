@@ -103,8 +103,10 @@ public class AccountManager {
     }
     //Đăng nhập
     public boolean logIn(String citizenID, String password, ACCOUNT_TYPE accountType){
+        System.out.println("Đang log in!");
         Account account = BankManager.VerifyPassword(citizenID, password, accountType);
         if(account == null){
+            System.out.println("Không tồn tại account này!");
             return false ;
         }
         currentAccount = account;
@@ -359,8 +361,6 @@ public class AccountManager {
     }
     public static void main(String args[]) throws IOException {
         ExampleUser.init();
-        System.out.println(currentAccount.getPIN());
-        System.out.println(UserManager.getInstance().findUserByCitizenID("010203008386"));
-        System.out.println(AccountManager.getInstance().findAccountFromUser(UserManager.getInstance().findUserByCitizenID("010203008386")));
+        System.out.println(AccountManager.getInstance().findAccountFromCitizenID("020406006769"));
     }
 }

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static com.example.javafx_app.config.Constant.mainStage;
@@ -51,7 +52,7 @@ public class LoginController implements Initializable {
         String CCCD = CCCDField.getText();
         String password = PasswordField.getText();
         String selectedLabel = accountType.getValue(); // Lấy giá trị chuỗi người dùng chọn
-        if(password=="") {
+        if(Objects.equals(password, "")) {
             WrongLoginLabel.setText("Bạn chưa nhập mật khẩu");
             return ;
         }
@@ -68,7 +69,7 @@ public class LoginController implements Initializable {
                 DataPersistence.savedAccountID = CCCDField.getText();
                 DataPersistence.savedPassword = PasswordField.getText();
                 DataPersistence.accountType= selectedLabel ;
-                System.out.println("CHeck");
+                System.out.println("Check");
             }
             else {
                 DataPersistence.savedAccountID = "" ;

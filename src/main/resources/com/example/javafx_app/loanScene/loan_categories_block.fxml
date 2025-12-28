@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Button mnemonicParsing="false" styleClass="gray_btn" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.LoanCategoriesBlockController">
+<Button fx:id="button" mnemonicParsing="false" onAction="#ButtonFunc" styleClass="gray_btn" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.LoanCategoriesBlockController">
    <graphic>
       <VBox prefHeight="106.0" prefWidth="338.0">
          <children>
