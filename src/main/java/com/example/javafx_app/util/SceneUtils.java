@@ -1,27 +1,17 @@
 package com.example.javafx_app.util;
 
 import com.example.javafx_app.BankApplication;
-import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.exception.NonExistedPathException;
-import com.example.javafx_app.exception.NullControllerException;
-import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
-import com.example.javafx_app.object.Account.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class SceneUtils {
     public static <T> Pair<Parent, T> getRootAndController(String fxmlFile){
@@ -34,8 +24,6 @@ public class SceneUtils {
             NonExistedPathException.throwException();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (NullPointerException e){
-            NullControllerException.throwException();
         }
         throw new MysteriousException();
     }

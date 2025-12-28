@@ -19,7 +19,7 @@ public class BankApplication extends Application {
             ExampleUser.init(); //Thêm cái này nó mới load đc mấy cái example user:)
             //DataPersistence.loadAllData(); //Fun fact: Nó load data ảo vcl:)
             ExampleUser.setCurrentAccount();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/saving_account_home_scene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/loan_account_home_scene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -31,7 +31,6 @@ public class BankApplication extends Application {
             NonExistedPathException.throwException();
         }
     }
-
     @Override // Thêm phương thức stop để lưu dữ liệu khi ứng dụng đóng
     public void stop() {
         DataPersistence.saveAllData();

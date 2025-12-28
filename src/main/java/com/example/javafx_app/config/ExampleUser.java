@@ -54,7 +54,7 @@ public class ExampleUser {
             "010203004953",
             "383864953",
             "TranThiB@1975",
-            0,          // balance (1.000.000 từ code cũ)
+            100_000_000,          // balance (1.000.000 từ code cũ)
             "VND",
             "123456"
     );
@@ -127,7 +127,15 @@ public class ExampleUser {
             "VND",
             "258013"
     );
-
+    private static final Account accountE1 = new LoanAccount(
+            "Hoang Thi E",
+            "010102030508",
+            "316180340",
+            "EnHoang*1024",
+            10_000_000,                  // balance (mặc định 0)
+            "VND",
+            "258013"
+    );
     private static final Customer userE = new Customer(
             "Hoàng Thị E",
             LocalDate.of(2000,1,1),
@@ -187,6 +195,7 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().put(accountC1.getAccountID(),accountC1);
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
         AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
+        AccountManager.getInstance().getAccountList().put(accountE1.getAccountID(),accountE1);
         AccountManager.getInstance().getAccountList().put(ELECTRIC_PROVIDER.getAccountID(), ELECTRIC_PROVIDER);
         AccountManager.getInstance().getAccountList().put(WATER_PROVIDER.getAccountID(), WATER_PROVIDER);
         AccountManager.getInstance().getAccountList().put(INTERNET_PROVIDER.getAccountID(), INTERNET_PROVIDER);
@@ -197,6 +206,7 @@ public class ExampleUser {
         userC.addAccountID(accountC.getAccountID());
         userC.addAccountID(accountC1.getAccountID());
         userE.addAccountID(accountE.getAccountID());
+        userE.addAccountID(accountE1.getAccountID());
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
@@ -206,9 +216,11 @@ public class ExampleUser {
     }
     public static void init(){
         addExample();
+        ((SavingAccount)accountC1).setType(SavingType.FLEXIBLE);
+        ((LoanAccount)accountB1).setLoanInfo(LoanType.FIXED, LoanStatus.ACTIVE, 0.75, 12);
+        ((LoanAccount)accountE1).setLoanInfo(LoanType.ACCUMULATED, LoanStatus.OVERDUE, 0.5, 12);
     }
     public static void setCurrentAccount(){
-        ((SavingAccount)accountC1).setType(SavingType.FLEXIBLE);
-        AccountManager.getInstance().setCurrentAccount(accountC1);
+        AccountManager.getInstance().setCurrentAccount(accountB1);
     }
 }

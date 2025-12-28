@@ -29,6 +29,14 @@ public class LoanHistoryBlockController {
                 status.setText("Duyệt thành công");
                 status.setTextFill(Color.rgb(0,192,0));
                 break;
+            case REPAY:
+                status.setText("Trả nợ");
+                status.setTextFill(Color.rgb(96,192,0));
+                break;
+            case COMPLETED:
+                status.setText("Hoàn thành vay");
+                status.setTextFill(Color.rgb(0,255,0));
+                break;
             case OVERDUE:
                 status.setText("Nợ quá hạn");
                 status.setTextFill(Color.rgb(255,128,0));
@@ -39,7 +47,11 @@ public class LoanHistoryBlockController {
                 break;
             case REJECTED:
                 status.setText("Đã từ chối. Lý do: " + reason);
-                status.setTextFill(Color.rgb(0,192,192));
+                status.setTextFill(Color.rgb(128,0,0));
+                break;
+            case CANCELED:
+                status.setText("Đã hủy" + reason);
+                status.setTextFill(Color.rgb(0,0,255));
                 break;
         }
     }

@@ -124,6 +124,23 @@ public class NumberToVietnameseWord {
             return  "Số tiền không hợp lệ";
         }
     }
+    public static String displayErrorForLoan(String value, LoanAccount loanAccount){
+        try {
+            if (!value.isEmpty() && value.matches("\\d+")) {
+                long amount = Long.parseLong(value);
+                if(amount > loanAccount.getDebt())
+                    return "Số tiền bạn nhập quá lớn đối với số tiền vay của bạn";
+                else if(amount > AccountManager.getInstance().findCheckingAccount(loanAccount).getBalance())
+                    return "Số tiền bạn nhập không đủ để trả nợ";
+                else return "";
+            } else {
+                if(value.isEmpty())return "Vui lòng nhập số tiền";
+                else return  "Số tiền không hợp lệ";
+            }
+        } catch (NumberFormatException e) {
+            return  "Số tiền không hợp lệ";
+        }
+    }
     public static String displayErrorDeposit(String value){
         try {
             if (value.isEmpty()) { return "Vui lòng nhập số tiền" ;}

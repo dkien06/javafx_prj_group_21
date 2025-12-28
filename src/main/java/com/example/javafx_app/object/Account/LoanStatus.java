@@ -5,6 +5,8 @@ public enum LoanStatus {
     REVIEW("Chờ duyệt"),
     REJECTED("Từ chối"),
     ACTIVE("Đang hoạt động"),
+    REPAY("Trả nợ"),
+    COMPLETED("Hoàn thành vay"),
     OVERDUE("Quá hạn"),
     EXTENDED("Gia hạn"),
     CANCELED("Hủy");

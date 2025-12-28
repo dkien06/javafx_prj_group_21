@@ -82,6 +82,6 @@ public class StaffHomeSceneController  {
     @FXML
     void XetDuyet(ActionEvent event) {
         // Chuyển đến màn hình thông báo
-        SceneUtils.switchScene(mainStage, "StaffScene/loan_review_scene.fxml");
+        SceneUtils.switchScene(mainStage, "StaffScene/review_scene.fxml");
     }
 }
