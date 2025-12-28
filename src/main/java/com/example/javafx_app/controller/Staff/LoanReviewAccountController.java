@@ -43,6 +43,7 @@ public class LoanReviewAccountController {
         descriptionLabel.setText(loanAccount.getDescription());
         if(loanAccount.getInterest() > 0){
             interestField.setText("" + loanAccount.getInterest());
+            interestField.setEditable(false);
         }
     }
 
@@ -136,6 +137,7 @@ public class LoanReviewAccountController {
         );
         account.addToHistories(transaction, LoanStatus.ACTIVE);
         account.addTransaction(transaction);
+        account.setStatus(LoanStatus.ACTIVE);
         TransactionManager.getInstance().addTransaction(transaction);
         SceneUtils.switchScene(mainStage, "StaffScene/loan_review_scene.fxml");
 

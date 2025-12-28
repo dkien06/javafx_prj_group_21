@@ -76,3 +76,7 @@
 #so_du_no_label {
     -fx-text-fill: #6C757D;
 }
+.white-box-label {
+    -fx-text-fill: #27A4F2;
+    -fx-font-weight: bold;
+}

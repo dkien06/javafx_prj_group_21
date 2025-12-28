@@ -82,7 +82,7 @@ public class LoanAccountHomeSceneController implements Initializable {
 
     @FXML
     void hoTro(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage, "SupportScene/support_home_scene.fxml");
     }
 
     @FXML
