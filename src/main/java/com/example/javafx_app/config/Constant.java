@@ -1,6 +1,7 @@
 package com.example.javafx_app.config;
 
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.util.Map;
 
@@ -70,4 +71,93 @@ public class Constant {
             Map.entry("MMK", 12.5332)
             //Rảnh thì thêm đi
     );
+    public static final String[] head1 = {
+            "Vay tiêu dùng",
+            "Vay gia dụng",
+            "Vay tài sản lớn"
+    };
+    public static final String[] head2 = {
+            "Vay kinh doanh nhỏ",
+            "Vay kinh doanh mở rộng",
+            "Vay kinh doanh quy mô lớn"
+    };
+    public static final String[] head3 = {
+            "Vay mua ô tô phổ thông",
+            "Vay mua ô tô cao cấp",
+    };
+    public static final String[] head4 = {
+            "Vay mua nhà ở",
+            "Vay đầu tư bất động sản",
+    };
+    public static final String[] head5 = {
+            "Vay đầu tư cá nhân",
+            "Vay đầu tư nâng cao"
+    };
+
+    public static final String[] title1 = {
+            "Dành cho việc mua những món đồ thiết yếu phục vụ nhu cầu cá nhân hằng ngày",
+            "Dành cho việc mua các thiết bị gia dụng như TV, tủ lạnh, máy giặt, nội thất,...",
+            "Dành cho việc mua các tài sản tiêu dùng giá trị cao"
+    };
+    public static final String[] title2 = {
+            "Phù hợp với hộ kinh doanh cá thể, bán hàng online, vốn quay vòng nhanh",
+            "Phục vụ mở rộng cửa hàng, nhập thêm hàng hóa, đầu tư thiết bị",
+            "Dành cho doanh nghiệp nhỏ và vừa, đầu tư dài hạn"
+    };
+    public static final String[] title3 = {
+            "Dành cho cá nhân, gia đình mua xe phục vụ đi lại",
+            "Dành cho xe sang, xe phục vụ kinh doanh"
+    };
+    public static final String[] title4 = {
+            "Dành cho nhu cầu an cư, mua căn hộ, nhà ở",
+            "Dành cho đầu tư, mua để cho thuê hoặc sinh lời"
+    };
+    public static final String[] title5 = {
+            "Dành cho các kế hoạch đầu tư tài chính trung và dài hạn",
+            "Phù hợp với nhà đầu tư có kinh nghiệm, danh mục rõ ràng"
+    };
+    public static final long[] max1 = {
+            75_000_000L,
+            400_000_000L,
+            1_600_000_000L
+    };
+    public static final long[] max2 = {
+            100_000_000L,
+            500_000_000L,
+            2_000_000_000L
+    };
+    public static final long[] max3 = {
+            1_000_000_000L,
+            2_000_000_000L
+    };
+    public static final long[] max4 = {
+            3_000_000_000L,
+            5_000_000_000L
+    };
+    public static final long[] max5 = {
+            1_000_000_000L,
+            3_000_000_000L
+    };
+    public static final Pair[] interest1 = new Pair[] {
+            new Pair<>(0.75, 1.0),
+            new Pair<>(0.5, 0.75),
+            new Pair<>(0.25, 0.5),
+    };
+    public static final Pair[] interest2 = new Pair[] {
+            new Pair<>(0.8, 1.2),
+            new Pair<>(0.6, 1.0),
+            new Pair<>(0.45, 0.8),
+    };
+    public static final Pair[] interest3 = new Pair[] {
+            new Pair<>(0.5, 0.8),
+            new Pair<>(0.45, 0.7),
+    };
+    public static final Pair[] interest4 = new Pair[] {
+            new Pair<>(0.4, 0.65),
+            new Pair<>(0.45, 0.75),
+    };
+    public static final Pair[] interest5 = new Pair[] {
+            new Pair<>(0.55, 0.9),
+            new Pair<>(0.5, 0.85),
+    };
 }

@@ -1,7 +1,7 @@
 package com.example.javafx_app.controller.saving;
 
 import com.example.javafx_app.config.Constant;
-import com.example.javafx_app.controller.VerifyController;
+import com.example.javafx_app.controller.verify.VerifyController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.manager.AccountManager;
@@ -43,6 +43,8 @@ public class SavingController implements Initializable {
     public void loadSaving(Transaction transaction){
         amount.setText(Long.toString(transaction.getAmount()));
         switch (currentSavingAccount.getType()){
+            case FLEXIBLE:
+                break;
             case FIXED:
                 extraInfoField.setText(Integer.toString(currentSavingAccount.getFixedDuration()));
                 break;

@@ -1,24 +1,21 @@
 package com.example.javafx_app.controller.saving;
 
-import com.example.javafx_app.controller.VerifyController;
+import com.example.javafx_app.controller.verify.VerifyController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.*;
-import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -169,4 +166,9 @@ public class WithdrawController {
         }
     }
 
+    @FXML
+    void RutCa(ActionEvent event){
+        amountTextField.setText(((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getSaving() + "");
+        amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getSaving()));
+    }
 }

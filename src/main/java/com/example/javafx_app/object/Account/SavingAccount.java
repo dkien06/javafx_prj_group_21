@@ -121,6 +121,7 @@ public class SavingAccount extends Account implements Serializable {
         }
     }
     public boolean withdrawAll(CheckingAccount account,String description) {
+        this.type = SavingType.NONE;
         return withdraw(account, saving,description);
     }
 

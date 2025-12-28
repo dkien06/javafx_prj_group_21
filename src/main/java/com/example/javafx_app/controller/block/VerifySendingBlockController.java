@@ -38,6 +38,12 @@ public class VerifySendingBlockController implements Initializable {
                 sendingAccountIDLabel.setText("Mã tài khoản: " + transaction.getToAccount().getAccountID());
                 sendingBankLabel.setText("Ngân hàng: " + "21stBank");
                 break;
+            case REPAY:
+                sendingLabel.setText("Người trả");
+                fullSendingNameLabel.setText("Họ tên: " + transaction.getToAccount().getAccountName());
+                sendingAccountIDLabel.setText("Mã tài khoản: " + transaction.getToAccount().getAccountID());
+                sendingBankLabel.setText("Ngân hàng: " + "21stBank");
+                break;
             default:
                 icon_chuyen_tien.setVisible(false);
                 sendingLabel.setVisible(false);

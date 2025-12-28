@@ -1,6 +1,5 @@
 package com.example.javafx_app.controller;
 
-import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
@@ -34,26 +33,42 @@ public class CompletedController {
                 toAccountFullNameLabel.setText("Người nhận: "+ cur.getToAccount().getAccountName());
                 toAccountIDLabel.setVisible(true);
                 toAccountIDLabel.setText("Số tài khoản: " + cur.getToAccount().getAccountID());
+                descriptionLabel.setText(cur.getDescription());
+                toBankLabel.setText("21stBank");
                 break;
             case DEPOSIT:
                 billHeadLabel.setText("Gửi tiền thành công");
                 toAccountFullNameLabel.setVisible(false);
                 toAccountIDLabel.setVisible(false);
+                descriptionLabel.setText(cur.getDescription());
+                toBankLabel.setText("21stBank");
                 break;
             case WITHDRAW:
                 billHeadLabel.setText("Rút tiền thành công");
                 toAccountFullNameLabel.setVisible(false);
                 toAccountIDLabel.setVisible(false);
+                descriptionLabel.setText(cur.getDescription());
+                toBankLabel.setText("21stBank");
+                break;
+            case REPAY:
+                billHeadLabel.setText("Trả nợ thành công");
+                toAccountFullNameLabel.setVisible(false);
+                toAccountIDLabel.setVisible(false);
+                descriptionLabel.setText(cur.getDescription());
+                toBankLabel.setText("21stBank");
+                break;
+            case LOAN:
+                billHeadLabel.setText("Tạo hồ sơ vay thành công");
+                toAccountFullNameLabel.setVisible(false);
+                toAccountIDLabel.setVisible(false);
+                descriptionLabel.setText("Vui lòng chờ để chúng tôi xét duyệt cho bạn!");
                 break;
             default:
-                CodeUnderConstruction.throwException();
                 break;
         }
         amountLabel.setText(TransactionManager.getInstance().
                 formatCurrency(cur.getAmount(), cur.getCurrency()));
         dateLabel.setText(String.valueOf(cur.getDate()));
-        toBankLabel.setText("21stBank");
-        descriptionLabel.setText(cur.getDescription());
     }
     @FXML
     void TrangChu(ActionEvent event){
@@ -63,7 +78,7 @@ public class CompletedController {
             case SavingAccount savingAccount ->
                     SceneUtils.switchScene(mainStage, "HomeScenes/saving_account_home_scene.fxml");
             case LoanAccount loanAccount ->
-                    SceneUtils.switchScene(mainStage, "HomeScenes/saving_account_home_scene.fxml");
+                    SceneUtils.switchScene(mainStage, "HomeScenes/loan_account_home_scene.fxml");
             case null, default -> throw new MysteriousException();
         }
     }
@@ -75,7 +90,7 @@ public class CompletedController {
             case SavingAccount savingAccount ->
                     SceneUtils.switchScene(mainStage,"SavingScene/saving_choose_method_scene.fxml");
             case LoanAccount loanAccount ->
-                    SceneUtils.switchScene(mainStage,"");
+                    SceneUtils.switchScene(mainStage,"loanScene/loan_choose_option.fxml");
             case null, default -> throw new MysteriousException();
         }
     }

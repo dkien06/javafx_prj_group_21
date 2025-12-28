@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="700.0" prefWidth="414.0" styleClass="rootLoan" stylesheets="@../css_file/for_loan_only.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.loan.LoanChooseMethodController">
    <children>
-      <Button fx:id="tien_gui_linh_hoat" layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#MoNgay1" prefHeight="103.0" prefWidth="355.0" styleClass="gray_btn">
+      <Button fx:id="tien_gui_linh_hoat" layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#KiHan" prefHeight="103.0" prefWidth="355.0" styleClass="gray_btn">
          <graphic>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -20,7 +20,7 @@
                   </Label>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Khi đến thời hạn thì bạn phải trả số tiền vay hoặc thực hiện gia hạn" wrappingWidth="338.078857421875" />
                   <Label />
-                  <Label fx:id="flexibleInterestRateLabel" text="0.00%/tháng">
+                  <Label fx:id="loan_fixed_interest_label" text="0.00%/tháng">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -29,7 +29,7 @@
             </VBox>
          </graphic>
       </Button>
-      <Button fx:id="tien_gui_ki_han" layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#MoNgay2" prefHeight="128.0" prefWidth="371.0" styleClass="gray_btn">
+      <Button fx:id="tien_gui_ki_han" layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#TraGop" prefHeight="128.0" prefWidth="371.0" styleClass="gray_btn">
          <graphic>
             <VBox prefHeight="120.0" prefWidth="335.0">
                <children>
@@ -40,7 +40,7 @@
                   </Label>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trong khoảng thời gian kì hạn, mỗi tháng tài khoản sẽ tự động trả lại một khoản tiền vay." wrappingWidth="322.66168212890625" />
                   <Label />
-                  <Label fx:id="fixedInterestRateLabel" text="0.00%/tháng">
+                  <Label fx:id="loan_accumulated_interest_label" text="0.00%/tháng">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -59,6 +59,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" styleClass="btn_xanh_nen_trang" text="Quay lại" />
+      <Button layoutX="177.0" layoutY="640.0" mnemonicParsing="false" onAction="#QuayLai" styleClass="btn_xanh_nen_trang" text="Quay lại" />
    </children>
 </AnchorPane>

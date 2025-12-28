@@ -5,6 +5,7 @@ module com.example.javafx_app {
     requires javafx.graphics;
     requires javafx.base;
     requires java.sql;
+
     opens com.example.javafx_app.controller.Staff to javafx.fxml;
     opens com.example.javafx_app.controller.SignUp to javafx.fxml;
     opens com.example.javafx_app to javafx.fxml, javafx.graphics;
@@ -35,4 +36,6 @@ module com.example.javafx_app {
     opens com.example.javafx_app.controller.Support to javafx.fxml;
     exports com.example.javafx_app.controller.loan to javafx.fxml;
     opens com.example.javafx_app.controller.loan to javafx.fxml;
+    exports com.example.javafx_app.controller.verify;
+    opens com.example.javafx_app.controller.verify to javafx.fxml;
 }
