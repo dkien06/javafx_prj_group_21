@@ -15,11 +15,11 @@
         <VBox layoutX="20.0" layoutY="75.0" prefHeight="587.0" prefWidth="374.0" spacing="15" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
 
             <!-- Title -->
-            <Label prefHeight="27.0" prefWidth="292.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Tìm kiếm giao dịch theo số tiền" />
+            <Label prefHeight="27.0" prefWidth="292.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Tìm kiếm giao dịch theo số tiền" textFill="WHITE" />
 
             <!-- Amount range -->
             <HBox spacing="10">
-                <Label text="Min Amount:" />
+                <Label text="Min Amount:" textFill="WHITE" />
                 <TextField fx:id="minAmountField" promptText="e.g. 100" />
 
                 <Label text="Max Amount:" />

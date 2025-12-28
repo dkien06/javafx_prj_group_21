@@ -9,22 +9,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-            prefWidth="414.0" stylesheets="@../css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/24.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignUp.SignUpExisting2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@../css_file/signin_decor1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.SignUp.SignUpExisting2">
     <children>
-        <Label alignment="CENTER" layoutX="124.0" layoutY="84.0" prefHeight="58.0" prefWidth="166.0" text="Thông tin tài khoản" />
+        <Label alignment="CENTER" layoutX="124.0" layoutY="84.0" prefHeight="58.0" prefWidth="166.0" text="Thông tin tài khoản" textFill="WHITE" />
         <VBox layoutX="76.0" layoutY="173.0" prefHeight="210.0" prefWidth="283.0">
             <children>
-            <Label text="Loại tài khoản" />
+            <Label text="Loại tài khoản" textFill="WHITE" />
             <ChoiceBox fx:id="account_type" prefHeight="29.0" prefWidth="281.0" />
-                <Label text="Khởi tao mật khẩu" />
+                <Label text="Khởi tao mật khẩu" textFill="WHITE" />
             <PasswordField fx:id="PasswordTextField" />
                 <Text fx:id="PasswordErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
-                <Label text="Nhập lại mật khẩu" />
+                <Label text="Nhập lại mật khẩu" textFill="WHITE" />
             <PasswordField fx:id="PasswordAgainTextField" />
                 <Text fx:id="PasswordAgainErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.9367218017578" />
-                <Label text=" Khởi tạo mã PIN" />
+                <Label text=" Khởi tạo mã PIN" textFill="WHITE" />
                 <TextField fx:id="PINTextField" />
                 <Text fx:id="PINErrorLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="281.33668518066406" />
             </children>

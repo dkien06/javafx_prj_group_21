@@ -58,6 +58,7 @@ public class VerifyController {
         this.interest = interest;
     }
     public void displayTransactionInformation(Transaction newTransaction){
+        System.out.println("Display completed!");
         Pair<Parent, VerifyReceiveBlockController> receiveBlock;
         Pair<Parent, VerifySendingBlockController> sendingBlock;
         switch (currentAccount) {
@@ -177,15 +178,20 @@ public class VerifyController {
                     default:
                         throw new MysteriousException();
                 }
-                switch (currentTransaction.getType()) {
-                    case LOAN:
-                        transactionTypeLabel.setText("Vay tiền");
-                        break;
-                    case REPAY:
-                        transactionTypeLabel.setText("Trả nợ");
-                        break;
-                    default:
-                        throw new MysteriousException();
+                if(((LoanAccount)currentAccount).getDuration() >= 0){
+                    switch (currentTransaction.getType()) {
+                        case LOAN:
+                            transactionTypeLabel.setText("Vay tiền");
+                            break;
+                        case REPAY:
+                            transactionTypeLabel.setText("Trả nợ");
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                }
+                else{
+                    transactionTypeLabel.setText("Gia hạn - " + -((LoanAccount)currentAccount).getDuration() + " tháng");
                 }
             }
             case null, default -> throw new MysteriousException();
@@ -233,6 +239,7 @@ public class VerifyController {
                         SceneUtils.switchScene(mainStage, savingScene.getKey());
                         break;
                     case WITHDRAW:
+                        TransactionManager.getInstance().removeNewTransaction();
                         SceneUtils.switchScene(mainStage, "SavingScene/withdraw_scene.fxml");
                         break;
                     case null, default:
@@ -241,11 +248,25 @@ public class VerifyController {
 
             }
             case LoanAccount loanAccount -> {
-                ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
-                Pair<Parent, LoanController> loanScene = SceneUtils.getRootAndController("loanScene/loan_scene.fxml");
-                loanScene.getValue().loadInfo(this.type, this.index, this.max, this.interest);
-                TransactionManager.getInstance().removeNewTransaction();
-                SceneUtils.switchScene(mainStage, loanScene.getKey());
+                if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDuration() < 0){
+                    ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
+                    TransactionManager.getInstance().removeNewTransaction();
+                    SceneUtils.switchScene(mainStage, "loanScene/extend_duration_scene.fxml");
+                }
+                else{
+                    switch (currentTransaction.getType()){
+                        case LOAN:
+                            ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
+                            Pair<Parent, LoanController> loanScene = SceneUtils.getRootAndController("loanScene/loan_scene.fxml");
+                            loanScene.getValue().loadInfo(this.type, this.index, this.max, this.interest);
+                            TransactionManager.getInstance().removeNewTransaction();
+                            SceneUtils.switchScene(mainStage, loanScene.getKey());
+                        case REPAY:
+                            TransactionManager.getInstance().removeNewTransaction();
+                            SceneUtils.switchScene(mainStage, "loanScene/repay_scene.fxml");
+                    }
+
+                }
             }
             case null, default -> throw new MysteriousException();
         }
@@ -259,7 +280,12 @@ public class VerifyController {
         }
         System.out.println(PINField.getText());
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
-                SceneUtils.switchScene(mainStage,"verify_otp_transaction.fxml");
+            if(AccountManager.getInstance().getCurrentAccount() instanceof LoanAccount){
+                Pair<Parent, VerifyOTPTransaction> scene = SceneUtils.getRootAndController("verify_otp_transaction.fxml");
+                scene.getValue().loadLoanInfo(this.type, this.index, this.max, this.index);
+                SceneUtils.switchScene(mainStage, scene.getKey());
+            }
+            else SceneUtils.switchScene(mainStage,"verify_otp_transaction.fxml");
         }
         else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");
@@ -303,15 +329,17 @@ public class VerifyController {
                 }
             }
             case LoanAccount loanAccount -> {
-                switch ((currentTransaction.getType())) {
-                    case LOAN:
-                        ((LoanAccount) fromAccount).makeLoan(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
-                        break;
-                    case REPAY:
-                        ((LoanAccount) toAccount).repay(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
-                        break;
-                    default:
-                        throw new MysteriousException();
+                if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDuration() >= 0){
+                    switch ((currentTransaction.getType())) {
+                        case LOAN:
+                            ((LoanAccount) fromAccount).makeLoan(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
+                            break;
+                        case REPAY:
+                            ((LoanAccount) toAccount).repay(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
                 }
             }
             case null, default -> throw new MysteriousException();

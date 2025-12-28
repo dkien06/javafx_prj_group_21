@@ -58,9 +58,12 @@ public class CompletedController {
                 toBankLabel.setText("21stBank");
                 break;
             case LOAN:
-                billHeadLabel.setText("Tạo hồ sơ vay thành công");
+                if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDuration() < 0)
+                    billHeadLabel.setText("Tạo hồ sơ vay thành công");
+                else billHeadLabel.setText("Tạo hồ sơ gia hạn thành công");
                 toAccountFullNameLabel.setVisible(false);
                 toAccountIDLabel.setVisible(false);
+                toBankLabel.setVisible(false);
                 descriptionLabel.setText("Vui lòng chờ để chúng tôi xét duyệt cho bạn!");
                 break;
             default:

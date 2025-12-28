@@ -103,31 +103,9 @@ public class WithdrawController {
                 }
             }
         });
-
-        // 3. Logic kiểm tra số tài khoản đích (Viết thẳng vào initialize)
-        receiveAccountIDTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            Account receiveAccount = AccountManager.getInstance().findAccount(newValue);
-            System.out.println("CHeck");
-            if (receiveAccount == null) {
-                receiveAccountIDLog.setText("Tài khoản không tồn tại");
-                receiveAccountIDLog.setFill(Color.RED);
-                isReceiveAccountValid = false;
-            }
-            // Không được chuyển tới tài khoản của người khác nếu không phải tài khoản CHECKING
-            else if (receiveAccount.getAccountType() != ACCOUNT_TYPE.CHECKING &&
-                    !receiveAccount.getCitizenID().equals(customer.getCitizenID())) {
-                receiveAccountIDLog.setText("Bạn không thể thực hiện giao dịch tới tài khoản này");
-                receiveAccountIDLog.setFill(Color.RED);
-                isReceiveAccountValid = false;
-            } else {
-                receiveAccountIDLog.setText(receiveAccount.getAccountName().toUpperCase());
-                receiveAccountIDLog.setFill(Color.BLACK);
-                isReceiveAccountValid = true;
-            }
-        });
         receiveAccountIDTextField.setText(checkingAccount.getAccountID());
         receiveAccountIDTextField.setEditable(false);
-        descriptionTextArea.setText(customer.getFullName().toUpperCase()+" rút tiền tiết kiệm");
+        descriptionTextArea.setText(customer.getFullName().toUpperCase()+" rut tien");
         if(savingAccount.getType()== SavingType.FIXED){
             warning.setVisible(true);
             WarningLabel.setVisible(true);
@@ -150,7 +128,7 @@ public class WithdrawController {
      */
     @FXML
     void TiepTuc(ActionEvent event) {
-        if(isAmountValid&&isReceiveAccountValid){
+        if(isAmountValid){
             TransactionManager.getInstance().newTransaction(
                     TransactionType.WITHDRAW,
                     Long.parseLong(amountTextField.getText()),
@@ -159,7 +137,6 @@ public class WithdrawController {
                     checkingAccount,
                     descriptionTextArea.getText()
             );
-
             Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());

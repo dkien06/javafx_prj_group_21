@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<Button fx:id="button" mnemonicParsing="false" onAction="#ButtonFunc" prefHeight="51.0" prefWidth="347.0" styleClass="nut_chua_lsgd" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.LoanReviewBlockController">
+<Button fx:id="button" mnemonicParsing="false" onAction="#ButtonFunc" prefHeight="51.0" prefWidth="347.0" styleClass="nut_chua_lsgd" stylesheets="@../css_file/transaction_history_scene.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.block.ReviewBlockController">
     <graphic>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="hbox_chua_lsgd">
             <children>
@@ -17,7 +17,12 @@
                         <Label fx:id="description" prefHeight="20.0" prefWidth="136.0" text="Gửi tiền tiết kiệm + Phương thức" />
                     </children>
                 </VBox>
-                <Label fx:id="amount" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="111.0" styleClass="sotien" text="Số tiền" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                      <Label fx:id="amount" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="111.0" styleClass="sotien" text="Số tiền" />
+                  <Label fx:id="yeu_cau" prefHeight="20.0" prefWidth="95.0" text="Label" />
+               </children>
+            </VBox>
             </children>
         </HBox>
     </graphic>

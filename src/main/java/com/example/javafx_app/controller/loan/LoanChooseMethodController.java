@@ -61,11 +61,11 @@ public class LoanChooseMethodController {
                 this.accumulatedInterest = (Double) Constant.interest5[index].getValue();
                 break;
             default:
-                this.max = 100000000L;
+                this.max = 9223372036854775807L;
                 loan_fixed_interest_label.setText("");
-                this.fixedInterest = 0.0;
+                this.fixedInterest = -1.0;
                 loan_accumulated_interest_label.setText("");
-                this.accumulatedInterest = 0.0;
+                this.accumulatedInterest = -1.0;
                 break;
         }
     }

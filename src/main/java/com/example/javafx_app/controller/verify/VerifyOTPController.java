@@ -1,5 +1,6 @@
 package com.example.javafx_app.controller.verify;
 
+import com.example.javafx_app.Message;
 import com.example.javafx_app.controller.ForgetPassword;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
@@ -81,8 +82,7 @@ public class VerifyOTPController implements Initializable {
         startCountdown();
         OTP = BankManager.generateOTP();
         if(isValid){
-            OTPLabel.setVisible(true);
-            OTPLabel.setText("Mã OTP của bạn là : "+OTP);
+            Message.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
         }
     }
 

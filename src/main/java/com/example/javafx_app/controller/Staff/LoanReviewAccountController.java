@@ -23,12 +23,15 @@ public class LoanReviewAccountController {
     @FXML private Label loanAccountNameLabel;
     @FXML private Label loanAccountCitizenIDLabel;
     @FXML private Label loanAccountIDLabel;
+    @FXML private Label trang_thai;
 
     @FXML private Label loanAmountLabel;
     @FXML private Label loanTypeLabel;
     @FXML private Label commitDateLabel;
     @FXML private Label durationLabel;
     @FXML private Label descriptionLabel;
+
+    @FXML private Label yeu_cau;
     @FXML private TextField interestField;
     @FXML private Text interestLog;
     public void loadInfo(String loanAccountID){
@@ -36,11 +39,18 @@ public class LoanReviewAccountController {
         loanAccountNameLabel.setText("Họ và tên: " + loanAccount.getAccountName());
         loanAccountCitizenIDLabel.setText("Số CCCD: " + loanAccount.getCitizenID());
         loanAccountIDLabel.setText(loanAccount.getAccountID());
+        trang_thai.setText("Trạng thái: " + loanAccount.getStatus().toString());
+
         loanAmountLabel.setText("Số tiền vay: " + loanAccount.getDebt() + loanAccount.getCurrency());
         loanTypeLabel.setText("Kiểu vay: " + loanAccount.getType().toString());
         commitDateLabel.setText("Ngày thực hiện: " + loanAccount.getStartLoanDate().toString());
         durationLabel.setText("Kỳ hạn: " + loanAccount.getDuration());
         descriptionLabel.setText(loanAccount.getDescription());
+
+        if(loanAccount.getDuration() < 0){
+            yeu_cau.setText("Yêu cầu: Gia hạn");
+        }
+        else yeu_cau.setText("Yêu cầu: Duyệt vay");
         if(loanAccount.getInterest() > 0){
             interestField.setText("" + loanAccount.getInterest());
         }
@@ -48,7 +58,7 @@ public class LoanReviewAccountController {
 
     @FXML
     void QuayLai(ActionEvent event){
-        SceneUtils.switchScene(mainStage, "StaffScene/loan_review_scene.fxml");
+        SceneUtils.switchScene(mainStage, "StaffScene/review_scene.fxml");
     }
 
     @FXML
@@ -86,21 +96,36 @@ public class LoanReviewAccountController {
                 TuChoi(event);
             } else {
                 LoanAccount account = (LoanAccount)AccountManager.getInstance().findAccount(loanAccountIDLabel.getText());
-                Transaction transaction = new Transaction(
-                        TransactionType.LOAN,
-                        account.getDebt(),
-                        account.getCurrency(),
-                        account,
-                        AccountManager.getInstance().findCheckingAccount(account),
-                        descriptionLabel.getText()
-                );
-                account.addToHistories(transaction, reason);
-                account.setDebt(0);
-                account.setDuration(0);
-                account.setInterest(0.0);
-                account.setType(LoanType.NONE);
-                account.setStatus(LoanStatus.NONE);
-                SceneUtils.switchScene(mainStage, "StaffScene/loan_review_scene.fxml");
+                if(account.getDuration() < 0){
+                    Transaction transaction = new Transaction(
+                            TransactionType.LOAN,
+                            account.getDebt(),
+                            account.getCurrency(),
+                            account,
+                            AccountManager.getInstance().findCheckingAccount(account),
+                            "Từ chối gia hạn"
+                    );
+                    account.addToHistories(transaction, reason);
+                    account.setDuration(0);
+                    SceneUtils.switchScene(mainStage, "StaffScene/review_scene.fxml");
+                }
+                else{
+                    Transaction transaction = new Transaction(
+                            TransactionType.LOAN,
+                            account.getDebt(),
+                            account.getCurrency(),
+                            account,
+                            AccountManager.getInstance().findCheckingAccount(account),
+                            "Từ chối duyệt vay"
+                    );
+                    account.addToHistories(transaction, reason);
+                    account.setDebt(0);
+                    account.setDuration(0);
+                    account.setInterest(0.0);
+                    account.setType(LoanType.NONE);
+                    account.setStatus(LoanStatus.NONE);
+                    SceneUtils.switchScene(mainStage, "StaffScene/review_scene.fxml");
+                }
             }
         }
     }
@@ -126,18 +151,23 @@ public class LoanReviewAccountController {
         }
         interestLog.setText("");
         LoanAccount account = (LoanAccount)AccountManager.getInstance().findAccount(loanAccountIDLabel.getText());
-        Transaction transaction = new Transaction(
-                TransactionType.LOAN,
-                account.getDebt(),
-                account.getCurrency(),
-                account,
-                AccountManager.getInstance().findCheckingAccount(account),
-                descriptionLabel.getText()
-        );
-        account.addToHistories(transaction, LoanStatus.ACTIVE);
-        account.addTransaction(transaction);
-        TransactionManager.getInstance().addTransaction(transaction);
-        SceneUtils.switchScene(mainStage, "StaffScene/loan_review_scene.fxml");
+        if(account.getDuration() < 0){
+            account.extend(-(int)account.getDuration());
+            account.setDuration(-account.getDuration());
+        }
+        else{
+            Transaction transaction = new Transaction(
+                    TransactionType.LOAN,
+                    account.getDebt(),
+                    account.getCurrency(),
+                    account,
+                    AccountManager.getInstance().findCheckingAccount(account),
+                    descriptionLabel.getText()
+            );
+            TransactionManager.getInstance().addTransaction(transaction);
+            account.loan(AccountManager.getInstance().findCheckingAccount(account), descriptionLabel.getText());
+        }
+        SceneUtils.switchScene(mainStage, "StaffScene/review_scene.fxml");
 
     }
 }
