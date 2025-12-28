@@ -13,7 +13,7 @@ int wmain(int argc, wchar_t* argv[]) {
         L"$texts = $xml.GetElementsByTagName('text'); "
         L"$texts[0].AppendChild($xml.CreateTextNode(\'" + message + "\')); "
         L"$toast = [Windows.UI.Notifications.ToastNotification]::new($xml); "
-        L"[Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('JavaApp').Show($toast)\"";
+        L"[Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('Thông báo OTP').Show($toast)\"";
 
     ShellExecuteW(NULL, L"open", L"powershell.exe", psCommand.c_str(), NULL, SW_HIDE);
     return 0;

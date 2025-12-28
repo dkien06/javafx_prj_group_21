@@ -1,6 +1,5 @@
 package com.example.javafx_app.controller.verify;
 
-import com.example.javafx_app.Message;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.TransactionManager;
@@ -12,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -33,9 +31,6 @@ public class VerifyOTPTransaction implements Initializable {
 
     @FXML
     private Text countdownText;
-
-    @FXML
-    private Label OTPLabel ;
 
     //Làm cho loan
     private int type = 0;
@@ -58,7 +53,6 @@ public class VerifyOTPTransaction implements Initializable {
     public  static String Type ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        OTPLabel.setVisible(false);
         System.out.println(isValid);
         GuiLaiOTP();
     }
@@ -98,7 +92,7 @@ public class VerifyOTPTransaction implements Initializable {
         startCountdown();
         OTP = BankManager.generateOTP();
         if(isValid){
-            Message.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
+            OTPMessage.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
         }
     }
 

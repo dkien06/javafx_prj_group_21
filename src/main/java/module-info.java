@@ -37,5 +37,5 @@ module com.example.javafx_app {
     exports com.example.javafx_app.controller.loan to javafx.fxml;
     opens com.example.javafx_app.controller.loan to javafx.fxml;
     exports com.example.javafx_app.controller.verify;
-    opens com.example.javafx_app.controller.verify to javafx.fxml;
+    opens com.example.javafx_app.controller.verify to javafx.fxml, javafx.graphics;
 }

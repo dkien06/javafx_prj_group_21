@@ -1,6 +1,5 @@
 package com.example.javafx_app.controller.verify;
 
-import com.example.javafx_app.Message;
 import com.example.javafx_app.controller.ForgetPassword;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
@@ -9,7 +8,6 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -30,9 +28,6 @@ public class VerifyOTPController implements Initializable {
     @FXML
     private Text countdownText;
 
-    @FXML
-    private Label OTPLabel ;
-
     // Giữ lại các hằng số cần thiết cho flow và timer
     private static final int INITIAL_COUNTDOWN = 30;
     private int currentCountdown;
@@ -42,7 +37,6 @@ public class VerifyOTPController implements Initializable {
     private String OTP = BankManager.generateOTP() ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        OTPLabel.setVisible(false);
         System.out.println(isValid);
         GuiLaiOTP();
     }
@@ -82,7 +76,7 @@ public class VerifyOTPController implements Initializable {
         startCountdown();
         OTP = BankManager.generateOTP();
         if(isValid){
-            Message.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
+            OTPMessage.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
         }
     }
 

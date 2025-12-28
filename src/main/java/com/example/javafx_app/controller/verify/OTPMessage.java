@@ -1,7 +1,7 @@
-package com.example.javafx_app;
+package com.example.javafx_app.controller.verify;
 import java.io.IOException;
 
-public class Message {
+public class OTPMessage {
     public static void makeMessage(String message) {
         try {
             // 1. Phải là file .exe đã biên dịch, không phải file .cpp
