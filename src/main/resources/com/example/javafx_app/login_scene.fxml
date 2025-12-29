@@ -21,7 +21,7 @@
             <ChoiceBox fx:id="accountType" prefHeight="26.0" prefWidth="293.0" />
             <Label text="Mật khẩu" textFill="WHITE" />
             <PasswordField fx:id="PasswordField" />
-            <Label fx:id="WrongLoginLabel" prefHeight="18.0" prefWidth="211.0" styleClass="red_label" textFill="#cc3535" />
+            <Label fx:id="WrongLoginLabel" prefHeight="18.0" prefWidth="278.0" styleClass="red_label" textFill="#cc3535" />
             <CheckBox fx:id="RememberPass" mnemonicParsing="false" prefHeight="18.0" prefWidth="141.0" text="Nhớ mật khẩu" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -33,5 +33,8 @@
       <Label layoutX="161.0" layoutY="485.0" onMouseClicked="#QuenMatKhau" text="Quên mật khẩu?" textFill="#27A4F2" underline="true" />
       <Button fx:id="btn_tao_tai_khoan_moi" layoutX="139.0" layoutY="578.0" mnemonicParsing="false" onAction="#TaoTaiKhoanMoi" text="Tạo tài khoản mới" />
       <Line endX="110.79998779296875" layoutX="201.0" layoutY="537.0" startX="-99.59999084472656" stroke="#1882d4" />
+      <ChoiceBox fx:id="quick_log_in_for_example_account" layoutX="61.0" layoutY="39.0" prefHeight="36.0" prefWidth="177.0" />
+      <Button fx:id="quick_login_button" layoutX="239.0" layoutY="39.0" mnemonicParsing="false" onAction="#DangNhapNhanh" prefHeight="36.0" prefWidth="110.0" text="Đăng nhập" />
+      <Label fx:id="example_name_label" layoutX="61.0" layoutY="75.0" prefHeight="18.0" prefWidth="291.0" styleClass="red_label" textFill="WHITE" />
    </children>
 </AnchorPane>

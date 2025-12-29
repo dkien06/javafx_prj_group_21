@@ -1,9 +1,12 @@
 package com.example.javafx_app.controller.setting;
 
+import com.example.javafx_app.controller.LoginController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.util.Pair;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
@@ -32,6 +35,8 @@ public class SettingsController {
     @FXML
     public void DangXuat(ActionEvent event){
         AccountManager.getInstance().logOut();
-        SceneUtils.switchScene(mainStage,"login_scene.fxml");
+        Pair<Parent, LoginController> scene = SceneUtils.getRootAndController("login_scene.fxml");
+        scene.getValue().loadCheat();
+        SceneUtils.switchScene(mainStage,scene.getKey());
     }
 }
