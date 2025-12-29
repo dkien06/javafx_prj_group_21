@@ -36,7 +36,9 @@ public class LoanChooseOptionsController {
     }
     @FXML
     void DangKyNgay6(ActionEvent event){
-        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), "loanScene/loan_choose_method.fxml");
+        Pair<Parent, LoanChooseMethodController> scene = SceneUtils.getRootAndController("loanScene/loan_choose_method.fxml");
+        scene.getValue().loadInfo(0,0);
+        SceneUtils.switchScene(SceneUtils.getStageFromEvent(event), scene.getKey());
     }
     void DangKyNgay(ActionEvent event, int type){
         Pair<Parent, LoanChooseCategoriesController> scene = SceneUtils.getRootAndController("loanScene/loan_choose_categories.fxml");

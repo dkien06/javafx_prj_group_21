@@ -14,7 +14,7 @@ import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.util.SceneUtils;
-import com.example.javafx_app.controller.VerifyController;
+import com.example.javafx_app.controller.verify.VerifyController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -13,26 +13,26 @@
    <children>
       <VBox layoutX="33.0" layoutY="96.0" prefHeight="492.0" prefWidth="348.0">
          <children>
-            <Label text="Số tài khoản gửi">
+            <Label text="Số tài khoản gửi" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="savingAccountID" editable="false" />
-            <Label text="Phương thức gửi tiền">
+            <Label text="Phương thức gửi tiền" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="savingMethod" editable="false" prefHeight="26.0" prefWidth="320.0" />
-            <Label prefHeight="26.0" prefWidth="59.0" text="Số tiền">
+            <Label prefHeight="26.0" prefWidth="59.0" text="Số tiền" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="amount" />
             <Text fx:id="amountLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.1366310119629" />
-            <Label fx:id="extraInfoLabel" layoutX="10.0" layoutY="116.0" prefHeight="27.0" prefWidth="362.0" text="Thời hạn">
+            <Label fx:id="extraInfoLabel" layoutX="10.0" layoutY="116.0" prefHeight="27.0" prefWidth="362.0" text="Thời hạn" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -40,7 +40,7 @@
             <Text fx:id="extraInfoNoteText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nếu là theo kì hạn thì phải ghi thời hạn, còn lại thì không" />
             <TextField fx:id="extraInfoField" layoutX="10.0" layoutY="144.0" />
             <Text fx:id="extraInfoLog" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="344.53669357299805" />
-            <Label prefHeight="27.0" prefWidth="178.0" text="Nội dung gửi tiền">
+            <Label prefHeight="27.0" prefWidth="178.0" text="Nội dung gửi tiền" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

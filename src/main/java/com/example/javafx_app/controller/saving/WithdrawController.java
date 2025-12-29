@@ -1,24 +1,21 @@
 package com.example.javafx_app.controller.saving;
 
-import com.example.javafx_app.controller.VerifyController;
+import com.example.javafx_app.controller.verify.VerifyController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.*;
-import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.object.User.Customer;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -106,31 +103,9 @@ public class WithdrawController {
                 }
             }
         });
-
-        // 3. Logic kiểm tra số tài khoản đích (Viết thẳng vào initialize)
-        receiveAccountIDTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            Account receiveAccount = AccountManager.getInstance().findAccount(newValue);
-            System.out.println("CHeck");
-            if (receiveAccount == null) {
-                receiveAccountIDLog.setText("Tài khoản không tồn tại");
-                receiveAccountIDLog.setFill(Color.RED);
-                isReceiveAccountValid = false;
-            }
-            // Không được chuyển tới tài khoản của người khác nếu không phải tài khoản CHECKING
-            else if (receiveAccount.getAccountType() != ACCOUNT_TYPE.CHECKING &&
-                    !receiveAccount.getCitizenID().equals(customer.getCitizenID())) {
-                receiveAccountIDLog.setText("Bạn không thể thực hiện giao dịch tới tài khoản này");
-                receiveAccountIDLog.setFill(Color.RED);
-                isReceiveAccountValid = false;
-            } else {
-                receiveAccountIDLog.setText(receiveAccount.getAccountName().toUpperCase());
-                receiveAccountIDLog.setFill(Color.BLACK);
-                isReceiveAccountValid = true;
-            }
-        });
         receiveAccountIDTextField.setText(checkingAccount.getAccountID());
         receiveAccountIDTextField.setEditable(false);
-        descriptionTextArea.setText(customer.getFullName().toUpperCase()+" rút tiền tiết kiệm");
+        descriptionTextArea.setText(customer.getFullName().toUpperCase()+" rut tien");
         if(savingAccount.getType()== SavingType.FIXED){
             warning.setVisible(true);
             WarningLabel.setVisible(true);
@@ -153,7 +128,7 @@ public class WithdrawController {
      */
     @FXML
     void TiepTuc(ActionEvent event) {
-        if(isAmountValid&&isReceiveAccountValid){
+        if(isAmountValid){
             TransactionManager.getInstance().newTransaction(
                     TransactionType.WITHDRAW,
                     Long.parseLong(amountTextField.getText()),
@@ -162,11 +137,15 @@ public class WithdrawController {
                     checkingAccount,
                     descriptionTextArea.getText()
             );
-
             Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
             scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
             SceneUtils.switchScene(mainStage, scene.getKey());
         }
     }
 
+    @FXML
+    void RutCa(ActionEvent event){
+        amountTextField.setText(((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getSaving() + "");
+        amountLog.setText(NumberToVietnameseWord.numberToVietnameseWords(((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getSaving()));
+    }
 }

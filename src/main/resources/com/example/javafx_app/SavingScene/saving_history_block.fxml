@@ -11,7 +11,7 @@
                 <VBox prefHeight="43.0" prefWidth="175.0">
                     <children>
                         <Label fx:id="toAccountName" prefHeight="20.0" prefWidth="151.0" text="Họ và tên" />
-                        <Label fx:id="description" prefHeight="20.0" prefWidth="136.0" text="Gửi tiền tiết kiệm + Phương thức" />
+                        <Label fx:id="description" prefHeight="20.0" prefWidth="174.0" text="Gửi tiền tiết kiệm + Phương thức" />
                     </children>
                 </VBox>
                 <Label fx:id="amount" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="111.0" styleClass="sotien" text="Số tiền" />

@@ -1,6 +1,7 @@
 package com.example.javafx_app.convert;
 
 import com.example.javafx_app.manager.AccountManager;
+import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.SavingAccount;
 
 public class NumberToVietnameseWord {
@@ -96,6 +97,7 @@ public class NumberToVietnameseWord {
         try {
             if (!value.isEmpty() && value.matches("\\d+")) {
                 long amount = Long.parseLong(value);
+                if(AccountManager.getInstance().getCurrentAccount() instanceof LoanAccount)return "";
                 if(amount > AccountManager.getInstance().findCheckingAccount(AccountManager.getInstance().getCurrentAccount()).getBalance())
                     return "Số tiền bạn nhập không đủ để chuyển";
                 else return "";
@@ -113,6 +115,23 @@ public class NumberToVietnameseWord {
                 long amount = Long.parseLong(value);
                 if(amount > savingAccount.getSaving())
                     return "Số tiền bạn nhập không đủ để chuyển";
+                else return "";
+            } else {
+                if(value.isEmpty())return "Vui lòng nhập số tiền";
+                else return  "Số tiền không hợp lệ";
+            }
+        } catch (NumberFormatException e) {
+            return  "Số tiền không hợp lệ";
+        }
+    }
+    public static String displayErrorForLoan(String value, LoanAccount loanAccount){
+        try {
+            if (!value.isEmpty() && value.matches("\\d+")) {
+                long amount = Long.parseLong(value);
+                if(amount > loanAccount.getDebt())
+                    return "Số tiền bạn nhập quá lớn đối với số tiền vay của bạn";
+                else if(amount > AccountManager.getInstance().findCheckingAccount(loanAccount).getBalance())
+                    return "Số tiền bạn nhập không đủ để trả nợ";
                 else return "";
             } else {
                 if(value.isEmpty())return "Vui lòng nhập số tiền";

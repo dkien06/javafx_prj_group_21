@@ -1,6 +1,5 @@
 package com.example.javafx_app.controller.HomeController;
 
-import com.example.javafx_app.exception.CodeUnderConstruction;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.TransactionManager;
 import com.example.javafx_app.manager.UserManager;
@@ -13,52 +12,21 @@ import com.example.javafx_app.util.DialogUtils;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+
+import java.util.Optional;
 
 import static com.example.javafx_app.config.Constant.mainStage;
 
 public class SavingAccountHomeSceneController implements HomeSceneController{
-    // AnchorPane
-    @FXML
-    private AnchorPane rootPane;
-
-    // Labels
-    @FXML
-    private Label logo_label;
-    @FXML
-    private Label account_icon;
-    @FXML
-    private Label setting_icon;
-    @FXML
-    private Label tongtiengui_label;
     @FXML
     private Label balance_label;
     @FXML
     private Label MethodLabel;
 
-    // Buttons
-    @FXML
-    private Button transfer_btn;
-    @FXML
-    private Button service_btn;
-    @FXML
-    private Button account_btn;
-    @FXML
-    private Button settings_btn;
-    @FXML
-    private Button noti_btn;
-
-    // Layout Containers
-    @FXML
-    private GridPane gridpane1;
-    @FXML
-    private GridPane gridpane2;
-    @FXML
-    private VBox balance_box;
     private SavingAccount savingAccount = (SavingAccount) AccountManager.getInstance().getCurrentAccount() ;
     private Customer customer =(Customer) UserManager.getInstance().getCurrentUser() ;
     private CheckingAccount checkingAccount =(CheckingAccount) AccountManager.getInstance().findExactAccountFromCostumer(customer, ACCOUNT_TYPE.CHECKING);
@@ -99,6 +67,20 @@ public class SavingAccountHomeSceneController implements HomeSceneController{
         SceneUtils.switchScene(mainStage, "SavingScene/saving_history_scene.fxml");
     }
     public void Withdraw(ActionEvent event) {
+        if(((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getType() == SavingType.NONE || ((SavingAccount)AccountManager.getInstance().getCurrentAccount()).getSaving() == 0){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Không có tiền để rút");
+            alert1.setHeaderText("Tài khoản không có tiền để rút");
+
+            ButtonType okButton1 = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelButton1 = new ButtonType("Hủy", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert1.getButtonTypes().setAll(okButton1, cancelButton1);
+
+            Optional<ButtonType> result1 = alert1.showAndWait();
+            if (result1.isPresent()){
+                return;
+            }
+        }
         SceneUtils.switchScene(mainStage, "SavingScene/withdraw_scene.fxml");
     }
     public void XemTaiKhoan(ActionEvent event) {

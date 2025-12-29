@@ -22,7 +22,6 @@
 }
 
 .label {
-    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-letter-spacing: 0.3px;
 }

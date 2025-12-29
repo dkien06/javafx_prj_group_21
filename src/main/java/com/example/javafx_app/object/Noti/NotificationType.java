@@ -21,8 +21,11 @@ public enum NotificationType implements Serializable {
 
     // 4. Sản phẩm / Hệ thống
     PROMOTION("Khuyến mãi/Ưu đãi"),
-    SYSTEM_UPDATE("Cập nhật hệ thống");
-
+    SYSTEM_UPDATE("Cập nhật hệ thống"),
+    // 5. Tiet kiem
+    SAVING_UPDATE("Cập nhật tiền tiết kiệm"),
+    // 6. Vay trả
+    LOAN_UPDATE("Cập nhật tiền vay");
     private final String label;
 
     private NotificationType(String label) {

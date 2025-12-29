@@ -54,7 +54,6 @@ public class DataPersistence {
     public static void saveAllData() {
         initializeDataDirectory();
         System.out.println("Đang lưu dữ liệu...");
-
         saveData((Serializable) AccountManager.getInstance().getAccountList(), ACCOUNT_FILE);
         saveData((Serializable) UserManager.getInstance().getUserList(), USER_FILE);
         saveData((Serializable) TransactionManager.getInstance().getTransactionsList(), TRANSACTION_FILE);

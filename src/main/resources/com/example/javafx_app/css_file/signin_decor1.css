@@ -39,7 +39,6 @@ AnchorPane {
 }
 
 .label {
-    -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-letter-spacing: 0.3px;

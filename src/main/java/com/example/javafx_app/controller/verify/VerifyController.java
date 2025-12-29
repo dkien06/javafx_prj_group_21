@@ -1,11 +1,13 @@
-package com.example.javafx_app.controller;
+package com.example.javafx_app.controller.verify;
 
 import com.example.javafx_app.controller.Bill.BillButtonController;
+import com.example.javafx_app.controller.CompletedController;
 import com.example.javafx_app.controller.checking.DepositController;
 import com.example.javafx_app.controller.checking.TransactingController;
 import com.example.javafx_app.controller.checking.WithdrawController;
 import com.example.javafx_app.controller.block.VerifyReceiveBlockController;
 import com.example.javafx_app.controller.block.VerifySendingBlockController;
+import com.example.javafx_app.controller.loan.LoanController;
 import com.example.javafx_app.controller.saving.SavingController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.exception.MysteriousException;
@@ -45,7 +47,18 @@ public class VerifyController {
     @FXML Text PINErrorLog;
     Account currentAccount = AccountManager.getInstance().getCurrentAccount();
     Transaction currentTransaction = TransactionManager.getInstance().getCurrentTransaction();
+    private int type = 0;
+    private int index = 0;
+    private long max = 0;
+    private double interest = 0;
+    public void loadLoanInfo(int type, int index, long max, double interest){
+        this.type = type;
+        this.index = index;
+        this.max = max;
+        this.interest = interest;
+    }
     public void displayTransactionInformation(Transaction newTransaction){
+        System.out.println("Display completed!");
         Pair<Parent, VerifyReceiveBlockController> receiveBlock;
         Pair<Parent, VerifySendingBlockController> sendingBlock;
         switch (currentAccount) {
@@ -143,19 +156,42 @@ public class VerifyController {
             case LoanAccount loanAccount -> {
                 switch (currentTransaction.getType()) {
                     case LOAN:
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(sendingBlock.getKey());
+
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().addFirst(receiveBlock.getKey());
+
                         break;
                     case REPAY:
+                        sendingBlock = SceneUtils.getRootAndController("verify/verify_sending_block.fxml");
+                        sendingBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(sendingBlock.getKey());
+
+                        receiveBlock = SceneUtils.getRootAndController("verify/verify_receive_block.fxml");
+                        receiveBlock.getValue().setData(newTransaction);
+                        VBox_Thong_Tin_Xac_Nhan.getChildren().add(receiveBlock.getKey());
+
                         break;
                     default:
                         throw new MysteriousException();
                 }
-                switch (currentTransaction.getType()) {
-                    case LOAN:
-                        break;
-                    case REPAY:
-                        break;
-                    default:
-                        throw new MysteriousException();
+                if(((LoanAccount)currentAccount).getDuration() >= 0){
+                    switch (currentTransaction.getType()) {
+                        case LOAN:
+                            transactionTypeLabel.setText("Vay tiền");
+                            break;
+                        case REPAY:
+                            transactionTypeLabel.setText("Trả nợ");
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
+                }
+                else{
+                    transactionTypeLabel.setText("Gia hạn - " + -((LoanAccount)currentAccount).getDuration() + " tháng");
                 }
             }
             case null, default -> throw new MysteriousException();
@@ -195,13 +231,42 @@ public class VerifyController {
             case SavingAccount savingAccount -> {
                 ((SavingAccount) AccountManager.getInstance().getCurrentAccount()).setFixedDuration(0);
                 ((SavingAccount) AccountManager.getInstance().getCurrentAccount()).setAccumulatedAmount(0);
-                Pair<Parent, SavingController> savingScene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
-                savingScene.getValue().loadSaving(TransactionManager.getInstance().getCurrentTransaction());
-                TransactionManager.getInstance().removeNewTransaction();
-                SceneUtils.switchScene(mainStage, savingScene.getKey());
+                switch (currentTransaction.getType()){
+                    case DEPOSIT:
+                        Pair<Parent, SavingController> savingScene = SceneUtils.getRootAndController("SavingScene/saving_scene.fxml");
+                        savingScene.getValue().loadSaving(TransactionManager.getInstance().getCurrentTransaction());
+                        TransactionManager.getInstance().removeNewTransaction();
+                        SceneUtils.switchScene(mainStage, savingScene.getKey());
+                        break;
+                    case WITHDRAW:
+                        TransactionManager.getInstance().removeNewTransaction();
+                        SceneUtils.switchScene(mainStage, "SavingScene/withdraw_scene.fxml");
+                        break;
+                    case null, default:
+                        throw new MysteriousException();
+                }
+
             }
             case LoanAccount loanAccount -> {
-                //Hehe
+                if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDuration() < 0){
+                    ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
+                    TransactionManager.getInstance().removeNewTransaction();
+                    SceneUtils.switchScene(mainStage, "loanScene/extend_duration_scene.fxml");
+                }
+                else{
+                    switch (currentTransaction.getType()){
+                        case LOAN:
+                            ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
+                            Pair<Parent, LoanController> loanScene = SceneUtils.getRootAndController("loanScene/loan_scene.fxml");
+                            loanScene.getValue().loadInfo(this.type, this.index, this.max, this.interest);
+                            TransactionManager.getInstance().removeNewTransaction();
+                            SceneUtils.switchScene(mainStage, loanScene.getKey());
+                        case REPAY:
+                            TransactionManager.getInstance().removeNewTransaction();
+                            SceneUtils.switchScene(mainStage, "loanScene/repay_scene.fxml");
+                    }
+
+                }
             }
             case null, default -> throw new MysteriousException();
         }
@@ -215,7 +280,12 @@ public class VerifyController {
         }
         System.out.println(PINField.getText());
         if(AccountManager.getInstance().getCurrentAccount().isPinMatched(PIN)){
-                SceneUtils.switchScene(mainStage,"verify_otp_transaction.fxml");
+            if(AccountManager.getInstance().getCurrentAccount() instanceof LoanAccount){
+                Pair<Parent, VerifyOTPTransaction> scene = SceneUtils.getRootAndController("verify_otp_transaction.fxml");
+                scene.getValue().loadLoanInfo(this.type, this.index, this.max, this.index);
+                SceneUtils.switchScene(mainStage, scene.getKey());
+            }
+            else SceneUtils.switchScene(mainStage,"verify_otp_transaction.fxml");
         }
         else {
             PINErrorLog.setText("Mã pin của bạn không chính xác");
@@ -259,15 +329,17 @@ public class VerifyController {
                 }
             }
             case LoanAccount loanAccount -> {
-                switch ((currentTransaction.getType())) {
-                    case LOAN:
-                        ((LoanAccount) toAccount).loan(AccountManager.getInstance().findCheckingAccount(toAccount), amount);
-                        break;
-                    case REPAY:
-                        ((LoanAccount) fromAccount).repay(AccountManager.getInstance().findCheckingAccount(fromAccount), amount);
-                        break;
-                    default:
-                        throw new MysteriousException();
+                if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDuration() >= 0){
+                    switch ((currentTransaction.getType())) {
+                        case LOAN:
+                            ((LoanAccount) fromAccount).makeLoan(AccountManager.getInstance().findCheckingAccount(fromAccount), amount, description);
+                            break;
+                        case REPAY:
+                            ((LoanAccount) toAccount).repay(AccountManager.getInstance().findCheckingAccount(toAccount), amount, description);
+                            break;
+                        default:
+                            throw new MysteriousException();
+                    }
                 }
             }
             case null, default -> throw new MysteriousException();

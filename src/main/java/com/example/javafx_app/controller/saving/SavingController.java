@@ -1,7 +1,7 @@
 package com.example.javafx_app.controller.saving;
 
 import com.example.javafx_app.config.Constant;
-import com.example.javafx_app.controller.VerifyController;
+import com.example.javafx_app.controller.verify.VerifyController;
 import com.example.javafx_app.convert.NumberToVietnameseWord;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.manager.AccountManager;
@@ -43,6 +43,8 @@ public class SavingController implements Initializable {
     public void loadSaving(Transaction transaction){
         amount.setText(Long.toString(transaction.getAmount()));
         switch (currentSavingAccount.getType()){
+            case FLEXIBLE:
+                break;
             case FIXED:
                 extraInfoField.setText(Integer.toString(currentSavingAccount.getFixedDuration()));
                 break;
@@ -63,13 +65,13 @@ public class SavingController implements Initializable {
         description.setText(currentSavingAccount.getAccountName().toUpperCase() + " gui tien");
         switch (currentSavingAccount.getType()){
             case FLEXIBLE:
-                savingMethod.setText("Tiền gửi linh hoạt - " + Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi linh hoạt - " + Constant.SAVING_FLEXIBLE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
                 break;
             case FIXED:
-                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_FIXED_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_FIXED_INTEREST_RATE_PER_MONTH *100+ "%/năm");
                 break;
             case ACCUMULATED:
-                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_YEAR + "%/năm");
+                savingMethod.setText("Tiền gửi kì hạn - " + Constant.SAVING_ACCUMULATE_INTEREST_RATE_PER_MONTH*100 + "%/năm");
                 break;
             default:
                 throw new MysteriousException();

@@ -11,17 +11,17 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="39.0" layoutY="207.0" prefHeight="94.0" prefWidth="336.0">
          <children>
-            <Label fx:id="billHeadLabel" text="Chuyển khoản thành công">
+            <Label fx:id="billHeadLabel" text="Chuyển khoản thành công" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="amountLabel" text="//Số tiền đã chuyển">
+            <Label fx:id="amountLabel" text="//Số tiền đã chuyển" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Text fx:id="dateLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="//Ngày tháng đã chuyển" />
+            <Text fx:id="dateLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="//Ngày tháng đã chuyển" />
          </children>
       </VBox>
       <VBox fx:id="VBox_thong_tin_dich" alignment="TOP_CENTER" layoutX="39.0" layoutY="328.0" prefHeight="161.0" prefWidth="336.0">

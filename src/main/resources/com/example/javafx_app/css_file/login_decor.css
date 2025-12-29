@@ -37,7 +37,6 @@ AnchorPane {
 }
 
 .label {
-    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-letter-spacing: 0.3px;
 }
@@ -172,4 +171,20 @@ AnchorPane {
 .table-view .column-header {
     -fx-background-color: #CCCCCC;
     -fx-background-insets: 0 0 0 1;
+}
+/* Định dạng cho tiêu đề (Label lớn) */
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Định dạng cho nút bấm để không bị đổi cỡ chữ khi hover */
+.button {
+    -fx-font-size: 14px;
+    /* Giữ nguyên cỡ chữ cho mọi trạng thái */
+}
+
+.button:hover {
+    -fx-font-size: 14px;
+    -fx-background-color: #e6f4ff;
 }
