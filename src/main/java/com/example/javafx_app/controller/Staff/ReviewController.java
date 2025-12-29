@@ -1,6 +1,6 @@
 package com.example.javafx_app.controller.Staff;
 
-import com.example.javafx_app.controller.block.LoanReviewBlockController;
+import com.example.javafx_app.controller.block.ReviewBlockController;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.object.Account.LoanStatus;
@@ -27,9 +27,17 @@ public class ReviewController implements Initializable {
             if(account instanceof LoanAccount){
                 if(((LoanAccount)account).getStatus() == LoanStatus.REVIEW) {
                     count.getAndIncrement();
-                    Pair<Parent, LoanReviewBlockController> block = SceneUtils.getRootAndController("StaffScene/loan_review_block.fxml");
+                    Pair<Parent, ReviewBlockController> block = SceneUtils.getRootAndController("StaffScene/review_block.fxml");
                     block.getValue().setData((LoanAccount) account);
                     vbox_xet_duyet_vay.getChildren().add(block.getKey());
+                }
+                else if(((LoanAccount)account).getStatus() == LoanStatus.OVERDUE){
+                    if(((LoanAccount)account).getDuration() < 0){
+                        count.getAndIncrement();
+                        Pair<Parent, ReviewBlockController> block = SceneUtils.getRootAndController("StaffScene/review_block.fxml");
+                        block.getValue().setData((LoanAccount) account);
+                        vbox_xet_duyet_vay.getChildren().add(block.getKey());
+                    }
                 }
             }
         });

@@ -1,16 +1,20 @@
 package com.example.javafx_app.controller.verify;
 
+import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
+import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,8 +32,17 @@ public class VerifyOTPTransaction implements Initializable {
     @FXML
     private Text countdownText;
 
-    @FXML
-    private Label OTPLabel ;
+    //Làm cho loan
+    private int type = 0;
+    private int index = 0;
+    private long max = 0;
+    private double interest = 0;
+    public void loadLoanInfo(int type, int index, long max, double interest){
+        this.type = type;
+        this.index = index;
+        this.max = max;
+        this.interest = interest;
+    }
 
     // Giữ lại các hằng số cần thiết cho flow và timer
     private static final int INITIAL_COUNTDOWN = 30;
@@ -40,7 +53,6 @@ public class VerifyOTPTransaction implements Initializable {
     public  static String Type ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        OTPLabel.setVisible(false);
         System.out.println(isValid);
         GuiLaiOTP();
     }
@@ -80,8 +92,7 @@ public class VerifyOTPTransaction implements Initializable {
         startCountdown();
         OTP = BankManager.generateOTP();
         if(isValid){
-            OTPLabel.setVisible(true);
-            OTPLabel.setText("Mã OTP của bạn là : "+OTP);
+            OTPMessage.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
         }
     }
 
@@ -90,8 +101,10 @@ public class VerifyOTPTransaction implements Initializable {
     public void Huy(ActionEvent event) {
         // LOGIC TIMER: Dừng đồng hồ
         if (timeline != null) timeline.stop();
-
-        SceneUtils.switchScene(mainStage, "verify/verify_scene.fxml");
+        Pair<Parent, VerifyController> scene = SceneUtils.getRootAndController("verify/verify_scene.fxml");
+        scene.getValue().displayTransactionInformation(TransactionManager.getInstance().getCurrentTransaction());
+        if(AccountManager.getInstance().getCurrentAccount() instanceof LoanAccount)scene.getValue().loadLoanInfo(this.type, this.index, this.max, this.interest);
+        SceneUtils.switchScene(mainStage, scene.getKey());
     }
 
     @FXML

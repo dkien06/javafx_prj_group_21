@@ -60,19 +60,24 @@ public class BankManager {
     ví dụ như checking account cần update về số lượng bill
     saving account cần update về lượng tiền tiết kiệm hiện có
     loan account cần update về số dư nợ
+    và xong cả rồi nha:)
     */
     public static void updateInformation(){
         Map<String,Account> accountMap = AccountManager.getInstance().getAccountList() ;
         LocalDate previousDate = DataPersistence.lastAppUsageDate ;
         for(Map.Entry<String,Account> entry:accountMap.entrySet()){
             Account account = entry.getValue();
-            if(account.getAccountType().equals(ACCOUNT_TYPE.CHECKING)){
+            if(account instanceof CheckingAccount){
                 AccountManager.getInstance().addMonthlyBills((CheckingAccount) account,previousDate,currentDate);
                 AccountManager.getInstance().checkAndCancelAllServices((CheckingAccount) account);
             }
-            else if(account.getAccountType().equals(ACCOUNT_TYPE.SAVING)
+            else if(account instanceof SavingAccount
                     &&!((SavingAccount)account).getType().equals(SavingType.NONE)){
                 AccountManager.getInstance().updateSavingBalance((SavingAccount) account,previousDate,currentDate);
+            }
+            else if(account instanceof LoanAccount
+                    &&!((LoanAccount)account).getType().equals(LoanType.NONE)){
+                AccountManager.getInstance().updateLoanBalance((LoanAccount) account, previousDate, currentDate);
             }
         }
     }

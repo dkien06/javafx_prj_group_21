@@ -115,7 +115,8 @@ public class NotiManager {
                 title,
                 message
         );
-    }public static Notification getNotiForFixedSavingMaturity(String accountID, long amount, String targetAccountID) {
+    }
+    public static Notification getNotiForFixedSavingMaturity(String accountID, long amount, String targetAccountID) {
         // Tiêu đề thông báo
         String title = "TẤT TOÁN TIẾT KIỆM ĐẾN HẠN";
 
@@ -128,6 +129,41 @@ public class NotiManager {
 
         return new Notification(
                 NotificationType.SAVING_UPDATE, // Giả định bạn có loại này trong NotificationType
+                title,
+                message
+        );
+    }
+    public static Notification getNotiForLoanUpdate(String accountID, long newDebt, long totalMonths) {
+        // Giả định bạn có loại thông báo SAVING_UPDATE trong enum NotificationType
+        // Nếu chưa có, bạn có thể dùng một loại mặc định hoặc bổ sung vào enum
+        String title = "CẬP NHẬT TIỀN VAY";
+
+        String message = String.format(
+                "Tài khoản vay %s của bạn đã được cộng lãi. Số tiền hiện tại đã tăng lên thành %d VND sau %d tháng tích lũy.",
+                accountID,
+                newDebt,
+                totalMonths
+        );
+
+        return new Notification(
+                NotificationType.LOAN_UPDATE,
+                title,
+                message
+        );
+    }
+    public static Notification getNotiForLoanMaturity(String accountID, long amount, String targetAccountID) {
+        // Tiêu đề thông báo
+        String title = "CẢNH BÁO VAY QUÁ HẠN";
+
+        // Nội dung thông báo chi tiết
+        String message = String.format(
+                "Khoản vay của bạn đã đến kỳ hạn trả. Tổng số tiền %d VND (bao gồm gốc và lãi) chưa được thanh toán đúng hạn. Vui lòng về thanh toán trong 14 ngày hoặc thực hiện gia hạn tại tài khoản thanh toán %s.",
+                amount,
+                targetAccountID
+        );
+
+        return new Notification(
+                NotificationType.LOAN_UPDATE,
                 title,
                 message
         );

@@ -11,15 +11,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="414.0" stylesheets="@css_file/login_decor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_app.controller.LoginController">
    <children>
       <VBox layoutX="65.0" layoutY="236.0" prefHeight="176.0" prefWidth="283.0">
          <children>
-            <Label text="Số CMND" />
+            <Label text="Số CMND" textFill="WHITE" />
             <TextField fx:id="CCCDField" />
-            <Label layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="261.0" text="Chọn loại tài khoản bạn muốn đăng nhập" />
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="261.0" text="Chọn loại tài khoản bạn muốn đăng nhập" textFill="WHITE" />
             <ChoiceBox fx:id="accountType" prefHeight="26.0" prefWidth="293.0" />
-            <Label text="Mật khẩu" />
+            <Label text="Mật khẩu" textFill="WHITE" />
             <PasswordField fx:id="PasswordField" />
             <Label fx:id="WrongLoginLabel" prefHeight="18.0" prefWidth="211.0" styleClass="red_label" textFill="#cc3535" />
             <CheckBox fx:id="RememberPass" mnemonicParsing="false" prefHeight="18.0" prefWidth="141.0" text="Nhớ mật khẩu" textFill="WHITE">

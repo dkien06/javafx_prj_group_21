@@ -2,7 +2,6 @@ package com.example.javafx_app.manager;
 
 import com.example.javafx_app.DataPersistence;
 import com.example.javafx_app.config.ExampleUser;
-import com.example.javafx_app.exception.IllegalAccountSignUpException;
 import com.example.javafx_app.exception.MysteriousException;
 import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.object.Bill.Bill;
@@ -14,9 +13,7 @@ import com.example.javafx_app.object.User.USER_TYPE;
 import com.example.javafx_app.object.User.User;
 import com.example.javafx_app.config.Constant;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -77,7 +74,6 @@ public class AccountManager {
         }
         else if(accountType.equals(ACCOUNT_TYPE.SAVING.toString())){
             String savingAccountID = customer.getCheckingAccountID();
-            if(savingAccountID == null)throw new IllegalAccountSignUpException();
             StringBuilder savingID = new StringBuilder(savingAccountID);
             savingID.setCharAt(0,'2');
             savingAccountID = savingID.toString();
@@ -86,7 +82,6 @@ public class AccountManager {
         }
         else if(accountType.equals(ACCOUNT_TYPE.LOAN.toString())){
             String loanAccountID = customer.getCheckingAccountID();
-            if(loanAccountID == null)throw new IllegalAccountSignUpException();
             StringBuilder savingID = new StringBuilder(loanAccountID);
             savingID.setCharAt(0,'3');
             loanAccountID = savingID.toString();
@@ -136,6 +131,7 @@ public class AccountManager {
     }
     //Tìm kiếm account
     public Account findAccount(String accountID) {
+        System.out.println(accountMap.get(accountID));
         return accountMap.get(accountID);
     }
     public CheckingAccount findCheckingAccount(Account account){
@@ -157,6 +153,7 @@ public class AccountManager {
     public CheckingAccount findCheckingAccount(LoanAccount loanAccount){
         StringBuilder checkingAccountID = new StringBuilder(loanAccount.getAccountID());
         checkingAccountID.setCharAt(0,'1');
+        System.out.println(checkingAccountID);
         return (CheckingAccount) findAccount(checkingAccountID.toString());
     }
     public List<Account> findAccountFromUser(User user){
@@ -386,6 +383,38 @@ public class AccountManager {
                             findCheckingAccount(savingAccount).getAccountID() ));
                 }
                 break;
+        }
+    }
+    public void updateLoanBalance(LoanAccount loanAccount, LocalDate oldDate, LocalDate newDate){
+        LocalDate startDate = loanAccount.getStartLoanDate();
+        long totalMonthsToToday = ChronoUnit.MONTHS.between(startDate, newDate);
+
+        long totalMonthsToLastLogin = ChronoUnit.MONTHS.between(startDate, oldDate);
+
+        long totalMonths = totalMonthsToToday - totalMonthsToLastLogin;
+        if(totalMonths <= 0){
+            return;
+        }
+        switch (loanAccount.getType()){
+            case FIXED:
+                for (int i = 1; i <= totalMonths; i++) {
+                    loanAccount.applyFixedInterest();
+                }
+                loanAccount.addNotification(NotiManager.getNotiForLoanUpdate(loanAccount.getAccountID(),
+                        loanAccount.getDebt(),totalMonths));
+                break;
+            case ACCUMULATED:
+                for (int i = 1; i <= totalMonths; i++) {
+                    loanAccount.applyAccumulatedInterest();
+                }
+                loanAccount.addNotification(NotiManager.getNotiForLoanUpdate(loanAccount.getAccountID(),
+                        loanAccount.getDebt(),totalMonths));
+                break;
+        }
+        if(loanAccount.isOverdue()){
+            loanAccount.addNotification(NotiManager.getNotiForLoanMaturity(
+                    loanAccount.getAccountID(), loanAccount.getDebt(),
+                    findCheckingAccount(loanAccount).getAccountID()));
         }
     }
     //In log

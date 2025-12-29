@@ -76,6 +76,6 @@ public class Transaction implements Serializable {
     @Override
     public String toString() {
         return "[" + date + "] " + type + " " + amount + " " + currency +
-                " (" + description + ")";
+                " (" + description + ") " + fromAccount.getAccountName() + " -> " + toAccount.getAccountName();
     }
 }

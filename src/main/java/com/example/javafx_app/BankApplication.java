@@ -15,9 +15,11 @@ public class BankApplication extends Application {
     public void start(Stage stage) throws IOException {
         try{
             Constant.mainStage = stage;
-            DataPersistence.loadAllData(); //Fun fact: Nó load data ảo vcl:)
+            // B1: Tải dữ liệu khi ứng dụng bắt đầu
+            ExampleUser.init(); //Thêm cái này nó mới load đc mấy cái example user:)
+            //DataPersistence.loadAllData(); //Fun fact: Nó load data ảo vcl:)
             ExampleUser.setCurrentAccount();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/saving_account_home_scene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

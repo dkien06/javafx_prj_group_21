@@ -22,20 +22,20 @@
                     <children>
                   <VBox fx:id="vbox_xet_duyet_vay" prefHeight="548.0" prefWidth="349.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="14.0" prefWidth="386.0" text="Thông tin xét duyệt" textFill="WHITE" />
-                        <Label fx:id="loanAccountNameLabel" prefHeight="14.0" prefWidth="386.0" text="Họ và tên: " textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="14.0" prefWidth="386.0" text="Thông tin xét duyệt" />
+                        <Label fx:id="loanAccountNameLabel" prefHeight="14.0" prefWidth="386.0" text="Họ và tên: ">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="loanAccountCitizenIDLabel" prefHeight="14.0" prefWidth="386.0" text="Số CCCD: " textFill="WHITE">
+                        <Label fx:id="loanAccountCitizenIDLabel" prefHeight="14.0" prefWidth="386.0" text="Số CCCD: ">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="11.0" prefWidth="349.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="90.0" text="Số tài khoản:" textFill="WHITE">
+                              <Label prefHeight="20.0" prefWidth="90.0" text="Số tài khoản:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -43,6 +43,7 @@
                               <Label fx:id="loanAccountIDLabel" />
                            </children>
                         </HBox>
+                        <Label fx:id="trang_thai" text="Trạng thái: " />
                         <Label prefHeight="14.0" prefWidth="386.0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -50,7 +51,7 @@
                         </Label>
                         <HBox prefHeight="21.0" prefWidth="349.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="56.0" text="Mã vay:" textFill="WHITE">
+                              <Label prefHeight="20.0" prefWidth="56.0" text="Mã vay:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -58,29 +59,29 @@
                               <Label fx:id="loanIDLabel" prefHeight="20.0" prefWidth="284.0" />
                            </children>
                         </HBox>
-                        <Label fx:id="loanAmountLabel" prefHeight="14.0" prefWidth="386.0" text="Số tiền vay:" textFill="WHITE">
+                        <Label fx:id="loanAmountLabel" prefHeight="14.0" prefWidth="386.0" text="Số tiền vay:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="loanTypeLabel" prefHeight="14.0" prefWidth="386.0" text="Kiểu vay:" textFill="WHITE">
+                        <Label fx:id="loanTypeLabel" prefHeight="14.0" prefWidth="386.0" text="Kiểu vay:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="commitDateLabel" prefHeight="14.0" prefWidth="386.0" text="Ngày thực hiện: " textFill="WHITE">
+                        <Label fx:id="commitDateLabel" prefHeight="14.0" prefWidth="386.0" text="Ngày thực hiện: ">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="durationLabel" prefHeight="14.0" prefWidth="386.0" text="Kỳ hạn:" textFill="WHITE">
+                        <Label fx:id="durationLabel" prefHeight="14.0" prefWidth="386.0" text="Kỳ hạn:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="20.0" prefWidth="349.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="151.0" text="Mô tả:" textFill="WHITE" wrapText="true">
+                              <Label prefHeight="20.0" prefWidth="151.0" text="Mô tả:" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -88,9 +89,19 @@
                               <Label fx:id="descriptionLabel" prefHeight="20.0" prefWidth="402.0" />
                            </children>
                         </HBox>
+                        <Label prefHeight="14.0" prefWidth="386.0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yeu_cau" prefHeight="14.0" prefWidth="386.0" text="Yêu cầu: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                         <HBox prefHeight="23.0" prefWidth="349.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="62.0" text="Lãi suất: " textFill="WHITE" wrapText="true">
+                              <Label prefHeight="20.0" prefWidth="62.0" text="Lãi suất: " wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

@@ -1,9 +1,7 @@
 package com.example.javafx_app.controller.HomeController;
 
 import com.example.javafx_app.manager.AccountManager;
-import com.example.javafx_app.object.Account.LoanAccount;
-import com.example.javafx_app.object.Account.LoanStatus;
-import com.example.javafx_app.object.Account.LoanType;
+import com.example.javafx_app.object.Account.*;
 import com.example.javafx_app.object.Transaction;
 import com.example.javafx_app.object.TransactionType;
 import com.example.javafx_app.util.SceneUtils;
@@ -72,12 +70,12 @@ public class LoanAccountHomeSceneController implements Initializable {
 
     @FXML
     void XemTaiKhoan(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage, "account_scene.fxml");
     }
 
     @FXML
     void XemThongBao(ActionEvent event) {
-
+        SceneUtils.switchScene(mainStage, "NotiScene/noti_scene.fxml");
     }
 
     @FXML
@@ -87,7 +85,24 @@ public class LoanAccountHomeSceneController implements Initializable {
 
     @FXML
     void thanhToanKhoanVay(ActionEvent event) {
+        if(((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getType() == LoanType.NONE
+                || ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getStatus() == LoanStatus.NONE
+                || ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getStatus() == LoanStatus.REVIEW
+                || ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getDebt() == 0){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Không có tiền để trả");
+            alert1.setHeaderText("Tài khoản không có tiền để trả");
 
+            ButtonType okButton1 = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelButton1 = new ButtonType("Hủy", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert1.getButtonTypes().setAll(okButton1, cancelButton1);
+
+            Optional<ButtonType> result1 = alert1.showAndWait();
+            if (result1.isPresent()){
+                return;
+            }
+        }
+        SceneUtils.switchScene(mainStage, "loanScene/repay_scene.fxml");
     }
 
     @FXML
@@ -124,7 +139,7 @@ public class LoanAccountHomeSceneController implements Initializable {
                     ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).addToHistories(transaction, LoanStatus.CANCELED);
                     ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDebt(0);
                     ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setDuration(0);
-                    ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setInterest(0.0);
+                    ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setInterest(-1.0);
                     ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setType(LoanType.NONE);
                     ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).setStatus(LoanStatus.NONE);
                     SceneUtils.switchScene(mainStage, "loanScene/loan_choose_option.fxml");

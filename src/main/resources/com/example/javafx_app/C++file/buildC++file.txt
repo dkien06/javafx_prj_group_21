@@ -1,0 +1,1 @@
+g++ message.cpp -o message.exe -mwindows -municode
