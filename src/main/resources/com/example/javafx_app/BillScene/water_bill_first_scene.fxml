@@ -8,7 +8,7 @@
     <children>
         <VBox layoutX="65.0" layoutY="204.0" prefHeight="69.0" prefWidth="283.0" styleClass="VBox">
             <children>
-                <Label text="Nguồn thanh toán">
+                <Label text="Nguồn thanh toán" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -17,7 +17,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Nhà cung cấp">
+            <Label text="Nhà cung cấp" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -28,7 +28,7 @@
         <Label fx:id="WrongLoginLabel" layoutX="117.0" layoutY="457.0" textFill="#e00202" />
       <Button fx:id="return_btn" layoutX="101.0" layoutY="515.0" mnemonicParsing="false" onAction="#QuayLai" text="Quay lại" />
       <Button fx:id="continue_btn" layoutX="235.0" layoutY="515.0" mnemonicParsing="false" onAction="#TiepTuc" text="Tiếp tục" />
-      <Label layoutX="101.0" layoutY="46.0" prefHeight="61.0" prefWidth="212.0" text="Thanh toán tiền nước">
+      <Label layoutX="101.0" layoutY="46.0" prefHeight="61.0" prefWidth="212.0" text="Thanh toán tiền nước" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

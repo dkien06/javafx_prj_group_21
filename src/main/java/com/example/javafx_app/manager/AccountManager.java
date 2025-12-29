@@ -235,7 +235,7 @@ public class AccountManager {
         }
 
         // Bắt đầu từ tháng tiếp theo sau previousDate
-        YearMonth currentMonth = YearMonth.from(previousDate).plusMonths(1);
+        YearMonth currentMonth = YearMonth.from(previousDate);
         // Lặp cho đến tháng chứa startDate
         YearMonth endMonth = YearMonth.from(startDate);
 

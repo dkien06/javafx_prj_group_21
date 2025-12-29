@@ -26,7 +26,7 @@
                     </graphic></Button>
             </children>
         </GridPane>
-        <Label layoutX="166.0" layoutY="52.0" prefHeight="47.0" prefWidth="81.0" text="Hóa đơn">
+        <Label layoutX="166.0" layoutY="52.0" prefHeight="47.0" prefWidth="81.0" text="Hóa đơn" textFill="WHITE">
             <font>
                 <Font size="20.0" />
             </font>
