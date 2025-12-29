@@ -87,6 +87,7 @@ public class BankManager {
         WRONG_FORM,
         WRONG_SIZE,
         EXISTED,
+        UNDERAGE,
         RIGHT ;
         public static String getErrorMessageForFullName(SignUpInformationState state){
             return switch (state) {
@@ -98,6 +99,7 @@ public class BankManager {
         public static String getErrorMessageForDateOfBirth(SignUpInformationState state){
             return switch (state) {
                 case EMPTY -> "Vui lòng điền ngày sinh";
+                case UNDERAGE -> "Bạn chưa đủ tuổi lập tài khoản ngân hàng" ;
                 default -> "";
             };
         }
@@ -147,6 +149,13 @@ public class BankManager {
     public static SignUpInformationState checkSignUpDateOfBirth(LocalDate dateOfBirth){
         if(dateOfBirth == null)
             return SignUpInformationState.EMPTY;
+        LocalDate today = currentDate;
+        LocalDate minAllowedDate = today.minusYears(18);
+
+        // Nếu ngày sinh sau mốc today - 18 năm → chưa đủ 18 tuổi
+        if (dateOfBirth.isAfter(minAllowedDate)) {
+            return SignUpInformationState.UNDERAGE;
+        }
         return SignUpInformationState.RIGHT;
     }
     //Check giới tính

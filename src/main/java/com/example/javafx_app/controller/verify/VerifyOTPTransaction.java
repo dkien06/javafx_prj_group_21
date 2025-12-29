@@ -92,6 +92,7 @@ public class VerifyOTPTransaction implements Initializable {
         startCountdown();
         OTP = BankManager.generateOTP();
         if(isValid){
+            System.out.println(OTP);
             OTPMessage.makeMessage("Mã OTP của bạn là: " + OTP + ". Đề nghị không được chia sẻ mã OTP này cho bất kì ai cả!");
         }
     }

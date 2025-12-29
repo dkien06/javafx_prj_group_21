@@ -31,7 +31,7 @@ public  abstract class Account implements Serializable {
         this.PIN = PIN;
         this.history = new ArrayList<>();
         this.notifications = new ArrayList<>();
-        this.StartDate =(BankManager.getCurrentDate()!=null)?BankManager.getCurrentDate():LocalDate.of(2010,1, 1);// Lay ngay hom nay , gia lap thoi
+        this.StartDate =(BankManager.getCurrentDate()!=null)?BankManager.getCurrentDate():LocalDate.of(2020,1, 1);// Lay ngay hom nay , gia lap thoi
     }
 
 
