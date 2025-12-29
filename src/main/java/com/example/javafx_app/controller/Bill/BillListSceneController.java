@@ -59,7 +59,7 @@ public class BillListSceneController  {
         };
         Pair<Parent, BillButtonController> button = SceneUtils.getRootAndController(path);
         button.getValue().setData(Supplier,date.toString(),amount);
-        BillList.getChildren().add(button.getKey());
+        BillList.getChildren().add(0,button.getKey());
     }
     @FXML
     void GoToPayScene(){

@@ -29,14 +29,14 @@ public class ReviewController implements Initializable {
                     count.getAndIncrement();
                     Pair<Parent, ReviewBlockController> block = SceneUtils.getRootAndController("StaffScene/review_block.fxml");
                     block.getValue().setData((LoanAccount) account);
-                    vbox_xet_duyet_vay.getChildren().add(block.getKey());
+                    vbox_xet_duyet_vay.getChildren().add(0,block.getKey());
                 }
                 else if(((LoanAccount)account).getStatus() == LoanStatus.OVERDUE){
                     if(((LoanAccount)account).getDuration() < 0){
                         count.getAndIncrement();
                         Pair<Parent, ReviewBlockController> block = SceneUtils.getRootAndController("StaffScene/review_block.fxml");
                         block.getValue().setData((LoanAccount) account);
-                        vbox_xet_duyet_vay.getChildren().add(block.getKey());
+                        vbox_xet_duyet_vay.getChildren().add(0,block.getKey());
                     }
                 }
             }
