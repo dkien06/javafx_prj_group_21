@@ -16,10 +16,11 @@ public class BankApplication extends Application {
         try{
             Constant.mainStage = stage;
             // B1: Tải dữ liệu khi ứng dụng bắt đầu
+            DataPersistence.loadAllData(); //Fun fact: Nó load data ảo vcl:)
             ExampleUser.init(); //Thêm cái này nó mới load đc mấy cái example user:)
-            //DataPersistence.loadAllData(); //Fun fact: Nó load data ảo vcl:)
-            ExampleUser.setCurrentAccount();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScenes/loan_account_home_scene.fxml"));
+            //Fun fact: Nhập số điện thoại là "-" và email là "-" cả thì nó sẽ hiện choiceBox và nút
+            //Bây giò cứ chọn số tài khoản xong bấm đăng nhập thì nó đăng nhập luôn khỏi cần phải nhập thông tin
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

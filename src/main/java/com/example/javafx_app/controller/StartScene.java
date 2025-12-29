@@ -1,14 +1,17 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.DataPersistence;
+import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -41,6 +44,12 @@ public class StartScene implements Initializable {
     }
     @FXML
     private void NextToLogin(ActionEvent event) {
+        if(EmailTextField.getText().equals("-") && PhoneTextField.getText().equals("-")){
+            ExampleUser.setCheat(true);
+            Pair<Parent, LoginController> scene = SceneUtils.getRootAndController("login_scene.fxml");
+            scene.getValue().loadCheat();
+            SceneUtils.switchScene(mainStage,scene.getKey());
+        }
         BankManager.SignUpInformationState emailState = BankManager.checkSignUpEmail(EmailTextField.getText());
         BankManager.SignUpInformationState phoneState = BankManager.checkSignUpPhoneNumber(PhoneTextField.getText());
         LocalDate today = DatePicker.getValue() ;
@@ -74,5 +83,4 @@ public class StartScene implements Initializable {
     public void Exit(ActionEvent event) {
         System.exit(0);
     }
-
 }

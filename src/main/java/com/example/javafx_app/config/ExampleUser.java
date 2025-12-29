@@ -15,11 +15,16 @@ import com.example.javafx_app.object.User.GENDER;
 import com.example.javafx_app.object.User.Staff;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Tài khoản ảo thôi:)
  */
 public class ExampleUser {
+    private ExampleUser(){}
     public static final Account accountA = new CheckingAccount(
             "Phan Đức Kiên",
             "031206018246",     // citizenID
@@ -144,6 +149,42 @@ public class ExampleUser {
             "HoangVanThai1970@gmail.com",
             "010102030508"
     );
+    // === USER G ===
+    private static final Account accountG = new CheckingAccount(
+            "Ly Thi Quynh G",
+            "010204081632",
+            "101020304",
+            "12345678",
+            100_000_000,
+            "VND",
+            "141427"
+    );
+    private static final Account accountG1 = new SavingAccount(
+            "Ly Thi Quynh G",
+            "010204081632",
+            "201020304",
+            "12345678",
+            10_000_000,
+            "VND",
+            "141427"
+    );
+    private static final Account accountG2 = new LoanAccount(
+            "Ly Thi Quynh G",
+            "010204081632",
+            "301020304",
+            "12345678",
+            1_000_000,
+            "VND",
+            "141427"
+    );
+    private static final Customer userG = new Customer(
+            "Lý thị Quỳnh G",
+            LocalDate.of(1980,10,20),
+            GENDER.FEMALE,
+            "0141421356",
+            "GiangQuynh2010@gmail.com",
+            "010204081632"
+    );
     // ================== BILL GIẢ LẬP ==================
     // ================== NHÀ CUNG CẤP DỊCH VỤ (CHECKING ACCOUNT) ==================
     public static final CheckingAccount ELECTRIC_PROVIDER = new CheckingAccount(
@@ -186,8 +227,32 @@ public class ExampleUser {
             "000004"
     );
     //========Noti Gia Lap ================
+    private static final Map<String, Account> exampleAccountList = new HashMap<>();
+    public static Map<String, Account> getExampleAccountList(){
+        return exampleAccountList;
+    }
+    private static boolean cheat = false;
+    public static boolean isCheat() {
+        return cheat;
+    }
+    public static void setCheat(boolean cheat) {
+        ExampleUser.cheat = cheat;
+    }
+    public static void initMap(){
+        exampleAccountList.put(accountA.getAccountID(),accountA);
+        exampleAccountList.put(accountB.getAccountID(),accountB);
+        exampleAccountList.put(accountB1.getAccountID(),accountB1);
+        exampleAccountList.put(accountC.getAccountID(),accountC);
+        exampleAccountList.put(accountC1.getAccountID(),accountC1);
+        exampleAccountList.put(accountD.getAccountID(),accountD);
+        exampleAccountList.put(accountE.getAccountID(),accountE);
+        exampleAccountList.put(accountE1.getAccountID(),accountE1);
+        exampleAccountList.put(accountG.getAccountID(),accountG);
+        exampleAccountList.put(accountG1.getAccountID(),accountG1);
+        exampleAccountList.put(accountG2.getAccountID(),accountG2);
+    }
     public static void addExample(){
-        CheckingAccount CheckingAccountC = (CheckingAccount) accountC;
+        initMap();
         AccountManager.getInstance().getAccountList().put(accountA.getAccountID(),accountA);
         AccountManager.getInstance().getAccountList().put(accountB.getAccountID(),accountB);
         AccountManager.getInstance().getAccountList().put(accountB1.getAccountID(), accountB1);
@@ -196,6 +261,9 @@ public class ExampleUser {
         AccountManager.getInstance().getAccountList().put(accountD.getAccountID(),accountD);
         AccountManager.getInstance().getAccountList().put(accountE.getAccountID(),accountE);
         AccountManager.getInstance().getAccountList().put(accountE1.getAccountID(),accountE1);
+        AccountManager.getInstance().getAccountList().put(accountG.getAccountID(),accountG);
+        AccountManager.getInstance().getAccountList().put(accountG1.getAccountID(),accountG1);
+        AccountManager.getInstance().getAccountList().put(accountG2.getAccountID(),accountG2);
         AccountManager.getInstance().getAccountList().put(ELECTRIC_PROVIDER.getAccountID(), ELECTRIC_PROVIDER);
         AccountManager.getInstance().getAccountList().put(WATER_PROVIDER.getAccountID(), WATER_PROVIDER);
         AccountManager.getInstance().getAccountList().put(INTERNET_PROVIDER.getAccountID(), INTERNET_PROVIDER);
@@ -207,20 +275,25 @@ public class ExampleUser {
         userC.addAccountID(accountC1.getAccountID());
         userE.addAccountID(accountE.getAccountID());
         userE.addAccountID(accountE1.getAccountID());
+        userG.addAccountID(accountG.getAccountID());
+        userG.addAccountID(accountG1.getAccountID());
+        userG.addAccountID(accountG2.getAccountID());
         UserManager.getInstance().addUser(userA);
         UserManager.getInstance().addUser(userB);
         UserManager.getInstance().addUser(userC);
         UserManager.getInstance().addUser(userD);
         UserManager.getInstance().addUser(userE);
+        UserManager.getInstance().addUser(userG);
         // Gọi hàm thêm giao dịch mẫu
     }
     public static void init(){
         addExample();
         ((SavingAccount)accountC1).setType(SavingType.FLEXIBLE);
+        ((SavingAccount)accountG1).setType(SavingType.FIXED);
         ((LoanAccount)accountB1).setLoanInfo(LoanType.FIXED, LoanStatus.ACTIVE, 0.75, 12);
         ((LoanAccount)accountE1).setLoanInfo(LoanType.ACCUMULATED, LoanStatus.OVERDUE, 0.5, 12);
+        ((LoanAccount)accountG2).setLoanInfo(LoanType.NONE, LoanStatus.NONE, 0.0, 0);
     }
-    public static void setCurrentAccount(){
-        AccountManager.getInstance().setCurrentAccount(accountB1);
-    }
+
+
 }
