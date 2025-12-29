@@ -3,6 +3,7 @@ package com.example.javafx_app.controller.verify;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.manager.BankManager;
 import com.example.javafx_app.manager.TransactionManager;
+import com.example.javafx_app.manager.UserManager;
 import com.example.javafx_app.object.Account.LoanAccount;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.animation.KeyFrame;
@@ -48,7 +49,7 @@ public class VerifyOTPTransaction implements Initializable {
     private static final int INITIAL_COUNTDOWN = 30;
     private int currentCountdown;
     private Timeline timeline;
-    boolean isValid = true;
+    boolean isValid = BankManager.getCurrentPhoneNumber().equals(UserManager.getInstance().getCurrentUser().getPhoneNumber());
     private String OTP = BankManager.generateOTP() ;
     public  static String Type ;
     @Override

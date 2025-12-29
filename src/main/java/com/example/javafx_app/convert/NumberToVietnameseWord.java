@@ -145,7 +145,15 @@ public class NumberToVietnameseWord {
         try {
             if (value.isEmpty()) { return "Vui lòng nhập số tiền" ;}
             else if(value.matches("\\d+")){return  "Số tiền không hợp lệ" ;}
-            else return "";
+            else{
+                long amount = Long.parseLong(value);
+                if(amount >=1_000_000_000){
+                    return "Bạn không thể nạp số tiền lớn hơn 1 tỷ" ;
+                }
+                else {
+                    return "" ;
+                }
+            }
         } catch (NumberFormatException e) {
             return  "Số tiền không hợp lệ";
         }
