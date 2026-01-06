@@ -1,8 +1,10 @@
 package com.example.javafx_app.controller;
 
 import com.example.javafx_app.DataPersistence;
+import com.example.javafx_app.config.ExampleUser;
 import com.example.javafx_app.manager.AccountManager;
 import com.example.javafx_app.object.Account.ACCOUNT_TYPE;
+import com.example.javafx_app.object.Account.Account;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,8 +28,31 @@ public class LoginController implements Initializable {
     @FXML
     private ChoiceBox<String> accountType;
     @FXML private CheckBox RememberPass ;
+
+    @FXML private ChoiceBox<String> quick_log_in_for_example_account;
+    @FXML private Button quick_login_button;
+    @FXML private Label example_name_label;
+    public void loadCheat(){
+        if(ExampleUser.isCheat()){
+            quick_log_in_for_example_account.setDisable(false);
+            quick_log_in_for_example_account.setVisible(true);
+            quick_login_button.setVisible(true);
+            quick_login_button.setDisable(false);
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        quick_log_in_for_example_account.getItems().addAll(ExampleUser.getExampleAccountList().keySet());
+        quick_log_in_for_example_account.getSelectionModel().selectedItemProperty().addListener((observable, _, value) -> {
+            if(value != null)example_name_label.setText(
+                    ExampleUser.getExampleAccountList().get(value).getAccountName()
+                + " - " + ExampleUser.getExampleAccountList().get(value).getAccountType().toString());
+            else example_name_label.setText("");
+        });
+        quick_log_in_for_example_account.setDisable(true);
+        quick_log_in_for_example_account.setVisible(false);
+        quick_login_button.setVisible(false);
+        quick_login_button.setDisable(true);
         // Nạp các loại tài khoản vào ChoiceBox (hiển thị bằng tên tiếng Việt từ toString)
         if(!DataPersistence.savedAccountID.isEmpty()){
             CCCDField.setText(DataPersistence.savedAccountID);
@@ -76,6 +101,7 @@ public class LoginController implements Initializable {
                 DataPersistence.savedPassword = "" ;
                 DataPersistence.accountType = "";
             }
+            ExampleUser.setCheat(false);
             SceneUtils.switchScene(mainStage,
                     AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
         }
@@ -89,5 +115,15 @@ public class LoginController implements Initializable {
     @FXML
     public void QuenMatKhau(MouseEvent event) {
         SceneUtils.switchScene(mainStage,"forget_password.fxml");
+    }
+    @FXML
+    public void DangNhapNhanh(ActionEvent event){
+        if(quick_log_in_for_example_account.getValue() != null){
+            Account account = AccountManager.getInstance().findAccount(quick_log_in_for_example_account.getValue());
+            AccountManager.getInstance().setCurrentAccount(account);
+            ExampleUser.setCheat(true);
+            SceneUtils.switchScene(mainStage,
+                    AccountManager.getInstance().chooseHomeScene(AccountManager.getInstance().getCurrentAccount()));
+        }
     }
 }

@@ -25,7 +25,6 @@ public class SavingAccount extends Account implements Serializable {
         super(fullName, citizenID, accountID, password, currency, PIN);
         this.saving = saving;
         this.type = SavingType.NONE;
-        this.startSavingDate = BankManager.getCurrentDate();
         this.fixedDuration = 0;
         this.accumulatedAmount = 0;
     }

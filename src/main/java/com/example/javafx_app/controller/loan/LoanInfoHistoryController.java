@@ -52,7 +52,7 @@ public class LoanInfoHistoryController implements Initializable {
         ((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getHistories().forEach((transaction, loanStatusStringPair) -> {
             Pair<Parent, LoanHistoryBlockController> scene = SceneUtils.getRootAndController("loanScene/loan_history_block.fxml");
             scene.getValue().loadData(transaction,loanStatusStringPair.getKey(),loanStatusStringPair.getValue());
-            vbox_lich_su_giao_dich.getChildren().add(scene.getKey());
+            vbox_lich_su_giao_dich.getChildren().add(0,scene.getKey());
         });
         switch (((LoanAccount)AccountManager.getInstance().getCurrentAccount()).getStatus()){
             case NONE, ACTIVE, EXTENDED:

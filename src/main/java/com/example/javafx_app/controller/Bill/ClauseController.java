@@ -5,6 +5,7 @@ import com.example.javafx_app.object.Account.CheckingAccount;
 import com.example.javafx_app.object.Bill.BillType;
 import com.example.javafx_app.util.SceneUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 
 import java.lang.reflect.AccessFlag;
 
@@ -12,7 +13,13 @@ import static com.example.javafx_app.config.Constant.mainStage;
 
 public class ClauseController {
     public static BillType billType;
+    @FXML
+    private TextArea DieuKhoan;
     private CheckingAccount checkingAccount = (CheckingAccount) AccountManager.getInstance().getCurrentAccount() ;
+    @FXML
+    public void initialize(){
+        DieuKhoan.setEditable(false);
+    }
     @FXML
     void HoanThanh(){
         if(billType == BillType.ELECTRIC){

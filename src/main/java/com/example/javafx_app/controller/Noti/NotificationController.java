@@ -50,7 +50,7 @@ public class NotificationController {
                 Pair<Parent, NotificationBlockController> button = SceneUtils.
                         getRootAndController("NotiScene/notification_button_block.fxml");
                 button.getValue().setData(notification);
-                myVBox.getChildren().add(button.getKey());
+                myVBox.getChildren().add(0,button.getKey());
             }
         }
     }

@@ -12,7 +12,7 @@
     <children>
         <Label fx:id="logo_label" layoutX="29.0" layoutY="54.0" prefHeight="60.0" prefWidth="85.0" />
       <Label fx:id="avatar" layoutX="168.0" layoutY="76.0" prefHeight="75.0" prefWidth="77.0" styleClass="icon_container" />
-      <Label fx:id="Name" layoutX="164.0" layoutY="162.0" prefHeight="25.0" prefWidth="85.0" text="User Name" textFill="WHITE">
+      <Label fx:id="Name" alignment="CENTER" layoutX="20.0" layoutY="162.0" prefHeight="26.0" prefWidth="375.0" text="User Name" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>

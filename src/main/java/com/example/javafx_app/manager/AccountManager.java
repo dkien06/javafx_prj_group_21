@@ -235,7 +235,7 @@ public class AccountManager {
         }
 
         // Bắt đầu từ tháng tiếp theo sau previousDate
-        YearMonth currentMonth = YearMonth.from(previousDate).plusMonths(1);
+        YearMonth currentMonth = YearMonth.from(previousDate);
         // Lặp cho đến tháng chứa startDate
         YearMonth endMonth = YearMonth.from(startDate);
 
@@ -346,8 +346,13 @@ public class AccountManager {
         }
     }
     public  void updateSavingBalance(SavingAccount savingAccount,LocalDate oldDate,LocalDate newDate) {
+        System.out.println(savingAccount.getType().toString()+savingAccount.getAccountName());
+        if(savingAccount.getType().equals(SavingType.NONE))  return;
         // 1. Tính tổng số tháng trọn vẹn từ lúc gửi đến hôm nay
         LocalDate startDate = savingAccount.getStartSavingDate();
+        if(startDate==null) System.out.println("startDate==null");
+        if(oldDate==null) System.out.println("oldDate==null");
+        if(newDate==null) System.out.println("newDate==null");
         long totalMonthsToToday = ChronoUnit.MONTHS.between(startDate, newDate);
 
         // 2. Tính tổng số tháng trọn vẹn từ lúc gửi đến lần đăng nhập cuối

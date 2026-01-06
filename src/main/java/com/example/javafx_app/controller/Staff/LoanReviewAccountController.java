@@ -46,7 +46,7 @@ public class LoanReviewAccountController {
         commitDateLabel.setText("Ngày thực hiện: " + loanAccount.getStartLoanDate().toString());
         durationLabel.setText("Kỳ hạn: " + loanAccount.getDuration());
         descriptionLabel.setText(loanAccount.getDescription());
-
+        interestLog.setText("");
         if(loanAccount.getDuration() < 0){
             yeu_cau.setText("Yêu cầu: Gia hạn");
         }

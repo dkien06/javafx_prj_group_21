@@ -65,6 +65,7 @@ public class CompletedController {
                 toAccountIDLabel.setVisible(false);
                 toBankLabel.setVisible(false);
                 descriptionLabel.setText("Vui lòng chờ để chúng tôi xét duyệt cho bạn!");
+                toBankLabel.setText("21stBank");
                 break;
             default:
                 break;
